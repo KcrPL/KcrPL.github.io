@@ -1,0 +1,5 @@
+# KcrPL Hosting repository
+
+Hi, i'm only using this repository as an file hosting. I will primally use it as hosting the files for auto update feature in my patchers! :)
+
+![](http://i.imgur.com/tYDMk1w.gif)
