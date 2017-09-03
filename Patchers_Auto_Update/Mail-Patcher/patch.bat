@@ -2,7 +2,7 @@
 if exist temp.bat del /q temp.bat
 :: ===========================================================================
 :: Wii Mail Patcher for Windows
-set version=0.9.0
+set version=1.0.0
 :: AUTHORS: KcrPL, Foxlight
 :: ***************************************************************************
 :: Copyright (c) 2017 RiiConnect24, and it's (Lead) Developers
