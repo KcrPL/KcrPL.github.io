@@ -35,7 +35,7 @@ goto begin_main
 cls
 echo RiiConnect24 Mail Patcher - (C) Larsenv, (C) KcrPL. v%version%. (Compiled on %last_build% at %at%)
 echo.
-echo Please don't run our IOS Patcher in MS-DOS :P.
+echo Please don't run our Mail Patcher in MS-DOS :P.
 echo Run it only on Windows Vista+ computer. :)
 pause>NUL	
 exit
@@ -465,7 +465,7 @@ echo ---------------------------------------------------------------------------
 echo    /---\   Updating.
 echo   /     \  Please wait...
 echo  /   !   \ 
-echo  --------- IOS Patcher will restart shortly... 
+echo  --------- Mail Patcher will restart shortly... 
 echo.             
 echo.
 echo ------------------------------------------------------------------------------------------------------------------------------    
