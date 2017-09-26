@@ -1,1 +1,1 @@
-Initial release.
+Fixed the error when after installing Ruby the program can't see it.
