@@ -1,2 +1,4 @@
 -EULA Deleted
    It should fix the EULA loop. When you click "I agree" it would ask you about it again. It has been fixed by... deleting it.
+   
+-Added info about RiiConnect24 support mail
