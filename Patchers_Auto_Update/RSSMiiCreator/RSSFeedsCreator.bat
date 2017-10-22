@@ -155,7 +155,7 @@ if %s%==1 goto update_files
 if %s%==2 goto 1
 if %s%==3 goto whatsnew
 goto update_notice
-:update_notice
+:update_files
 cls
 echo.                                                                       
 echo.
