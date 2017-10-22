@@ -293,14 +293,14 @@ echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN
 echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd                 
 echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy                 
 echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+                 
-echo ------------------------------------------------------------------------------------------------------------------------------              
+echo -----------------------------------------------------------------------------------------------------------------------------              
 echo    /---\   An Update is available.              
 echo   /     \  An Update for this program is available. We suggest updating the IOS Patcher to the latest version.
 echo  /   !   \ 
 echo  ---------  Current version: %version%
 echo             New version: %updateversion%
 echo                       1. Update                      2. Dismiss               3. What's new in this update?
-echo ------------------------------------------------------------------------------------------------------------------------------    
+echo -----------------------------------------------------------------------------------------------------------------------------    
 echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys                  
 echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-                  
 echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm                     
@@ -334,14 +334,14 @@ echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN
 echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd                 
 echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy                 
 echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+                 
-echo ------------------------------------------------------------------------------------------------------------------------------              
+echo -----------------------------------------------------------------------------------------------------------------------------              
 echo    /---\   Updating.
 echo   /     \  Please wait...
 echo  /   !   \ 
 echo  --------- IOS Patcher will restart shortly... 
 echo.             
 echo.
-echo ------------------------------------------------------------------------------------------------------------------------------    
+echo -----------------------------------------------------------------------------------------------------------------------------    
 echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys                  
 echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-                  
 echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm                     
@@ -418,7 +418,7 @@ exit
 cls
 if not exist %TempStorage%\whatsnew.txt goto whatsnew_notexist
 echo RiiConnect24 IOS Patcher - (C) Larsenv, (C) KcrPL. v%version%. (Compiled on %last_build% at %at%)
-echo ------------------------------------------------------------------------------------------------------------------------------              
+echo -----------------------------------------------------------------------------------------------------------------------------              
 echo.
 echo What's new in update %updateversion%?
 echo.
@@ -428,7 +428,7 @@ goto update_notice
 :whatsnew_notexist
 cls
 echo RiiConnect24 IOS Patcher - (C) Larsenv, (C) KcrPL. v%version%. (Compiled on %last_build% at %at%)
-echo -----------------------------------------------------------------------------------------------------------------------------              
+echo ----------------------------------------------------------------------------------------------------------------------------              
 echo.
 echo Error. What's new file is not available.
 echo.
@@ -449,14 +449,14 @@ echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN
 echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd                 
 echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy                 
 echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+                 
-echo ------------------------------------------------------------------------------------------------------------------------------              
+echo -----------------------------------------------------------------------------------------------------------------------------              
 echo    /---\   Windows XP Support Ended.              
 echo   /     \  Thanks for using the program but support for any system older than Windows 7 has been ended.
 echo  /   !   \ It means that you can still use this program but if you encounter any problem with it we will not help you.
 echo  --------- We may release ESR if needed. (Extended Support Release)             
 echo  We will allow you to use this program. But make sure to have .NET Framework 3.5 installed in order to make it work.
 echo            Press any key to continue.
-echo ------------------------------------------------------------------------------------------------------------------------------    
+echo -----------------------------------------------------------------------------------------------------------------------------    
 echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys                  
 echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-                  
 echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm                     
@@ -527,12 +527,12 @@ echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN
 echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd                 
 echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy                 
 echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+                 
-echo ------------------------------------------------------------------------------------------------------------------------------              
+echo -----------------------------------------------------------------------------------------------------------------------------              
 echo    /---\   ERROR.              
 echo   /     \  Some files needed to run this program weren't found.
 echo  /   !   \ Press any button to download these files.
 echo  ---------              
-echo ------------------------------------------------------------------------------------------------------------------------------    
+echo -----------------------------------------------------------------------------------------------------------------------------    
 echo            mmmmmh ymMMMMMMMMMNNmmmNmNNNMNNMMMMNyyhhh`                 
 echo           `mmmmmy hmMMNMNNMMMNNmmmmmdNMMNmmMMMMhyhhy                  
 echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys                  
@@ -564,12 +564,12 @@ echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN
 echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd                 
 echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy                 
 echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+                 
-echo ------------------------------------------------------------------------------------------------------------------------------              
+echo -----------------------------------------------------------------------------------------------------------------------------              
 echo    /---\   ERROR.              
 echo   /     \  Translation file is broken or file check has failed...
 echo  /   !   \ 
 echo  --------- Press any button to go back.             
-echo ------------------------------------------------------------------------------------------------------------------------------    
+echo -----------------------------------------------------------------------------------------------------------------------------    
 echo            mmmmmh ymMMMMMMMMMNNmmmNmNNNMNNMMMMNyyhhh`                 
 echo           `mmmmmy hmMMNMNNMMMNNmmmmmdNMMNmmMMMMhyhhy                  
 echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys                  
@@ -933,7 +933,7 @@ if not %temperrorlev%==0 goto error_patching
 cls
 echo.
 echo RiiConnect24 IOS Patcher - (C) Larsenv, (C) KcrPL. v%version%. (Compiled on %last_build% at %at%)
-echo --------------------------------------------------------------------------------------------------------------------------------
+echo -------------------------------------------------------------------------------------------------------------------------------
 echo  [*] Downloading
 echo.
 echo :-------   : 70%%
