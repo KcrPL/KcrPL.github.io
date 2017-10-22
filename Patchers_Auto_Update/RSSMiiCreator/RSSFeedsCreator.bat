@@ -7,6 +7,7 @@ set version=1.0.0
 :: ***************************************************************************
 :: Copyright (c) 2017 RiiConnect24, and it's (Lead) Developers
 :: ===========================================================================
+if exist temp.bat del /q temp.bat
 set mode=130,30
 mode %mode%
 
