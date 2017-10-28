@@ -1,5 +1,1 @@
--Servers migration.
--Some changes to the update system.
-
--Added info about RiiConnect24 Mail support
--Minor fixes
+-Changed a way about how the update server is accessed.

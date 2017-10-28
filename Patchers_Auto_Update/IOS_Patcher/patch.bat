@@ -1,7 +1,7 @@
 @echo off
 :: ===========================================================================
 :: IOS Patcher for Windows
-set version=1.8.4-bugfix1
+set version=1.8.5
 :: AUTHORS: KcrPL, Larsenv
 :: ***************************************************************************
 :: Copyright (c) 2017 RiiConnect24, and it's (Lead) Developers
@@ -22,8 +22,8 @@ set patchingok=1
 
 :: Window Title
 title IOS Patcher for RiiConnect24 v.%version%  Created by @Larsenv, @KcrPL
-set last_build=2017/10/21
-set at=11:27
+set last_build=2017/10/28
+set at=18:18
 :: ### Auto Update ###
 :: 1=Enable 0=Disable
 :: IOSPatcher_Update_Activate - If disabled, patcher will not even check for updates, default=1

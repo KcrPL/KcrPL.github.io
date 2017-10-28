@@ -11,11 +11,11 @@ set /a patchingnumber=1
 set /a repeatvbs=0
 set /a temperrorlev=0
 ::
-set last_build=2017/10/21
-set at=11:30
+set last_build=2017/10/28
+set at=18:33
 :: ===========================================================================
 :: WiiWare Patcher for Windows
-set version=2.1.4-bugfix1
+set version=2.1.5
 :: AUTHORS: KcrPL, Larsenv and PokeAcer
 :: ***************************************************************************
 :: Copyright (c) 2017 RiiConnect24, and it's (Lead) Developers
@@ -34,7 +34,7 @@ if %patherror%==0 if not exist patcher.bat set /a patherror=2
 set /a WiiWarePatcher_Update_Activate=1
 set /a whatsnew=1
 set /a offlinestorage=0
-set FilesHostedOn=https://kcrpl.github.io/Patchers_Auto_Update/WiiWare-Patcher
+set FilesHostedOn=https://raw.githubusercontent.com/KcrPL/KcrPL.github.io/master/Patchers_Auto_Update/WiiWare-Patcher
 set MainFolder=%appdata%\WiiWare-Patcher
 set TempStorage=%appdata%\WiiWare-Patcher\internet\temp
 

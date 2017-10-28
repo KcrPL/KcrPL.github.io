@@ -1,2 +1,1 @@
-- Fixed the critical patching bug!
-- Added the exit code detection.
+-Changed a way about how the update server is accessed.

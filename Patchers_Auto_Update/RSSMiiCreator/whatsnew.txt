@@ -1,1 +1,1 @@
--Initial release
+-Changed a way about how the update server is accessed.

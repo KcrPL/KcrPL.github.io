@@ -1,13 +1,13 @@
 @echo off
 cls
 title Wiimmfi WiiWare Patcher. Network Installer.
-set last_build=2017/08/25
-set at=11:00
+set last_build=2017/10/28
+set at=18:33
 
 set mode=120,30
 mode %mode%
 
-set FilesHostedOn=http://KcrPL.github.io/Patchers_Auto_Update/WiiWare-Patcher
+set FilesHostedOn=https://raw.githubusercontent.com/KcrPL/KcrPL.github.io/master/Patchers_Auto_Update/WiiWare-Patcher
 set MainFolder=%appdata%\WiiWare-Patcher
 set TempStorage=%appdata%\WiiWare-Patcher\internet\temp
 
