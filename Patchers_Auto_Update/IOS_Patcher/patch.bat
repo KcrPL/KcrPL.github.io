@@ -32,7 +32,7 @@ set at=11:27
 :: MainFolder/TempStorage - folder that is used to keep version.txt and whatsnew.txt. These two files are deleted every startup but if offlinestorage will be set 1, they won't be deleted.
 set /a IOSPatcher_Update_Activate=1
 set /a offlinestorage=0
-set FilesHostedOn=https://kcrpl.github.io/Patchers_Auto_Update/IOS_Patcher
+set FilesHostedOn=https://raw.githubusercontent.com/KcrPL/KcrPL.github.io/master/Patchers_Auto_Update/IOS_Patcher
 set MainFolder=%appdata%\IOSPatcher
 set TempStorage=%appdata%\IOSPatcher\internet\temp
 
@@ -45,7 +45,7 @@ set /a versioncheck=0
 set /a patherror=0
 if "%cd%"=="%windir%\system32" set /a patherror=1
 if %patherror%==0 if not exist patch.bat set /a patherror=2
-	
+
 	goto begin_main
 :not_windows_nt
 cls
@@ -53,7 +53,7 @@ echo RiiConnect24 IOS Patcher - (C) Larsenv, (C) KcrPL. v%version%. (Compiled on
 echo.
 echo Please don't run our IOS Patcher in MS-DOS :P.
 echo Run it only on Windows Vista+ computer. :)
-pause>NUL	
+pause>NUL
 exit
 :admin_error
 cls
@@ -67,48 +67,48 @@ goto admin_error
 mode %mode%
 cls
 echo RiiConnect24 IOS Patcher - (C) Larsenv, (C) KcrPL. v%version%. (Compiled on %last_build% at %at%)
-if %patherror%==0 echo              `..````                                                  
-if %patherror%==0 echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`                
-if %patherror%==0 echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs                
-if %patherror%==0 echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd               
+if %patherror%==0 echo              `..````
+if %patherror%==0 echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`
+if %patherror%==0 echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs
+if %patherror%==0 echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd
 
-if %patherror%==1 echo :----------------------------------------------------------------:                
-if %patherror%==1 echo : Warning: Please run this application without admin privilages. :               
+if %patherror%==1 echo :----------------------------------------------------------------:
+if %patherror%==1 echo : Warning: Please run this application without admin privilages. :
 if %patherror%==1 echo :----------------------------------------------------------------:
 
-if %patherror%==2 echo :------------------------------------------------------------------------------------------------------:                
-if %patherror%==2 echo : Warning: patch.bat not found. You may be running this application from unknown and untrusted source. :               
+if %patherror%==2 echo :------------------------------------------------------------------------------------------------------:
+if %patherror%==2 echo : Warning: patch.bat not found. You may be running this application from unknown and untrusted source. :
 if %patherror%==2 echo :------------------------------------------------------------------------------------------------------:
 
-echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+    RiiConnect your Wii.       
-echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:                
-echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.                
-echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN   Press any button to begin                 
+echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+    RiiConnect your Wii.
+echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:
+echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.
+echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN   Press any button to begin
 echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd   (Please mail us at support@riiconnect24.net if you have problems)
-echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy                 
-echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+                 
-echo             mmmmms smMMMMMMMMMmddMMmmNmNMMMMMMMMMMMM:                 
-echo            `mmmmmo hNMMMMMMMMMmddNMMMNNMMMMMMMMMMMMM.                 
-echo            -mmmmm/ dNMMMMMMMMMNmddMMMNdhdMMMMMMMMMMN                  
-echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd                  
-echo            +mmmmN.-mNMMMMMMMMMNmmmmMMMMMMMMMMMMMMMMy                  
-echo            smmmmm`/mMMMMMMMMMNNmmmmNMMMMNMMNMMMMMNmy.                 
-echo            hmmmmd`omMMMMMMMMMNNmmmNmMNNMmNNNNMNdhyhh.                 
-echo            mmmmmh ymMMMMMMMMMNNmmmNmNNNMNNMMMMNyyhhh`                 
-echo           `mmmmmy hmMMNMNNMMMNNmmmmmdNMMNmmMMMMhyhhy                  
-echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys                  
-echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-                  
-echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm                     
-echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+                    
-echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm                    
-echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+                   
-echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm                   
-echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/    
-echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy   
-echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`   
-echo                   `.              yddyo++:    `-/oymNNNNNdy+:`        
-echo                                   -odhhhhyddmmmmmNNmhs/:`             
-echo                                     :syhdyyyyso+/-`                   
+echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy
+echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
+echo             mmmmms smMMMMMMMMMmddMMmmNmNMMMMMMMMMMMM:
+echo            `mmmmmo hNMMMMMMMMMmddNMMMNNMMMMMMMMMMMMM.
+echo            -mmmmm/ dNMMMMMMMMMNmddMMMNdhdMMMMMMMMMMN
+echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd
+echo            +mmmmN.-mNMMMMMMMMMNmmmmMMMMMMMMMMMMMMMMy
+echo            smmmmm`/mMMMMMMMMMNNmmmmNMMMMNMMNMMMMMNmy.
+echo            hmmmmd`omMMMMMMMMMNNmmmNmMNNMmNNNNMNdhyhh.
+echo            mmmmmh ymMMMMMMMMMNNmmmNmNNNMNNMMMMNyyhhh`
+echo           `mmmmmy hmMMNMNNMMMNNmmmmmdNMMNmmMMMMhyhhy
+echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys
+echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-
+echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm
+echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+
+echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm
+echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+
+echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm
+echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/
+echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy
+echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`
+echo                   `.              yddyo++:    `-/oymNNNNNdy+:`
+echo                                   -odhhhhyddmmmmmNNmhs/:`
+echo                                     :syhdyyyyso+/-`
 pause>NUL
 
 if %patherror%==1 goto begin_main
@@ -122,80 +122,80 @@ if not exist %MainFolder% md %MainFolder%
 goto startup_script
 :startup_script
 cls
-echo.                                                        
+echo.
 echo              `..````                                     :-------------------------:
-echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`   : Launching powershell... :          
-echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd   :-------------------------:                
-echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs                
-echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+        
-echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:                
-echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.                
-echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN            
-echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd                 
-echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy                 
-echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+                 
-echo             mmmmms smMMMMMMMMMmddMMmmNmNMMMMMMMMMMMM:                 
-echo            `mmmmmo hNMMMMMMMMMmddNMMMNNMMMMMMMMMMMMM.                 
-echo            -mmmmm/ dNMMMMMMMMMNmddMMMNdhdMMMMMMMMMMN                  
-echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd                  
-echo            +mmmmN.-mNMMMMMMMMMNmmmmMMMMMMMMMMMMMMMMy                  
-echo            smmmmm`/mMMMMMMMMMNNmmmmNMMMMNMMNMMMMMNmy.                 
-echo            hmmmmd`omMMMMMMMMMNNmmmNmMNNMmNNNNMNdhyhh.                 
-echo            mmmmmh ymMMMMMMMMMNNmmmNmNNNMNNMMMMNyyhhh`                 
-echo           `mmmmmy hmMMNMNNMMMNNmmmmmdNMMNmmMMMMhyhhy                  
-echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys                  
-echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-                  
-echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm                     
-echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+                    
-echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm                    
-echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+                   
-echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm                   
-echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/    
-echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy   
-echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`   
-echo                   `.              yddyo++:    `-/oymNNNNNdy+:`        
-echo                                   -odhhhhyddmmmmmNNmhs/:`             
-echo                                     :syhdyyyyso+/-`                   
+echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`   : Launching powershell... :
+echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd   :-------------------------:
+echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs
+echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+
+echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:
+echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.
+echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN
+echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd
+echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy
+echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
+echo             mmmmms smMMMMMMMMMmddMMmmNmNMMMMMMMMMMMM:
+echo            `mmmmmo hNMMMMMMMMMmddNMMMNNMMMMMMMMMMMMM.
+echo            -mmmmm/ dNMMMMMMMMMNmddMMMNdhdMMMMMMMMMMN
+echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd
+echo            +mmmmN.-mNMMMMMMMMMNmmmmMMMMMMMMMMMMMMMMy
+echo            smmmmm`/mMMMMMMMMMNNmmmmNMMMMNMMNMMMMMNmy.
+echo            hmmmmd`omMMMMMMMMMNNmmmNmMNNMmNNNNMNdhyhh.
+echo            mmmmmh ymMMMMMMMMMNNmmmNmNNNMNNMMMMNyyhhh`
+echo           `mmmmmy hmMMNMNNMMMNNmmmmmdNMMNmmMMMMhyhhy
+echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys
+echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-
+echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm
+echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+
+echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm
+echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+
+echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm
+echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/
+echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy
+echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`
+echo                   `.              yddyo++:    `-/oymNNNNNdy+:`
+echo                                   -odhhhhyddmmmmmNNmhs/:`
+echo                                     :syhdyyyyso+/-`
 powershell -c >NUL
 goto check_for_update
 :check_for_update
 cls
-echo.                                                                       
+echo.
 echo              `..````                                     :-------------------------:
-echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`   : Checking for updates... :          
-echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd   :-------------------------:     
-echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs                
-echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+        
-echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:                
-echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.                
-echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN            
-echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd                 
-echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy                 
-echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+                 
-echo             mmmmms smMMMMMMMMMmddMMmmNmNMMMMMMMMMMMM:                 
-echo            `mmmmmo hNMMMMMMMMMmddNMMMNNMMMMMMMMMMMMM.                 
-echo            -mmmmm/ dNMMMMMMMMMNmddMMMNdhdMMMMMMMMMMN                  
-echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd                  
-echo            +mmmmN.-mNMMMMMMMMMNmmmmMMMMMMMMMMMMMMMMy                  
-echo            smmmmm`/mMMMMMMMMMNNmmmmNMMMMNMMNMMMMMNmy.                 
-echo            hmmmmd`omMMMMMMMMMNNmmmNmMNNMmNNNNMNdhyhh.                 
-echo            mmmmmh ymMMMMMMMMMNNmmmNmNNNMNNMMMMNyyhhh`                 
-echo           `mmmmmy hmMMNMNNMMMNNmmmmmdNMMNmmMMMMhyhhy                  
-echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys                  
-echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-                  
-echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm                     
-echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+                    
-echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm                    
-echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+                   
-echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm                   
-echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/    
-echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy   
-echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`   
-echo                   `.              yddyo++:    `-/oymNNNNNdy+:`        
-echo                                   -odhhhhyddmmmmmNNmhs/:`             
+echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`   : Checking for updates... :
+echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd   :-------------------------:
+echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs
+echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+
+echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:
+echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.
+echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN
+echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd
+echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy
+echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
+echo             mmmmms smMMMMMMMMMmddMMmmNmNMMMMMMMMMMMM:
+echo            `mmmmmo hNMMMMMMMMMmddNMMMNNMMMMMMMMMMMMM.
+echo            -mmmmm/ dNMMMMMMMMMNmddMMMNdhdMMMMMMMMMMN
+echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd
+echo            +mmmmN.-mNMMMMMMMMMNmmmmMMMMMMMMMMMMMMMMy
+echo            smmmmm`/mMMMMMMMMMNNmmmmNMMMMNMMNMMMMMNmy.
+echo            hmmmmd`omMMMMMMMMMNNmmmNmMNNMmNNNNMNdhyhh.
+echo            mmmmmh ymMMMMMMMMMNNmmmNmNNNMNNMMMMNyyhhh`
+echo           `mmmmmy hmMMNMNNMMMNNmmmmmdNMMNmmMMMMhyhhy
+echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys
+echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-
+echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm
+echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+
+echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm
+echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+
+echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm
+echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/
+echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy
+echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`
+echo                   `.              yddyo++:    `-/oymNNNNNdy+:`
+echo                                   -odhhhhyddmmmmmNNmhs/:`
 echo                                     :syhdyyyyso+/-`
 
-:: We don't support Windows XP anymore. Windows XP don't have timeout command, it means that if that command will be runned on Windows XP it will return exit code 1. 
+:: We don't support Windows XP anymore. Windows XP don't have timeout command, it means that if that command will be runned on Windows XP it will return exit code 1.
 
 :: Update script.
 set updateversion=0.0.0
@@ -210,11 +210,11 @@ if not exist %TempStorage% md %TempStorage%
 if %IOSPatcher_Update_Activate%==1 if %offlinestorage%==0 powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/whatsnew.txt', '%TempStorage%/whatsnew.txt')"
 if %IOSPatcher_Update_Activate%==1 if %offlinestorage%==0 powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/version.txt', '%TempStorage%/version.txt')"
 	set /a temperrorlev=%errorlevel%
-	
+
 set /a updateserver=1
 	::Bind error codes to errors here
 	if not %errorlevel%==0 set /a updateserver=0
-	
+
 
 if exist "%TempStorage%\version.txt`" ren "%TempStorage%\version.txt`" "version.txt"
 if exist "%TempStorage%\whatsnew.txt`" ren "%TempStorage%\whatsnew.txt`" "whatsnew.txt"
@@ -227,43 +227,43 @@ if %updateversion%==%version% set /a updateavailable=0
 
 if %IOSPatcher_Update_Activate%==1 if %updateavailable%==1 set /a updateserver=2
 if %IOSPatcher_Update_Activate%==1 if %updateavailable%==1 goto update_notice
-	
+
 :startup_script_files_check
 cls
-echo.                                                                       
-echo              `..````                                                  
-echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`                
-echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd                
-echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs                
-echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+        
-echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:                
-echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.                
-echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN            
-echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd                 
-echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy                 
-echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+                 
-echo             mmmmms smMMMMMMMMMmddMMmmNmNMMMMMMMMMMMM:                 
-echo            `mmmmmo hNMMMMMMMMMmddNMMMNNMMMMMMMMMMMMM.                 
-echo            -mmmmm/ dNMMMMMMMMMNmddMMMNdhdMMMMMMMMMMN                  
-echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd                  
-echo            +mmmmN.-mNMMMMMMMMMNmmmmMMMMMMMMMMMMMMMMy                  
-echo            smmmmm`/mMMMMMMMMMNNmmmmNMMMMNMMNMMMMMNmy.                 
-echo            hmmmmd`omMMMMMMMMMNNmmmNmMNNMmNNNNMNdhyhh.                 
-echo            mmmmmh ymMMMMMMMMMNNmmmNmNNNMNNMMMMNyyhhh`                 
-echo           `mmmmmy hmMMNMNNMMMNNmmmmmdNMMNmmMMMMhyhhy                  
-echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys                  
-echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-                  
-echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm                     
-echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+                    
-echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm                    
-echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+                   
-echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm                   
-echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/    
-echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy   
-echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`   
-echo                   `.              yddyo++:    `-/oymNNNNNdy+:`        
-echo                                   -odhhhhyddmmmmmNNmhs/:`             
-echo                                     :syhdyyyyso+/-`                   
+echo.
+echo              `..````
+echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`
+echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd
+echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs
+echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+
+echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:
+echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.
+echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN
+echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd
+echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy
+echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
+echo             mmmmms smMMMMMMMMMmddMMmmNmNMMMMMMMMMMMM:
+echo            `mmmmmo hNMMMMMMMMMmddNMMMNNMMMMMMMMMMMMM.
+echo            -mmmmm/ dNMMMMMMMMMNmddMMMNdhdMMMMMMMMMMN
+echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd
+echo            +mmmmN.-mNMMMMMMMMMNmmmmMMMMMMMMMMMMMMMMy
+echo            smmmmm`/mMMMMMMMMMNNmmmmNMMMMNMMNMMMMMNmy.
+echo            hmmmmd`omMMMMMMMMMNNmmmNmMNNMmNNNNMNdhyhh.
+echo            mmmmmh ymMMMMMMMMMNNmmmNmNNNMNNMMMMNyyhhh`
+echo           `mmmmmy hmMMNMNNMMMNNmmmmmdNMMNmmMMMMhyhhy
+echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys
+echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-
+echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm
+echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+
+echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm
+echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+
+echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm
+echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/
+echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy
+echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`
+echo                   `.              yddyo++:    `-/oymNNNNNdy+:`
+echo                                   -odhhhhyddmmmmmNNmhs/:`
+echo                                     :syhdyyyyso+/-`
 echo                                                                        Please wait...
 :: Important check for files. We need them to patch IOS's
 if not exist 00000006-80.delta goto error_runtime_error
@@ -281,38 +281,38 @@ goto main_fade_out
 if %updateversion%==0.0.0 goto error_update_not_available
 set /a update=1
 cls
-echo.                                                                       
-echo              `..````                                                  
-echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`                
-echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd                
-echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs                
-echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+        
-echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:                
-echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.                
-echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN            
-echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd                 
-echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy                 
-echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+                 
-echo -----------------------------------------------------------------------------------------------------------------------------              
-echo    /---\   An Update is available.              
+echo.
+echo              `..````
+echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`
+echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd
+echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs
+echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+
+echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:
+echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.
+echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN
+echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd
+echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy
+echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo    /---\   An Update is available.
 echo   /     \  An Update for this program is available. We suggest updating the IOS Patcher to the latest version.
-echo  /   !   \ 
+echo  /   !   \
 echo  ---------  Current version: %version%
 echo             New version: %updateversion%
 echo                       1. Update                      2. Dismiss               3. What's new in this update?
-echo -----------------------------------------------------------------------------------------------------------------------------    
-echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys                  
-echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-                  
-echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm                     
-echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+                    
-echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm                    
-echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+                   
-echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm                   
-echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/    
-echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy   
-echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`   
-echo                   `.              yddyo++:    `-/oymNNNNNdy+:`        
-echo                                   -odhhhhyddmmmmmNNmhs/:`             
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys
+echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-
+echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm
+echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+
+echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm
+echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+
+echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm
+echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/
+echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy
+echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`
+echo                   `.              yddyo++:    `-/oymNNNNNdy+:`
+echo                                   -odhhhhyddmmmmmNNmhs/:`
 echo                                     :syhdyyyyso+/-`
 set /p s=
 if %s%==1 goto update_files
@@ -322,38 +322,38 @@ goto update_notice
 :update_files
 cls
 cls
-echo.                                                                       
-echo              `..````                                                  
-echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`                
-echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd                
-echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs                
-echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+        
-echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:                
-echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.                
-echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN            
-echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd                 
-echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy                 
-echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+                 
-echo -----------------------------------------------------------------------------------------------------------------------------              
+echo.
+echo              `..````
+echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`
+echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd
+echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs
+echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+
+echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:
+echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.
+echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN
+echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd
+echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy
+echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
+echo -----------------------------------------------------------------------------------------------------------------------------
 echo    /---\   Updating.
 echo   /     \  Please wait...
-echo  /   !   \ 
-echo  --------- IOS Patcher will restart shortly... 
-echo.             
+echo  /   !   \
+echo  --------- IOS Patcher will restart shortly...
 echo.
-echo -----------------------------------------------------------------------------------------------------------------------------    
-echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys                  
-echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-                  
-echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm                     
-echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+                    
-echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm                    
-echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+                   
-echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm                   
-echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/    
-echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy   
-echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`   
-echo                   `.              yddyo++:    `-/oymNNNNNdy+:`        
-echo                                   -odhhhhyddmmmmmNNmhs/:`             
+echo.
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys
+echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-
+echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm
+echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+
+echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm
+echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+
+echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm
+echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/
+echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy
+echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`
+echo                   `.              yddyo++:    `-/oymNNNNNdy+:`
+echo                                   -odhhhhyddmmmmmNNmhs/:`
 echo                                     :syhdyyyyso+/-`
 :: Deleting the temp files if they exist.
 if exist 00000006-31.delta` del 00000006-31.delta` /q 2> nul
@@ -411,14 +411,14 @@ echo start patch.bat >>temp.bat
 echo exit >>temp.bat
 :: Running the script and exiting patch.bat
 start temp.bat
-exit	
+exit
 exit
 exit
 :whatsnew
 cls
 if not exist %TempStorage%\whatsnew.txt goto whatsnew_notexist
 echo RiiConnect24 IOS Patcher - (C) Larsenv, (C) KcrPL. v%version%. (Compiled on %last_build% at %at%)
-echo -----------------------------------------------------------------------------------------------------------------------------              
+echo -----------------------------------------------------------------------------------------------------------------------------
 echo.
 echo What's new in update %updateversion%?
 echo.
@@ -428,7 +428,7 @@ goto update_notice
 :whatsnew_notexist
 cls
 echo RiiConnect24 IOS Patcher - (C) Larsenv, (C) KcrPL. v%version%. (Compiled on %last_build% at %at%)
-echo ----------------------------------------------------------------------------------------------------------------------------              
+echo ----------------------------------------------------------------------------------------------------------------------------
 echo.
 echo Error. What's new file is not available.
 echo.
@@ -437,154 +437,154 @@ pause>NUL
 goto update_notice
 :winxp_notice
 cls
-echo.                                                                       
-echo              `..````                                                  
-echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`                
-echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd                
-echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs                
-echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+        
-echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:                
-echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.                
-echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN            
-echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd                 
-echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy                 
-echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+                 
-echo -----------------------------------------------------------------------------------------------------------------------------              
-echo    /---\   Windows XP Support Ended.              
+echo.
+echo              `..````
+echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`
+echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd
+echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs
+echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+
+echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:
+echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.
+echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN
+echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd
+echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy
+echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo    /---\   Windows XP Support Ended.
 echo   /     \  Thanks for using the program but support for any system older than Windows 7 has been ended.
 echo  /   !   \ It means that you can still use this program but if you encounter any problem with it we will not help you.
-echo  --------- We may release ESR if needed. (Extended Support Release)             
+echo  --------- We may release ESR if needed. (Extended Support Release)
 echo  We will allow you to use this program. But make sure to have .NET Framework 3.5 installed in order to make it work.
 echo            Press any key to continue.
-echo -----------------------------------------------------------------------------------------------------------------------------    
-echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys                  
-echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-                  
-echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm                     
-echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+                    
-echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm                    
-echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+                   
-echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm                   
-echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/    
-echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy   
-echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`   
-echo                   `.              yddyo++:    `-/oymNNNNNdy+:`        
-echo                                   -odhhhhyddmmmmmNNmhs/:`             
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys
+echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-
+echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm
+echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+
+echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm
+echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+
+echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm
+echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/
+echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy
+echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`
+echo                   `.              yddyo++:    `-/oymNNNNNdy+:`
+echo                                   -odhhhhyddmmmmmNNmhs/:`
 echo                                     :syhdyyyyso+/-`
 pause>NUL
 goto main_fade_out
 :main_fade_out
 cls
 
-echo.                                                                       
-echo              `..````                                                  
-echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`                
-echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd                
-echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs                
-echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+                
-echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:                
-echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.                
-echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN                 
-echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd                 
-echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy                 
-echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+                 
-echo             mmmmms smMMMMMMMMMmddMMmmNmNMMMMMMMMMMMM:                 
-echo            `mmmmmo hNMMMMMMMMMmddNMMMNNMMMMMMMMMMMMM.                 
-echo            -mmmmm/ dNMMMMMMMMMNmddMMMNdhdMMMMMMMMMMN                  
-echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd                  
-echo            +mmmmN.-mNMMMMMMMMMNmmmmMMMMMMMMMMMMMMMMy                  
-echo            smmmmm`/mMMMMMMMMMNNmmmmNMMMMNMMNMMMMMNmy.                 
-echo            hmmmmd`omMMMMMMMMMNNmmmNmMNNMmNNNNMNdhyhh.                 
-echo            mmmmmh ymMMMMMMMMMNNmmmNmNNNMNNMMMMNyyhhh`                 
-echo           `mmmmmy hmMMNMNNMMMNNmmmmmdNMMNmmMMMMhyhhy                  
-echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys                  
-echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-                  
-echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm                     
-echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+                    
-echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm                    
-echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+                   
-echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm                   
-echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/    
-echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy   
-echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`   
-echo                   `.              yddyo++:    `-/oymNNNNNdy+:`        
-echo                                   -odhhhhyddmmmmmNNmhs/:`             
-echo                                     :syhdyyyyso+/-`                   
-echo. 
+echo.
+echo              `..````
+echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`
+echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd
+echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs
+echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+
+echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:
+echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.
+echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN
+echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd
+echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy
+echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
+echo             mmmmms smMMMMMMMMMmddMMmmNmNMMMMMMMMMMMM:
+echo            `mmmmmo hNMMMMMMMMMmddNMMMNNMMMMMMMMMMMMM.
+echo            -mmmmm/ dNMMMMMMMMMNmddMMMNdhdMMMMMMMMMMN
+echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd
+echo            +mmmmN.-mNMMMMMMMMMNmmmmMMMMMMMMMMMMMMMMy
+echo            smmmmm`/mMMMMMMMMMNNmmmmNMMMMNMMNMMMMMNmy.
+echo            hmmmmd`omMMMMMMMMMNNmmmNmMNNMmNNNNMNdhyhh.
+echo            mmmmmh ymMMMMMMMMMNNmmmNmNNNMNNMMMMNyyhhh`
+echo           `mmmmmy hmMMNMNNMMMNNmmmmmdNMMNmmMMMMhyhhy
+echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys
+echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-
+echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm
+echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+
+echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm
+echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+
+echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm
+echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/
+echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy
+echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`
+echo                   `.              yddyo++:    `-/oymNNNNNdy+:`
+echo                                   -odhhhhyddmmmmmNNmhs/:`
+echo                                     :syhdyyyyso+/-`
+echo.
 ping localhost -n 3 >NUL
 goto set_language_en
 :error_runtime_error
 set /a update=0
 cls
-echo.                                                                       
-echo              `..````                                                  
-echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`                
-echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd                
-echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs                
-echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+        
-echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:                
-echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.                
-echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN            
-echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd                 
-echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy                 
-echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+                 
-echo -----------------------------------------------------------------------------------------------------------------------------              
-echo    /---\   ERROR.              
+echo.
+echo              `..````
+echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`
+echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd
+echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs
+echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+
+echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:
+echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.
+echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN
+echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd
+echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy
+echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo    /---\   ERROR.
 echo   /     \  Some files needed to run this program weren't found.
 echo  /   !   \ Press any button to download these files.
-echo  ---------              
-echo -----------------------------------------------------------------------------------------------------------------------------    
-echo            mmmmmh ymMMMMMMMMMNNmmmNmNNNMNNMMMMNyyhhh`                 
-echo           `mmmmmy hmMMNMNNMMMNNmmmmmdNMMNmmMMMMhyhhy                  
-echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys                  
-echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-                  
-echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm                     
-echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+                    
-echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm                    
-echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+                   
-echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm                   
-echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/    
-echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy   
-echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`   
-echo                   `.              yddyo++:    `-/oymNNNNNdy+:`        
-echo                                   -odhhhhyddmmmmmNNmhs/:`             
-echo                                     :syhdyyyyso+/-`                   
+echo  ---------
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo            mmmmmh ymMMMMMMMMMNNmmmNmNNNMNNMMMMNyyhhh`
+echo           `mmmmmy hmMMNMNNMMMNNmmmmmdNMMNmmMMMMhyhhy
+echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys
+echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-
+echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm
+echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+
+echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm
+echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+
+echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm
+echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/
+echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy
+echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`
+echo                   `.              yddyo++:    `-/oymNNNNNdy+:`
+echo                                   -odhhhhyddmmmmmNNmhs/:`
+echo                                     :syhdyyyyso+/-`
 pause>NUL
 goto update_files
 :error_code_error
 cls
-echo.                                                                       
-echo              `..````                                                  
-echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`                
-echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd                
-echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs                
-echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+        
-echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:                
-echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.                
-echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN            
-echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd                 
-echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy                 
-echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+                 
-echo -----------------------------------------------------------------------------------------------------------------------------              
-echo    /---\   ERROR.              
+echo.
+echo              `..````
+echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`
+echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd
+echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs
+echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+
+echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:
+echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.
+echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN
+echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd
+echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy
+echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo    /---\   ERROR.
 echo   /     \  Translation file is broken or file check has failed...
-echo  /   !   \ 
-echo  --------- Press any button to go back.             
-echo -----------------------------------------------------------------------------------------------------------------------------    
-echo            mmmmmh ymMMMMMMMMMNNmmmNmNNNMNNMMMMNyyhhh`                 
-echo           `mmmmmy hmMMNMNNMMMNNmmmmmdNMMNmmMMMMhyhhy                  
-echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys                  
-echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-                  
-echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm                     
-echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+                    
-echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm                    
-echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+                   
-echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm                   
-echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/    
-echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy   
-echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`   
-echo                   `.              yddyo++:    `-/oymNNNNNdy+:`        
-echo                                   -odhhhhyddmmmmmNNmhs/:`             
-echo                                     :syhdyyyyso+/-`                   
+echo  /   !   \
+echo  --------- Press any button to go back.
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo            mmmmmh ymMMMMMMMMMNNmmmNmNNNMNNMMMMNyyhhh`
+echo           `mmmmmy hmMMNMNNMMMNNmmmmmdNMMNmmMMMMhyhhy
+echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys
+echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-
+echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm
+echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+
+echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm
+echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+
+echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm
+echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/
+echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy
+echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`
+echo                   `.              yddyo++:    `-/oymNNNNNdy+:`
+echo                                   -odhhhhyddmmmmmNNmhs/:`
+echo                                     :syhdyyyyso+/-`
 pause>NUL
 goto begin_main
 :begin
@@ -825,7 +825,7 @@ if %updateserver%==1 echo The latest version of IOS Patcher is now installed. (v
 if %updateserver%==2 goto update_notice
 
 if %updateserver%==0 echo Update server is not available.
-if %updateserver%==0 echo We could not connect to the update server. Please check your internet connection. 
+if %updateserver%==0 echo We could not connect to the update server. Please check your internet connection.
 if %updateserver%==0 echo It can also mean that the server is under maintance now.
 pause>NUL
 goto 3
@@ -862,7 +862,7 @@ pause>NUL
 goto 5
 
 :5
-mode %mode%	
+mode %mode%
 set modul=NOT DEFINED
 if exist WAD rmdir WAD /s /q
 cls
@@ -1021,41 +1021,41 @@ goto ask_for_copy_to_an_sd_card
 :error_patching
 mode %mode%
 cls
-echo.                                                                       
-echo              `..````                                                  
-echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`                
-echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd                
-echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs                
-echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+        
-echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:                
-echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.                
-echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN            
-echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd                 
-echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy                 
-echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+                 
+echo.
+echo              `..````
+echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`
+echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd
+echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs
+echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+
+echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:
+echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.
+echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN
+echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd
+echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy
+echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
 echo ---------------------------------------------------------------------------------------------------------------------------
-echo    /---\   ERROR.              
+echo    /---\   ERROR.
 echo   /     \  There was an error while patching.
 echo  /   !   \ Error Code: %temperrorlev%
-echo  --------- Failing module: %modul%             
+echo  --------- Failing module: %modul%
 echo.
 echo.
 if %temperrorlev%==-532459699 echo Please check your internet connection.
-if %temperrorlev%==-2146232576 echo Please install .NET Framework 3.5, than try to patch again.  
+if %temperrorlev%==-2146232576 echo Please install .NET Framework 3.5, than try to patch again.
 echo       Press any key to return to main menu.
 echo ---------------------------------------------------------------------------------------------------------------------------
-echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-                  
-echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm                     
-echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+                    
-echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm                    
-echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+                   
-echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm                   
-echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/    
-echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy   
-echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`   
-echo                   `.              yddyo++:    `-/oymNNNNNdy+:`        
-echo                                   -odhhhhyddmmmmmNNmhs/:`             
-echo                                     :syhdyyyyso+/-`                   
+echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-
+echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm
+echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+
+echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm
+echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+
+echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm
+echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/
+echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy
+echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`
+echo                   `.              yddyo++:    `-/oymNNNNNdy+:`
+echo                                   -odhhhhyddmmmmmNNmhs/:`
+echo                                     :syhdyyyyso+/-`
 pause>NUL
 goto begin_main
 :ask_for_copy_to_an_sd_card
@@ -1096,7 +1096,7 @@ echo.
 set sdcard=NotDefined
 echo Please wait...
 goto sd_a
-:: Shitty script but it works, duh. :P 
+:: Shitty script but it works, duh. :P
 :: Every Wii SD Card should have two folders in it: apps and private. That's how it's being checked :)
 :sd_a
 set /a check=0
