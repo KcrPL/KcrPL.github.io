@@ -1,4 +1,4 @@
--Rewrtied patching section. The progress bar is now looking better ;)
+-Rewrited patching section. The progress bar is now looking better ;)
 -Fixed copying to SD Card
 -Minor bug fixes
 -Making some things clear to user
