@@ -1,3 +1,6 @@
--Failsafe is now implemented. For people that are having problems with it.
--Logging is now added. In case of any errors, send the log file to support@riiconnect24.net
--Some minor fixes
+-Rewrtied patching section. The progress bar is now looking better ;)
+-Fixed copying to SD Card
+-Minor bug fixes
+-Making some things clear to user
+-Added trash cleanup. So if something will fail after update, the trash will be cleaned.
+-In case of *something* you can now access debug menu from the title screen.

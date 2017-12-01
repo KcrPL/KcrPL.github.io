@@ -1,10 +1,10 @@
 @echo off
 cls
 title RiiConnect24 IOS Patcher. Network Installer.
-set last_build=2017/08/20
-set at=20:00
+set last_build=2017/12/01
+set at=13:22
 
-set mode=120,30
+set mode=126,36
 mode %mode%
 
 set FilesHostedOn=https://raw.githubusercontent.com/KcrPL/KcrPL.github.io/master/Patchers_Auto_Update/IOS_Patcher
@@ -58,10 +58,10 @@ echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
 echo -----------------------------------------------------------------------------------------------------------------------
 echo    /---\   Error.
 echo   /     \  An Update server is not available.
-echo  /   !   \
-echo  ---------
+echo  /   !   \    You probably have problems with your internet connection.
+echo  ---------    If you came here from wii.guide, go back and you should see a download link to the IOS Patcher itself.
 echo.
-echo            Press any button to continue.
+echo            Press any button to go back.
 echo -----------------------------------------------------------------------------------------------------------------------
 echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys
 echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-
