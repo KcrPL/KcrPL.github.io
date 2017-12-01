@@ -1048,12 +1048,12 @@ if %percent%==95 set /a temperrorlev=%errorlevel%
 if %percent%==95 set modul=rmdir.exe
 if %percent%==95 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==97 call Sharpii.exe IOS WAD\IOS31.wad -fs -es -np -vp
+if %percent%==97 call Sharpii.exe IOS WAD\IOS31.wad -fs -es -np -vp>NUL
 if %percent%==97 set /a temperrorlev=%errorlevel%
 if %percent%==97 set modul=Sharpii.exe
 if %percent%==97 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==99 call Sharpii.exe IOS WAD\IOS80.wad -fs -es -np -vp
+if %percent%==99 call Sharpii.exe IOS WAD\IOS80.wad -fs -es -np -vp>NUL
 if %percent%==99 set /a temperrorlev=%errorlevel%
 if %percent%==99 set modul=Sharpii.exe
 if %percent%==99 if not %temperrorlev%==0 goto error_patching
