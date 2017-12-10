@@ -1,3 +1,10 @@
+Update 1.8.8
+============
+-Fixed mkdir.exe error
+-Some bug fixes
+
+Update 1.8.7
+============
 -Rewrited patching section. The progress bar is now looking better ;)
 -Fixed copying to SD Card
 -Minor bug fixes
