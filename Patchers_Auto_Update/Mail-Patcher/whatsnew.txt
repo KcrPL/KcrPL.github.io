@@ -1,1 +1,5 @@
--Changed a way about how the update server is accessed.
+IMPORTANT UPDATE
+
+- Fixed patching problem. Please repatch if you were using this patcher before
+- Fixed problem with gem installation by reloading the path
+- Patcher will now make a backup of `nwc24msg.cfg`
