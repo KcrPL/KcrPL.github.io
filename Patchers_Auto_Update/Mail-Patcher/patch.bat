@@ -10,7 +10,7 @@ set version=1.0.7
 :: ===========================================================================
 title RiiConnect24 Mail Patcher.
 set last_build=2018/01/01
-set at=13:08
+set at=13:22
 
 set mode=126,36
 mode %mode%
