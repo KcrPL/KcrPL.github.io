@@ -3,14 +3,14 @@
 if exist temp.bat del /q temp.bat
 :: ===========================================================================
 :: Wii Mail Patcher for Windows
-set version=1.0.7
+set version=1.0.8
 :: AUTHORS: KcrPL, Spotlight
 :: ***************************************************************************
 :: Copyright (c) 2017 RiiConnect24, and it's (Lead) Developers
 :: ===========================================================================
 title RiiConnect24 Mail Patcher.
-set last_build=2018/01/01
-set at=13:22
+set last_build=2018/01/02
+set at=23:20
 
 set mode=126,36
 mode %mode%
@@ -371,7 +371,7 @@ ruby -v && set /a rubyavailable=1
 if exist %TempStorage%\rubyversion.txt del %TempStorage%\rubyversion.txt /q
 ruby -v >>%TempStorage%\rubyversion.txt
 
-if exist %TempStorage%\rubyversion.txt findstr /c:"ruby 2.4.1" "%TempStorage%\rubyversion.txt"
+if exist %TempStorage%\rubyversion.txt findstr /c:"ruby 2.5.0p0" "%TempStorage%\rubyversion.txt"
 set temperrorlev=%errorlevel%
 if %errorlevel%==0 set rubyversion=OK
 
@@ -683,17 +683,17 @@ echo 1/4 Checking your CPU architecture...
 echo Done!: %processor_architecture%
 echo.
 echo 2/4 Downloading ruby installer!...
-if exist %TempStorage%\rubyinstaller-2.4.1-2-x86.exe del /q %TempStorage%\rubyinstaller-2.4.1-2-x86.exe
-if exist %TempStorage%\rubyinstaller-2.4.1-2-x64.exe del /q %TempStorage%\rubyinstaller-2.4.1-2-x64.exe
-if %processor_architecture%==x86 powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/rubyinstaller-2.4.1-2-x86.exe', '%TempStorage%\rubyinstaller-2.4.1-2-x86.exe')"
-if %processor_architecture%==AMD64 powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/rubyinstaller-2.4.1-2-x64.exe', '%TempStorage%\rubyinstaller-2.4.1-2-x64.exe')" 
+if exist %TempStorage%\rubyinstaller-2.5.0-1-x86.exe del /q %TempStorage%\rubyinstaller-2.5.0-1-x86.exe
+if exist %TempStorage%\rubyinstaller-2.5.0-1-x64.exe del /q %TempStorage%\rubyinstaller-2.5.0-1-x64.exe
+if %processor_architecture%==x86 powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/rubyinstaller-2.5.0-1-x86.exe', '%TempStorage%\rubyinstaller-2.5.0-1-x86.exe')"
+if %processor_architecture%==AMD64 powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/rubyinstaller-2.5.0-1-x64.exe', '%TempStorage%\rubyinstaller-2.5.0-1-x64.exe')" 
 set actionerrordeb=Downloading Ruby
 if not %errorlevel%==0 goto error_download
 echo Done!
 echo.
 echo 3/4 Installing Ruby in background. This can take a moment or two.
-if %processor_architecture%==x86 call "%TempStorage%\rubyinstaller-2.4.1-2-x86.exe" /verysilent /dir="%appdata%\Ruby24" /tasks="assocfiles,modpath"
-if %processor_architecture%==AMD64 call "%TempStorage%\rubyinstaller-2.4.1-2-x64.exe" /verysilent /dir="%appdata%\Ruby24" /tasks="assocfiles,modpath"
+if %processor_architecture%==x86 call "%TempStorage%\rubyinstaller-2.5.0-1-x86.exe" /verysilent /dir="%appdata%\Ruby24" /tasks="assocfiles,modpath"
+if %processor_architecture%==AMD64 call "%TempStorage%\rubyinstaller-2.5.0-1-x64.exe" /verysilent /dir="%appdata%\Ruby24" /tasks="assocfiles,modpath"
 set actionerrordeb=Installing Ruby.
 if not %errorlevel%==0 goto error_download
 echo Refreshing PATH from registry...
@@ -776,14 +776,15 @@ goto begin_main
 :3
 if not exist backup-configuration md backup-configuration
 copy "nwc24msg.cfg" "backup-configuration\nwc24msg_%date%.cfg" /y
+set /a temperrorlev=0
 cls
 echo RiiConnect24 Mail Patcher - (C) KcrPL, (C) Spotlight v%version% (Compiled on %last_build% at %at%)
 echo ------------------------------------------------------------------------------------------------------------------------------ 
 echo.
 echo Patching nwc24msg.cfg...
 set actionerrordeb=Patching
-start mailparse.rb
-set temperrorlev=%errorlevel%
+ruby mailparse.rb
+set /a temperrorlev=%errorlevel%
 
 if %temperrorlev%==0 goto end
 
