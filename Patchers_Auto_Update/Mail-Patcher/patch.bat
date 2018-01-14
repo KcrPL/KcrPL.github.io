@@ -1,16 +1,18 @@
+echo %~d0%~p0
+cd "%~d0%~p0"
 :startup_begin
 @echo off
 if exist temp.bat del /q temp.bat
 :: ===========================================================================
 :: Wii Mail Patcher for Windows
-set version=1.0.8
+set version=1.0.9
 :: AUTHORS: KcrPL, Spotlight
 :: ***************************************************************************
 :: Copyright (c) 2017 RiiConnect24, and it's (Lead) Developers
 :: ===========================================================================
 title RiiConnect24 Mail Patcher.
-set last_build=2018/01/02
-set at=23:20
+set last_build=2018/01/14
+set at=1:55
 
 set mode=126,36
 mode %mode%
@@ -27,7 +29,7 @@ set TempStorage=%appdata%\Mail-Patcher\internet\temp
 if %os%=="" goto not_windows_nt
 if not %os%==Windows_NT goto not_windows_nt
 
-if exist %MainFolder%\requirerestart.txt goto reqrestart
+if exist "%MainFolder%\requirerestart.txt" goto reqrestart
 
 set /a patherror=0
 if "%cd%"=="%windir%\system32" set /a patherror=1
@@ -43,7 +45,7 @@ echo Run it only on Windows Vista+ computer. :)
 pause>NUL	
 exit
 :reqrestart
-del /q %MainFolder%\requirerestart.txt
+del /q "%MainFolder%\requirerestart.txt"
 cls
 echo RiiConnect24 Mail Patcher - (C) KcrPL, (C) Spotlight v%version% (Compiled on %last_build% at %at%)
 echo.
@@ -222,13 +224,13 @@ set /a updateavailable=0
 :: Update script.
 set updateversion=0.0.0
 :: Delete version.txt and whatsnew.txt
-if %offlinestorage%==0 if exist %TempStorage%\version.txt del %TempStorage%\version.txt /q
-if %offlinestorage%==0 if exist %TempStorage%\whatsnew.txt del %TempStorage%\whatsnew.txt /q
+if %offlinestorage%==0 if exist "%TempStorage%\version.txt" del "%TempStorage%\version.txt" /q
+if %offlinestorage%==0 if exist "%TempStorage%\whatsnew.txt" del "%TempStorage%\whatsnew.txt" /q
 
 if not exist %TempStorage% md %TempStorage%
 :: Commands to download files from server.
-if %Update_Activate%==1 if %offlinestorage%==0 powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/whatsnew.txt', '%TempStorage%/whatsnew.txt')"
-if %Update_Activate%==1 if %offlinestorage%==0 powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/version.txt', '%TempStorage%/version.txt')"
+if %Update_Activate%==1 if %offlinestorage%==0 powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/whatsnew.txt"', '"%TempStorage%/whatsnew.txt"')"
+if %Update_Activate%==1 if %offlinestorage%==0 powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/version.txt"', '"%TempStorage%/version.txt"')"
 
 	set /a temperrorlev=%errorlevel%
 	
@@ -238,9 +240,9 @@ if %Update_Activate%==1 if not %errorlevel%==0 goto error_update_not_available
 	
 
 :: Copy the content of version.txt to variable.
-if exist %TempStorage%\version.txt set /p updateversion=<%TempStorage%\version.txt
-if not exist %TempStorage%\version.txt set /a updateavailable=0
-if %Update_Activate%==1 if exist %TempStorage%\version.txt set /a updateavailable=1
+if exist "%TempStorage%\version.txt" set /p updateversion=<"%TempStorage%\version.txt"
+if not exist "%TempStorage%\version.txt" set /a updateavailable=0
+if %Update_Activate%==1 if exist "%TempStorage%\version.txt" set /a updateavailable=1
 :: If version.txt doesn't match the version variable stored in this batch file, it means that update is available.
 if %Update_Activate%==1 if %updateversion%==%version% set /a updateavailable=0 
 if %Update_Activate%==1 if %updateavailable%==1 goto update_notice
@@ -366,12 +368,12 @@ set rubyavailable=0
 set rubyversion=INCORECT
 
 ::
-ruby -v && set /a rubyavailable=1
+call ruby -v && set /a rubyavailable=1
 ::
-if exist %TempStorage%\rubyversion.txt del %TempStorage%\rubyversion.txt /q
-ruby -v >>%TempStorage%\rubyversion.txt
+if exist "%TempStorage%\rubyversion.txt" del "%TempStorage%\rubyversion.txt" /q
+call ruby -v >>"%TempStorage%\rubyversion.txt"
 
-if exist %TempStorage%\rubyversion.txt findstr /c:"ruby 2.5.0p0" "%TempStorage%\rubyversion.txt"
+if exist "%TempStorage%\rubyversion.txt" findstr /c:"ruby 2.5.0p0" "%TempStorage%\rubyversion.txt"
 set temperrorlev=%errorlevel%
 if %errorlevel%==0 set rubyversion=OK
 
@@ -497,21 +499,22 @@ echo                                     :syhdyyyyso+/-`
 if exist mailparse.rb` del mailparse.rb` /q 2> nul
 
 :: Downloading the update files. In future i'm gonna add something called "Files Version" (at least i call it that way). Because most of the time the patch.bat is only updated
-powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/mailparse.rb', 'mailparse.rb`')"
-powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/patch.bat', 'patch.bat`')"
+powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/mailparse.rb"', '"mailparse.rb"`')"
+powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/patch.bat"', '"patch.bat"`')"
 
 :: If download failed
 if %update%==1 if not exist patch.bat` goto error_update_not_available
 if %update%==1 if not exist mailparse.rb` goto error_update_not_available
 
 :: Delete the original files
-if %update%==1 if exist mailparse del mailparse.rb /q
+if %update%==1 if exist mailparse.rb del mailparse.rb /q
 
 :: Renaming the temp files to original names
 ren mailparse.rb` mailparse.rb
 
 :: Patch.bat cannot be overwritten while running so i'm creating a small script
-echo ping localhost -n 2 >>temp.bat
+echo echo off >>temp.bat
+echo ping localhost -n 2^>NUL >>temp.bat
 echo del patch.bat /q >>temp.bat
 echo ren patch.bat` patch.bat >>temp.bat
 echo start patch.bat >>temp.bat
@@ -523,13 +526,13 @@ exit
 exit
 :whatsnew
 cls
-if not exist %TempStorage%\whatsnew.txt goto whatsnew_notexist
+if not exist "%TempStorage%\whatsnew.txt" goto whatsnew_notexist
 echo RiiConnect24 Mail Patcher - (C) KcrPL, (C) Spotlight v%version% (Compiled on %last_build% at %at%)
 echo ------------------------------------------------------------------------------------------------------------------------------              
 echo.
 echo What's new in update %updateversion%?
 echo.
-type %TempStorage%\whatsnew.txt
+type "%TempStorage%\whatsnew.txt"
 pause>NUL
 goto update_notice
 :whatsnew_notexist
@@ -683,17 +686,17 @@ echo 1/4 Checking your CPU architecture...
 echo Done!: %processor_architecture%
 echo.
 echo 2/4 Downloading ruby installer!...
-if exist %TempStorage%\rubyinstaller-2.5.0-1-x86.exe del /q %TempStorage%\rubyinstaller-2.5.0-1-x86.exe
-if exist %TempStorage%\rubyinstaller-2.5.0-1-x64.exe del /q %TempStorage%\rubyinstaller-2.5.0-1-x64.exe
-if %processor_architecture%==x86 powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/rubyinstaller-2.5.0-1-x86.exe', '%TempStorage%\rubyinstaller-2.5.0-1-x86.exe')"
-if %processor_architecture%==AMD64 powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/rubyinstaller-2.5.0-1-x64.exe', '%TempStorage%\rubyinstaller-2.5.0-1-x64.exe')" 
+if exist "%TempStorage%\rubyinstaller-2.5.0-1-x86.exe" del /q "%TempStorage%\rubyinstaller-2.5.0-1-x86.exe"
+if exist "%TempStorage%\rubyinstaller-2.5.0-1-x64.exe" del /q "%TempStorage%\rubyinstaller-2.5.0-1-x64.exe"
+if %processor_architecture%==x86 powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/rubyinstaller-2.5.0-1-x86.exe"', '%TempStorage%\rubyinstaller-2.5.0-1-x86.exe"')"
+if %processor_architecture%==AMD64 powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/rubyinstaller-2.5.0-1-x64.exe"', '%TempStorage%\rubyinstaller-2.5.0-1-x64.exe"')" 
 set actionerrordeb=Downloading Ruby
 if not %errorlevel%==0 goto error_download
 echo Done!
 echo.
 echo 3/4 Installing Ruby in background. This can take a moment or two.
-if %processor_architecture%==x86 call "%TempStorage%\rubyinstaller-2.5.0-1-x86.exe" /verysilent /dir="%appdata%\Ruby24" /tasks="assocfiles,modpath"
-if %processor_architecture%==AMD64 call "%TempStorage%\rubyinstaller-2.5.0-1-x64.exe" /verysilent /dir="%appdata%\Ruby24" /tasks="assocfiles,modpath"
+if %processor_architecture%==x86 call "%TempStorage%\rubyinstaller-2.5.0-1-x86.exe" /verysilent /dir="%appdata%\Ruby25" /tasks="assocfiles,modpath"
+if %processor_architecture%==AMD64 call "%TempStorage%\rubyinstaller-2.5.0-1-x64.exe" /verysilent /dir="%appdata%\Ruby25" /tasks="assocfiles,modpath"
 set actionerrordeb=Installing Ruby.
 if not %errorlevel%==0 goto error_download
 echo Refreshing PATH from registry...
@@ -713,7 +716,7 @@ pause
 goto after_install_restart
 :after_install_restart
 cls
-echo .>>%MainFolder%\requirerestart.txt
+echo .>>"%MainFolder%\requirerestart.txt"
 exit
 :2_patch_script
 cls

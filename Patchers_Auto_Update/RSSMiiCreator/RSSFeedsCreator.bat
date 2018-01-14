@@ -1,11 +1,13 @@
+echo %~d0%~p0
+cd "%~d0%~p0"
 :startup_begin
 @echo off
 :: ===========================================================================
 :: RSMii feed.xml creator for Windows
-set version=1.0.1
+set version=1.0.2
 :: AUTHORS: KcrPL
 :: ***************************************************************************
-:: Copyright (c) 2017 RiiConnect24, and it's (Lead) Developers
+:: Copyright (c) 2018 RiiConnect24, and it's (Lead) Developers
 :: ===========================================================================
 if exist temp.bat del /q temp.bat
 set mode=130,30
@@ -17,8 +19,8 @@ set /a copyingsdcard=0
 
 :: Window Title
 title RSSMii Feeds Creator v.%version%  Created by KcrPL.
-set last_build=2017/10/28
-set at=18:31
+set last_build=2018/01/14
+set at=2:10
 
 set /a Update_Activate=1
 set /a offlinestorage=0
@@ -101,15 +103,15 @@ echo.
 :: Update script.
 set updateversion=0.0.0
 :: Delete version.txt and whatsnew.txt
-if %offlinestorage%==0 if exist %TempStorage%\version.txt del %TempStorage%\version.txt /q
-if %offlinestorage%==0 if exist %TempStorage%\version.txt` del %TempStorage%\version.txt` /q
-if %offlinestorage%==0 if exist %TempStorage%\whatsnew.txt del %TempStorage%\whatsnew.txt /q
-if %offlinestorage%==0 if exist %TempStorage%\whatsnew.txt` del %TempStorage%\whatsnew.txt` /q
+if %offlinestorage%==0 if exist "%TempStorage%\version.txt" del "%TempStorage%\version.txt" /q
+if %offlinestorage%==0 if exist "%TempStorage%\version.txt`" del "%TempStorage%\version.txt`" /q
+if %offlinestorage%==0 if exist "%TempStorage%\whatsnew.txt" del "%TempStorage%\whatsnew.txt" /q
+if %offlinestorage%==0 if exist "%TempStorage%\whatsnew.txt`" del "%TempStorage%\whatsnew.txt`" /q
 
-if not exist %TempStorage% md %TempStorage%
+if not exist "%TempStorage%" md "%TempStorage%"
 :: Commands to download files from server.
-if %Update_Activate%==1 if %offlinestorage%==0 powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/whatsnew.txt', '%TempStorage%/whatsnew.txt')"
-if %Update_Activate%==1 if %offlinestorage%==0 powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/version.txt', '%TempStorage%/version.txt')"
+if %Update_Activate%==1 if %offlinestorage%==0 powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/whatsnew.txt"', '"%TempStorage%/whatsnew.txt"')"
+if %Update_Activate%==1 if %offlinestorage%==0 powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/version.txt"', '"%TempStorage%/version.txt"')"
 	set /a temperrorlev=%errorlevel%
 	
 set /a updateserver=1
@@ -119,9 +121,9 @@ set /a updateserver=1
 if exist "%TempStorage%\version.txt`" ren "%TempStorage%\version.txt`" "version.txt"
 if exist "%TempStorage%\whatsnew.txt`" ren "%TempStorage%\whatsnew.txt`" "whatsnew.txt"
 :: Copy the content of version.txt to variable.
-if exist %TempStorage%\version.txt set /p updateversion=<%TempStorage%\version.txt
-if not exist %TempStorage%\version.txt set /a updateavailable=0
-if %Update_Activate%==1 if exist %TempStorage%\version.txt set /a updateavailable=1
+if exist "%TempStorage%\version.txt" set /p updateversion=<"%TempStorage%\version.txt"
+if not exist "%TempStorage%\version.txt" set /a updateavailable=0
+if %Update_Activate%==1 if exist "%TempStorage%\version.txt" set /a updateavailable=1
 :: If version.txt doesn't match the version variable stored in this batch file, it means that update is available.
 if %updateversion%==%version% set /a updateavailable=0
 
@@ -177,12 +179,12 @@ echo             Current version: %version%
 echo             New version: %updateversion%
 echo -------------------------------------------------------------------------------------------------------------------------------  
 echo.
-powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/RSSFeedsCreator.bat', 'RSSFeedsCreator.bat`')"
+powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/RSSFeedsCreator.bat"', '"RSSFeedsCreator.bat`"')"
 if not exist RSSFeedsCreator.bat` goto update_fail
 
 :: TEMP 
-echo off >>temp.bat
-echo ping localhost -n 2 >>temp.bat
+echo echo off >>temp.bat
+echo ping localhost -n 2^>NUL >>temp.bat
 echo del RSSFeedsCreator.bat /q >>temp.bat
 echo ren RSSFeedsCreator.bat` RSSFeedsCreator.bat >>temp.bat
 echo start RSSFeedsCreator.bat >>temp.bat
@@ -194,13 +196,13 @@ exit
 exit
 :whatsnew
 cls
-if not exist %TempStorage%\whatsnew.txt goto whatsnew_notexist
+if not exist "%TempStorage%\whatsnew.txt" goto whatsnew_notexist
 echo RSSMii Feeds Creator - (C) KcrPL. v%version%. (Compiled on %last_build% at %at%)
 echo -------------------------------------------------------------------------------------------------------------------------------           
 echo.
 echo What's new in update %updateversion%?
 echo.
-type %TempStorage%\whatsnew.txt
+type "%TempStorage%\whatsnew.txt"
 pause>NUL
 goto update_notice
 :whatsnew_notexist

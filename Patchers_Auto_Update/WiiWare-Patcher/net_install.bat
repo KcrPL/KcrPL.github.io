@@ -1,8 +1,8 @@
 @echo off
 cls
 title Wiimmfi WiiWare Patcher. Network Installer.
-set last_build=2017/10/28
-set at=18:33
+set last_build=2017/12/14
+set at=2:20
 
 set mode=120,30
 mode %mode%
@@ -11,8 +11,8 @@ set FilesHostedOn=https://raw.githubusercontent.com/KcrPL/KcrPL.github.io/master
 set MainFolder=%appdata%\WiiWare-Patcher
 set TempStorage=%appdata%\WiiWare-Patcher\internet\temp
 
-if not exist %MainFolder% md %MainFolder%
-if not exist %TempStorage% md %TempStorage%
+if not exist "%MainFolder%" md "%MainFolder%"
+if not exist "%TempStorage%" md "%TempStorage%"
 goto 1
 :1
 cls
@@ -33,14 +33,14 @@ echo Please wait... (Checking version)
 echo.
 echo WiiWare Patcher.
 echo Version: (Checking version)
-if exist %TempStorage%/version.txt del /q %TempStorage%/version.txt
-powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/version.txt', '%TempStorage%/version.txt')"  
+if exist "%TempStorage%/version.txt" del /q "%TempStorage%/version.txt"
+call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/version.txt"', '"%TempStorage%/version.txt"')"  
 	set /a temperrorlev=%errorlevel%
 	
 	::Bind error codes to errors here
 	if not %errorlevel%==0 goto error_update_not_available
 	
-if exist %TempStorage%\version.txt set /p updateversion=<%TempStorage%\version.txt
+if exist "%TempStorage%\version.txt" set /p updateversion=<%TempStorage%\version.txt
 goto 3
 :error_update_not_available
 cls
@@ -98,12 +98,12 @@ if exist "C:\Users\%username%\Desktop\WiiWare-Patcher\patcher.bat`" del "C:\User
 if exist "C:\Users\%username%\Desktop\WiiWare-Patcher\libWiiSharp.dll`" del "C:\Users\%username%\Desktop\WiiWare-Patcher\libWiiSharp.dll`" /q 2> nul
 if exist "C:\Users\%username%\Desktop\WiiWare-Patcher\Sharpii.exe`" del "C:\Users\%username%\Desktop\WiiWare-Patcher\Sharpii.exe`" /q 2> nul
 
-powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/WadInstaller.dll', '"C:\Users\%username%\Desktop\WiiWare-Patcher\WadInstaller.dll`"')"
-powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/WiiwarePatcher.exe', '"C:\Users\%username%\Desktop\WiiWare-Patcher\WiiwarePatcher.exe`"')"
-powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/lzx.exe', '"C:\Users\%username%\Desktop\WiiWare-Patcher\lzx.exe`"')"
-powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/patcher.bat', '"C:\Users\%username%\Desktop\WiiWare-Patcher\patcher.bat`"')"
-powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/libWiiSharp.dll', '"C:\Users\%username%\Desktop\WiiWare-Patcher\libWiiSharp.dll`"')"
-powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/Sharpii.exe', '"C:\Users\%username%\Desktop\WiiWare-Patcher\Sharpii.exe`"')"
+call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/WadInstaller.dll"', '"C:\Users\%username%\Desktop\WiiWare-Patcher\WadInstaller.dll`"')"
+call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/WiiwarePatcher.exe"', '"C:\Users\%username%\Desktop\WiiWare-Patcher\WiiwarePatcher.exe`"')"
+call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/lzx.exe"', '"C:\Users\%username%\Desktop\WiiWare-Patcher\lzx.exe`"')"
+call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/patcher.bat"', '"C:\Users\%username%\Desktop\WiiWare-Patcher\patcher.bat`"')"
+call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/libWiiSharp.dll"', '"C:\Users\%username%\Desktop\WiiWare-Patcher\libWiiSharp.dll`"')"
+call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/Sharpii.exe"', '"C:\Users\%username%\Desktop\WiiWare-Patcher\Sharpii.exe`"')"
 
 if not exist "C:\Users\%username%\Desktop\WiiWare-Patcher\WadInstaller.dll`" goto error_update_not_available
 if not exist "C:\Users\%username%\Desktop\WiiWare-Patcher\WiiwarePatcher.exe`" goto error_update_not_available

@@ -1,8 +1,8 @@
 @echo off
 cls
 title RiiConnect24 IOS Patcher. Network Installer.
-set last_build=2017/12/01
-set at=13:22
+set last_build=2017/12/14
+set at=1:50
 
 set mode=126,36
 mode %mode%
@@ -11,8 +11,8 @@ set FilesHostedOn=https://raw.githubusercontent.com/KcrPL/KcrPL.github.io/master
 set MainFolder=%appdata%\IOSPatcher
 set TempStorage=%appdata%\IOSPatcher\internet\temp
 
-if not exist %MainFolder% md %MainFolder%
-if not exist %TempStorage% md %TempStorage%
+if not exist "%MainFolder%" md "%MainFolder%"
+if not exist "%TempStorage%" md "%TempStorage%"
 goto 1
 :1
 cls
@@ -33,13 +33,13 @@ echo Please wait... (Checking version)
 echo.
 echo IOS Patcher.
 echo Version: (Checking version)
-powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/version.txt', '%TempStorage%/version.txt')"
+call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/version.txt"', '"%TempStorage%\version.txt"')"
 	set /a temperrorlev=%errorlevel%
 
 	::Bind error codes to errors here
 	if not %errorlevel%==0 goto error_update_not_available
 
-if exist %TempStorage%\version.txt set /p updateversion=<%TempStorage%\version.txt
+if exist "%TempStorage%\version.txt" set /p updateversion=<%TempStorage%\version.txt
 goto 3
 :error_update_not_available
 cls
@@ -89,14 +89,14 @@ echo Version: %updateversion%
 
 if not exist "C:\Users\%username%\Desktop\IOS-Patcher" md "C:\Users\%username%\Desktop\IOS-Patcher\"
 
-powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/00000006-31.delta', '"C:\Users\%username%\Desktop\IOS-Patcher\00000006-31.delta`"')"
-powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/00000006-80.delta', '"C:\Users\%username%\Desktop\IOS-Patcher\00000006-80.delta`"')"
-powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/WadInstaller.dll', '"C:\Users\%username%\Desktop\IOS-Patcher\WadInstaller.dll`"')"
-powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/libWiiSharp.dll', '"C:\Users\%username%\Desktop\IOS-Patcher\libWiiSharp.dll`"')"
-powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/wget.exe', '"C:\Users\%username%\Desktop\IOS-Patcher\wget.exe`"')"
-powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/xdelta3.exe', '"C:\Users\%username%\Desktop\IOS-Patcher\xdelta3.exe`"')"
-powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/Sharpii.exe', '"C:\Users\%username%\Desktop\IOS-Patcher\Sharpii.exe`"')"
-powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/patch.bat', '"C:\Users\%username%\Desktop\IOS-Patcher\patch.bat`"')"
+powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/00000006-31.delta"', '"C:\Users\%username%\Desktop\IOS-Patcher\00000006-31.delta`"')"
+powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/00000006-80.delta"', '"C:\Users\%username%\Desktop\IOS-Patcher\00000006-80.delta`"')"
+powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/WadInstaller.dll"', '"C:\Users\%username%\Desktop\IOS-Patcher\WadInstaller.dll`"')"
+powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/libWiiSharp.dll"', '"C:\Users\%username%\Desktop\IOS-Patcher\libWiiSharp.dll`"')"
+powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/wget.exe"', '"C:\Users\%username%\Desktop\IOS-Patcher\wget.exe`"')"
+powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/xdelta3.exe"', '"C:\Users\%username%\Desktop\IOS-Patcher\xdelta3.exe`"')"
+powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/Sharpii.exe"', '"C:\Users\%username%\Desktop\IOS-Patcher\Sharpii.exe`"')"
+powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/patch.bat"', '"C:\Users\%username%\Desktop\IOS-Patcher\patch.bat`"')"
 
 :: If download failed
 if not exist "C:\Users\%username%\Desktop\IOS-Patcher\00000006-31.delta`" goto error_update_not_available
