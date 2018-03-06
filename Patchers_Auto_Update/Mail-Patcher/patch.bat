@@ -793,7 +793,7 @@ echo   /     \  There was an error while patching.
 echo  /   !   \ 
 echo  --------- Operation: %module%             
 echo            Error code: %temperrorlev%
-if %customerror%==1 echo We detected an error during a routine check before patching. Please restart the patcher.
+if %customerror%==1 echo We detected an error during a runitme check before patching. Please restart the patcher.
 echo.
 echo       Press any key to return to main menu.
 echo ---------------------------------------------------------------------------------------------------------------------------
@@ -812,7 +812,7 @@ echo                                     :syhdyyyyso+/-`
 pause>NUL
 goto begin_main
 :3
-set /a error_routine_check=0
+set /a error_runtime_check=0
 
 set /a bindata=0
 set /a rubyavailable=0
@@ -820,7 +820,7 @@ cls
 echo RiiConnect24 Mail Patcher - (C) KcrPL, (C) Spotlight v%version% (Compiled on %last_build% at %at%)
 echo ------------------------------------------------------------------------------------------------------------------------------ 
 echo.
-echo We are now making a routine check to avoid errors...
+echo We are now making a runtime check to avoid errors...
 ::
 call ruby -v && set /a rubyavailable=1
 ::
@@ -836,13 +836,13 @@ call gem list >>"%TempStorage%\bindata.txt"
 if exist "%TempStorage%\bindata.txt" findstr /c:"bindata" "%TempStorage%\bindata.txt"
 if %errorlevel%==0 set bindata=1
 
-if %bindata%==0 set /a error_routine_check=1
-if %rubyavailable%==0 set /a error_routine_check=1
+if %bindata%==0 set /a error_runtime_check=1
+if %rubyavailable%==0 set /a error_runtime_check=1
 
-if %error_routine_check%==1 set module=Routine failsafe check
-if %error_routine_check%==1 set temperrorlev=failsafe
-if %error_routine_check%==1 set /a customerror=1
-if %error_routine_check%==1 goto error_patching
+if %error_runtime_check%==1 set module=runtime failsafe check
+if %error_runtime_check%==1 set temperrorlev=failsafe
+if %error_runtime_check%==1 set /a customerror=1
+if %error_runtime_check%==1 goto error_patching
 
 goto 3_patch
 
