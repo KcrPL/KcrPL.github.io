@@ -1,3 +1,4 @@
-- You can now start program as Administrator in case you need some more permissions.
-- The username bug has been fixed. Now you won't get any errors.
-- Bugfixes
+- We added more failsafe's so we know that we will patch your nwc24msg.cfg without any problem ;)
+- You can now uninstal Ruby after the successful patching!
+- Bugfixes, as always.
+- Added a bindata check.

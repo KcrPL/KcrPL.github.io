@@ -5,14 +5,14 @@ cd "%~d0%~p0"
 if exist temp.bat del /q temp.bat
 :: ===========================================================================
 :: Wii Mail Patcher for Windows
-set version=1.0.9
+set version=1.1.0
 :: AUTHORS: KcrPL, Spotlight
 :: ***************************************************************************
 :: Copyright (c) 2017 RiiConnect24, and it's (Lead) Developers
 :: ===========================================================================
 title RiiConnect24 Mail Patcher.
-set last_build=2018/01/14
-set at=1:55
+set last_build=2018/03/06
+set at=23:18
 
 set mode=126,36
 mode %mode%
@@ -54,6 +54,8 @@ echo Please wait...
 
 :begin_main
 mode %mode%
+set /a uninstalruby=0
+set /a customerror=0
 cls
 echo RiiConnect24 Mail Patcher - (C) KcrPL, (C) Spotlight v%version% (Compiled on %last_build% at %at%)
 if %patherror%==0 echo              `..````                                                  
@@ -366,6 +368,7 @@ echo                                     :syhdyyyyso+/-`
 
 set rubyavailable=0
 set rubyversion=INCORECT
+set bindata=0
 
 ::
 call ruby -v && set /a rubyavailable=1
@@ -376,6 +379,11 @@ call ruby -v >>"%TempStorage%\rubyversion.txt"
 if exist "%TempStorage%\rubyversion.txt" findstr /c:"ruby 2.5.0p0" "%TempStorage%\rubyversion.txt"
 set temperrorlev=%errorlevel%
 if %errorlevel%==0 set rubyversion=OK
+
+if exist "%TempStorage%\bindata.txt" del "%TempStorage%\bindata.txt" /q
+call gem list >>"%TempStorage%\bindata.txt"
+if exist "%TempStorage%\bindata.txt" findstr /c:"bindata" "%TempStorage%\bindata.txt"
+if %errorlevel%==0 set bindata=1
 
 goto main_fade_out
 
@@ -589,8 +597,10 @@ goto 1
 :1
 if %rubyavailable%==1 set rubyavailablemessage=Yes
 if %rubyavailable%==0 set rubyavailablemessage=No
-if %rubyversion%==INCORECT set rubyversionmessage=No
+if %rubyversion%==INCORECT set rubyversionmessage=No (Doesn't matter)
 if %rubyversion%==OK set rubyversionmessage=Yes
+if %bindata%==0 set bindatamessage=No
+if %bindata%==1 set bindatamessage=Yes
 cls
 echo RiiConnect24 Mail Patcher - (C) KcrPL, (C) Spotlight v%version% (Compiled on %last_build% at %at%)
 echo ------------------------------------------------------------------------------------------------------------------------------ 
@@ -602,26 +612,49 @@ echo.
 echo This computer status:
 echo Is ruby installed on your computer?: %rubyavailablemessage%
 echo Is the ruby version correct?: %rubyversionmessage%
+echo Is bindata installed along with ruby?: %bindatamessage%
 echo.
-echo If you see "No" answer, we will deal with that in a second.
+echo If you see "No" answer, we will fix that in a moment.
 echo.
-echo Press any button to continue.
-pause>NUL
-goto 2_redirect
+echo 1. Continue
+if %uninstalruby%==1 echo 2. [X] Uninstall Ruby after successful patching.
+if %uninstalruby%==0 echo 2. [ ] Uninstall Ruby after successful patching.
+set /p s=Type the number and hit ENTER: 
+if %s%==1 goto 2_redirect
+if %s%==2 goto 1_switch
+goto 1
+:1_switch
+if %uninstalruby%==1 goto set_uninstalruby_0
+if %uninstalruby%==0 goto set_uninstalruby_1
+goto 1
+:set_uninstalruby_0
+set /a uninstalruby=0
+goto 1
+:set_uninstalruby_1
+set /a uninstalruby=1
+goto 1
+
 :2_redirect
 if %rubyavailable%==0 goto 2_download_ruby
-if %rubyversion%==INCORECT goto 2_download_ruby
+if %rubyavailable%==1 if %bindata%==0 goto bindata_download
 goto 2_patch_script
-:2_script_error
-cls
 
+:bindata_download
+cls
 echo RiiConnect24 Mail Patcher - (C) KcrPL, (C) Spotlight v%version% (Compiled on %last_build% at %at%)
 echo ------------------------------------------------------------------------------------------------------------------------------ 
 echo.
-echo SOFTWARE FAILRUE
-echo GURU MEDITATION.
-pause>NUL
-goto startup_script
+echo Please wait... we are now downloading and installing a missing library.
+echo Patching should start after the installation.
+call gem install bindata
+set actionerrordeb=Installing gem
+if not %errorlevel%==0 goto error_download
+echo.
+if exist "%TempStorage%\bindata.txt" del "%TempStorage%\bindata.txt" /q
+call gem list >>"%TempStorage%\bindata.txt"
+if exist "%TempStorage%\bindata.txt" findstr /c:"bindata" "%TempStorage%\bindata.txt"
+if %errorlevel%==0 set bindata=1
+goto 2_redirect
 :2_download_ruby
 cls
 echo RiiConnect24 Mail Patcher - (C) KcrPL, (C) Spotlight v%version% (Compiled on %last_build% at %at%)
@@ -695,6 +728,7 @@ if not %errorlevel%==0 goto error_download
 echo Done!
 echo.
 echo 3/4 Installing Ruby in background. This can take a moment or two.
+if not exist "%appdata%\Ruby25" md "%appdata%\Ruby25"
 if %processor_architecture%==x86 call "%TempStorage%\rubyinstaller-2.5.0-1-x86.exe" /verysilent /dir="%appdata%\Ruby25" /tasks="assocfiles,modpath"
 if %processor_architecture%==AMD64 call "%TempStorage%\rubyinstaller-2.5.0-1-x64.exe" /verysilent /dir="%appdata%\Ruby25" /tasks="assocfiles,modpath"
 set actionerrordeb=Installing Ruby.
@@ -705,8 +739,8 @@ for /f "tokens=3*" %%A in ('reg query "HKCU\Environment" /v Path') do set userpa
 set PATH=%userpath%;%syspath%
 echo 4/4 Installing gem.
 call gem install bindata
-if not %errorlevel%==0 goto error_download
 set actionerrordeb=Installing gem
+if not %errorlevel%==0 goto error_download
 echo.
 echo Done! Patching will start in 5 seconds.
 timeout 5 /nobreak >NUL
@@ -759,6 +793,7 @@ echo   /     \  There was an error while patching.
 echo  /   !   \ 
 echo  --------- Operation: %module%             
 echo            Error code: %temperrorlev%
+if %customerror%==1 echo We detected an error during a routine check before patching. Please restart the patcher.
 echo.
 echo       Press any key to return to main menu.
 echo ---------------------------------------------------------------------------------------------------------------------------
@@ -777,6 +812,41 @@ echo                                     :syhdyyyyso+/-`
 pause>NUL
 goto begin_main
 :3
+set /a error_routine_check=0
+
+set /a bindata=0
+set /a rubyavailable=0
+cls
+echo RiiConnect24 Mail Patcher - (C) KcrPL, (C) Spotlight v%version% (Compiled on %last_build% at %at%)
+echo ------------------------------------------------------------------------------------------------------------------------------ 
+echo.
+echo We are now making a routine check to avoid errors...
+::
+call ruby -v && set /a rubyavailable=1
+::
+if exist "%TempStorage%\rubyversion.txt" del "%TempStorage%\rubyversion.txt" /q
+call ruby -v >>"%TempStorage%\rubyversion.txt"
+
+if exist "%TempStorage%\rubyversion.txt" findstr /c:"ruby 2.5.0p0" "%TempStorage%\rubyversion.txt"
+set temperrorlev=%errorlevel%
+if %errorlevel%==0 set rubyversion=OK
+
+if exist "%TempStorage%\bindata.txt" del "%TempStorage%\bindata.txt" /q
+call gem list >>"%TempStorage%\bindata.txt"
+if exist "%TempStorage%\bindata.txt" findstr /c:"bindata" "%TempStorage%\bindata.txt"
+if %errorlevel%==0 set bindata=1
+
+if %bindata%==0 set /a error_routine_check=1
+if %rubyavailable%==0 set /a error_routine_check=1
+
+if %error_routine_check%==1 set module=Routine failsafe check
+if %error_routine_check%==1 set temperrorlev=failsafe
+if %error_routine_check%==1 set /a customerror=1
+if %error_routine_check%==1 goto error_patching
+
+goto 3_patch
+
+:3_patch
 if not exist backup-configuration md backup-configuration
 copy "nwc24msg.cfg" "backup-configuration\nwc24msg_%date%.cfg" /y
 set /a temperrorlev=0
@@ -805,7 +875,17 @@ goto end
 set /a exiting=10
 set /a timeouterror=1
 timeout 1 /nobreak >NUL && set /a timeouterror=0
+if %uninstalruby%==1 goto uninstalruby
 goto end1
+:uninstalruby
+cls
+echo RiiConnect24 Mail Patcher - (C) KcrPL, (C) Spotlight v%version% (Compiled on %last_build% at %at%)
+echo ----------------------------------------------------------------------------------------------------------------------------- 
+echo.
+echo We are now uninstalling Ruby...
+"%appdata%\Ruby25\unins000.exe" /verysilent
+set /a uninstalruby=0 
+goto end
 :end1
 mode %mode%
 cls
@@ -834,11 +914,3 @@ if %timeouterror%==0 timeout 1 /nobreak >NUL
 if %timeouterror%==1 ping localhost -n 2 >NUL
 set /a exiting=%exiting%-1
 goto end1
-
-
-
-
-
-
-
-
