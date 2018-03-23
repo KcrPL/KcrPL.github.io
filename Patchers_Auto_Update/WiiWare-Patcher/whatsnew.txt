@@ -1,3 +1,2 @@
-- You can now start program as Administrator in case you need some more permissions.
-- The username bug has been fixed. Now you won't get any errors.
+- Windows XP crashing fixed
 - Bugfixes

@@ -1,4 +1,1 @@
-- We added more failsafe's so we know that we will patch your nwc24msg.cfg without any problem ;)
-- You can now uninstal Ruby after the successful patching!
-- Bugfixes, as always.
-- Added a bindata check.
+- Typo fixed

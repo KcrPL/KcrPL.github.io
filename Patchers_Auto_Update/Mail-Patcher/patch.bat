@@ -5,14 +5,14 @@ cd "%~d0%~p0"
 if exist temp.bat del /q temp.bat
 :: ===========================================================================
 :: Wii Mail Patcher for Windows
-set version=1.1.0
+set version=1.1.0-BugFix1
 :: AUTHORS: KcrPL, Spotlight
 :: ***************************************************************************
 :: Copyright (c) 2017 RiiConnect24, and it's (Lead) Developers
 :: ===========================================================================
 title RiiConnect24 Mail Patcher.
-set last_build=2018/03/06
-set at=23:18
+set last_build=2018/03/23
+set at=16:41
 
 set mode=126,36
 mode %mode%
@@ -127,7 +127,7 @@ echo ---------------------------------------------------------------------------
 echo    /---\   Windows XP Support Ended.
 echo   /     \  Thanks for using the program but support for any system older than Windows 7 has been ended.
 echo  /   !   \ You cannot use this program.
-echo  --------- Feel free to join our Discord chat and let our bot patch it for you!
+echo  --------- Please send us your nwc24msg.cfg file to support@riiconnect24.net and we'll patch it for you!
 echo.
 echo            Press any key to continue.
 echo ------------------------------------------------------------------------------------------------------------------------------    
