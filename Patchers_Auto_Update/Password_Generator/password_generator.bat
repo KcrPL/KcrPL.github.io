@@ -805,67 +805,28 @@ echo              :yMMMmyo+//////////////////////////+oymMMMy:
 echo                `/yNMMNdhso+////////////////+oshdNMMNy/`               
 echo                    .+ymMMMMNmddhhyyyyhhddmNMMMMmy+.                   
 echo                        `-/+shdmmNMMMMNmmdhs+/-`              
+echo INFO: Begining update process>>"%MainFolder%/IOSPatcherLogs.txt"
 :: Deleting the temp files if they exist.
-if exist password_generator.bat` del password_generator.bat` /q 2> nul
+if exist password_generator.bat` del 00000006-31.delta` /q 2> nul
 
 :: Downloading the update files. 
 call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/password_generator.bat"', 'password_generator.bat`"')"
 
 :: If download failed
-if %update%==1 if not exist password_generator.bat` goto error_update_not_available
+if %update%==1 if not exist password_generator` goto error_update_not_available
 
 :: Patch.bat cannot be overwritten while running so i'm creating a small script
 echo echo off >>temp.bat
 echo ping localhost -n 2^>NUL >>temp.bat
 echo del password_generator.bat /q >>temp.bat
 echo ren password_generator.bat` password_generator.bat >>temp.bat
-echo start password_generator.bat>>temp.bat
+echo start patch.bat >>temp.bat
 echo exit >>temp.bat
 :: Running the script and exiting patch.bat
 start temp.bat
 exit
 exit
 exit
-:error_update_not_available
-cls
-echo %header%
-echo                         `-/oshdmmNMMMMNmmdhs+/-`                       
-echo                    .+ymMMMMNmddhhyyyyhhddmNMMMMmy+.                   
-echo                `/yNMMNdhso+////////////////+oshdNMMNy/`               
-echo              :yMMMmyo+//////////////////////////+oymMMMy:       
-echo            +mMMmy+//////////////////////////////////+ymMMm+   
-echo          +NMMho////////////////////////////////////////ohMMN+ 
-echo        :mMMh+/////////////////+oyhhhhyo+/////////////////+hMMm:   
-echo      `yMMmo/////////////////+hNMMMMMMMMNh+/////////////////omMMy`     
-echo     .mMMy+/////////////////sNMMmyo++oymMMNs/////////////////+yMMm.    
-echo    .NMNo//////////////////+NMMh+//////+hMMN+//////////////////oNMN.   
-echo   .NMNo///////////////////sMMM+////////+MMMs///////////////////oNMN.  
-echo -----------------------------------------------------------------------------------------------------------------------------
-echo    /---\   Updating failure.
-echo   /     \  There was an error while updating.
-echo  /   !   \
-echo  --------- %string9%
-echo.
-echo.
-echo -----------------------------------------------------------------------------------------------------------------------------
-echo dMMo/////////////omo/+MMMMMMMMMMd///+NMMMMMMMMMM+/omo/////////////oMMd
-echo +MMy//////////////+o/+MMMMMMMMMMMy//hMMMMMMMMMMM+/o+//////////////yMM+
-echo `NMN+////////////////+MMMMMMMMMyo+//+odMMMMMMMMM+////////////////+NMN`
-echo  oMMy////+yhhhyo+////+MMMMMMMMMdyssssydMMMMMMMMM+////+oyhhhy+////yMMo 
-echo  `dMMo///mMMNmmmdho//+MMMMMMMMMMMMMMMMMMMMMMMMMM+//ohmmmmNMMm///oMMd` 
-echo   .NMNo//+++/////++//+MMMMMMMMMMMMMMMMMMMMMMMMMM+//++/////+++//oNMN.  
-echo    .NMNo/////////////+dMMMMMMMMMMMMMMMMMMMMMMMMd+/////////////oNMN.   
-echo     .mMMy+/////////////oyhhhhhhhhhhhhhhhhhhhhyo/////////////+yMMm.    
-echo      `yMMmo////////////////////////////////////////////////omMMy`     
-echo        :mMMh+////////////////////////////////////////////+hMMm:       
-echo          +NMMho////////////////////////////////////////ohMMN+         
-echo            +mMMmy+//////////////////////////////////+ymMMm+           
-echo              :yMMMmyo+//////////////////////////+oymMMMy:             
-echo                `/yNMMNdhso+////////////////+oshdNMMNy/`               
-echo                    .+ymMMMMNmddhhyyyyhhddmNMMMMmy+.                   
-echo                        `-/+shdmmNMMMMNmmdhs+/-`              
-pause>NUL
-goto begin_main
 :whatsnew
 cls
 if not exist "%TempStorage%\whatsnew.txt" goto whatsnew_notexist
