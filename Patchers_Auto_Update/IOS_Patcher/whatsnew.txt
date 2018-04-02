@@ -1,6 +1,17 @@
-BugFix-1:
-- Fixed Windows XP support.
+1.9.0 is here!
 
-- You can now start program as Administrator in case you need some more permissions.
-- The username bug has been fixed. Now you won't get any errors.
-- Bugfixes
+Changelog:
+
+IOS Patcher will now automatically detect your language and will load your language (if it's available)
+
+Following languages are supported:
+- English (Author: KcrPL)
+- Polish (Author: KcrPL)
+- French (Author: iDroid)
+- German (Author: TimNook)
+- Dutch (Author: Jelle/DismissedGuy)
+- Turkish (Author: Can Bora Ciner)
+- Russian (Author: prosuWANTED)
+
+Do you want to translate it to your language?
+Please open https://raw.githubusercontent.com/RiiConnect24/IOS-Patcher/master/Windows/IOS%20Patcher%20Translation%20File.txt translate it and send it to support@riiconnect24.net :)
