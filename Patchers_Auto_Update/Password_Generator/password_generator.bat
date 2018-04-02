@@ -3,7 +3,7 @@ cd "%~d0%~p0"
 @echo off
 :: ===========================================================================
 :: Password Generator for Windows
-set version=1.0.0-BugFix1
+set version=1.0.1
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2018 KcrPL
@@ -17,8 +17,8 @@ mode %mode%
 set s=NUL
 :: Window Title
 title Password Generator v%version%  Created by @KcrPL
-set last_build=2018/04/01
-set at=00:26
+set last_build=2018/04/02
+set at=19:41
 
 set header=Password Generator - (C) KcrPL v%version% (Compiled on %last_build% at %at%)
 
@@ -44,6 +44,7 @@ if exist "%TempStorage%\checkforaccess.txt" del /q "%TempStorage%\checkforaccess
 set /a contain_small_letters=1
 set /a contain_large_letters=1
 set /a contain_numbers=1
+set /a contain_symbols=1
 
 set /a howmanypasswords=5
 set /a howmanycharacters=9
@@ -54,12 +55,118 @@ set /a save_password=0
 FOR /F "tokens=2 delims==" %%a IN ('wmic os get OSLanguage /Value') DO set OSLanguage=%%a
 set password=English
 
-if %OSLanguage%==1046 set language=Brazilian&goto set_language_brazilian
-if %OSLanguage%==1036 set language=French& goto set_language_french
-if %OSLanguage%==1045 set language=Polish& goto set_language_polish
-if %OSLanguage%==0413 set language=Dutch& goto set_language_dutch
-goto set_language_english
-:set_language_brazilian
+if %OSLanguage%==1046 set language=Brazilian&goto set_language_Brazilian
+if %OSLanguage%==1036 set language=French& goto set_language_French
+if %OSLanguage%==1045 set language=Polish& goto set_language_Polish
+if %OSLanguage%==0413 set language=Dutch& goto set_language_Dutch
+if %OSLanguage%==1031 set language=German& goto set_language_German
+goto set_language_English
+
+:set_language_German
+set mode=130,37
+mode %mode%
+set string1=Passwort Generator
+set string2=Tippe eine Zahl ein und drucke die ENTER-Taste
+set string3=Start
+set string5=Wählen
+set string6=Abgesicherter Modus
+set string7=Der letzte Start hat nicht funktioniert. Ich starte im abgesicherten Modus.
+set string8=Das Update wurde ubersprungen.
+set string9=Drucke irgendeine Taste um fortzufahren
+set string10=Die "PowerShell" wird gestartet
+set string11=Es wird nach Updates gesucht
+set string12=Ein Update ist verfugbar
+set string13=Es ist ein Update fur dieses Programm verfugbar. Wir empfehlen es, den Passwort Generator zu updaten.
+set string14=Momentane Version
+set string15=Neue Version
+set string16=Update
+set string17=Dismiss
+set string18=Was gibt es neues im Update?
+set string19=Updating...
+set string20=Bitte warten
+set string21=Der Passwort Generator wird bald neugestartet.
+set string22=Was gibt es neues im update?
+set string23=Fehler. Der Changelog ist momentan nicht verfugbar.
+set string24=Willkommen beim Passwort Generator!
+set string25=Wie viele Passworter soll ich generieren?
+set string26=Wie viele Zeichen sollen sie beinhalten?
+set string27=Sollen sie kleingeschriebene Buchstaben beinhalten
+set string28=Sollen sie grobgeschriebene Buchstaben beinhalten
+set string29=Sollen sie Ziffern beinhalten
+set string44=Sollen sie Symbole beinhalten
+set string30=Soll ich das Passwort als ".txt" Datei speichern? [Sie wird im selben Ordner, in dem auch dieses Programm ist, gespeichert]
+set string31=Erstelle die Passworter
+set string32=Wie viele Charaktere soll jedes Passwort beinhalten?
+set string33=Ungultige Einstellungen
+set string34=Bitte andere die Einstellungen
+set string35=Die Passworter werden mit diesen Einstellungen erstellt
+set string36=Erstelle
+set string37=Die Passworter sind je
+set string38=Charaktere long
+set string39=Generierte Passworter
+set string40=Alle Passworter wurden erstellt.
+set string41=Alle Passworter wurden abgespeichert.
+set string42=Hauptmenu
+set string43=Schlieben
+set string45=Ich versuche diakritische Zeichen zu laden [Windows 8.1/10]
+
+set language=German
+set /a diacritic_show=1
+goto begin_main
+
+:set_language_German_diacritic
+set mode=126,37
+mode %mode%
+set string1=Passwort Generator
+set string2=Tippe eine Zahl ein und drücke die ENTER-Taste
+set string3=Start
+set string5=Wählen
+set string6=Abgesicherter Modus
+set string7=Der letzte Start hat nicht funktioniert. Ich starte im abgesicherten Modus.
+set string8=Das Update wurde übersprungen.
+set string9=Drücke irgendeine Taste um fortzufahren
+set string10=Die "PowerShell" wird gestartet
+set string11=Es wird nach Updates gesucht
+set string12=Ein Update ist verfügbar
+set string13=Es ist ein Update für dieses Programm verfügbar. Wir empfehlen es, den Passwort Generator zu updaten.
+set string14=Momentane Version
+set string15=Neue Version
+set string16=Update
+set string17=Dismiss
+set string18=Was gibt es neues im Update?
+set string19=Updating...
+set string20=Bitte warten
+set string21=Der Passwort Generator wird bald neugestartet.
+set string22=Was gibt es neues im update?
+set string23=Fehler. Der Changelog ist momentan nicht verfügbar.
+set string24=Willkommen beim Passwort Generator!
+set string25=Wie viele Passwörter soll ich generieren?
+set string26=Wie viele Zeichen sollen sie beinhalten?
+set string27=Sollen sie kleingeschriebene Buchstaben beinhalten
+set string28=Sollen sie großgeschriebene Buchstaben beinhalten
+set string29=Sollen sie Ziffern beinhalten
+set string44=Sollen sie Symbole beinhalten
+set string30=Soll ich das Passwort als ".txt" Datei speichern? [Sie wird im selben Ordner, in dem auch dieses Programm ist, gespeichert]
+set string31=Erstelle die Passwörter
+set string32=Wie viele Charaktere soll jedes Passwort beinhalten?
+set string33=Ungültige Einstellungen
+set string34=Bitte ändere die Einstellungen
+set string35=Die Passwörter werden mit diesen Einstellungen erstellt
+set string36=Erstelle
+set string37=Die Passwörter sind je
+set string38=Charaktere long
+set string39=Generierte Passwörter
+set string40=Alle Passwörter wurden erstellt.
+set string41=Alle Passwörter wurden abgespeichert.
+set string42=Hauptmenü
+set string43=Schließen
+set string45=Ich versuche diakritische Zeichen zu laden [Windows 8.1/10]
+
+set language=German
+set /a diacritic_show=0
+goto begin_main
+
+:set_language_Brazilian
 set mode=144,37
 mode %mode%
 set string1=Generador De Senhas
@@ -110,7 +217,7 @@ set string45=Tentativa de carregar caracteres diacriticos [nao funciona no Windo
 set language=Brazilian
 set /a diacritic_show=1
 goto begin_main
-:set_language_brazilian_diacritic
+:set_language_Brazilian_diacritic
 set mode=126,37
 mode %mode%
 chcp 65001
@@ -163,7 +270,7 @@ set language=Brazilian
 set /a diacritic_show=0
 goto begin_main
 
-:set_language_dutch
+:set_language_Dutch
 set mode=126,37
 mode %mode%
 set string1=Wachtwoordgenerator
@@ -204,9 +311,7 @@ set string35=Genereer wachtwoorden met de volgende instellingen
 set string36=None
 set string37=wachtwoorden aan het genereren, waarvan elk
 set string38=karakters lang
-
 set string39=Gegenereerde wachtwoorden
-
 set string40=Alle wachtwoorden zijn met success gegenereerd.
 set string41=Alle wachtwoorden zijn met success opgeslagen.
 set string42=Hoofdmenu
@@ -217,7 +322,7 @@ set language=Dutch
 set /a diacritic_show=0
 goto begin_main
 
-:set_language_english
+:set_language_English
 set mode=126,37
 mode %mode%
 set string1=Password Generator
@@ -268,7 +373,7 @@ set string45=Attempt to load diacritic characters [Windows 8.1/10]
 set language=English
 set /a diacritic_show=0
 goto begin_main
-:set_language_french
+:set_language_French
 set mode=137,37
 mode %mode%
 set string1=Password Generator
@@ -319,7 +424,7 @@ set string45=Entative de chargement de catacteres diacritiques [Windows 8.1/10]
 set language=French
 set /a diacritic_show=1
 goto begin_main
-:set_language_french_diacritic
+:set_language_French_diacritic
 set mode=126,37
 mode %mode%
 chcp 65001
@@ -371,7 +476,7 @@ set string45=Entative de chargement de catactères diacritiques [Windows 8.1/10]
 set language=French
 set /a diacritic_show=0
 goto begin_main
-:set_language_polish_diacritic
+:set_language_Polish_diacritic
 set mode=126,37
 mode %mode%
 chcp 65001
@@ -423,7 +528,7 @@ set string45=Spróbuj załadować znaki diakrytyczne [Windows 8.1/10]
 set language=Polish
 set /a diacritic_show=0
 goto begin_main
-:set_language_polish
+:set_language_Polish
 set mode=126,37
 mode %mode%
 set string1=Generator Hasel
@@ -475,10 +580,7 @@ set language=Polish
 set /a diacritic_show=1
 goto begin_main
 :load_diacritic
-if %language%==Polish goto set_language_polish_diacritic
-if %language%==French goto set_language_french_diacritic
-if %language%==Brazilian goto set_language_brazilian_diacritic
-
+if %diacritic_show%==1 goto set_language_%language%_diacritic
 goto begin_main
 
 :begin_main
@@ -536,12 +638,14 @@ echo 2. Polish (Author: KcrPL)
 echo 3. French (Author: iDroid)
 echo 4. Dutch (Author: DismissedGuy)
 echo 5. Brazilian (Author: Lucas7)
+echo 6. German (Author: TimNook)
 set /p s=Choose: 
 if %s%==1 goto set_language_english
 if %s%==2 goto set_language_polish
 if %s%==3 goto set_language_french
 if %s%==4 goto set_language_dutch
 if %s%==5 goto set_language_brazilian
+if %s%==6 goto set_language_german
 goto choose_language
 
 :begin_main1
@@ -765,7 +869,7 @@ echo                    .+ymMMMMNmddhhyyyyhhddmNMMMMmy+.
 echo                        `-/+shdmmNMMMMNmmdhs+/-`              
 set /p s=
 if %s%==1 goto update_files
-if %s%==2 goto 3
+if %s%==2 goto 2
 if %s%==3 goto whatsnew
 goto update_notice
 :update_files
@@ -946,11 +1050,13 @@ if %contain_large_letters%==0 echo 4. %string28%? [ ]
 if %contain_large_letters%==1 echo 4. %string28%? [X]
 if %contain_numbers%==0 echo 5. %string29%? [ ]
 if %contain_numbers%==1 echo 5. %string29%? [X]
+if %contain_symbols%==0 echo 6. %string44%? [ ]
+if %contain_symbols%==1 echo 6. %string44%? [X]
 echo.
-if %save_password%==0 echo 6. %string30% [ ]
-if %save_password%==1 echo 6. %string30% [X]
+if %save_password%==0 echo 7. %string30% [ ]
+if %save_password%==1 echo 7. %string30% [X]
 echo.
-echo 7. %string31%
+echo 8. %string31%
 echo.
 set /p s=
 if %s%==1 goto how_many_passwords_choose
@@ -958,8 +1064,9 @@ if %s%==2 goto how_many_characters_choose
 if %s%==3 goto contain_small_letters
 if %s%==4 goto contain_large_letters
 if %s%==5 goto contain_numbers
-if %s%==6 goto save_password
-if %s%==7 goto check_for_invalid_settings
+if %s%==6 goto contain_symbols
+if %s%==7 goto save_password
+if %s%==8 goto check_for_invalid_settings
 goto 2
 :how_many_passwords_choose
 cls
@@ -995,12 +1102,17 @@ if %contain_numbers%==1 set /a contain_numbers=0 & goto 2
 if %save_password%==0 set /a save_password=1 & goto 2
 if %save_password%==1 set /a save_password=0 & goto 2
 
+:contain_symbols
+if %contain_symbols%==0 set /a contain_symbols=1&goto 2
+if %contain_symbols%==1 set /a contain_symbols=0&goto 2
+
 :check_for_invalid_settings
 cls
 set /a tempcheck=0
 if %contain_small_letters%==1 set /a tempcheck=%tempcheck%+1
 if %contain_large_letters%==1 set /a tempcheck=%tempcheck%+1
 if %contain_numbers%==1 set /a tempcheck=%tempcheck%+1
+if %contain_symbols%==1 set /a tempcheck=%tempcheck%+1
 
 if %tempcheck%==0 goto invalid_settings
 
@@ -1021,16 +1133,19 @@ pause>NUL
 goto 2
 
 :generate_passwords
+mode con lines=9001
 if %save_password%==1 echo. >>passwords.txt
 if %save_password%==1 echo %header% >>passwords.txt
 if %save_password%==1 echo --------------------------- >>passwords.txt
 if %save_password%==1 echo %string35%: >>passwords.txt
-if %save_password%==1 if %contain_small_letters%==0 echo %string27% - No >>passwords.txt
-if %save_password%==1 if %contain_small_letters%==1 echo %string27% - Yes >>passwords.txt
-if %save_password%==1 if %contain_large_letters%==0 echo %string28% - No >>passwords.txt
-if %save_password%==1 if %contain_large_letters%==1 echo %string28% - Yes >>passwords.txt
-if %save_password%==1 if %contain_numbers%==0 echo %string29% - No >>passwords.txt
-if %save_password%==1 if %contain_numbers%==1 echo %string29% - Yes >>passwords.txt
+if %save_password%==1 if %contain_small_letters%==0 echo %string27% - [ ] >>passwords.txt
+if %save_password%==1 if %contain_small_letters%==1 echo %string27% - [X] >>passwords.txt
+if %save_password%==1 if %contain_large_letters%==0 echo %string28% - [ ] >>passwords.txt
+if %save_password%==1 if %contain_large_letters%==1 echo %string28% - [X] >>passwords.txt
+if %save_password%==1 if %contain_numbers%==0 echo %string29% - [ ]>>passwords.txt
+if %save_password%==1 if %contain_numbers%==1 echo %string29% - [X] >>passwords.txt
+if %save_password%==1 if %contain_symbols%==0 echo %string44% - [ ]>>passwords.txt
+if %save_password%==1 if %contain_symbols%==1 echo %string44% - [X]>>passwords.txt
 if %save_password%==1 echo. >>passwords.txt
 if %save_password%==1 echo %string36% [%howmanypasswords%] %string37% [%howmanycharacters%] %string38%] >>passwords.txt
 if %save_password%==1 echo. >>passwords.txt
@@ -1042,17 +1157,23 @@ echo ---------------------------------------------------------------------------
 echo.
 echo %string39%:
 echo.
-
-
+goto generate_passwords_phase1
 :generate_passwords_phase1
 ::Generate random numbers for every character
 set /a number_parse=1
 set /a temporary_number=0
 set /a tempnumbertogo=%howmanycharacters%+1
-
+set /a overall_calculations=1
 :generate_passwords_phase1_2
+title Password Generator v%version%  Created by @KcrPL - Generating password - Randomizing the password (%number_parse% out of %howmanycharacters%) [Overall calculations - %overall_calculations%]
+set /a overall_calculations=%overall_calculations%+1
+
 if %number_parse%==%tempnumbertogo% goto generate_passwords_phase2
-set /a temporary_number=%random% %% (63 + 1)
+
+set /a temporary_number=%random% %% (73 + 1)
+
+if /i %temporary_number% LSS 1 goto generate_passwords_phase1_2
+if /i %temporary_number% GTR 73 goto generate_passwords_phase1_2
 ::Check for settings
 if %contain_small_letters%==0 if %temporary_number%==1 goto generate_passwords_phase1_2
 if %contain_small_letters%==0 if %temporary_number%==3 goto generate_passwords_phase1_2
@@ -1119,9 +1240,21 @@ if %contain_numbers%==0 if %temporary_number%==60 goto generate_passwords_phase1
 if %contain_numbers%==0 if %temporary_number%==61 goto generate_passwords_phase1_2
 if %contain_numbers%==0 if %temporary_number%==62 goto generate_passwords_phase1_2
 
+if %contain_symbols%==0 if %temporary_number%==63 goto generate_passwords_phase1_2
+if %contain_symbols%==0 if %temporary_number%==64 goto generate_passwords_phase1_2
+if %contain_symbols%==0 if %temporary_number%==65 goto generate_passwords_phase1_2
+if %contain_symbols%==0 if %temporary_number%==66 goto generate_passwords_phase1_2
+if %contain_symbols%==0 if %temporary_number%==67 goto generate_passwords_phase1_2
+if %contain_symbols%==0 if %temporary_number%==68 goto generate_passwords_phase1_2
+if %contain_symbols%==0 if %temporary_number%==69 goto generate_passwords_phase1_2
+if %contain_symbols%==0 if %temporary_number%==70 goto generate_passwords_phase1_2
+if %contain_symbols%==0 if %temporary_number%==71 goto generate_passwords_phase1_2
+if %contain_symbols%==0 if %temporary_number%==72 goto generate_passwords_phase1_2
+if %contain_symbols%==0 if %temporary_number%==73 goto generate_passwords_phase1_2
+if %contain_symbols%==0 if %temporary_number%==74 goto generate_passwords_phase1_2
+if %contain_symbols%==0 if %temporary_number%==75 goto generate_passwords_phase1_2
 ::Save into variable for later for parser
 set cache%number_parse%=%temporary_number%
-title Password Generator v%version%  Created by @KcrPL - Generating password - Randomizing the password (%number_parse% out of %howmanycharacters%)
 set /a number_parse=%number_parse%+1
 goto generate_passwords_phase1_2
 
@@ -1196,7 +1329,17 @@ if %temporary_number%==59 set password%number_parse%letter=6
 if %temporary_number%==60 set password%number_parse%letter=7
 if %temporary_number%==61 set password%number_parse%letter=8
 if %temporary_number%==62 set password%number_parse%letter=9
-
+if %temporary_number%==63 set password%number_parse%letter=^!
+if %temporary_number%==64 set password%number_parse%letter=^@
+if %temporary_number%==65 set password%number_parse%letter=^#
+if %temporary_number%==66 set password%number_parse%letter=^$
+if %temporary_number%==67 set password%number_parse%letter=^*
+if %temporary_number%==68 set password%number_parse%letter=^?
+if %temporary_number%==79 set password%number_parse%letter=^\
+if %temporary_number%==70 set password%number_parse%letter=^:
+if %temporary_number%==71 set password%number_parse%letter=^"
+if %temporary_number%==72 set password%number_parse%letter=^;
+if %temporary_number%==73 set password%number_parse%letter=^+
 set /a number_parse=%number_parse%+1
 goto generate_passwords_phase2_2
 
@@ -1216,10 +1359,15 @@ set /a loop=0
 
 goto check_end_3
 ::loop to delete password up to 256 just to make sure that everything is clean
+set /a number_parse=1
+set /a cleanup_maximum=86
+:check_end_2_2
+title Password Generator v%version%  Created by @KcrPL - Cleaning variables - (%number_parse% out of %cleanup_maximum%)
 set "password%loop%letter="
 set /a loop=%loop%+1
-if %loop%==63 goto check_end_3
-goto check_end_2
+set /a number_parse=%number_parse%+1
+if %loop%==%cleanup_maximum% goto check_end_3
+goto check_end_2_2
 :check_end_3
 if %temp_passwords_created%==%howmanypasswords% goto password_generator_done
 goto generate_passwords_phase1

@@ -1,1 +1,5 @@
-Language load bug fix
+- Added German language
+- You can now also generate passwords with symbols!
+- Fixed an issue where you couldn't dismiss update
+- Fixed an issue where sometimes created passwords would be shorter then the ammount of characters set
+- Added more progress bars (so you can see what's happening :P)
