@@ -109,6 +109,7 @@ if %s%==2 goto set_language_english
 goto set_language_unicode_ask
 
 :set_language_brazilian
+mode 138,36
 set string1=Atencao: Por favor abra esse aplicacao com os privilegios de administrador.
 set string2=Atencao: patch.bat Nao Encontrado. Voce pode estar usando essa aplicacao em uma fonte desconhecida. 
 set string3=Iniciar
@@ -192,6 +193,7 @@ set /a diacritic_show=1
 goto begin_main
 
 :set_language_brazilian_diacritic
+mode 138,36
 chcp 65001
 set string1=Atençao: Por favor abra esse aplicaçao com os privilégios de administrador.
 set string2=Atençao: patch.bat Nao Encontrado. Voce pode estar usando essa aplicaçao em uma fonte desconhecida. 
@@ -276,6 +278,7 @@ set /a diacritic_show=0
 goto begin_main
 
 :set_language_italian
+mode 125,36
 set string1=Attenzione: Si prega di avviare l'applicazione senza permessi di amministratore.
 set string2=Attenzione: patch.bat non trovato. Potresti stare eseguendo questa applicazione da fonti sconosciute o non sicure. 
 set string3=Inizia
@@ -360,6 +363,7 @@ set language=Italian
 set /a diacritic_show=1
 goto begin_main
 :set_language_italian_diacritic
+mode 125,36
 set string1=Attenzione: Si prega di avviare l'applicazione senza permessi di amministratore.
 set string2=Attenzione: patch.bat non trovato. Potresti stare eseguendo questa applicazione da fonti sconosciute o non sicure. 
 set string3=Inizia
