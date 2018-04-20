@@ -1,2 +1,5 @@
-- Windows XP crashing fixed
-- Bugfixes
+2.1.8:
+
+- Fixed few grammar issues.
+- Added a file counter
+- WiiWarePatcher.exe updated - you know don't have to press any key every time that it's done. Now patching 100 .WAD's will be easier and less annoying!
