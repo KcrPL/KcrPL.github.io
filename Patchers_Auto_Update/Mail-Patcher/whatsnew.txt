@@ -1,0 +1,11 @@
+Mail Patcher Update 1.1.1 is up!
+
+You all need to repatch your nwc24msg.cfg file to continue using RiiConnect24.
+
+Changelog:
+- Got rid of Ruby - now you don't need to install it
+- Patching is now faster (about 5 seconds)
+- You can now use FTP Server on your Wii [WiiXplorer] to patch your nwc24msg.cfg so you don't have to touch your SD Card!
+- Many, many, many bugfixes!
+
+At this point, Mail Patcher should be less buggy but if you spot any bug, mail us at support@riiconnect24.net!
