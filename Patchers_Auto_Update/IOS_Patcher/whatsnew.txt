@@ -1,5 +1,10 @@
 1.9.0 is here!
 
+1.9.0-BugFix2:
+- Added some strings to translations
+- Added a menu that I've forgot about...
+- Fixed one option about loading translation in debug menu
+
 1.9.0-BugFix1:
 - Fixed Portuguese (Brazilian) language.
 

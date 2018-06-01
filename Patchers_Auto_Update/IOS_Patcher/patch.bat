@@ -3,7 +3,7 @@ cd "%~d0%~p0"
 @echo off
 :: ===========================================================================
 :: IOS Patcher for Windows
-set version=1.9.0-BugFix1
+set version=1.9.0-BugFix2
 :: AUTHORS: KcrPL, Larsenv
 :: ***************************************************************************
 :: Copyright (c) 2018 RiiConnect24, KcrPL and it's (Lead) Developers
@@ -22,8 +22,8 @@ set s=NUL
 
 :: Window Title
 title IOS Patcher for RiiConnect24 v.%version%  Created by @Larsenv, @KcrPL
-set last_build=2018/04/06
-set at=21:38
+set last_build=2018/06/01
+set at=14:13
 if exist "C:\Users\%username%\Desktop\IOSPatcherDebug.txt" goto debug_load
 :: ### Auto Update ###
 :: 1=Enable 0=Disable
@@ -187,7 +187,8 @@ set string76=Os arquivos IOS patchados estarao numa pasta chamada ''WAD''.
 set string77=Os arquivos foram copiados no cartao SD numa pasta chamada ''WAD''.
 set string78=Saindo do patcher em ...
 set string79=Tentativa de carregar caracteres diacriticos (Windows 8.1/10)
-
+set string80=Updating failed.
+set string81=There was an error while downloading files from the update server.
 set language=Portuguese (Brazilian)
 set /a diacritic_show=1
 goto begin_main
@@ -272,7 +273,8 @@ set string76=Os arquivos IOS patchados estarao numa pasta chamada ''WAD''.
 set string77=Os arquivos foram copiados no cartao SD numa pasta chamada ''WAD''.
 set string78=Saindo do patcher em ...
 set string79=Tentativa de carregar caracteres diacriticos (Windows 8.1/10)
-
+set string80=Updating failed.
+set string81=There was an error while downloading files from the update server.
 set language=Portuguese (Brazilian)
 set /a diacritic_show=0
 goto begin_main
@@ -358,6 +360,8 @@ set string76=I file IOS patchati saranno nella cartella "WAD".
 set string77=I file sono stati copiati nella Scheda SD nella cartella "WAD"
 set string78=Uscendo dal Patcher in...
 set string79=Tentativo di caricare caratteri diacritici [Windows 8.1/10]
+set string80=Aggiornamento fallito.
+set string81=Si e verificato un errore nel tentativo di scaricare file dal server di aggiornamento.
 
 set language=Italian
 set /a diacritic_show=1
@@ -443,6 +447,8 @@ set string76=I file IOS patchati saranno nella cartella "WAD".
 set string77=I file sono stati copiati nella Scheda SD nella cartella "WAD"
 set string78=Uscendo dal Patcher in...
 set string79=Tentativo di caricare caratteri diacritici [Windows 8.1/10]
+set string80=Aggiornamento fallito.
+set string81=Si è verificato un errore nel tentativo di scaricare file dal server di aggiornamento.
 set language=Italian
 set /a diacritic_show=0
 goto begin_main
@@ -527,6 +533,8 @@ set string76=Les fichiers seront copies dans le dossier nomme "WAD".
 set string77=Les fichiers ont ete copies sur votre peripherique dans le dossier "WAD"
 set string78=Le patcher se fermera dans...
 set string79=Tentative de chargement de catacteres diacritiques [Windows 8.1/10]
+set string80=La mise a jour a echoue.
+set string81=Une erreur est survenue lors du telechargement des fichiers depuis le serveur de mise a jour.
 
 set language=French
 set /a diacritic_show=1
@@ -613,6 +621,8 @@ set string76=Les fichiers seront copiés dans le dossier nommé "WAD".
 set string77=Les fichiers ont été copiés sur votre périphérique dans le dossier "WAD"
 set string78=Le patcher se fermera dans...
 set string79=Tentative de chargement de catactères diacritiques [Windows 8.1/10]
+set string80=La mise à jour a échoué.
+set string81=Une erreur est survenue lors du téléchargement des fichiers depuis le serveur de mise à jour.
 
 set language=French
 set /a diacritic_show=0
@@ -699,6 +709,9 @@ set string75=Патчинг завершён
 set string76=Пропатчанные IOS файлы будут в папке "WAD".
 set string77=Файлы были копированы на SD карту в папку "WAD"
 set string78=Выход из патчера через...
+set string79=leave empty
+set string80=Ошибка обновления.
+set string81=Произошла ошибка при загрузке файлов с сервера обновлении.
 
 set language=Russian
 set /a diacritic_show=0
@@ -788,7 +801,8 @@ set string76=Yama yapılan IOSları "WAD" adlı klasöre koyunuz.
 set string77=Dosyalar "WAD" adlı klasöre kopyalandı.
 set string78=IOS Patcherdan çıkılmasına...
 set string79=Ayrıcı karakterler yüklenmeye çalışıldı. [Windows 8.1/10]
-
+set string80=Updating failed.
+set string81=There was an error while downloading files from the update server.
 set language=Turkish
 set /a diacritic_show=0
 goto begin_main
@@ -876,7 +890,8 @@ set string76=Patched IOS files will be in folder called "WAD".
 set string77=Files has been copied to SD Card to folder called "WAD"
 set string78=Exiting the patcher in...
 set string79=Attempt to load diacritic characters [Windows 8.1/10]
-
+set string80=Updating failed.
+set string81=There was an error while downloading files from the update server.
 set language=English
 set /a diacritic_show=0
 goto begin_main
@@ -962,6 +977,8 @@ set string76=Die gepatchten Dateien werden sich in dem Ordner "WAD" befinden.
 set string77=Die Dateien wurden auf die SD Karte in den Ordner "WAD" kopiert.
 set string78=Der Patcher wird geschloben in...
 set string79=Ich versuche gerade diakritische Zeichen zu laden... [Das funktioniert auf Windows 7 nicht]
+set string80=Das Updaten ist fehlgeschlagen
+set string81=Es gab einen Fehler, wahrend die Dateien vom Server runtergeladen wurden
 
 set language=German
 set /a diacritic_show=1
@@ -1048,7 +1065,8 @@ set string76=Die gepatchten Dateien werden sich in dem Ordner "WAD" befinden.
 set string77=Die Dateien wurden auf die SD Karte in den Ordner "WAD" kopiert.
 set string78=Der Patcher wird geschlossen in...
 set string79=Ich versuche gerade diakritische Zeichen zu laden... [Das funktioniert auf Windows 7 nicht
-
+set string80=Das Updaten ist fehlgeschlagen
+set string81=Es gab einen Fehler, während die Dateien vom Server runtergeladen wurden
 set language=German
 set /a diacritic_show=0
 goto begin_main
@@ -1136,7 +1154,8 @@ set string76=Pliki z poprawką są w folderze "WAD".
 set string77=Pliki zostały skopiowane na kartę SD do folderu "WAD"
 set string78=Wychodzenie z patchera za...
 set string79=Sprobuj zaladowac znaki diakrytyczne [Windows 8.1/10]
-
+set string80=Wystąpił błąd podczas aktualizacji.
+set string81=Wystąpił błąd podczas pobierania plików z serwera aktualizacji.
 
 set language=Polish
 set /a diacritic_show=0
@@ -1222,6 +1241,8 @@ set string76=Pliki z poprawka sa w folderze "WAD".
 set string77=Pliki zostaly skopiowane na karte SD do folderu "WAD"
 set string78=Wychodzenie z patchera za...
 set string79=Sprobuj zaladowac znaki diakrytyczne [Windows 8.1/10]
+set string80=Wystapil bład podczas aktualizacji.
+set string81=Wystapil bład podczas pobierania plików z serwera aktualizacji.
 
 set language=Polish
 set /a diacritic_show=1
@@ -1308,6 +1329,8 @@ set string76=Gepatchte IOS bestanden zijn geplaatst in de folder genaamd "WAD".
 set string77=Bestanden zijn gekopiëerd naar de SD-kaart in een folder genaamd "WAD".
 set string78=Patcher aflsuiten in...
 set string79=Probeer diakritische tekens te laden [Werkt niet met Windows 7]
+set string80=Updaten mislukt.
+set string81=Er is een fout opgetreden bij het downloaden van de bestanden van de update-server.
 
 set language=Dutch
 set /a diacritic_show=0
@@ -1394,6 +1417,8 @@ set string76=Gepatchte IOS bestanden zijn geplaatst in de folder genaamd "WAD".
 set string77=Bestanden zijn gekopieerd naar de SD-kaart in een folder genaamd "WAD".
 set string78=Patcher aflsuiten in...
 set string79=Probeer diakritische tekens te laden [Werkt niet met Windows 7]
+set string80=Updaten mislukt.
+set string81=Er is een fout opgetreden bij het downloaden van de bestanden van de update-server.
 
 set language=Dutch
 set /a diacritic_show=1
@@ -1848,6 +1873,43 @@ start temp.bat
 exit
 exit
 exit
+:error_update_not_available
+cls
+echo.
+echo              `..````
+echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`
+echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd
+echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs
+echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+
+echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:
+echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.
+echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN
+echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd
+echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy
+echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo    /---\   %string80%
+echo   /     \  %string81%
+echo  /   !   \
+echo  --------- %string11%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo            mmmmmh ymMMMMMMMMMNNmmmNmNNNMNNMMMMNyyhhh`
+echo           `mmmmmy hmMMNMNNMMMNNmmmmmdNMMNmmMMMMhyhhy
+echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys
+echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-
+echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm
+echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+
+echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm
+echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+
+echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm
+echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/
+echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy
+echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`
+echo                   `.              yddyo++:    `-/oymNNNNNdy+:`
+echo                                   -odhhhhyddmmmmmNNmhs/:`
+echo                                     :syhdyyyyso+/-`
+pause>NUL
+goto begin_main
 :whatsnew
 cls
 if not exist "%TempStorage%\whatsnew.txt" goto whatsnew_notexist
@@ -1990,7 +2052,7 @@ echo 10. Open command prompt
 set /p s=Choose:
 if %s%==1 goto debug_runtime
 if %s%==2 goto debug_system_Req
-if %s%==3 goto set_language
+if %s%==3 goto change_language
 if %s%==4 goto begin
 if %s%==5 exit
 if %s%==6 goto debug_download
