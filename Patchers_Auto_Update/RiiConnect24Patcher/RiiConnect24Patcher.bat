@@ -12,7 +12,7 @@ set version=1.0.1
 if exist temp.bat del /q temp.bat
 :script_start
 :: Window size (Lines, columns)
-set mode=126,36
+set mode=128,37
 mode %mode%
 set s=NUL
 set /a errorcopying=0
@@ -398,9 +398,12 @@ goto update_notice
 cls
 echo %header%
 echo -----------------------------------------------------------------------------------------------------------------------------    
+if exist "%TempStorage%\annoucement.txt" echo --- Annoucement --- 
+if exist "%TempStorage%\annoucement.txt" type "%TempStorage%\annoucement.txt"
+if exist "%TempStorage%\annoucement.txt" echo.
+if exist "%TempStorage%\annoucement.txt" echo ---             ---
 echo.
 echo Which mode should I run?
-echo.
 echo 1. Automatic Guided Installation (Recommended)
 echo   - The patcher will guide you through process of installing RiiConnect24
 echo.
@@ -415,10 +418,7 @@ goto 1
 cls
 echo %header%
 echo -----------------------------------------------------------------------------------------------------------------------------    
-if exist "%TempStorage%\annoucement.txt echo.
-if exist "%TempStorage%\annoucement.txt" echo --- Announcement --- 
-if exist "%TempStorage%\annoucement.txt" type "%TempStorage%\annoucement.txt"
-if exist "%TempStorage%\annoucement.txt" echo ---              ---
+
 echo.
 echo Hello %username%, welcome to the automatic guided installation of RiiConnect24.
 echo.
