@@ -1,3 +1,10 @@
+1.0.1 is here!
+What's new?
+- Addressed issue with EVC USA Ticket. You can now install USA Region of EVC on your Wii normally.
+- Fixed a problem where EVC WAD would not create if WAD folder wouldn't exist in manual mode.
+- Added annoucement system.
+- Now we're fakesigning the WAD.
+
 1.0.0 is here!
 
 What's new?
