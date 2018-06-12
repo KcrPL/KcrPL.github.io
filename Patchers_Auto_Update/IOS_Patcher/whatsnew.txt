@@ -1,25 +1,4 @@
-1.9.0 is here!
+This Update switches to the new RiiConnect24 patcher
+the new Riiconnect24 Patcher is IOS patcher EVC patcher and Mail patcher one in one place we recommended to switch to RiiConnect24 Patcher because IOS patcher is unsupported
 
-1.9.0-BugFix2:
-- Added some strings to translations
-- Added a menu that I've forgot about...
-- Fixed one option about loading translation in debug menu
-
-1.9.0-BugFix1:
-- Fixed Portuguese (Brazilian) language.
-
-1.9.0 Changelog:
-
-IOS Patcher will now automatically detect your language and will load your language (if it's available)
-
-Following languages are supported:
-- English (Author: KcrPL)
-- Polish (Author: KcrPL)
-- French (Author: iDroid)
-- German (Author: TimNook)
-- Dutch (Author: Jelle/DismissedGuy)
-- Turkish (Author: Can Bora Ciner)
-- Russian (Author: prosuWANTED)
-
-Do you want to translate it to your language?
-Please open https://raw.githubusercontent.com/RiiConnect24/IOS-Patcher/master/Windows/IOS%20Patcher%20Translation%20File.txt translate it and send it to support@riiconnect24.net :)
+NOTE: if you see red powershell  error don't worry is normal!
