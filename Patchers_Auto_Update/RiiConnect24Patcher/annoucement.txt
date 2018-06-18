@@ -1,1 +1,0 @@
-We're really sorry for USA EVC Patching not working correctly. This issue has been addressed and now everything should be working fine.
