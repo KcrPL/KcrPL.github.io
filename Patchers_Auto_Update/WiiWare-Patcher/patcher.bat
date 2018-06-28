@@ -13,11 +13,11 @@ set /a cor=0
 set /a patchingnumber=1
 set /a temperrorlev=0
 ::
-set last_build=2018/04/14
-set at=22:15
+set last_build=2018/06/28
+set at=9:46PM
 :: ===========================================================================
 :: WiiWare Patcher for Windows
-set version=2.1.8
+set version=2.1.8-BugFix1
 :: AUTHORS: KcrPL, Larsenv and PokeAcer
 :: ***************************************************************************
 :: Copyright (c) 2017 RiiConnect24, and it's (Lead) Developers
@@ -712,25 +712,23 @@ set /a temperrorlev=%errorlevel%
 set modul=move.exe
 if not %temperrorlev%==0 goto error_patching
 
-del "%%f"
+del "%%f" >NUL
 set /a temperrorlev=%errorlevel%
 set modul=del.exe
 if not %temperrorlev%==0 goto error_patching
 
-Sharpii.exe WAD -p temp "wiimmfi-wads/%%f"
+Sharpii.exe WAD -p temp "wiimmfi-wads/%%f" >NUL
 set /a temperrorlev=%errorlevel%
 set modul=Sharpii.exe
 if not %temperrorlev%==0 goto error_patching
 
 set /a patching_file=%patching_file%+1
 
-rmdir temp /s /q
+rmdir temp /s /q >NUL
 )
 cd wiimmfi-wads
-for %%a in (*.wad) do ren "%%~a" "%%~na_Wiimmfi%%~xa"
-cd wiimmfi-wads
+for %%a in (*.wad) do ren "%%~a" "%%~na_Wiimmfi%%~xa" >NUL
 cd..
-pause
 goto end
 :error_patching
 cls

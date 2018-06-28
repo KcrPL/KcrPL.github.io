@@ -1,3 +1,8 @@
+2.1.8-BugFix1:
+
+- Addressed an issue about `Could not find path specified`
+- Few other small bug fixes
+
 2.1.8:
 
 - Fixed few grammar issues.
