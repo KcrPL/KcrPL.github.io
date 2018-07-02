@@ -1,3 +1,7 @@
+1.0.1-BugFix1:
+What's new?
+- Nothing new, just a quick bug fix about patcher being stuck at 95% while copying files to apps folder if it doesn't exist on the SD Card.
+
 1.0.1 is here!
 What's new?
 - Addressed issue with EVC USA Ticket. You can now install USA Region of EVC on your Wii normally.
