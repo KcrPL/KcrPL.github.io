@@ -3,7 +3,7 @@ cd /d "%~dp0"
 @echo off
 :: ===========================================================================
 :: RiiConnect24 Patcher for Windows
-set version=1.0.1-BugFix1
+set version=1.0.2
 :: AUTHORS: KcrPL, Larsenv, ApfelTV
 :: ***************************************************************************
 :: Copyright (c) 2018 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -21,8 +21,8 @@ set /a tempevcpatcher=0
 set /a tempsdcardapps=0
 :: Window Title
 title RiiConnect24 Patcher v%version% Created by @KcrPL, @Larsenv, @ApfelTV
-set last_build=2018/07/02
-set at=7:50PM
+set last_build=2018/07/06
+set at=0:35AM
 if exist "C:\Users\%username%\Desktop\RiiConnect24Patcher.txt" goto debug_load
 :: ### Auto Update ###
 :: 1=Enable 0=Disable
@@ -114,10 +114,10 @@ echo ---------------------------------------------------------------------------
 echo RiiConnect24 Patcher for RiiConnect24 v%version% 
 echo 	Created by:
 echo - KcrPL
-echo   Main patcher, UI, scripts.
+echo   Windows Patcher, UI, scripts.
 echo.
 echo - Larsenv
-echo   Help with scripts, original IOS Patcher script. Overall help with scripts and commands syntax.
+echo   UNIX Patcher, help with scripts, original IOS Patcher script. Overall help with scripts and commands syntax.
 echo.
 echo - ApfelTV
 echo   Help with Everybody Votes Channel patching and Sharpii syntax.
@@ -425,7 +425,7 @@ echo.
 echo The patcher will download any files that are required to run the patcher if you are missing them.
 echo The entire process should take about 1 to 2 minutes.
 echo.
-echo But before starting, you need to give me one information:
+echo But before starting, you need to tell me one thing:
 echo.
 echo For Everybody Votes Channel, which region should I download and patch? (Where do you live?)
 echo.
@@ -443,7 +443,7 @@ echo.
 echo Great!
 echo After passing this screen, any user interraction won't be needed so you can relax and let me do the work! :)
 echo.
-echo Did I forgot about something? Yes! To make patching even easier, I can download everything that you need and put it on 
+echo Did I forget about something? Yes! To make patching even easier, I can download everything that you need and put it on 
 echo your SD Card!
 echo.
 echo Please connect your Wii SD Card to the computer.
@@ -579,7 +579,7 @@ echo %header%
 echo -----------------------------------------------------------------------------------------------------------------------------    
 echo.
 if %sdcardstatus%==0 echo Aww, no worries. You will be able to copy files later after patching.
-if %sdcardstatus%==1 if %sdcard%==NUL echo Hmm... looks like an SD Card wasn't found in your system. Please choose `Change drive letter` option
+if %sdcardstatus%==1 if %sdcard%==NUL echo Hmm... looks like an SD Card wasn't found in your system. Please choose the `Change drive letter` option
 if %sdcardstatus%==1 if %sdcard%==NUL echo to set your SD Card drive letter manually.
 if %sdcardstatus%==1 if %sdcard%==NUL echo.
 if %sdcardstatus%==1 if %sdcard%==NUL echo Otherwise, starting patching will set copying to manual so you will have to copy them later.
@@ -588,7 +588,7 @@ if %sdcardstatus%==1 if not %sdcard%==NUL echo I will be able to automatically d
 echo.
 echo The entire patching process will download about 30MB of data.
 echo.
-echo What next?
+echo What's next?
 if %sdcardstatus%==0 echo 1. Start Patching  2. Exit
 if %sdcardstatus%==1 if %sdcard%==NUL echo 1. Start Patching 2. Exit 3. Change drive letter
 if %sdcardstatus%==1 if not %sdcard%==NUL echo 1. Start Patching 2. Exit 3. Change drive letter
@@ -606,7 +606,7 @@ echo [*] SD Card
 echo.
 echo Current SD Card Letter: %sdcard%
 echo.
-echo Type in new drive letter (e.g H)
+echo Type in the new drive letter (e.g H)
 set /p sdcard=
 goto 2_1_summary
 :2_2
@@ -1082,7 +1082,7 @@ if %tempsdcardapps%==1 echo --- Downloading Apps Complete ---
 if %tempsdcardapps%==1 echo Please copy the apps folder to your Wii SD Card.
 
 echo.
-echo Please choose what do you want to patch.
+echo Please choose what you want to patch.
 echo.
 echo 1. Patch RiiConnect IOS 31 and IOS 80
 echo 2. Patch Everybody Votes Channel

@@ -1,3 +1,8 @@
+1.0.2
+What's new?
+- Few bugfixes
+- UNIX Patcher Released!
+
 1.0.1-BugFix1:
 What's new?
 - Nothing new, just a quick bug fix about patcher being stuck at 95% while copying files to apps folder if it doesn't exist on the SD Card.
