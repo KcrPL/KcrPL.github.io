@@ -1,0 +1,1 @@
+In 1.0.3, we added a new mode! It will help you uninstall RiiConnect24 from your Wii. (But please don't do that, we love you) :)
