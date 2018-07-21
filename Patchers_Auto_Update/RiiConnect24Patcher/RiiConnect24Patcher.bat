@@ -402,7 +402,7 @@ echo ---------------------------------------------------------------------------
 if exist "%TempStorage%\annoucement.txt" echo --- Annoucement --- 
 if exist "%TempStorage%\annoucement.txt" type "%TempStorage%\annoucement.txt"
 if exist "%TempStorage%\annoucement.txt" echo.
-if exist "%TempStorage%\annoucement.txt" echo ---             ---
+if exist "%TempStorage%\annoucement.txt" echo -------------------
 echo.
 echo Which mode should I run?
 echo 1. Automatic Guided Installation (Recommended)
