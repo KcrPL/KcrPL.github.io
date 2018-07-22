@@ -1,0 +1,15 @@
+Hi! This is a developement status for the RiiConnect24:
+
+Currently working on: Nintendo Channel
+
+Good news - the guy who made a tool back in the day for the Nintendo Channel (yellows8) just gave me a TON of nintendo channel files, per my request on IRC. That means, we can start prioritizing the Channel!
+Currently the channel does load and go to menu. We got more progress on getting things to load.
+
+"Wow, the progress of getting stuff to load on the Nintendo Channel has been happening fast! I just got the DS download to work. We have been listening to y'all about wanting homebrew on it. (Yes, the game loaded.)"
+
+Please use option 2, 3 and 4 to open images showcasing the progress on loading the channel.
+
+1. Go back to main menu
+2. Open Image 1
+3. Open Image 2
+4. Open Image 3

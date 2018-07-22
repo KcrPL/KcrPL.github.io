@@ -1,0 +1,17 @@
+RiiConnect24 Service Status:
+
+:---------------------------------:
+: All Systems Operational         :
+:---------------------------------:
+
+DNS: Operational
+EULA: Operational
+Wii Mail: Operational
+News Channel: Operational
+Forecast Channel: Operational
+Everybody Votes Channel: Operational
+
+Past Incidents:
+No incidents reported.
+
+1. Go back

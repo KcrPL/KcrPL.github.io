@@ -1,0 +1,12 @@
+Welcome to the RiiConnect24 Online Annoucement Server!
+Here, you will be able to check service status, progress with RiiConnect24 and also get some useful links!
+
+What do you want to do now?
+1. What is RiiConnect24?
+2. RiiConnect24 Service Status
+3. RiiConnect24 Developement Progress
+4. Join our Discord server!
+5. Open our website
+6. Mail us!
+7. Check out our YouTube Channel!
+8. Disconnect and go to main menu

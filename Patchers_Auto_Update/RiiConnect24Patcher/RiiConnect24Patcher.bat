@@ -78,10 +78,10 @@ echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:
 echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.
 echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN   1. Start
 echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd   2. Credits
-echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy   
-echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+  Do you have problems or want to contact us?
-echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+  Mail us at support@riiconnect24.net
-echo             mmmmms smMMMMMMMMMmddMMmmNmNMMMMMMMMMMMM:
+echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy   3. Access the online annoucement server
+echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
+echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+  Do you have problems or want to contact us?  
+echo             mmmmms smMMMMMMMMMmddMMmmNmNMMMMMMMMMMMM:  Mail us at support@riiconnect24.net
 echo            `mmmmmo hNMMMMMMMMMmddNMMMNNMMMMMMMMMMMMM.
 echo            -mmmmm/ dNMMMMMMMMMNmddMMMNdhdMMMMMMMMMMN
 echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd
@@ -106,7 +106,345 @@ echo                                     :syhdyyyyso+/-`
 set /p s=Type a number that you can see above next to the command and hit ENTER: 
 if %s%==1 goto begin_main1
 if %s%==2 goto credits
+if %s%==3 goto annoucement_network_connect
 goto begin_main
+:annoucement_network_1
+:: Display the page 
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+type "%TempStorage%\annoucement\%page%.txt"
+echo.
+set /p s=Choose: 
+if %s%==1 call :annoucement_action_1
+if %s%==2 call :annoucement_action_2
+if %s%==3 call :annoucement_action_3
+if %s%==4 call :annoucement_action_4
+if %s%==5 call :annoucement_action_5
+if %s%==6 call :annoucement_action_6
+if %s%==7 call :annoucement_action_7
+if %s%==8 call :annoucement_action_8
+if %s%==9 call :annoucement_action_9
+if %s%==10 call :annoucement_action_10
+goto annoucement_network_1
+:annoucement_network_connectionerror
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo There was an error while connecting to the server.
+echo Press any button to go back.
+pause>NUL
+goto begin_main
+:annoucement_network_connect
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Please wait... 
+echo We are connecting you to the server and downloading latest info.
+if exist "%TempStorage%\annoucement" rmdir "%TempStorage%\annoucement" /s /q
+if not exist "%TempStorage%\annoucement" md "%TempStorage%\annoucement"
+call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/index.txt"', '"%TempStorage%\annoucement\index.txt"')"
+
+set /a temperrorlev=%errorlevel%
+if not %temperrorlev%==0 goto annoucement_network_connectionerror
+
+set page=index
+
+set action1=NUL
+set action2=NUL
+set action3=NUL
+set action4=NUL
+set action5=NUL
+set action6=NUL
+set action7=NUL
+set action8=NUL
+set action9=NUL
+set action10=NUL
+
+::action list
+::1 - change page
+::2 - go to main menu
+::3 - start an url
+::howmanyactions - prevents trying to download too much files and waste time
+
+set /a howmanytodownload=10
+call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_howmanyactions.txt"', '"%TempStorage%\annoucement\%page%_howmanyactions.txt"')"
+set /p howmanytodownload=<"%TempStorage%\annoucement\%page%_howmanyactions.txt"
+
+call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac1_comm.txt"', '"%TempStorage%\annoucement\%page%_ac1_comm.txt"')" >NUL
+set /p action1=<"%TempStorage%\annoucement\%page%_ac1_comm.txt" >NUL
+if %howmanytodownload%==1 goto annoucement_network_1
+
+call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac2_comm.txt"', '"%TempStorage%\annoucement\%page%_ac2_comm.txt"')" >NUL
+set /p action2=<"%TempStorage%\annoucement\%page%_ac2_comm.txt" >NUL
+if %howmanytodownload%==2 goto annoucement_network_1
+call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac3_comm.txt"', '"%TempStorage%\annoucement\%page%_ac3_comm.txt"')" >NUL
+set /p action3=<"%TempStorage%\annoucement\%page%_ac3_comm.txt" >NUL
+if %howmanytodownload%==3 goto annoucement_network_1
+
+call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac4_comm.txt"', '"%TempStorage%\annoucement\%page%_ac4_comm.txt"')" >NUL
+set /p action4=<"%TempStorage%\annoucement\%page%_ac4_comm.txt" >NUL
+if %howmanytodownload%==4 goto annoucement_network_1
+
+call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac5_comm.txt"', '"%TempStorage%\annoucement\%page%_ac5_comm.txt"')" >NUL
+set /p action5=<"%TempStorage%\annoucement\%page%_ac5_comm.txt" >NUL
+if %howmanytodownload%==5 goto annoucement_network_1
+
+call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac6_comm.txt"', '"%TempStorage%\annoucement\%page%_ac6_comm.txt"')" >NUL
+set /p action6=<"%TempStorage%\annoucement\%page%_ac6_comm.txt" >NUL
+if %howmanytodownload%==6 goto annoucement_network_1
+
+call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac7_comm.txt"', '"%TempStorage%\annoucement\%page%_ac7_comm.txt"')" >NUL
+set /p action7=<"%TempStorage%\annoucement\%page%_ac7_comm.txt" >NUL
+if %howmanytodownload%==7 goto annoucement_network_1
+
+call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac8_comm.txt"', '"%TempStorage%\annoucement\%page%_ac8_comm.txt"')" >NUL
+set /p action8=<"%TempStorage%\annoucement\%page%_ac8_comm.txt" >NUL
+if %howmanytodownload%==8 goto annoucement_network_1
+
+call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac9_comm.txt"', '"%TempStorage%\annoucement\%page%_ac9_comm.txt"')" >NUL
+set /p action9=<"%TempStorage%\annoucement\%page%_ac9_comm.txt" >NUL
+if %howmanytodownload%==9 goto annoucement_network_1
+
+call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac10_comm.txt"', '"%TempStorage%\annoucement\%page%_ac10_comm.txt"')" >NUL
+set /p action10=<"%TempStorage%\annoucement\%page%_ac10_comm.txt" >NUL
+if %howmanytodownload%==10 goto annoucement_network_1
+
+goto annoucement_network_1
+:annoucement_network_404
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo HTTP 404
+echo.
+echo Hello? Anybody there?
+echo Couldn't find the page that you've requested.
+echo.
+echo Press any button to go back to main page.
+pause>NUL
+set page=index
+goto annoucement_network_load
+:annoucement_network_load
+set /a tempvar=0
+if not exist "%TempStorage%\annoucement\%page%.txt" set /a tempvar=1
+
+if %tempvar%==1 call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%.txt"', '"%TempStorage%\annoucement\%page%.txt"')"
+if %tempvar%==1 set /a temperrorlev=%errorlevel%
+if %tempvar%==1 if not %temperrorlev%==0 goto annoucement_network_404
+
+set action1=NUL
+set action2=NUL
+set action3=NUL
+set action4=NUL
+set action5=NUL
+set action6=NUL
+set action7=NUL
+set action8=NUL
+set action9=NUL
+set action10=NUL
+
+set /a howmanytodownload=10
+if not exist "%TempStorage%\annoucement\%page%_howmanyactions.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_howmanyactions.txt"', '"%TempStorage%\annoucement\%page%_howmanyactions.txt"')"
+set /p howmanytodownload=<"%TempStorage%\annoucement\%page%_howmanyactions.txt"
+
+if not exist "%TempStorage%\annoucement\%page%_ac1_comm.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac1_comm.txt"', '"%TempStorage%\annoucement\%page%_ac1_comm.txt"')"
+set /p action1=<"%TempStorage%\annoucement\%page%_ac1_comm.txt
+if %howmanytodownload%==1 goto annoucement_network_1
+
+if not exist "%TempStorage%\annoucement\%page%_ac2_comm.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac2_comm.txt"', '"%TempStorage%\annoucement\%page%_ac2_comm.txt"')"
+set /p action2=<"%TempStorage%\annoucement\%page%_ac2_comm.txt"
+if %howmanytodownload%==2 goto annoucement_network_1
+
+if not exist "%TempStorage%\annoucement\%page%_ac3_comm.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac3_comm.txt"', '"%TempStorage%\annoucement\%page%_ac3_comm.txt"')"
+set /p action3=<"%TempStorage%\annoucement\%page%_ac3_comm.txt"
+if %howmanytodownload%==3 goto annoucement_network_1
+
+if not exist "%TempStorage%\annoucement\%page%_ac4_comm.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac4_comm.txt"', '"%TempStorage%\annoucement\%page%_ac4_comm.txt"')"
+set /p action4=<"%TempStorage%\annoucement\%page%_ac4_comm.txt"
+if %howmanytodownload%==4 goto annoucement_network_1
+
+if not exist "%TempStorage%\annoucement\%page%_ac5_comm.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac5_comm.txt"', '"%TempStorage%\annoucement\%page%_ac5_comm.txt"')"
+set /p action5=<"%TempStorage%\annoucement\%page%_ac5_comm.txt"
+if %howmanytodownload%==5 goto annoucement_network_1
+
+if not exist "%TempStorage%\annoucement\%page%_ac6_comm.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac6_comm.txt"', '"%TempStorage%\annoucement\%page%_ac6_comm.txt"')"
+set /p action6=<"%TempStorage%\annoucement\%page%_ac6_comm.txt"
+if %howmanytodownload%==6 goto annoucement_network_1
+
+if not exist "%TempStorage%\annoucement\%page%_ac7_comm.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac7_comm.txt"', '"%TempStorage%\annoucement\%page%_ac7_comm.txt"')"
+set /p action7=<"%TempStorage%\annoucement\%page%_ac7_comm.txt"
+if %howmanytodownload%==7 goto annoucement_network_1
+
+if not exist "%TempStorage%\annoucement\%page%_ac8_comm.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac8_comm.txt"', '"%TempStorage%\annoucement\%page%_ac8_comm.txt"')"
+set /p action8=<"%TempStorage%\annoucement\%page%_ac8_comm.txt"
+if %howmanytodownload%==8 goto annoucement_network_1
+
+if not exist "%TempStorage%\annoucement\%page%_ac9_comm.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac9_comm.txt"', '"%TempStorage%\annoucement\%page%_ac9_comm.txt"')"
+set /p action9=<"%TempStorage%\annoucement\%page%_ac9_comm.txt"
+if %howmanytodownload%==9 goto annoucement_network_1
+
+if not exist "%TempStorage%\annoucement\%page%_ac10_comm.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac10_comm.txt"', '"%TempStorage%\annoucement\%page%_ac10_comm.txt"')"
+set /p action10=<"%TempStorage%\annoucement\%page%_ac10_comm.txt"
+if %howmanytodownload%==10 goto annoucement_network_1
+
+goto annoucement_network_1
+
+
+:annoucement_action_1
+
+if %action1%==2 goto begin_main
+
+if %action1%==1 if not exist "%TempStorage%\annoucement\%page%_ac1.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac1.txt"', '"%TempStorage%\annoucement\%page%_ac1.txt"')"
+if %action1%==1 set /a temperrorlev=%errorlevel%
+if %action1%==1 if not %temperrorlev%==0 goto annoucement_network_404
+if %action1%==1 set /p page=<"%TempStorage%\annoucement\%page%_ac1.txt"
+if %action1%==1 goto annoucement_network_load
+
+if %action1%==3 if not exist "%TempStorage%\annoucement\%page%_ac1.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac1.txt"', '"%TempStorage%\annoucement\%page%_ac1.txt"')"
+if %action1%==3 set /p tempURLStart=<"%TempStorage%\annoucement\%page%_ac1.txt"
+if %action1%==3 start %tempURLStart%
+if %action1%==3 goto annoucement_network_1
+
+goto annoucement_network_1
+:annoucement_action_2
+if %action2%==2 goto begin_main
+
+if %action2%==1 if not exist "%TempStorage%\annoucement\%page%_ac2.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac2.txt"', '"%TempStorage%\annoucement\%page%_ac2.txt"')"
+if %action2%==1 set /a temperrorlev=%errorlevel%
+if %action2%==1 if not %temperrorlev%==0 goto annoucement_network_404
+if %action2%==1 set /p page=<"%TempStorage%\annoucement\%page%_ac2.txt"
+if %action2%==1 goto annoucement_network_load
+
+if %action2%==3 if not exist "%TempStorage%\annoucement\%page%_ac2.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac2.txt"', '"%TempStorage%\annoucement\%page%_ac2.txt"')"
+if %action2%==3 set /p tempURLStart=<"%TempStorage%\annoucement\%page%_ac2.txt"
+if %action2%==3 start %tempURLStart%
+if %action2%==3 goto annoucement_network_1
+
+goto annoucement_network_1
+:annoucement_action_3
+if %action3%==2 goto begin_main
+
+if %action3%==1 if not exist "%TempStorage%\annoucement\%page%_ac3.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac3.txt"', '"%TempStorage%\annoucement\%page%_ac3.txt"')"
+if %action3%==1 set /a temperrorlev=%errorlevel%
+if %action3%==1 if not %temperrorlev%==0 goto annoucement_network_404
+if %action3%==1 set /p page=<"%TempStorage%\annoucement\%page%_ac3.txt"
+if %action3%==1 goto annoucement_network_load
+
+if %action3%==3 if not exist "%TempStorage%\annoucement\%page%_ac3.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac3.txt"', '"%TempStorage%\annoucement\%page%_ac3.txt"')"
+if %action3%==3 set /p tempURLStart=<"%TempStorage%\annoucement\%page%_ac3.txt"
+if %action3%==3 start %tempURLStart%
+if %action3%==3 goto annoucement_network_1
+
+goto annoucement_network_1
+:annoucement_action_4
+if %action4%==2 goto begin_main
+
+if %action4%==1 if not exist "%TempStorage%\annoucement\%page%_ac4.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac4.txt"', '"%TempStorage%\annoucement\%page%_ac4.txt"')"
+if %action4%==1 set /a temperrorlev=%errorlevel%
+if %action4%==1 if not %temperrorlev%==0 goto annoucement_network_404
+if %action4%==1 set /p page=<"%TempStorage%\annoucement\%page%_ac4.txt"
+if %action4%==1 goto annoucement_network_load
+
+if %action4%==3 if not exist "%TempStorage%\annoucement\%page%_ac4.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac4.txt"', '"%TempStorage%\annoucement\%page%_ac4.txt"')"
+if %action4%==3 set /p tempURLStart=<"%TempStorage%\annoucement\%page%_ac4.txt"
+if %action4%==3 start %tempURLStart%
+if %action4%==3 goto annoucement_network_1
+
+goto annoucement_network_1
+:annoucement_action_5
+if %action5%==1 if not exist "%TempStorage%\annoucement\%page%_ac5.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac5.txt"', '"%TempStorage%\annoucement\%page%_ac5.txt"')"
+if %action5%==1 set /a temperrorlev=%errorlevel%
+if %action5%==1 if not %temperrorlev%==0 goto annoucement_network_404
+if %action5%==1 set /p page=<"%TempStorage%\annoucement\%page%_ac5.txt"
+if %action5%==1 goto annoucement_network_load
+
+if %action5%==2 goto begin_main
+
+if %action5%==3 if not exist "%TempStorage%\annoucement\%page%_ac5.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac5.txt"', '"%TempStorage%\annoucement\%page%_ac5.txt"')"
+if %action5%==3 set /p tempURLStart=<"%TempStorage%\annoucement\%page%_ac5.txt"
+
+if %action5%==3 start %tempURLStart%
+if %action5%==3 goto annoucement_network_1
+
+goto annoucement_network_1
+:annoucement_action_6
+if %action6%==2 goto begin_main
+
+if %action6%==1 if not exist "%TempStorage%\annoucement\%page%_ac6.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac6.txt"', '"%TempStorage%\annoucement\%page%_ac6.txt"')"
+if %action6%==1 set /a temperrorlev=%errorlevel%
+if %action6%==1 if not %temperrorlev%==0 goto annoucement_network_404
+if %action6%==1 set /p page=<"%TempStorage%\annoucement\%page%_ac6.txt"
+if %action6%==1 goto annoucement_network_load
+
+if %action6%==3 if not exist "%TempStorage%\annoucement\%page%_ac6.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac6.txt"', '"%TempStorage%\annoucement\%page%_ac6.txt"')"
+if %action6%==3 set /p tempURLStart=<"%TempStorage%\annoucement\%page%_ac6.txt"
+if %action6%==3 start %tempURLStart%
+if %action6%==3 goto annoucement_network_1
+
+goto annoucement_network_1
+:annoucement_action_7
+if %action7%==2 goto begin_main
+
+if %action7%==1 if not exist "%TempStorage%\annoucement\%page%_ac7.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac7.txt"', '"%TempStorage%\annoucement\%page%_ac7.txt"')"
+if %action7%==1 set /a temperrorlev=%errorlevel%
+if %action7%==1 if not %temperrorlev%==0 goto annoucement_network_404
+if %action7%==1 set /p page=<"%TempStorage%\annoucement\%page%_ac7.txt"
+if %action7%==1 goto annoucement_network_load
+
+if %action7%==3 if not exist "%TempStorage%\annoucement\%page%_ac7.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac7.txt"', '"%TempStorage%\annoucement\%page%_ac7.txt"')"
+if %action7%==3 set /p tempURLStart=<"%TempStorage%\annoucement\%page%_ac7.txt"
+if %action7%==3 start %tempURLStart%
+if %action7%==3 goto annoucement_network_1
+
+goto annoucement_network_1
+:annoucement_action_8
+if %action8%==2 goto begin_main
+
+if %action8%==1 if not exist "%TempStorage%\annoucement\%page%_ac8.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac8.txt"', '"%TempStorage%\annoucement\%page%_ac8.txt"')"
+if %action8%==1 set /a temperrorlev=%errorlevel%
+if %action8%==1 if not %temperrorlev%==0 goto annoucement_network_404
+if %action8%==1 set /p page=<"%TempStorage%\annoucement\%page%_ac8.txt"
+if %action8%==1 goto annoucement_network_load
+
+if %action8%==3 if not exist "%TempStorage%\annoucement\%page%_ac8.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac8.txt"', '"%TempStorage%\annoucement\%page%_ac8.txt"')"
+if %action8%==3 set /p tempURLStart=<"%TempStorage%\annoucement\%page%_ac8.txt"
+if %action8%==3 start %tempURLStart%
+if %action8%==3 goto annoucement_network_1
+
+goto annoucement_network_1
+:annoucement_action_9
+if %action9%==2 goto begin_main
+
+if %action9%==1 if not exist "%TempStorage%\annoucement\%page%_ac9.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac9.txt"', '"%TempStorage%\annoucement\%page%_ac9.txt"')"
+if %action9%==1 set /a temperrorlev=%errorlevel%
+if %action9%==1 if not %temperrorlev%==0 goto annoucement_network_404
+if %action9%==1 set /p page=<"%TempStorage%\annoucement\%page%_ac9.txt"
+if %action9%==1 goto annoucement_network_load
+
+if %action9%==3 if not exist "%TempStorage%\annoucement\%page%_ac9.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac9.txt"', '"%TempStorage%\annoucement\%page%_ac9.txt"')"
+if %action9%==3 set /p tempURLStart=<"%TempStorage%\annoucement\%page%_ac9.txt"
+if %action9%==3 start %tempURLStart%
+if %action9%==3 goto annoucement_network_1
+
+goto annoucement_network_1
+:annoucement_action_10
+if %action10%==2 goto begin_main
+
+if %action10%==1 if not exist "%TempStorage%\annoucement\%page%_ac10.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac10.txt"', '"%TempStorage%\annoucement\%page%_ac10.txt"')"
+if %action10%==1 set /a temperrorlev=%errorlevel%
+if %action10%==1 if not %temperrorlev%==0 goto annoucement_network_404
+if %action10%==1 set /p page=<"%TempStorage%\annoucement\%page%_ac10.txt"
+if %action10%==1 goto annoucement_network_load
+
+if %action10%==3 if not exist "%TempStorage%\annoucement\%page%_ac10.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac10.txt"', '"%TempStorage%\annoucement\%page%_ac10.txt"')"
+if %action10%==3 set /p tempURLStart=<"%TempStorage%\annoucement\%page%_ac10.txt"
+if %action10%==3 start %tempURLStart%
+if %action10%==3 goto annoucement_network_1
+
+goto annoucement_network_1
 :credits
 cls
 echo %header%
@@ -981,7 +1319,14 @@ set /a counter_done=0
 set /a percent=0
 set /a temperrorlev=0
 goto 2_3
+:random_funfact
+set /a funfact_number=%random% %% (1 + 39)
+if /i %funfact_number% LSS 1 goto random_funfact
+if /i %funfact_number% GTR 39 goto random_funfact
+
 :2_3
+if %percent%==1 goto random_funfact
+if %percent%==50 goto random_funfact
 set /a percent=%percent%+1
 
 if /i %percent% GTR 0 if /i %percent% LSS 10 set /a counter_done=0
@@ -1000,6 +1345,8 @@ echo.
 echo %header%
 echo ---------------------------------------------------------------------------------------------------------------------------
 echo  [*] Patching... this can take some time
+echo.
+echo Fun Fact: %funfact%
 echo.
 echo    Progress: 
 if %counter_done%==0 echo :          : %percent% %%
