@@ -1,3 +1,8 @@
+1.0.4
+- Added Online Annoucement Server to the patcher, with it you can check status of developement, get info about RiiConnect24 and get some useful links inside the patcher itself!
+- Added Fun Facts! To keep you entertained while patching, you will be able to read 2 Fun Facts! They will appear above the patching progress bar :)
+- Once again, fixed few bugs.
+
 1.0.3
 What's new?
 - We added a brand new mode to the patcher. With it's help, you can uninstall RiiConnect24 from your Wii. (`But please don't do that, we love you`)

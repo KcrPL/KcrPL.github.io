@@ -1,1 +1,4 @@
-In 1.0.3, we added a new mode! It will help you uninstall RiiConnect24 from your Wii. (But please don't do that, we love you) :)
+Online Annoucement Server is here with the new update!
+With it, you can always stay updated about RiiConnect24, you can join our Discord server and use other useful links!
+
+Go check it out, there's some interresting stuff about Nintendo Channel developement!
