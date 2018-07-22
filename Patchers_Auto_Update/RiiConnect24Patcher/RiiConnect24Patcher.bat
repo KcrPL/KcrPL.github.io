@@ -1348,7 +1348,7 @@ if %funfact_number%==23 set funfact=Did you know that most of the scripts used t
 if %funfact_number%==24 set funfact=Thank you Spotlight for making our mail system secure.
 if %funfact_number%==25 set funfact=Did you know that RiiConnect24 works with every system version? Only the Wii Mail works on 4.3 because 4.3 runs on IOS 80.
 if %funfact_number%==26 set funfact=Did you know that we have an awesome Discord server where you can always stay updated about the project status?
-set /a percent=%percent%+1
+
 goto 2_3
 :2_3
 if %percent%==0 goto random_funfact
