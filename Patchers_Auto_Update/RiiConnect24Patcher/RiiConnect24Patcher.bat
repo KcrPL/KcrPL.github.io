@@ -3,7 +3,7 @@ cd /d "%~dp0"
 @echo off
 :: ===========================================================================
 :: RiiConnect24 Patcher for Windows
-set version=1.0.4
+set version=1.0.5
 :: AUTHORS: KcrPL, Larsenv, ApfelTV
 :: ***************************************************************************
 :: Copyright (c) 2018 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -22,8 +22,8 @@ set /a tempevcpatcher=0
 set /a tempsdcardapps=0
 :: Window Title
 title RiiConnect24 Patcher v%version% Created by @KcrPL, @Larsenv, @ApfelTV
-set last_build=2018/07/22
-set at=9:41PM
+set last_build=2018/09/05
+set at=9:02PM
 if exist "C:\Users\%username%\Desktop\RiiConnect24Patcher.txt" goto debug_load
 :: ### Auto Update ###
 :: 1=Enable 0=Disable
@@ -79,7 +79,7 @@ echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.
 echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN   1. Start
 echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd   2. Credits
 echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy   3. Access the online annoucement server
-echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
+echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+   4. Settings
 echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+  Do you have problems or want to contact us?  
 echo             mmmmms smMMMMMMMMMmddMMmmNmNMMMMMMMMMMMM:  Mail us at support@riiconnect24.net
 echo            `mmmmmo hNMMMMMMMMMmddNMMMNNMMMMMMMMMMMMM.
@@ -107,7 +107,76 @@ set /p s=Type a number that you can see above next to the command and hit ENTER:
 if %s%==1 goto begin_main1
 if %s%==2 goto credits
 if %s%==3 goto annoucement_network_connect
+if %s%==4 goto settings_menu
 goto begin_main
+:settings_menu
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo RiiConnect24 Patcher Settings.
+echo.
+echo 1. Go back
+echo 2. Set background/text color
+if %Update_Activate%==1 echo 3. Turn off/on updating. [Currently:  ON]
+if %Update_Activate%==0 echo 3. Turn off/on updating. [Currently: OFF]
+echo.
+set /p s=Choose: 
+if %s%==1 goto begin_main
+if %s%==2 goto change_color
+if %s%==3 goto change_updating
+goto settings_menu
+:change_updating
+if %Update_Activate%==1 goto change_updating_warning_off
+set /a Update_Activate=1
+goto settings_menu
+:change_updating_warning_off
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo WAIT! Are you trying to disable updating? 
+echo Please do remember that updates will keep you safe and updated about the patcher.
+echo.
+echo Only use this option for debugging and troubleshooting.
+echo.
+echo Are you sure that you want to disable autoupdating?
+echo 1. Yes
+echo 2. No, go back.
+set /p s=
+if %s%==1 set Update_Activate=0
+if %s%==1 goto settings_menu
+if %s%==2 goto settings_menu
+goto change_updating_warning_off
+
+:change_color
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Change color:
+echo.
+echo 1. Dark theme
+echo 2. Light theme *please don't hurt my eyes edition*
+echo 3. Light theme *please hurt my eyes edition*
+echo 4. Yellow
+echo 5. Green
+echo 6. Red
+echo 7. Blue
+echo.
+echo E. Go back
+set /p s=Choose: 
+if %s%==1 color 07
+if %s%==2 color 70
+if %s%==3 color f0
+if %s%==4 color 6
+if %s%==5 color a
+if %s%==6 color c
+if %s%==7 color 3
+if %s%==e goto begin_main
+if %s%==E goto begin_main
+
+goto change_color
 :annoucement_network_1
 :: Display the page 
 cls
@@ -622,7 +691,7 @@ echo  /   !   \
 echo  ---------  Current version: %version%
 echo             New version: %updateversion%
 echo                       1. Update                      2. Dismiss               3. What's new in this update?
-echo ------------------------------------------------------------------------------------------------------------------------------    
+echo ------------------------------------------------------------------------------------------------------------------------------
 echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys                  
 echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-                  
 echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm                     
@@ -663,7 +732,7 @@ echo  /   !   \
 echo  --------- RiiConnect24 Patcher will restart shortly... 
 echo.             
 echo.
-echo ------------------------------------------------------------------------------------------------------------------------------    
+echo ------------------------------------------------------------------------------------------------------------------------------
 echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys                  
 echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-                  
 echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm                     
@@ -1006,12 +1075,12 @@ if %percent%==48 if %uninstall_2_1%==1 set modul=Downloading WiiXplorer
 if %percent%==48 if %uninstall_2_1%==1 if not %temperrorlev%==0 goto error_patching
 
 if %percent%==50 if not exist "WAD" md "WAD"
-if %percent%==50 call IOSPatcher\Sharpii.exe NUSD -ios 31 -v latest -o wad\IOS31.wad -wad >NUL
+if %percent%==50 call IOSPatcher\Sharpii.exe NUSD -IOS 31 -v latest -o wad\IOS31.wad -wad >NUL
 if %percent%==50 set /a temperrorlev=%errorlevel%
 if %percent%==50 set modul=Sharpii.exe
 if %percent%==50 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==80 call IOSPatcher\Sharpii.exe NUSD -ios 80 -v latest -o wad\IOS80.wad -wad >NUL
+if %percent%==80 call IOSPatcher\Sharpii.exe NUSD -IOS 80 -v latest -o wad\IOS80.wad -wad >NUL
 if %percent%==80 set /a temperrorlev=%errorlevel%
 if %percent%==80 set modul=Sharpii.exe
 if %percent%==80 if not %temperrorlev%==0 goto error_patching
@@ -1323,16 +1392,16 @@ set /a funfact_number=%random% %% (1 + 30)
 if /i %funfact_number% LSS 1 goto random_funfact
 if /i %funfact_number% GTR 30 goto random_funfact
 if %funfact_number%==1 set funfact=Did you know the wii was the best selling game-console of 2006?
-if %funfact_number%==2 set funfact=Did you know KcPL makes these amazing pachers and the updates for the patcher?
+if %funfact_number%==2 set funfact=Did you know KcrPL makes these amazing pachers and the updates for the patcher?
 if %funfact_number%==3 set funfact=RiiConnect24 originally started out as "CustomConnect24"!
 if %funfact_number%==4 set funfact=Did you the RiiConnect24 logo was made by NeoRame, the same person who made the Wiimmfi logo?
 if %funfact_number%==5 set funfact=The Wii was nicknamed “Revolution” during its development stage.
 if %funfact_number%==6 set funfact=Did you know the letters in the Wii model number RVL stand for the Wii's codename, Revolution?
 if %funfact_number%==7 set funfact=The music used in many of the Wii's channels (including the Wii Shop, Mii, Check Mii Out, and Forecast Channel) was composed by Kazumi Totaka.
 if %funfact_number%==8 set funfact=The Internet Channel once costed 500 Wii Points.
-if %funfact_number%==9 set funfact=It's possible to use candles as a sensor bar.
+if %funfact_number%==9 set funfact=It's possible to use candles as a Wii Sensor Bar.
 if %funfact_number%==10 set funfact=The blinking blue light that indicates a system message has been received is actually synced to the bird call of the Japanese bush warbler. More info about it on RiiConnect24 YouTube Channel!
-if %funfact_number%==11 set funfact=Wii sports is the most sold game on the wii. it sold 82.85 million. Overall it is the 3rd most sold game in the world.
+if %funfact_number%==11 set funfact=Wii sports is the most sold game on the Wii. It sold 82.85 million. Overall it is the 3rd most sold game in the world.
 if %funfact_number%==12 set funfact=Did you know that most of the scripts used to make RiiConnect24 work are written in Python?
 if %funfact_number%==13 set funfact=Thank you Spotlight for making our mail system secure.
 if %funfact_number%==14 set funfact=Did you know that we have an awesome Discord server where you can always stay updated about the project status?
@@ -1544,12 +1613,12 @@ if %percent%==28 set modul=Downloading Wii Mod Lite
 if %percent%==28 if not %temperrorlev%==0 goto error_patching
 
 ::IOS Patcher
-if %percent%==29 call IOSPatcher\Sharpii.exe NUSD -ios 31 -v latest -o IOSPatcher\IOS31-old.wad -wad >NUL
+if %percent%==29 call IOSPatcher\Sharpii.exe NUSD -IOS 31 -v latest -o IOSPatcher\IOS31-old.wad -wad >NUL
 if %percent%==29 set /a temperrorlev=%errorlevel%
 if %percent%==29 set modul=Sharpii.exe
 if %percent%==29 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==30 call IOSPatcher\Sharpii.exe NUSD -ios 80 -v latest -o IOSPatcher\IOS80-old.wad -wad >NUL
+if %percent%==30 call IOSPatcher\Sharpii.exe NUSD -IOS 80 -v latest -o IOSPatcher\IOS80-old.wad -wad >NUL
 if %percent%==30 set /a temperrorlev=%errorlevel%
 if %percent%==30 set modul=Sharpii.exe
 if %percent%==30 if not %temperrorlev%==0 goto error_patching
@@ -1648,9 +1717,9 @@ if %percent%==57 if not exist 0001000148414A50v512\cetk copy /y "EVCPatcher\dwn\
 if %percent%==57 if not exist 0001000148414A45v512\cetk copy /y "EVCPatcher\dwn\0001000148414A45v512\cetk" "0001000148414A45v512\cetk"
 
 ::USA
-if %percent%==60 if %evcregion%==2 call EVCPatcher\dwn\sharpii.exe NUSD -id 0001000148414A45 -v 512 -encrypt >NUL
+if %percent%==60 if %evcregion%==2 call EVCPatcher\dwn\sharpii.exe NUSD -ID 0001000148414A45 -v 512 -encrypt >NUL
 ::PAL
-if %percent%==60 if %evcregion%==1 call EVCPatcher\dwn\sharpii.exe NUSD -id 0001000148414A50 -v 512 -encrypt >NUL
+if %percent%==60 if %evcregion%==1 call EVCPatcher\dwn\sharpii.exe NUSD -ID 0001000148414A50 -v 512 -encrypt >NUL
 if %percent%==60 set /a temperrorlev=%errorlevel%
 if %percent%==60 set modul=Downloading EVC
 if %percent%==60 if not %temperrorlev%==0 goto error_patching
@@ -1791,9 +1860,9 @@ echo   /     \  There was an error while patching.
 echo  /   !   \ Error Code: %temperrorlev%
 echo  --------- Failing module: %modul% / %percent%
 echo.
-echo.
+echo Consider turning off your antivirus temporarily.
 if %temperrorlev%==-532459699 echo Please check your internet connection.
-if %temperrorlev%==-2146232576 echo Please install .NET Framework 3.5, than try to patch again.  
+if %temperrorlev%==-2146232576 echo Please install latest .NET Framework, then try again.  
 echo       Press any key to return to main menu.
 echo ---------------------------------------------------------------------------------------------------------------------------
 echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-                  
@@ -1813,17 +1882,19 @@ goto begin_main
 :2_manual
 cls
 echo %header%
-echo ----------------------------------------------------------------------------------------------------------------------------- 
-echo.
+echo -----------------------------------------------------------------------------------------------------------------------------
 echo RiiConnect24 Patcher Manual Mode.
+echo.
 if %tempiospatcher%==1 echo --- Patching IOS Complete ---
 if %tempiospatcher%==1 echo Please copy IOS31.wad and IOS80.wad inside WAD folder to your Wii SD Card.
+if %tempiospatcher%==1 echo.
 if %tempevcpatcher%==1 echo --- Patching Everybody Votes Channel Complete ---
 if %tempevcpatcher%==1 echo Please copy Everybody Votes Channel.wad inside WAD folder to your Wii SD Card.
+if %tempevcpatcher%==1 echo.
 if %tempsdcardapps%==1 echo --- Downloading Apps Complete ---
 if %tempsdcardapps%==1 echo Please copy the apps folder to your Wii SD Card.
+if %tempsdcardapps%==1 echo.
 
-echo.
 echo Please choose what you want to patch.
 echo.
 echo 1. Patch RiiConnect IOS 31 and IOS 80
@@ -1883,12 +1954,12 @@ set modul=Downloading xdelta3.exe
 if not %temperrorlev%==0 goto error_patching
 
 
-call IOSPatcher\Sharpii.exe NUSD -ios 31 -v latest -o IOSPatcher\IOS31-old.wad -wad >NUL
+call IOSPatcher\Sharpii.exe NUSD -IOS 31 -v latest -o IOSPatcher\IOS31-old.wad -wad >NUL
 set /a temperrorlev=%errorlevel%
 set modul=Sharpii.exe
 if not %temperrorlev%==0 goto error_patching
 
-call IOSPatcher\Sharpii.exe NUSD -ios 80 -v latest -o IOSPatcher\IOS80-old.wad -wad >NUL
+call IOSPatcher\Sharpii.exe NUSD -IOS 80 -v latest -o IOSPatcher\IOS80-old.wad -wad >NUL
 set /a temperrorlev=%errorlevel%
 set modul=Sharpii.exe
 if not %temperrorlev%==0 goto error_patching
@@ -2086,9 +2157,9 @@ if not exist 0001000148414A50v512\cetk copy /y "EVCPatcher\dwn\0001000148414A50v
 if not exist 0001000148414A45v512\cetk copy /y "EVCPatcher\dwn\0001000148414A45v512\cetk" "0001000148414A45v512\cetk"
 
 ::USA
-if %evcregion%==2 call EVCPatcher\dwn\sharpii.exe NUSD -id 0001000148414A45 -v 512 -encrypt >NUL
+if %evcregion%==2 call EVCPatcher\dwn\sharpii.exe NUSD -ID 0001000148414A45 -v 512 -encrypt >NUL
 ::PAL
-if %evcregion%==1 call EVCPatcher\dwn\sharpii.exe NUSD -id 0001000148414A50 -v 512 -encrypt >NUL
+if %evcregion%==1 call EVCPatcher\dwn\sharpii.exe NUSD -ID 0001000148414A50 -v 512 -encrypt >NUL
 set /a temperrorlev=%errorlevel%
 set modul=Downloading EVC
 if not %temperrorlev%==0 goto error_patching
@@ -2218,3 +2289,5 @@ goto 2_manual
 
 
 
+:: The end - what did you expect? Join our Discord server! https://discord.gg/b4Y7jfD 
+:: Find me as KcrPL#4625 ;)

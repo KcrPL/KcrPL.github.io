@@ -1,3 +1,10 @@
+1.0.5
+- Added Disable Updating option
+- Added Change Background/Text color
+- Added Settings Menu
+- Addressed few bugs reported
+- Fixed few UI problems.
+
 1.0.4
 - Added Online Annoucement Server to the patcher, with it you can check status of developement, get info about RiiConnect24 and get some useful links inside the patcher itself!
 - Added Fun Facts! To keep you entertained while patching, you will be able to read 2 Fun Facts! They will appear above the patching progress bar :)
@@ -7,26 +14,5 @@
 What's new?
 - We added a brand new mode to the patcher. With it's help, you can uninstall RiiConnect24 from your Wii. (`But please don't do that, we love you`)
 - Adressed few bugs
-
-1.0.2
-What's new?
-- Few bugfixes
-- UNIX Patcher Released!
-
-1.0.1-BugFix1:
-What's new?
-- Nothing new, just a quick bug fix about patcher being stuck at 95% while copying files to apps folder if it doesn't exist on the SD Card.
-
-1.0.1 is here!
-What's new?
-- Addressed issue with EVC USA Ticket. You can now install USA Region of EVC on your Wii normally.
-- Fixed a problem where EVC WAD would not create if WAD folder wouldn't exist in manual mode.
-- Added annoucement system.
-- Now we're fakesigning the WAD.
-
-1.0.0 is here!
-
-What's new?
-This patcher is new! It's our All in One patcher.
 
 Contact us at support@riiconnect24.net if you need help or if you see a bug in this program.
