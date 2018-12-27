@@ -1,3 +1,8 @@
+1.0.6
+- Added support for switching to beta branch from stable and to stable from beta. This way we can test if upcoming features of our patcher are ready to be released as production ready.
+- Preparing for the Wii U patching support.
+- ...doing some other stuff.
+
 1.0.5
 - Added Disable Updating option
 - Added Change Background/Text color

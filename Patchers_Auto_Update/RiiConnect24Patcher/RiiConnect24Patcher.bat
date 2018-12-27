@@ -1,9 +1,10 @@
+@echo off
 setlocal enableextensions
 cd /d "%~dp0"
-@echo off
+echo 	Starting up...
 :: ===========================================================================
 :: RiiConnect24 Patcher for Windows
-set version=1.0.5
+set version=1.0.6
 :: AUTHORS: KcrPL, Larsenv, Apfel
 :: ***************************************************************************
 :: Copyright (c) 2018 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -15,17 +16,24 @@ if exist temp.bat del /q temp.bat
 set mode=128,37
 mode %mode%
 set s=NUL
+
+::Beta
+set /a beta=0
+::This variable controls if the current version of the patcher is in the stable or beta branch. It will change updating path.
+:: 0 = stable  1 = beta
+
 set /a exitmessage=1
 set /a errorcopying=0
 set /a tempiospatcher=0
 set /a tempevcpatcher=0
 set /a tempsdcardapps=0
 :: Window Title
-title RiiConnect24 Patcher v%version% Created by @KcrPL, @Larsenv, @Apfel
-set last_build=2018/09/05
-set at=9:02PM
+if %beta%==0 title RiiConnect24 Patcher v%version% Created by @KcrPL, @Larsenv, @Apfel
+if %beta%==1 title RiiConnect24 Patcher v%version% [BETA] Created by @KcrPL, @Larsenv, @Apfel
+set last_build=2018/12/26
+set at=12:33AM
 if exist "C:\Users\%username%\Desktop\RiiConnect24Patcher.txt" goto debug_load
-:: ### Auto Update ###
+:: ### Auto Update ###	
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
 :: offlinestorage - Only used while testing of Update function, default=0
@@ -33,15 +41,21 @@ if exist "C:\Users\%username%\Desktop\RiiConnect24Patcher.txt" goto debug_load
 :: MainFolder/TempStorage - folder that is used to keep version.txt and whatsnew.txt. These two files are deleted every startup but if offlinestorage will be set 1, they won't be deleted.
 set /a Update_Activate=1
 set /a offlinestorage=0
-set FilesHostedOn=https://raw.githubusercontent.com/KcrPL/KcrPL.github.io/master/Patchers_Auto_Update/RiiConnect24Patcher
+if %beta%==0 set FilesHostedOn=https://raw.githubusercontent.com/KcrPL/KcrPL.github.io/master/Patchers_Auto_Update/RiiConnect24Patcher
+if %beta%==1 set FilesHostedOn=https://raw.githubusercontent.com/KcrPL/KcrPL.github.io/master/Patchers_Auto_Update/RiiConnect24Patcher_Beta
+
+
+set FilesHostedOn_Beta=https://raw.githubusercontent.com/KcrPL/KcrPL.github.io/master/Patchers_Auto_Update/RiiConnect24Patcher_Beta
+set FilesHostedOn_Stable=https://raw.githubusercontent.com/KcrPL/KcrPL.github.io/master/Patchers_Auto_Update/RiiConnect24Patcher
+
 set MainFolder=%appdata%\RiiConnect24Patcher
 set TempStorage=%appdata%\RiiConnect24Patcher\internet\temp
 
-set header=RiiConnect24 Patcher - (C) KcrPL, (C) Larsenv, (C) Apfel v%version% (Compiled on %last_build% at %at%)
+if %beta%==0 set header=RiiConnect24 Patcher - (C) KcrPL, (C) Larsenv, (C) Apfel v%version% (Compiled on %last_build% at %at%)
+if %beta%==1 set header=RiiConnect24 Patcher - (C) KcrPL, (C) Larsenv, (C) Apfel v%version% [BETA] (Compiled on %last_build% at %at%)
 
 if not exist "%MainFolder%" md "%MainFolder%"
 if not exist "%TempStorage%" md "%TempStorage%"
-
 :: Checking if I have access to files on your computer
 if exist %TempStorage%\checkforaccess.txt del /q %TempStorage%\checkforaccess.txt
 
@@ -54,6 +68,9 @@ if exist "%TempStorage%\checkforaccess.txt" del /q "%TempStorage%\checkforaccess
 
 :: Trying to prevent running from OS that is not Windows.
 if not "%os%"=="Windows_NT" goto not_windows_nt
+
+echo.
+echo Starting up done! No errors.
 goto begin_main
 :not_windows_nt
 cls
@@ -89,20 +106,35 @@ echo            +mmmmN.-mNMMMMMMMMMNmmmmMMMMMMMMMMMMMMMMy
 echo            smmmmm`/mMMMMMMMMMNNmmmmNMMMMNMMNMMMMMNmy.
 echo            hmmmmd`omMMMMMMMMMNNmmmNmMNNMmNNNNMNdhyhh.
 echo            mmmmmh ymMMMMMMMMMNNmmmNmNNNMNNMMMMNyyhhh`
-echo           `mmmmmy hmMMNMNNMMMNNmmmmmdNMMNmmMMMMhyhhy
-echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys
-echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-
-echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm
-echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+
-echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm
-echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+
-echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm
-echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/
-echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy
-echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`
-echo                   `.              yddyo++:    `-/oymNNNNNdy+:`
-echo                                   -odhhhhyddmmmmmNNmhs/:`
-echo                                     :syhdyyyyso+/-`
+if %beta%==0 echo           `mmmmmy hmMMNMNNMMMNNmmmmmdNMMNmmMMMMhyhhy
+if %beta%==0 echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys
+if %beta%==0 echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-
+if %beta%==0 echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm
+if %beta%==0 echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+
+if %beta%==0 echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm
+if %beta%==0 echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+
+if %beta%==0 echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm
+if %beta%==0 echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/
+if %beta%==0 echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy
+if %beta%==0 echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`
+if %beta%==0 echo                   `.              yddyo++:    `-/oymNNNNNdy+:`
+if %beta%==0 echo                                   -odhhhhyddmmmmmNNmhs/:`
+if %beta%==0 echo                                     :syhdyyyyso+/-`
+
+if %beta%==1 echo ----------------------------------------------------------------------------------------------------:
+if %beta%==1 echo            .sho.          
+if %beta%==1 echo         .oy: :ys.          Warning!
+if %beta%==1 echo       -sy-     -ss-      
+if %beta%==1 echo    `:ss-   ...   -ss-`   
+if %beta%==1 echo  `:ss-`   .ysy     -ss:`   You are using an experimental version of this program.
+if %beta%==1 echo /yo.      .ysy       .oy:  That means that this version might contain experimental features
+if %beta%==1 echo :yo.      .hhh       .oy:  and bugs that might break your Wii/Wii U console or your computer.
+if %beta%==1 echo  `:ss-             -sy:` 
+if %beta%==1 echo     -ss-  `\./   -ss-`     If you don't know what you're doing, please go to settings and go back to
+if %beta%==1 echo       -ss-     -ss-        stable branch of the patcher.
+if %beta%==1 echo         -sy: :ys-        
+if %beta%==1 echo           .oho.            
+if %beta%==1 echo.
 set /p s=Type a number that you can see above next to the command and hit ENTER: 
 if %s%==1 goto begin_main1
 if %s%==2 goto credits
@@ -120,12 +152,107 @@ echo 1. Go back
 echo 2. Set background/text color
 if %Update_Activate%==1 echo 3. Turn off/on updating. [Currently:  ON]
 if %Update_Activate%==0 echo 3. Turn off/on updating. [Currently: OFF]
+if %beta%==0 echo 4. Change updating branch to Beta. [Currently: Stable]
+if %beta%==1 echo 4. Change updating branch to Stable. [Currently: Beta]
 echo.
-set /p s=Choose: 
+set /p s=Choose:
 if %s%==1 goto begin_main
 if %s%==2 goto change_color
 if %s%==3 goto change_updating
+if %s%==4 goto change_updating_branch
 goto settings_menu
+:change_updating_branch
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Please wait... fetching data.
+echo.
+if "%beta%"=="1" goto change_updating_branch_stable
+if "%beta%"=="0" goto change_updating_branch_beta
+goto settings_menu
+:change_updating_branch_stable
+set /a stable_available_check=1
+
+	if exist "%TempStorage%\version.txt" del "%TempStorage%\version.txt" /q
+	call powershell -command (new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn_Stable%/version.txt"', '"%TempStorage%\version.txt"')
+	echo 1
+	set /a temperrorlev=%errorlevel%
+		if not %temperrorlev%==0 set /a stable_available_check=0&goto switch_to_stable
+	if exist "%TempStorage%\version.txt" set /p updateversion_stable=<"%TempStorage%\version.txt"
+	goto switch_to_stable
+
+:change_updating_branch_beta
+set /a beta_available_check=0
+	
+	if exist "%TempStorage%\beta_available.txt" del "%TempStorage%\beta_available.txt" /q
+	call powershell -command (new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn_Beta%/beta_available.txt"', '"%TempStorage%\beta_available.txt"')
+		set /a temperrorlev=%errorlevel%
+		if not %temperrorlev%==0 set /a beta_available_check=2&goto switch_to_beta
+	if exist "%TempStorage%\beta_available.txt" set /p beta_available=<"%TempStorage%\beta_available.txt"
+	
+	if %beta_available%==0 set /a beta_available_check=0
+	if %beta_available%==1 set /a beta_available_check=1
+	
+	if %beta_available_check%==0 goto switch_to_beta
+	
+	if exist "%TempStorage%\version.txt" del "%TempStorage%\version.txt" /q
+	call powershell -command (new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn_Beta%/version.txt"', '"%TempStorage%\version.txt"')
+		set /a temperrorlev=%errorlevel%
+		if not %temperrorlev%==0 set /a beta_available_check=2&goto switch_to_beta
+	if exist "%TempStorage%\version.txt" set /p updateversion_beta=<"%TempStorage%\version.txt"
+
+	goto switch_to_beta
+:switch_to_stable
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Do you want to go back to stable version of the patcher?
+echo.
+echo Current version: %version% [BETA]
+if %stable_available_check%==1 echo Stable version: %updateversion_stable%
+if %stable_available_check%==0 echo Stable version: Sorry, there was an error while fetching data.
+echo.
+echo Do you want to switch? (Updating process will start.)
+echo.
+if %stable_available_check%==1 echo 1. Yes, switch to Stable branch.
+if not %stable_available_check%==1 echo 1. [UNABLE TO SWITCH TO STABLE VERSION]
+echo 2. No, go back to main menu.
+set /p s=Choose: 
+if %s%==1 (
+	if %stable_available_check%==0 goto switch_to_stable
+	set FilesHostedOn=%FilesHostedOn_Stable%
+	goto update_files
+	)
+if %s%==2 goto begin_main
+goto switch_to_stable
+:switch_to_beta
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Do you want to switch to BETA version of the patcher?
+echo.
+echo Current version: %version%
+if %beta_available_check%==0 echo Beta version: Sorry, there's currently no public beta version available.
+if %beta_available_check%==1 echo Beta version: %updateversion_beta% [BETA]
+if %beta_available_check%==2 echo Beta version: Sorry, there was an error while fetching data.
+echo.
+echo Do you want to switch? (Updating process will start.)
+echo.
+if %beta_available_check%==1 echo 1. Yes, switch to Beta branch.
+if not %beta_available_check%==1 echo 1. [UNABLE TO SWITCH TO BETA VERSION]
+echo 2. No, go back to main menu.
+set /p s=Choose: 
+if %s%==1 (
+	if not %beta_available_check%==1 goto switch_to_beta
+	
+	set FilesHostedOn=%FilesHostedOn_Beta%
+	goto update_files
+	)
+if %s%==2 goto begin_main
+goto switch_to_beta
 :change_updating
 if %Update_Activate%==1 goto change_updating_warning_off
 set /a Update_Activate=1
@@ -1395,7 +1522,7 @@ if %funfact_number%==1 set funfact=Did you know the wii was the best selling gam
 if %funfact_number%==2 set funfact=Did you know KcrPL makes these amazing pachers and the updates for the patcher?
 if %funfact_number%==3 set funfact=RiiConnect24 originally started out as "CustomConnect24"!
 if %funfact_number%==4 set funfact=Did you the RiiConnect24 logo was made by NeoRame, the same person who made the Wiimmfi logo?
-if %funfact_number%==5 set funfact=The Wii was nicknamed “Revolution” during its development stage.
+if %funfact_number%==5 set funfact=The Wii was nicknamed "Revolution" during its development stage.
 if %funfact_number%==6 set funfact=Did you know the letters in the Wii model number RVL stand for the Wii's codename, Revolution?
 if %funfact_number%==7 set funfact=The music used in many of the Wii's channels (including the Wii Shop, Mii, Check Mii Out, and Forecast Channel) was composed by Kazumi Totaka.
 if %funfact_number%==8 set funfact=The Internet Channel once costed 500 Wii Points.
@@ -1518,7 +1645,6 @@ if %percent%==11 if not exist "EVCPatcher/patch/xdelta3.exe" powershell -command
 if %percent%==11 set /a temperrorlev=%errorlevel%
 if %percent%==11 set modul=Downloading xdelta3.exe
 if %percent%==11 if not %temperrorlev%==0 goto error_patching
-
 
 if %percent%==12 if not exist "EVCPatcher/pack/libWiiSharp.dll" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/pack/libWiiSharp.dll"', 'EVCPatcher/pack/libWiiSharp.dll"')"
 if %percent%==12 set /a temperrorlev=%errorlevel%

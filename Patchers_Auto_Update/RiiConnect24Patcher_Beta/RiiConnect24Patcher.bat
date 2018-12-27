@@ -163,20 +163,32 @@ if %s%==4 goto change_updating_branch
 goto settings_menu
 :change_updating_branch
 cls
-echo Please wait...
-
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Please wait... fetching data.
+echo.
 if "%beta%"=="1" goto change_updating_branch_stable
 if "%beta%"=="0" goto change_updating_branch_beta
 goto settings_menu
 :change_updating_branch_stable
+set /a stable_available_check=1
+
 	if exist "%TempStorage%\version.txt" del "%TempStorage%\version.txt" /q
 	call powershell -command (new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn_Stable%/version.txt"', '"%TempStorage%\version.txt"')
+	echo 1
+	set /a temperrorlev=%errorlevel%
+		if not %temperrorlev%==0 set /a stable_available_check=0&goto switch_to_stable
 	if exist "%TempStorage%\version.txt" set /p updateversion_stable=<"%TempStorage%\version.txt"
 	goto switch_to_stable
 
-:change_updating_branch_beta	
+:change_updating_branch_beta
+set /a beta_available_check=0
+	
 	if exist "%TempStorage%\beta_available.txt" del "%TempStorage%\beta_available.txt" /q
 	call powershell -command (new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn_Beta%/beta_available.txt"', '"%TempStorage%\beta_available.txt"')
+		set /a temperrorlev=%errorlevel%
+		if not %temperrorlev%==0 set /a beta_available_check=2&goto switch_to_beta
 	if exist "%TempStorage%\beta_available.txt" set /p beta_available=<"%TempStorage%\beta_available.txt"
 	
 	if %beta_available%==0 set /a beta_available_check=0
@@ -186,6 +198,8 @@ goto settings_menu
 	
 	if exist "%TempStorage%\version.txt" del "%TempStorage%\version.txt" /q
 	call powershell -command (new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn_Beta%/version.txt"', '"%TempStorage%\version.txt"')
+		set /a temperrorlev=%errorlevel%
+		if not %temperrorlev%==0 set /a beta_available_check=2&goto switch_to_beta
 	if exist "%TempStorage%\version.txt" set /p updateversion_beta=<"%TempStorage%\version.txt"
 
 	goto switch_to_beta
@@ -197,14 +211,17 @@ echo.
 echo Do you want to go back to stable version of the patcher?
 echo.
 echo Current version: %version% [BETA]
-echo Stable version: %updateversion_stable%
+if %stable_available_check%==1 echo Stable version: %updateversion_stable%
+if %stable_available_check%==0 echo Stable version: Sorry, there was an error while fetching data.
 echo.
 echo Do you want to switch? (Updating process will start.)
 echo.
-echo 1. Yes, switch to Stable branch.
+if %stable_available_check%==1 echo 1. Yes, switch to Stable branch.
+if not %stable_available_check%==1 echo 1. [UNABLE TO SWITCH TO STABLE VERSION]
 echo 2. No, go back to main menu.
 set /p s=Choose: 
 if %s%==1 (
+	if %stable_available_check%==0 goto switch_to_stable
 	set FilesHostedOn=%FilesHostedOn_Stable%
 	goto update_files
 	)
@@ -220,15 +237,16 @@ echo.
 echo Current version: %version%
 if %beta_available_check%==0 echo Beta version: Sorry, there's currently no public beta version available.
 if %beta_available_check%==1 echo Beta version: %updateversion_beta% [BETA]
+if %beta_available_check%==2 echo Beta version: Sorry, there was an error while fetching data.
 echo.
 echo Do you want to switch? (Updating process will start.)
 echo.
 if %beta_available_check%==1 echo 1. Yes, switch to Beta branch.
-if %beta_available_check%==0 echo 1. [UNABLE TO SWITCH TO BETA VERSION]
+if not %beta_available_check%==1 echo 1. [UNABLE TO SWITCH TO BETA VERSION]
 echo 2. No, go back to main menu.
 set /p s=Choose: 
 if %s%==1 (
-	if %beta_available_check%==0 goto switch_to_beta
+	if not %beta_available_check%==1 goto switch_to_beta
 	
 	set FilesHostedOn=%FilesHostedOn_Beta%
 	goto update_files
@@ -1504,7 +1522,7 @@ if %funfact_number%==1 set funfact=Did you know the wii was the best selling gam
 if %funfact_number%==2 set funfact=Did you know KcrPL makes these amazing pachers and the updates for the patcher?
 if %funfact_number%==3 set funfact=RiiConnect24 originally started out as "CustomConnect24"!
 if %funfact_number%==4 set funfact=Did you the RiiConnect24 logo was made by NeoRame, the same person who made the Wiimmfi logo?
-if %funfact_number%==5 set funfact=The Wii was nicknamed “Revolution” during its development stage.
+if %funfact_number%==5 set funfact=The Wii was nicknamed "Revolution" during its development stage.
 if %funfact_number%==6 set funfact=Did you know the letters in the Wii model number RVL stand for the Wii's codename, Revolution?
 if %funfact_number%==7 set funfact=The music used in many of the Wii's channels (including the Wii Shop, Mii, Check Mii Out, and Forecast Channel) was composed by Kazumi Totaka.
 if %funfact_number%==8 set funfact=The Internet Channel once costed 500 Wii Points.
