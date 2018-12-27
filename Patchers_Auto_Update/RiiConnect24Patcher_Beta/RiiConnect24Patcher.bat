@@ -33,7 +33,7 @@ if %beta%==1 title RiiConnect24 Patcher v%version% [BETA] Created by @KcrPL, @La
 set last_build=2018/12/26
 set at=12:33AM
 if exist "C:\Users\%username%\Desktop\RiiConnect24Patcher.txt" goto debug_load
-:: ### Auto Update ###
+:: ### Auto Update ###	
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
 :: offlinestorage - Only used while testing of Update function, default=0
@@ -121,7 +121,6 @@ if %beta%==0 echo                   `.              yddyo++:    `-/oymNNNNNdy+:`
 if %beta%==0 echo                                   -odhhhhyddmmmmmNNmhs/:`
 if %beta%==0 echo                                     :syhdyyyyso+/-`
 
-
 if %beta%==1 echo ----------------------------------------------------------------------------------------------------:
 if %beta%==1 echo            .sho.          
 if %beta%==1 echo         .oy: :ys.          Warning!
@@ -153,9 +152,9 @@ echo 1. Go back
 echo 2. Set background/text color
 if %Update_Activate%==1 echo 3. Turn off/on updating. [Currently:  ON]
 if %Update_Activate%==0 echo 3. Turn off/on updating. [Currently: OFF]
-echo.
 if %beta%==0 echo 4. Change updating branch to Beta. [Currently: Stable]
 if %beta%==1 echo 4. Change updating branch to Stable. [Currently: Beta]
+echo.
 set /p s=Choose:
 if %s%==1 goto begin_main
 if %s%==2 goto change_color
@@ -166,14 +165,16 @@ goto settings_menu
 cls
 echo Please wait...
 
-if %beta%==1 (
+if "%beta%"=="1" goto change_updating_branch_stable
+if "%beta%"=="0" goto change_updating_branch_beta
+goto settings_menu
+:change_updating_branch_stable
 	if exist "%TempStorage%\version.txt" del "%TempStorage%\version.txt" /q
 	call powershell -command (new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn_Stable%/version.txt"', '"%TempStorage%\version.txt"')
 	if exist "%TempStorage%\version.txt" set /p updateversion_stable=<"%TempStorage%\version.txt"
 	goto switch_to_stable
-	)
 
-if %beta%==0 (
+:change_updating_branch_beta	
 	if exist "%TempStorage%\beta_available.txt" del "%TempStorage%\beta_available.txt" /q
 	call powershell -command (new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn_Beta%/beta_available.txt"', '"%TempStorage%\beta_available.txt"')
 	if exist "%TempStorage%\beta_available.txt" set /p beta_available=<"%TempStorage%\beta_available.txt"
@@ -188,8 +189,6 @@ if %beta%==0 (
 	if exist "%TempStorage%\version.txt" set /p updateversion_beta=<"%TempStorage%\version.txt"
 
 	goto switch_to_beta
-	)	
-goto settings_menu
 :switch_to_stable
 cls
 echo %header%
