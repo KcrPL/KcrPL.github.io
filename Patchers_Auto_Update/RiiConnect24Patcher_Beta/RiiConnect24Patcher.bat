@@ -2,16 +2,18 @@
 setlocal enableextensions
 cd /d "%~dp0"
 echo 	Starting up...
+echo	The program is starting...
 :: ===========================================================================
 :: RiiConnect24 Patcher for Windows
-set version=1.0.6
+set version=1.0.8
 :: AUTHORS: KcrPL, Larsenv, Apfel
 :: ***************************************************************************
-:: Copyright (c) 2018 KcrPL, RiiConnect24 and it's (Lead) Developers
+:: Copyright (c) 2019 KcrPL, RiiConnect24 and it's (Lead) Developers
 :: ===========================================================================
 
 if exist temp.bat del /q temp.bat
 :script_start
+echo 	.. Setting up the variables
 :: Window size (Lines, columns)
 set mode=128,37
 mode %mode%
@@ -24,14 +26,18 @@ set /a beta=1
 
 set /a exitmessage=1
 set /a errorcopying=0
+set /a tempncpatcher=0
 set /a tempiospatcher=0
 set /a tempevcpatcher=0
 set /a tempsdcardapps=0
+set /a troubleshoot_auto_tool_notification=0
+set sdcard=NUL
+set tempgotonext=begin_main
 :: Window Title
 if %beta%==0 title RiiConnect24 Patcher v%version% Created by @KcrPL, @Larsenv, @Apfel
 if %beta%==1 title RiiConnect24 Patcher v%version% [BETA] Created by @KcrPL, @Larsenv, @Apfel
-set last_build=2018/12/26
-set at=12:33AM
+set last_build=2018/04/13
+set at=11:51PM
 if exist "C:\Users\%username%\Desktop\RiiConnect24Patcher.txt" goto debug_load
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
@@ -40,7 +46,7 @@ if exist "C:\Users\%username%\Desktop\RiiConnect24Patcher.txt" goto debug_load
 :: FilesHostedOn - The website and path to where the files are hosted. WARNING! DON'T END WITH "/"
 :: MainFolder/TempStorage - folder that is used to keep version.txt and whatsnew.txt. These two files are deleted every startup but if offlinestorage will be set 1, they won't be deleted.
 set /a Update_Activate=1
-set /a offlinestorage=0
+set /a offlinestorage=0 
 if %beta%==0 set FilesHostedOn=https://raw.githubusercontent.com/KcrPL/KcrPL.github.io/master/Patchers_Auto_Update/RiiConnect24Patcher
 if %beta%==1 set FilesHostedOn=https://raw.githubusercontent.com/KcrPL/KcrPL.github.io/master/Patchers_Auto_Update/RiiConnect24Patcher_Beta
 
@@ -69,8 +75,14 @@ if exist "%TempStorage%\checkforaccess.txt" del /q "%TempStorage%\checkforaccess
 :: Trying to prevent running from OS that is not Windows.
 if not "%os%"=="Windows_NT" goto not_windows_nt
 
+:: Load background color from file if it exists
+if exist "%TempStorage%\background_color.txt" set /p tempcolor=<"%TempStorage%\background_color.txt"
+if exist "%TempStorage%\background_color.txt" color %tempcolor%
+
+:: Check for SD Card
 echo.
-echo Starting up done! No errors.
+echo .. Checking for SD Card
+goto detect_sd_card
 goto begin_main
 :not_windows_nt
 cls
@@ -95,14 +107,15 @@ echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:
 echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.
 echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN   1. Start
 echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd   2. Credits
-echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy   3. Access the online annoucement server
+echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy   3. Access the online announcements server
 echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+   4. Settings
-echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+  Do you have problems or want to contact us?  
-echo             mmmmms smMMMMMMMMMmddMMmmNmNMMMMMMMMMMMM:  Mail us at support@riiconnect24.net
-echo            `mmmmmo hNMMMMMMMMMmddNMMMNNMMMMMMMMMMMMM.
+echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+   5. Troubleshooting
+echo             mmmmms smMMMMMMMMMmddMMmmNmNMMMMMMMMMMMM:  Do you have problems or want to contact us?  
+echo            `mmmmmo hNMMMMMMMMMmddNMMMNNMMMMMMMMMMMMM.  Mail us at support@riiconnect24.net
 echo            -mmmmm/ dNMMMMMMMMMNmddMMMNdhdMMMMMMMMMMN
-echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd
-echo            +mmmmN.-mNMMMMMMMMMNmmmmMMMMMMMMMMMMMMMMy
+if not %sdcard%==NUL echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd   Detected Wii SD Card: %sdcard%:\
+if %sdcard%==NUL echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd   Could not detect your Wii SD Card.
+echo            +mmmmN.-mNMMMMMMMMMNmmmmMMMMMMMMMMMMMMMMy   R. Refresh
 echo            smmmmm`/mMMMMMMMMMNNmmmmNMMMMNMMNMMMMMNmy.
 echo            hmmmmd`omMMMMMMMMMNNmmmNmMNNMmNNNNMNdhyhh.
 echo            mmmmmh ymMMMMMMMMMNNmmmNmNNNMNNMMMMNyyhhh`
@@ -140,7 +153,208 @@ if %s%==1 goto begin_main1
 if %s%==2 goto credits
 if %s%==3 goto annoucement_network_connect
 if %s%==4 goto settings_menu
+if %s%==5 goto troubleshooting_menu
+if %s%==r goto begin_main_refresh_sdcard
+if %s%==R goto begin_main_refresh_sdcard
+if %s%==restart goto script_start
+if %s%==exit exit
 goto begin_main
+
+:begin_main_refresh_sdcard
+set sdcard=NUL
+set tempgotonext=begin_main
+goto detect_sd_card
+
+:troubleshooting_menu
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo --- Troubleshooting tools ---
+echo These tools should help you diagnose some problems with the patcher and try to repair them automatically.
+echo.
+echo 1. Could not start PowerShell / Error while checking for updates
+echo 2. Could not detect SD Card.
+echo 3. Could not copy files to the SD Card.
+echo 4. Could not download core runtime files [`Downloading 06.80.delta / Downloading libWiiSharp.dll etc.`]
+echo 5. Renaming files error
+echo.
+echo R. Return to main menu
+echo.
+echo --- Some of these tools can be used while patching, allowing patcher to recover after a failure without user interraction ---
+echo.
+set /p s=Choose: 
+if %s%==r goto begin_main
+if %s%==R goto begin_main
+
+if %s%==1 goto troubleshooting_1
+if %s%==2 goto troubleshooting_2
+if %s%==3 goto troubleshooting_3
+if %s%==4 goto troubleshooting_4
+if %s%==5 goto troubleshooting_5
+goto troubleshooting_menu
+:troubleshooting_5
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Fixing - Renaming files error
+echo.
+echo [...] Flushing files
+rmdir /s /q 0001000148414A45v512>NUL
+rmdir /s /q 0001000148414A50v512>NUL
+rmdir /s /q 0001000148415450v1792>NUL
+rmdir /s /q 0001000148415445v1792>NUL
+rmdir /s /q IOSPatcher >NUL
+rmdir /s /q EVCPatcher >NUL
+rmdir /s /q NCPatcher>NUL
+del /q 00000001.app>NUL
+del /q 00000001_NC.app>NUL
+echo [OK] Flushing files
+
+goto troubleshooting_5_2
+:troubleshooting_5_2
+if "%tempgotonext%"=="2_2" goto 2_2
+echo.
+echo --- Testing completed ---
+pause
+goto troubleshooting_menu
+
+
+:troubleshooting_4
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Testing - Downloading files.
+echo.
+
+echo [...] Testing PowerShell
+powershell -c "[console]::beep(200,1)" 
+set /a temperrorlev=%errorlevel%
+
+if %temperrorlev%==0 echo [OK] Executing PowerShell commmand.
+if not %temperrorlev%==0 echo [Error] Testing failure. Please use the "Could not start PowerShell / Error while checking for updates" option.
+if not %temperrorlev%==0 goto troubleshooting_4_3
+
+:troubleshooting_4_2
+echo.
+call powershell -command (new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/version.txt"', '"%TempStorage%\version.txt"')
+set /a temperrorlev=%errorlevel%
+
+if %temperrorlev%==0 if %beta%==1 echo [OK] Connection to the server on branch [BETA]
+if %temperrorlev%==0 if %beta%==0 echo [OK] Connection to the server on branch [STABLE]
+
+if not %temperrorlev%==0 echo [Error] Connection to the server. Couldn't connect to the update server. Maybe it's down.
+if not %temperrorlev%==0 goto troubleshooting_4_3
+
+:troubleshooting_4_3
+echo.
+echo --- Testing completed ---
+pause
+goto troubleshooting_menu
+
+:troubleshooting_3
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Testing - Checking SD Card.
+echo.
+echo [...] Running scanning script.
+set tempgotonext=troubleshooting_3_2
+goto detect_sd_card
+:troubleshooting_3_2
+if %sdcard%==NUL echo [Error] Could not find SD Card. Please make sure that it's connected. If it is connected, make a folder called apps on it and try again.
+if %sdcard%==NUL goto troubleshooting_3_3
+
+if not %sdcard%==NUL echo [OK] SD Card found: drive letter [%sdcard%:\]. Drive opened for read/write access.
+echo.
+echo [...] Saving random text file to the SD Card.
+echo.
+echo %random% >>"%temp%\deleteME.txt"
+
+copy "%temp%\deleteME.txt" "%sdcard%:\" >NUL
+set temperrorlev=%errorlevel%
+if %temperrorlev%==0 echo [OK] File saved!
+if not %temperrorlev%==0 echo [Error] The file couldn't be saved. Looks like the drive is write protected. Unlock it and try again
+if not %temperrorlev%==0 goto troubleshooting_3_3
+
+if %temperrorlev%==0 del /q %sdcard%:\deleteME.txt
+if %temperrorlev%==0 del /q "%temp%\deleteME.txt"
+set /a temperrorlev=%errorlevel%
+
+if %temperrorlev%==0 echo [OK] File deleted!
+if not %temperrorlev%==0 echo [Error] Deleting file.
+if not %temperrorlev%==0 goto troubleshooting_3_3
+
+echo Everything is ok! Drive is enabled for read/write access.
+goto troubleshooting_3_3
+:troubleshooting_3_3
+echo.
+echo --- Testing completed ---
+pause
+goto troubleshooting_menu
+
+:troubleshooting_2
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Testing - Checking SD Card.
+echo.
+echo [...] Running scanning script.
+set tempgotonext=troubleshooting_2_2
+goto detect_sd_card
+:troubleshooting_2_2
+echo.
+if %sdcard%==NUL echo [Error] Could not find SD Card. Please make sure that it's connected. If it is connected, make a folder called apps on it and try again.
+if not %sdcard%==NUL echo [OK] SD Card found: drive letter [%sdcard%:\]. Drive opened for read access only.
+goto troubleshooting_2_3
+
+:troubleshooting_2_3
+echo.
+echo --- Testing completed ---
+pause
+goto troubleshooting_menu
+
+
+:troubleshooting_1
+set /a repeat_1=0
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Testing - PowerShell
+:troubleshooting_1_1
+powershell -c "[console]::beep(200,1)" 
+set /a temperrorlev=%errorlevel%
+if %repeat_1%==1 if %temperrorlev%==0 echo [OK] Executing PowerShell commmand.
+if %repeat_1%==1 if %temperrorlev%==0 goto troublehooting_1_4
+if %repeat_1%==1 if not %temperrorlev%==0 echo [Error] Testing failure.
+if %repeat_1%==1 if not %temperrorlev%==0 goto troubleshooting_1_4
+
+if %temperrorlev%==0 echo [OK] - Testing PowerShell command&goto troubleshooting_1_3
+if not %temperrorlev%==0 echo [Error] - Testing Powershell command&goto troubleshooting_1_2
+
+goto troubleshooting_1_3
+
+:troubleshooting_1_2
+taskkill /im powershell.exe /f /t>>NUL
+echo [OK] - Taskkilled PowerShell [at least tried to]
+set /a repeat_1=1
+goto troubleshooting_1_1
+
+:troubleshooting_1_3
+powershell -c "[console]::beep(500,1)" || echo [Error] - Executing PowerShell command&goto troubleshooting_1_4
+echo [OK] - Executing PowerShell command
+goto troubleshooting_1_4
+
+:troubleshooting_1_4
+echo.
+echo --- Testing completed ---
+pause
+goto troubleshooting_menu
 :settings_menu
 cls
 echo %header%
@@ -293,17 +507,24 @@ echo 7. Blue
 echo.
 echo E. Go back
 set /p s=Choose: 
-if %s%==1 color 07
-if %s%==2 color 70
-if %s%==3 color f0
-if %s%==4 color 6
-if %s%==5 color a
-if %s%==6 color c
-if %s%==7 color 3
+if %s%==1 set tempcolor=07&goto save_color
+if %s%==2 set tempcolor=70&goto save_color
+if %s%==3 set tempcolor=f0&goto save_color
+if %s%==4 set tempcolor=6&goto save_color
+if %s%==5 set tempcolor=a&goto save_color
+if %s%==6 set tempcolor=c&goto save_color
+if %s%==7 set tempcolor=3&goto save_color
 if %s%==e goto begin_main
 if %s%==E goto begin_main
 
 goto change_color
+:save_color
+if exist "%TempStorage%\background_color.txt" del /q "%TempStorage%\background_color.txt"
+color %tempcolor%
+echo %tempcolor%>>"%TempStorage%\background_color.txt"
+goto change_color
+
+
 :annoucement_network_1
 :: Display the page 
 cls
@@ -736,7 +957,7 @@ if %Update_Activate%==1 if %offlinestorage%==0 call powershell -command (new-obj
 	set /a temperrorlev=%errorlevel%
 
 set /a updateserver=1
-	::Bind error codes to errors here
+	::Bind exit codes to errors here
 	if not %temperrorlev%==0 set /a updateserver=0
 
 if exist "%TempStorage%\version.txt`" ren "%TempStorage%\version.txt`" "version.txt"
@@ -771,12 +992,12 @@ echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd
 echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy                 
 echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+                 
 echo ------------------------------------------------------------------------------------------------------------------------------
-echo    /---\   An error has occured..              
-echo   /     \  Looks like Powershell wasn't found on your computer.
-echo  /   !   \ If you are on an old system like Windows XP, please use our legacy IOS Patcher.
-echo  ---------  You can find IOS Patcher at https://github.com/RiiConnect24/IOS-Patcher/releases
-echo.
-echo.
+echo    /---\   An error has occurred. We couldn't run Powershell on your PC.
+echo   /     \  Please disable your antivirus, run RiiConnect24Patcher.bat as an administrator and try again.
+echo  /   !   \ Restarting your PC could also fix the problem.
+echo  ---------
+echo             If you are on an old system like Windows XP, please use our legacy IOS Patcher.
+echo             You can find IOS Patcher at https://github.com/RiiConnect24/IOS-Patcher/releases
 echo ------------------------------------------------------------------------------------------------------------------------------    
 echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys                  
 echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-                  
@@ -792,7 +1013,7 @@ echo                   `.              yddyo++:    `-/oymNNNNNdy+:`
 echo                                   -odhhhhyddmmmmmNNmhs/:`             
 echo                                     :syhdyyyyso+/-`
 pause>NUL
-goto powershell_error
+goto begin_main
 :update_notice
 if exist "%MainFolder%\failsafe.txt" del /q "%MainFolder%\failsafe.txt"
 if %updateversion%==0.0.0 goto error_update_not_available
@@ -857,7 +1078,7 @@ echo    /---\   Updating.
 echo   /     \  Please wait...
 echo  /   !   \ 
 echo  --------- RiiConnect24 Patcher will restart shortly... 
-echo.             
+echo.           Now working on: Downloading files from server and replacing old with the new ones. Give me a second, please! :)  
 echo.
 echo ------------------------------------------------------------------------------------------------------------------------------
 echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys                  
@@ -932,7 +1153,7 @@ goto update_notice
 cls
 echo %header%
 echo -----------------------------------------------------------------------------------------------------------------------------
-if exist "%TempStorage%\annoucement.txt" echo --- Annoucement --- 
+if exist "%TempStorage%\annoucement.txt" echo --- Announcement --- 
 if exist "%TempStorage%\annoucement.txt" type "%TempStorage%\annoucement.txt"
 if exist "%TempStorage%\annoucement.txt" echo.
 if exist "%TempStorage%\annoucement.txt" echo -------------------
@@ -1325,7 +1546,8 @@ echo The entire process should take about 1 to 2 minutes.
 echo.
 echo But before starting, you need to tell me one thing:
 echo.
-echo For Everybody Votes Channel, which region should I download and patch? (Where do you live?)
+echo For Everybody Votes Channel and Nintendo Channel, which region should I download and patch? 
+echo (Where do you live?/Region of your console)
 echo.
 echo 1. Europe
 echo 2. USA
@@ -1355,6 +1577,7 @@ if %s%==2 set /a sdcardstatus=0& set /a sdcard=NUL& goto 2_1_summary
 goto 2_1
 :detect_sd_card
 set sdcard=NUL
+set /a check=0
 :sd_a
 set /a check=0
 if exist A:\apps set /a check=%check%+1
@@ -1469,7 +1692,12 @@ goto sd_z
 set /a check=0
 if exist Z:\apps set /a check=%check%+1
 if %check%==1 set sdcard=Z
-goto %tempgotonext%
+call :%tempgotonext%
+echo.
+echo ---------------------------------------------
+echo There was an error while returning to script. Halting now. You will be returned to main menu.
+pause
+goto begin_main
 
 :2_1_summary
 cls
@@ -1519,7 +1747,7 @@ set /a funfact_number=%random% %% (1 + 30)
 if /i %funfact_number% LSS 1 goto random_funfact
 if /i %funfact_number% GTR 30 goto random_funfact
 if %funfact_number%==1 set funfact=Did you know the wii was the best selling game-console of 2006?
-if %funfact_number%==2 set funfact=Did you know KcrPL makes these amazing pachers and the updates for the patcher?
+if %funfact_number%==2 set funfact=Did you know KcrPL makes these amazing patchers and the updates for the patcher?
 if %funfact_number%==3 set funfact=RiiConnect24 originally started out as "CustomConnect24"!
 if %funfact_number%==4 set funfact=Did you the RiiConnect24 logo was made by NeoRame, the same person who made the Wiimmfi logo?
 if %funfact_number%==5 set funfact=The Wii was nicknamed "Revolution" during its development stage.
@@ -1567,7 +1795,11 @@ cls
 echo.
 echo %header%
 echo ---------------------------------------------------------------------------------------------------------------------------
-echo  [*] Patching... this can take some time
+echo  [*] Patching... this can take some time depending on the processing speed (CPU) of your computer.
+if %troubleshoot_auto_tool_notification%==1 echo :------------------------------------------------------------------------------------------------------------------------:
+if %troubleshoot_auto_tool_notification%==1 echo : Warning: There was an error while patching, but the patcher ran the troubleshooting tool that should automatically fix :
+if %troubleshoot_auto_tool_notification%==1 echo : the problem. The patching process has been restarted.                                                                  :
+if %troubleshoot_auto_tool_notification%==1 echo :------------------------------------------------------------------------------------------------------------------------:
 echo.
 echo Fun Fact: %funfact%
 echo.
@@ -1591,324 +1823,453 @@ if %percent%==1 set /a temperrorlev=%errorlevel%
 if %percent%==1 set modul=Downloading 06-31.delta
 if %percent%==1 if not %temperrorlev%==0 goto error_patching
 
+if %percent%==1 if not exist "IOSPatcher/00000006-80.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/00000006-80.delta"', 'IOSPatcher/00000006-80.delta"')"
+if %percent%==1 set /a temperrorlev=%errorlevel%
+if %percent%==1 set modul=Downloading 06-80.delta
+if %percent%==1 if not %temperrorlev%==0 goto error_patching
+
 if %percent%==2 if not exist "IOSPatcher/00000006-80.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/00000006-80.delta"', 'IOSPatcher/00000006-80.delta"')"
 if %percent%==2 set /a temperrorlev=%errorlevel%
 if %percent%==2 set modul=Downloading 06-80.delta
 if %percent%==2 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==3 if not exist "IOSPatcher/00000006-80.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/00000006-80.delta"', 'IOSPatcher/00000006-80.delta"')"
+if %percent%==3 if not exist "IOSPatcher/libWiiSharp.dll" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/libWiiSharp.dll"', 'IOSPatcher/libWiiSharp.dll"')"
 if %percent%==3 set /a temperrorlev=%errorlevel%
-if %percent%==3 set modul=Downloading 06-80.delta
+if %percent%==3 set modul=Downloading libWiiSharp.dll
 if %percent%==3 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==4 if not exist "IOSPatcher/libWiiSharp.dll" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/libWiiSharp.dll"', 'IOSPatcher/libWiiSharp.dll"')"
+if %percent%==3 if not exist "IOSPatcher/Sharpii.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/Sharpii.exe"', 'IOSPatcher/Sharpii.exe"')"
+if %percent%==3 set /a temperrorlev=%errorlevel%
+if %percent%==3 set modul=Downloading Sharpii.exe
+if %percent%==3 if not %temperrorlev%==0 goto error_patching
+
+if %percent%==4 if not exist "IOSPatcher/WadInstaller.dll" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/WadInstaller.dll"', 'IOSPatcher/WadInstaller.dll"')"
 if %percent%==4 set /a temperrorlev=%errorlevel%
-if %percent%==4 set modul=Downloading libWiiSharp.dll
+if %percent%==4 set modul=Downloading WadInstaller.dll
 if %percent%==4 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==5 if not exist "IOSPatcher/Sharpii.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/Sharpii.exe"', 'IOSPatcher/Sharpii.exe"')"
+if %percent%==5 if not exist "IOSPatcher/xdelta3.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/xdelta3.exe"', 'IOSPatcher/xdelta3.exe"')"
 if %percent%==5 set /a temperrorlev=%errorlevel%
-if %percent%==5 set modul=Downloading Sharpii.exe
+if %percent%==5 set modul=Downloading xdelta3.exe
 if %percent%==5 if not %temperrorlev%==0 goto error_patching
-
-if %percent%==6 if not exist "IOSPatcher/WadInstaller.dll" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/WadInstaller.dll"', 'IOSPatcher/WadInstaller.dll"')"
+::EVC
+if %percent%==6 if not exist EVCPatcher/patch md EVCPatcher\patch
+if %percent%==6 if not exist EVCPatcher/dwn md EVCPatcher\dwn
+if %percent%==6 if not exist EVCPatcher/dwn/0001000148414A45v512 md EVCPatcher\dwn\0001000148414A45v512
+if %percent%==6 if not exist EVCPatcher/dwn/0001000148414A50v512 md EVCPatcher\dwn\0001000148414A50v512
+if %percent%==6 if not exist EVCPatcher/pack md EVCPatcher\pack
+if %percent%==6 if not exist "EVCPatcher/patch/Europe.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/patch/Europe.delta"', '"EVCPatcher/patch/Europe.delta"')"
 if %percent%==6 set /a temperrorlev=%errorlevel%
-if %percent%==6 set modul=Downloading WadInstaller.dll
+if %percent%==6 set modul=Downloading Europe Delta
 if %percent%==6 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==7 if not exist "IOSPatcher/xdelta3.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/xdelta3.exe"', 'IOSPatcher/xdelta3.exe"')"
+if %percent%==6 if not exist "EVCPatcher/patch/USA.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/patch/USA.delta"', 'EVCPatcher/patch/USA.delta"')"
+if %percent%==6 set /a temperrorlev=%errorlevel%
+if %percent%==6 set modul=Downloading Europe Delta
+if %percent%==6 if not %temperrorlev%==0 goto error_patching
+
+if %percent%==7 if not exist "EVCPatcher/NUS_Downloader_Decrypt.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/NUS_Downloader_Decrypt.exe"', 'EVCPatcher/NUS_Downloader_Decrypt.exe"')"
 if %percent%==7 set /a temperrorlev=%errorlevel%
-if %percent%==7 set modul=Downloading xdelta3.exe
+if %percent%==7 set modul=Downloading EUR evc
 if %percent%==7 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==9 if not exist EVCPatcher/patch md EVCPatcher\patch
-if %percent%==9 if not exist EVCPatcher/dwn md EVCPatcher\dwn
-if %percent%==9 if not exist EVCPatcher/dwn/0001000148414A45v512 md EVCPatcher\dwn\0001000148414A45v512
-if %percent%==9 if not exist EVCPatcher/dwn/0001000148414A50v512 md EVCPatcher\dwn\0001000148414A50v512
-if %percent%==9 if not exist EVCPatcher/pack md EVCPatcher\pack
-if %percent%==9 if not exist "EVCPatcher/patch/Europe.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/patch/Europe.delta"', '"EVCPatcher/patch/Europe.delta"')"
+if %percent%==8 if not exist "EVCPatcher/patch/xdelta3.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/patch/xdelta3.exe"', 'EVCPatcher/patch/xdelta3.exe"')"
+if %percent%==8 set /a temperrorlev=%errorlevel%
+if %percent%==8 set modul=Downloading xdelta3.exe
+if %percent%==8 if not %temperrorlev%==0 goto error_patching
+
+if %percent%==8 if not exist "EVCPatcher/pack/libWiiSharp.dll" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/pack/libWiiSharp.dll"', 'EVCPatcher/pack/libWiiSharp.dll"')"
+if %percent%==8 set /a temperrorlev=%errorlevel%
+if %percent%==8 set modul=Downloading libWiiSharp.dll
+if %percent%==8 if not %temperrorlev%==0 goto error_patching
+
+if %percent%==8 if not exist "EVCPatcher/pack/Sharpii.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/pack/Sharpii.exe"', 'EVCPatcher/pack/Sharpii.exe"')"
+if %percent%==8 set /a temperrorlev=%errorlevel%
+if %percent%==8 set modul=Downloading Sharpii.exe
+if %percent%==8 if not %temperrorlev%==0 goto error_patching
+
+if %percent%==8 if not exist "EVCPatcher/dwn/Sharpii.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/dwn/Sharpii.exe"', 'EVCPatcher/dwn/Sharpii.exe"')"
+if %percent%==8 set /a temperrorlev=%errorlevel%
+if %percent%==8 set modul=Downloading Sharpii.exe
+if %percent%==8 if not %temperrorlev%==0 goto error_patching
+
+if %percent%==9 if not exist "EVCPatcher/dwn/libWiiSharp.dll" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/dwn/libWiiSharp.dll"', 'EVCPatcher/dwn/libWiiSharp.dll"')"
 if %percent%==9 set /a temperrorlev=%errorlevel%
-if %percent%==9 set modul=Downloading Europe Delta
+if %percent%==9 set modul=Downloading libWiiSharp.dll
 if %percent%==9 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==10 if not exist "EVCPatcher/patch/USA.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/patch/USA.delta"', 'EVCPatcher/patch/USA.delta"')"
+if %percent%==10 if not exist "EVCPatcher/dwn/0001000148414A45v512/cetk" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/dwn/0001000148414A45v512/cetk"', 'EVCPatcher/dwn/0001000148414A45v512/cetk"')"
 if %percent%==10 set /a temperrorlev=%errorlevel%
-if %percent%==10 set modul=Downloading Europe Delta
+if %percent%==10 set modul=Downloading USA CETK
 if %percent%==10 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==10 if not exist "EVCPatcher/NUS_Downloader_Decrypt.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/NUS_Downloader_Decrypt.exe"', 'EVCPatcher/NUS_Downloader_Decrypt.exe"')"
+if %percent%==10 if not exist "EVCPatcher/dwn/0001000148414A50v512/cetk" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/dwn/0001000148414A50v512/cetk"', 'EVCPatcher/dwn/0001000148414A50v512/cetk"')"
 if %percent%==10 set /a temperrorlev=%errorlevel%
-if %percent%==10 set modul=Downloading EUR evc
+if %percent%==10 set modul=Downloading EUR CETK
 if %percent%==10 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==11 if not exist "EVCPatcher/patch/xdelta3.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/patch/xdelta3.exe"', 'EVCPatcher/patch/xdelta3.exe"')"
+::NC
+
+if %percent%==11 if not exist NCPatcher/patch md NCPatcher\patch
+if %percent%==11 if not exist NCPatcher/dwn md NCPatcher\dwn
+if %percent%==11 if not exist NCPatcher/dwn/0001000148415450v1792 md NCPatcher\dwn\0001000148415450v1792
+if %percent%==11 if not exist NCPatcher/dwn/0001000148415445v1792 md NCPatcher\dwn\0001000148415445v1792
+if %percent%==11 if not exist NCPatcher/pack md NCPatcher\pack
+if %percent%==11 if not exist "NCPatcher/patch/Europe.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/patch/Europe.delta"', '"NCPatcher/patch/Europe.delta"')"
 if %percent%==11 set /a temperrorlev=%errorlevel%
-if %percent%==11 set modul=Downloading xdelta3.exe
+if %percent%==11 set modul=Downloading Europe Delta [NC]
 if %percent%==11 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==12 if not exist "EVCPatcher/pack/libWiiSharp.dll" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/pack/libWiiSharp.dll"', 'EVCPatcher/pack/libWiiSharp.dll"')"
+if %percent%==12 if not exist "NCPatcher/patch/USA.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/patch/USA.delta"', 'NCPatcher/patch/USA.delta"')"
 if %percent%==12 set /a temperrorlev=%errorlevel%
-if %percent%==12 set modul=Downloading libWiiSharp.dll
+if %percent%==12 set modul=Downloading USA Delta [NC]
 if %percent%==12 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==13 if not exist "EVCPatcher/pack/Sharpii.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/pack/Sharpii.exe"', 'EVCPatcher/pack/Sharpii.exe"')"
+if %percent%==12 if not exist "NCPatcher/NUS_Downloader_Decrypt.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/NUS_Downloader_Decrypt.exe"', 'NCPatcher/NUS_Downloader_Decrypt.exe"')"
+if %percent%==12 set /a temperrorlev=%errorlevel%
+if %percent%==12 set modul=Downloading Decrypter
+if %percent%==12 if not %temperrorlev%==0 goto error_patching
+
+if %percent%==12 if not exist "NCPatcher/patch/xdelta3.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/patch/xdelta3.exe"', 'NCPatcher/patch/xdelta3.exe"')"
+if %percent%==12 set /a temperrorlev=%errorlevel%
+if %percent%==12 set modul=Downloading xdelta3.exe
+if %percent%==12 if not %temperrorlev%==0 goto error_patching
+
+if %percent%==13 if not exist "NCPatcher/pack/libWiiSharp.dll" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/pack/libWiiSharp.dll"', 'NCPatcher/pack/libWiiSharp.dll"')"
+if %percent%==13 set /a temperrorlev=%errorlevel%
+if %percent%==13 set modul=Downloading libWiiSharp.dll
+if %percent%==13 if not %temperrorlev%==0 goto error_patching
+
+if %percent%==13 if not exist "NCPatcher/pack/Sharpii.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/pack/Sharpii.exe"', 'NCPatcher/pack/Sharpii.exe"')"
 if %percent%==13 set /a temperrorlev=%errorlevel%
 if %percent%==13 set modul=Downloading Sharpii.exe
 if %percent%==13 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==14 if not exist "EVCPatcher/dwn/Sharpii.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/dwn/Sharpii.exe"', 'EVCPatcher/dwn/Sharpii.exe"')"
+if %percent%==14 if not exist "NCPatcher/dwn/Sharpii.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/dwn/Sharpii.exe"', 'NCPatcher/dwn/Sharpii.exe"')"
 if %percent%==14 set /a temperrorlev=%errorlevel%
 if %percent%==14 set modul=Downloading Sharpii.exe
 if %percent%==14 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==15 if not exist "EVCPatcher/dwn/libWiiSharp.dll" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/dwn/libWiiSharp.dll"', 'EVCPatcher/dwn/libWiiSharp.dll"')"
+if %percent%==14 if not exist "NCPatcher/dwn/libWiiSharp.dll" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/dwn/libWiiSharp.dll"', 'NCPatcher/dwn/libWiiSharp.dll"')"
+if %percent%==14 set /a temperrorlev=%errorlevel%
+if %percent%==14 set modul=Downloading libWiiSharp.dll
+if %percent%==14 if not %temperrorlev%==0 goto error_patching
+
+if %percent%==15 if not exist "NCPatcher/dwn/0001000148415445v1792/cetk" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/dwn/0001000148415445v1792/cetk"', 'NCPatcher/dwn/0001000148415445v1792/cetk"')"
 if %percent%==15 set /a temperrorlev=%errorlevel%
-if %percent%==15 set modul=Downloading libWiiSharp.dll
+if %percent%==15 set modul=Downloading USA CETK
 if %percent%==15 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==16 if not exist "EVCPatcher/dwn/0001000148414A45v512/cetk" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/dwn/0001000148414A45v512/cetk"', 'EVCPatcher/dwn/0001000148414A45v512/cetk"')"
+if %percent%==15 if not exist "NCPatcher/dwn/0001000148415450v1792/cetk" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/dwn/0001000148415450v1792/cetk"', 'NCPatcher/dwn/0001000148415450v1792/cetk"')"
+if %percent%==15 set /a temperrorlev=%errorlevel%
+if %percent%==15 set modul=Downloading EUR CETK
+if %percent%==15 if not %temperrorlev%==0 goto error_patching
+
+::Everything else
+if %percent%==16 if not exist apps md apps
+if %percent%==16 if not exist apps/Mail-Patcher md apps\Mail-Patcher
+if %percent%==16 if not exist "apps/Mail-Patcher/boot.dol" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/Mail-Patcher/boot.dol"', 'apps/Mail-Patcher/boot.dol"')"
 if %percent%==16 set /a temperrorlev=%errorlevel%
-if %percent%==16 set modul=Downloading USA CETK
+if %percent%==16 set modul=Downloading Mail Patcher
 if %percent%==16 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==17 if not exist "EVCPatcher/dwn/0001000148414A50v512/cetk" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/dwn/0001000148414A50v512/cetk"', 'EVCPatcher/dwn/0001000148414A50v512/cetk"')"
+
+if %percent%==16 if not exist "apps/Mail-Patcher/icon.png" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/Mail-Patcher/icon.png"', 'apps/Mail-Patcher/icon.png"')"
+if %percent%==16 set /a temperrorlev=%errorlevel%
+if %percent%==16 set modul=Downloading Mail Patcher
+if %percent%==16 if not %temperrorlev%==0 goto error_patching
+
+
+if %percent%==17 if not exist "apps/Mail-Patcher/meta.xml" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/Mail-Patcher/meta.xml"', 'apps/Mail-Patcher/meta.xml"')"
 if %percent%==17 set /a temperrorlev=%errorlevel%
-if %percent%==17 set modul=Downloading EUR CETK
+if %percent%==17 set modul=Downloading Mail Patcher
 if %percent%==17 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==18 if not exist apps md apps
+
+if %percent%==18 if not exist apps/WiiModLite md apps\WiiModLite
 if %percent%==18 if not exist apps/Mail-Patcher md apps\Mail-Patcher
-if %percent%==18 if not exist "apps/Mail-Patcher/boot.dol" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/Mail-Patcher/boot.dol"', 'apps/Mail-Patcher/boot.dol"')"
+if %percent%==18 if not exist "apps/WiiModLite/boot.dol" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/boot.dol"', 'apps/WiiModLite/boot.dol"')"
 if %percent%==18 set /a temperrorlev=%errorlevel%
-if %percent%==18 set modul=Downloading Mail Patcher
+if %percent%==18 set modul=Downloading Wii Mod Lite
 if %percent%==18 if not %temperrorlev%==0 goto error_patching
 
-
-if %percent%==19 if not exist "apps/Mail-Patcher/icon.png" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/Mail-Patcher/icon.png"', 'apps/Mail-Patcher/icon.png"')"
+if %percent%==19 if not exist "apps/WiiModLite/database.txt" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/database.txt"', 'apps/WiiModLite/database.txt"')"
 if %percent%==19 set /a temperrorlev=%errorlevel%
-if %percent%==19 set modul=Downloading Mail Patcher
+if %percent%==19 set modul=Downloading Wii Mod Lite
 if %percent%==19 if not %temperrorlev%==0 goto error_patching
 
+if %percent%==19 if not exist "apps/WiiModLite/icon.png" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/icon.png"', 'apps/WiiModLite/icon.png"')"
+if %percent%==19 set /a temperrorlev=%errorlevel%
+if %percent%==19 set modul=Downloading Wii Mod Lite
+if %percent%==19 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==20 if not exist "apps/Mail-Patcher/meta.xml" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/Mail-Patcher/meta.xml"', 'apps/Mail-Patcher/meta.xml"')"
+if %percent%==20 if not exist "apps/WiiModLite/icon.png" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/icon.png"', 'apps/WiiModLite/icon.png"')"
 if %percent%==20 set /a temperrorlev=%errorlevel%
-if %percent%==20 set modul=Downloading Mail Patcher
+if %percent%==20 set modul=Downloading Wii Mod Lite
 if %percent%==20 if not %temperrorlev%==0 goto error_patching
 
+if %percent%==20 if not exist "apps/WiiModLite/meta.xml" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/meta.xml"', 'apps/WiiModLite/meta.xml"')"
+if %percent%==20 set /a temperrorlev=%errorlevel%
+if %percent%==20 set modul=Downloading Wii Mod Lite
+if %percent%==20 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==21 if not exist apps/WiiModLite md apps\WiiModLite
-if %percent%==21 if not exist apps/Mail-Patcher md apps\Mail-Patcher
-if %percent%==21 if not exist "apps/WiiModLite/boot.dol" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/boot.dol"', 'apps/WiiModLite/boot.dol"')"
+if %percent%==20 if not exist "apps/WiiModLite/wiimod.txt" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/wiimod.txt"', 'apps/WiiModLite/wiimod.txt"')"
+if %percent%==20 set /a temperrorlev=%errorlevel%
+if %percent%==20 set modul=Downloading Wii Mod Lite
+if %percent%==20 if not %temperrorlev%==0 goto error_patching
+
+if %percent%==21 if not exist "EVCPatcher/patch/Europe.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%EVCPatcher/patch/Europe.delta"', '"EVCPatcher/patch/Europe.delta"')"
 if %percent%==21 set /a temperrorlev=%errorlevel%
-if %percent%==21 set modul=Downloading Wii Mod Lite
+if %percent%==21 set modul=Downloading Europe Delta
 if %percent%==21 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==22 if not exist "apps/WiiModLite/database.txt" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/database.txt"', 'apps/WiiModLite/database.txt"')"
+if %percent%==22 if not exist "EVCPatcher/patch/USA.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/patch/USA.delta"', 'EVCPatcher/patch/USA.delta"')"
 if %percent%==22 set /a temperrorlev=%errorlevel%
 if %percent%==22 set modul=Downloading Wii Mod Lite
 if %percent%==22 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==23 if not exist "apps/WiiModLite/icon.png" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/icon.png"', 'apps/WiiModLite/icon.png"')"
-if %percent%==23 set /a temperrorlev=%errorlevel%
-if %percent%==23 set modul=Downloading Wii Mod Lite
-if %percent%==23 if not %temperrorlev%==0 goto error_patching
-
-if %percent%==24 if not exist "apps/WiiModLite/icon.png" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/icon.png"', 'apps/WiiModLite/icon.png"')"
-if %percent%==24 set /a temperrorlev=%errorlevel%
-if %percent%==24 set modul=Downloading Wii Mod Lite
-if %percent%==24 if not %temperrorlev%==0 goto error_patching
-
-if %percent%==25 if not exist "apps/WiiModLite/meta.xml" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/meta.xml"', 'apps/WiiModLite/meta.xml"')"
+::IOS Patcher
+if %percent%==25 call IOSPatcher\Sharpii.exe NUSD -IOS 31 -v latest -o IOSPatcher\IOS31-old.wad -wad >NUL
 if %percent%==25 set /a temperrorlev=%errorlevel%
-if %percent%==25 set modul=Downloading Wii Mod Lite
+if %percent%==25 set modul=Sharpii.exe
 if %percent%==25 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==26 if not exist "apps/WiiModLite/wiimod.txt" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/wiimod.txt"', 'apps/WiiModLite/wiimod.txt"')"
+if %percent%==25 call IOSPatcher\Sharpii.exe NUSD -IOS 80 -v latest -o IOSPatcher\IOS80-old.wad -wad >NUL
+if %percent%==25 set /a temperrorlev=%errorlevel%
+if %percent%==25 set modul=Sharpii.exe
+if %percent%==25 if not %temperrorlev%==0 goto error_patching
+
+if %percent%==25 call IOSPatcher\Sharpii.exe WAD -u IOSPatcher\IOS31-old.wad IOSPatcher/IOS31/ >NUL
+if %percent%==25 set /a temperrorlev=%errorlevel%
+if %percent%==25 set modul=Sharpii.exe
+if %percent%==25 if not %temperrorlev%==0 goto error_patching
+
+if %percent%==26 call IOSPatcher\Sharpii.exe WAD -u IOSPatcher\IOS80-old.wad IOSPatcher\IOS80/ >NUL
 if %percent%==26 set /a temperrorlev=%errorlevel%
-if %percent%==26 set modul=Downloading Wii Mod Lite
+if %percent%==26 set modul=Sharpii.exe
 if %percent%==26 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==27 if not exist "EVCPatcher/patch/Europe.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%EVCPatcher/patch/Europe.delta"', '"EVCPatcher/patch/Europe.delta"')"
+if %percent%==27 move /y IOSPatcher\IOS31\00000006.app IOSPatcher\00000006.app >NUL
 if %percent%==27 set /a temperrorlev=%errorlevel%
-if %percent%==27 set modul=Downloading Europe Delta
+if %percent%==27 set modul=move.exe
 if %percent%==27 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==28 if not exist "EVCPatcher/patch/USA.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/patch/USA.delta"', 'EVCPatcher/patch/USA.delta"')"
-if %percent%==28 set /a temperrorlev=%errorlevel%
-if %percent%==28 set modul=Downloading Wii Mod Lite
-if %percent%==28 if not %temperrorlev%==0 goto error_patching
-
-::IOS Patcher
-if %percent%==29 call IOSPatcher\Sharpii.exe NUSD -IOS 31 -v latest -o IOSPatcher\IOS31-old.wad -wad >NUL
+if %percent%==29 call IOSPatcher\xdelta3.exe -f -d -s IOSPatcher\00000006.app IOSPatcher\00000006-31.delta IOSPatcher\IOS31\00000006.app >NUL
 if %percent%==29 set /a temperrorlev=%errorlevel%
-if %percent%==29 set modul=Sharpii.exe
+if %percent%==29 set modul=xdelta.exe
 if %percent%==29 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==30 call IOSPatcher\Sharpii.exe NUSD -IOS 80 -v latest -o IOSPatcher\IOS80-old.wad -wad >NUL
-if %percent%==30 set /a temperrorlev=%errorlevel%
-if %percent%==30 set modul=Sharpii.exe
-if %percent%==30 if not %temperrorlev%==0 goto error_patching
-
-if %percent%==31 call IOSPatcher\Sharpii.exe WAD -u IOSPatcher\IOS31-old.wad IOSPatcher/IOS31/ >NUL
+if %percent%==31 move /y IOSPatcher\IOS80\00000006.app IOSPatcher\00000006.app >NUL
 if %percent%==31 set /a temperrorlev=%errorlevel%
-if %percent%==31 set modul=Sharpii.exe
+if %percent%==31 set modul=move.exe
 if %percent%==31 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==32 call IOSPatcher\Sharpii.exe WAD -u IOSPatcher\IOS80-old.wad IOSPatcher\IOS80/ >NUL
+if %percent%==32 call IOSPatcher\xdelta3.exe -f -d -s IOSPatcher\00000006.app IOSPatcher\00000006-80.delta IOSPatcher\IOS80\00000006.app >NUL
 if %percent%==32 set /a temperrorlev=%errorlevel%
-if %percent%==32 set modul=Sharpii.exe
+if %percent%==32 set modul=xdelta3.exe
 if %percent%==32 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==34 move /y IOSPatcher\IOS31\00000006.app IOSPatcher\00000006.app >NUL
+if %percent%==33 if not exist IOSPatcher\WAD mkdir IOSPatcher\WAD
+if %percent%==33 set /a temperrorlev=%errorlevel%
+if %percent%==33 set modul=mkdir.exe
+if %percent%==33 if not %temperrorlev%==0 goto error_patching
+
+if %percent%==34 call IOSPatcher\Sharpii.exe WAD -p IOSPatcher\IOS31\ IOSPatcher\WAD\IOS31.wad -fs >NUL
 if %percent%==34 set /a temperrorlev=%errorlevel%
-if %percent%==34 set modul=move.exe
+if %percent%==34 set modul=Sharpii.exe
 if %percent%==34 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==36 call IOSPatcher\xdelta3.exe -f -d -s IOSPatcher\00000006.app IOSPatcher\00000006-31.delta IOSPatcher\IOS31\00000006.app >NUL
+if %percent%==35 call IOSPatcher\Sharpii.exe WAD -p IOSPatcher\IOS80\ IOSPatcher\WAD\IOS80.wad -fs >NUL
+if %percent%==35 set /a temperrorlev=%errorlevel%
+if %percent%==35 set modul=Sharpii.exe
+if %percent%==35 if not %temperrorlev%==0 goto error_patching
+
+if %percent%==36 del IOSPatcher\00000006.app /q >NUL
 if %percent%==36 set /a temperrorlev=%errorlevel%
-if %percent%==36 set modul=xdelta.exe
+if %percent%==36 set modul=del.exe
 if %percent%==36 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==38 move /y IOSPatcher\IOS80\00000006.app IOSPatcher\00000006.app >NUL
-if %percent%==38 set /a temperrorlev=%errorlevel%
-if %percent%==38 set modul=move.exe
-if %percent%==38 if not %temperrorlev%==0 goto error_patching
+if %percent%==36 del IOSPatcher\IOS31-old.wad /q >NUL
+if %percent%==36 set /a temperrorlev=%errorlevel%
+if %percent%==36 set modul=del.exe
+if %percent%==36 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==40 call IOSPatcher\xdelta3.exe -f -d -s IOSPatcher\00000006.app IOSPatcher\00000006-80.delta IOSPatcher\IOS80\00000006.app >NUL
-if %percent%==40 set /a temperrorlev=%errorlevel%
-if %percent%==40 set modul=xdelta3.exe
-if %percent%==40 if not %temperrorlev%==0 goto error_patching
+if %percent%==36 del IOSPatcher\IOS80-old.wad /q >NUL
+if %percent%==36 set /a temperrorlev=%errorlevel%
+if %percent%==36 set modul=del.exe
+if %percent%==36 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==42 if not exist IOSPatcher\WAD mkdir IOSPatcher\WAD
+if %percent%==37 if exist IOSPatcher\IOS31 rmdir /s /q IOSPatcher\IOS31 >NUL
+if %percent%==37 set /a temperrorlev=%errorlevel%
+if %percent%==37 set modul=rmdir.exe
+if %percent%==37 if not %temperrorlev%==0 goto error_patching
+
+if %percent%==37 if exist IOSPatcher\IOS80 rmdir /s /q IOSPatcher\IOS80 >NUL
+if %percent%==37 set /a temperrorlev=%errorlevel%
+if %percent%==37 set modul=rmdir.exe
+if %percent%==37 if not %temperrorlev%==0 goto error_patching
+
+if %percent%==39 call IOSPatcher\Sharpii.exe IOS IOSPatcher\WAD\IOS31.wad -fs -es -np -vp>NUL
+if %percent%==39 set /a temperrorlev=%errorlevel%
+if %percent%==39 set modul=Sharpii.exe
+if %percent%==39 if not %temperrorlev%==0 goto error_patching
+
+if %percent%==42 call IOSPatcher\Sharpii.exe IOS IOSPatcher\WAD\IOS80.wad -fs -es -np -vp>NUL
 if %percent%==42 set /a temperrorlev=%errorlevel%
-if %percent%==42 set modul=mkdir.exe
+if %percent%==42 set modul=Sharpii.exe
 if %percent%==42 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==44 call IOSPatcher\Sharpii.exe WAD -p IOSPatcher\IOS31\ IOSPatcher\WAD\IOS31.wad -fs >NUL
-if %percent%==44 set /a temperrorlev=%errorlevel%
-if %percent%==44 set modul=Sharpii.exe
-if %percent%==44 if not %temperrorlev%==0 goto error_patching
+if %percent%==43 if not exist WAD md WAD
+if %percent%==43 move "IOSPatcher\WAD\IOS31.wad" "WAD"
+if %percent%==43 move "IOSPatcher\WAD\IOS80.wad" "WAD"
 
-if %percent%==45 call IOSPatcher\Sharpii.exe WAD -p IOSPatcher\IOS80\ IOSPatcher\WAD\IOS80.wad -fs >NUL
-if %percent%==45 set /a temperrorlev=%errorlevel%
-if %percent%==45 set modul=Sharpii.exe
-if %percent%==45 if not %temperrorlev%==0 goto error_patching
-
-if %percent%==47 del IOSPatcher\00000006.app /q >NUL
-if %percent%==47 set /a temperrorlev=%errorlevel%
-if %percent%==47 set modul=del.exe
-if %percent%==47 if not %temperrorlev%==0 goto error_patching
-
-if %percent%==48 del IOSPatcher\IOS31-old.wad /q >NUL
-if %percent%==48 set /a temperrorlev=%errorlevel%
-if %percent%==48 set modul=del.exe
-if %percent%==48 if not %temperrorlev%==0 goto error_patching
-
-if %percent%==49 del IOSPatcher\IOS80-old.wad /q >NUL
-if %percent%==49 set /a temperrorlev=%errorlevel%
-if %percent%==49 set modul=del.exe
-if %percent%==49 if not %temperrorlev%==0 goto error_patching
-
-if %percent%==51 if exist IOSPatcher\IOS31 rmdir /s /q IOSPatcher\IOS31 >NUL
-if %percent%==51 set /a temperrorlev=%errorlevel%
-if %percent%==51 set modul=rmdir.exe
-if %percent%==51 if not %temperrorlev%==0 goto error_patching
-
-if %percent%==50 if exist IOSPatcher\IOS80 rmdir /s /q IOSPatcher\IOS80 >NUL
-if %percent%==50 set /a temperrorlev=%errorlevel%
-if %percent%==50 set modul=rmdir.exe
-if %percent%==50 if not %temperrorlev%==0 goto error_patching
-
-if %percent%==52 call IOSPatcher\Sharpii.exe IOS IOSPatcher\WAD\IOS31.wad -fs -es -np -vp>NUL
-if %percent%==52 set /a temperrorlev=%errorlevel%
-if %percent%==52 set modul=Sharpii.exe
-if %percent%==52 if not %temperrorlev%==0 goto error_patching
-
-if %percent%==53 call IOSPatcher\Sharpii.exe IOS IOSPatcher\WAD\IOS80.wad -fs -es -np -vp>NUL
-if %percent%==53 set /a temperrorlev=%errorlevel%
-if %percent%==53 set modul=Sharpii.exe
-if %percent%==53 if not %temperrorlev%==0 goto error_patching
-
-if %percent%==54 if not exist WAD md WAD
-if %percent%==54 move "IOSPatcher\WAD\IOS31.wad" "WAD"
-if %percent%==54 move "IOSPatcher\WAD\IOS80.wad" "WAD"
-
-if %percent%==55 if exist IOSPatcher rmdir /s /q IOSPatcher
+if %percent%==44 if exist IOSPatcher rmdir /s /q IOSPatcher
 ::EVC Patcher
 
-if %percent%==57 if not exist 0001000148414A50v512 md 0001000148414A50v512
-if %percent%==57 if not exist 0001000148414A45v512 md 0001000148414A45v512
-if %percent%==57 if not exist 0001000148414A50v512\cetk copy /y "EVCPatcher\dwn\0001000148414A50v512\cetk" "0001000148414A50v512\cetk"
+if %percent%==50 if not exist 0001000148414A50v512 md 0001000148414A50v512
+if %percent%==50 if not exist 0001000148414A45v512 md 0001000148414A45v512
+if %percent%==50 if not exist 0001000148414A50v512\cetk copy /y "EVCPatcher\dwn\0001000148414A50v512\cetk" "0001000148414A50v512\cetk"
 
-if %percent%==57 if not exist 0001000148414A45v512\cetk copy /y "EVCPatcher\dwn\0001000148414A45v512\cetk" "0001000148414A45v512\cetk"
+if %percent%==50 if not exist 0001000148414A45v512\cetk copy /y "EVCPatcher\dwn\0001000148414A45v512\cetk" "0001000148414A45v512\cetk"
 
 ::USA
-if %percent%==60 if %evcregion%==2 call EVCPatcher\dwn\sharpii.exe NUSD -ID 0001000148414A45 -v 512 -encrypt >NUL
+if %percent%==52 if %evcregion%==2 call EVCPatcher\dwn\sharpii.exe NUSD -ID 0001000148414A45 -v 512 -encrypt >NUL
 ::PAL
-if %percent%==60 if %evcregion%==1 call EVCPatcher\dwn\sharpii.exe NUSD -ID 0001000148414A50 -v 512 -encrypt >NUL
+if %percent%==52 if %evcregion%==1 call EVCPatcher\dwn\sharpii.exe NUSD -ID 0001000148414A50 -v 512 -encrypt >NUL
+if %percent%==52 set /a temperrorlev=%errorlevel%
+if %percent%==52 set modul=Downloading EVC
+if %percent%==52 if not %temperrorlev%==0 goto error_patching
+
+if %percent%==54 if %evcregion%==1 copy /y "EVCPatcher\NUS_Downloader_Decrypt.exe" "0001000148414A50v512"
+if %percent%==54 if %evcregion%==2 copy /y "EVCPatcher\NUS_Downloader_Decrypt.exe" "0001000148414A45v512"
+if %percent%==54 set /a temperrorlev=%errorlevel%
+if %percent%==54 set modul=Copying NDC.exe
+if %percent%==54 if not %temperrorlev%==0 goto error_patching
+
+if %percent%==56 if %evcregion%==1 ren "0001000148414A50v512\tmd.512" "tmd"
+if %percent%==56 if %evcregion%==2 ren "0001000148414A45v512\tmd.512" "tmd"
+if %percent%==56 set /a temperrorlev=%errorlevel%
+if %percent%==56 set modul=Renaming files [Delete everything except RiiConnect24Patcher.bat]
+if %percent%==56 if not %temperrorlev%==0 goto error_patching
+
+if %percent%==57 if %evcregion%==1 cd 0001000148414A50v512
+if %percent%==57 if %evcregion%==1 call NUS_Downloader_Decrypt.exe >NUL
+if %percent%==57 if %evcregion%==2 cd 0001000148414A45v512
+if %percent%==57 if %evcregion%==2 call NUS_Downloader_Decrypt.exe >NUL
+if %percent%==57 set /a temperrorlev=%errorlevel%
+if %percent%==57 set modul=Decrypter error
+if %percent%==57 if not %temperrorlev%==0 cd..& goto error_patching
+if %percent%==57 cd..
+
+if %percent%==60 if %evcregion%==1 move /y "0001000148414A50v512\HAJP.wad" "EVCPatcher\pack"
+if %percent%==60 if %evcregion%==2 move /y "0001000148414A45v512\HAJE.wad" "EVCPatcher\pack"
 if %percent%==60 set /a temperrorlev=%errorlevel%
-if %percent%==60 set modul=Downloading EVC
+if %percent%==60 set modul=move.exe
 if %percent%==60 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==61 if %evcregion%==1 copy /y "EVCPatcher\NUS_Downloader_Decrypt.exe" "0001000148414A50v512"
-if %percent%==61 if %evcregion%==2 copy /y "EVCPatcher\NUS_Downloader_Decrypt.exe" "0001000148414A45v512"
-if %percent%==61 set /a temperrorlev=%errorlevel%
-if %percent%==61 set modul=Copying NDC.exe
-if %percent%==61 if not %temperrorlev%==0 goto error_patching
+if %percent%==62 if %evcregion%==1 call EVCPatcher\pack\Sharpii.exe WAD -u EVCPatcher\pack\HAJP.wad EVCPatcher\pack\unencrypted >NUL
+if %percent%==62 if %evcregion%==2 call EVCPatcher\pack\Sharpii.exe WAD -u EVCPatcher\pack\HAJE.wad EVCPatcher\pack\unencrypted >NUL
 
-if %percent%==62 if %evcregion%==1 ren "0001000148414A50v512\tmd.512" "tmd"
-if %percent%==62 if %evcregion%==2 ren "0001000148414A45v512\tmd.512" "tmd"
+if %percent%==63 move /y "EVCPatcher\pack\unencrypted\00000001.app" "00000001.app"
 if %percent%==63 set /a temperrorlev=%errorlevel%
-if %percent%==62 set modul=Renaming files
-if %percent%==62 if not %temperrorlev%==0 goto error_patching
+if %percent%==63 set modul=move.exe
+if %percent%==63 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==63 if %evcregion%==1 cd 0001000148414A50v512
-if %percent%==63 if %evcregion%==1 call NUS_Downloader_Decrypt.exe >NUL
-if %percent%==63 if %evcregion%==2 cd 0001000148414A45v512
-if %percent%==63 if %evcregion%==2 call NUS_Downloader_Decrypt.exe >NUL
-if %percent%==63 set /a temperrorlev=%errorlevel%
-if %percent%==63 set modul=Decrypter error
-if %percent%==63 if not %temperrorlev%==0 cd..& goto error_patching
-if %percent%==63 cd..
+if %percent%==65 if %evcregion%==1 call EVCPatcher\patch\xdelta3.exe -f -d -s 00000001.app EVCPatcher\patch\Europe.delta EVCPatcher\pack\unencrypted\00000001.app
+if %percent%==65 if %evcregion%==2 call EVCPatcher\patch\xdelta3.exe -f -d -s 00000001.app EVCPatcher\patch\USA.delta EVCPatcher\pack\unencrypted\00000001.app
+if %percent%==65 set /a temperrorlev=%errorlevel%
+if %percent%==65 set modul=xdelta.exe EVC
+if %percent%==65 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==64 if %evcregion%==1 move /y "0001000148414A50v512\HAJP.wad" "EVCPatcher\pack"
-if %percent%==64 if %evcregion%==2 move /y "0001000148414A45v512\HAJE.wad" "EVCPatcher\pack"
-if %percent%==64 set /a temperrorlev=%errorlevel%
-if %percent%==64 set modul=move.exe
-if %percent%==64 if not %temperrorlev%==0 goto error_patching
+if %percent%==67 if %evcregion%==1 call EVCPatcher\pack\Sharpii.exe WAD -p "EVCPatcher\pack\unencrypted" "WAD\Everybody Votes Channel RiiConnect24 Europe" -f 
+if %percent%==67 if %evcregion%==2 call EVCPatcher\pack\Sharpii.exe WAD -p "EVCPatcher\pack\unencrypted" "WAD\Everybody Votes Channel RiiConnect24 USA" -f
+if %percent%==67 set /a temperrorlev=%errorlevel%
+if %percent%==67 set modul=Packing EVC WAD
+if %percent%==67 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==70 if %evcregion%==1 call EVCPatcher\pack\Sharpii.exe WAD -u EVCPatcher\pack\HAJP.wad EVCPatcher\pack\unencrypted >NUL
-if %percent%==70 if %evcregion%==2 call EVCPatcher\pack\Sharpii.exe WAD -u EVCPatcher\pack\HAJE.wad EVCPatcher\pack\unencrypted >NUL
 
-if %percent%==71 move /y "EVCPatcher\pack\unencrypted\00000001.app" "00000001.app"
+::NC
+
+
+if %percent%==70 if not exist 0001000148415450v1792 md 0001000148415450v1792
+if %percent%==70 if not exist 0001000148415445v1792 md 0001000148415445v1792
+if %percent%==70 if not exist 0001000148415450v1792\cetk copy /y "NCPatcher\dwn\0001000148415450v1792\cetk" "0001000148415450v1792\cetk"
+
+if %percent%==70 if not exist 0001000148415445v1792\cetk copy /y "NCPatcher\dwn\0001000148415445v1792\cetk" "0001000148415445v1792\cetk"
+
+::USA
+if %percent%==71 if %evcregion%==2 call NCPatcher\dwn\sharpii.exe NUSD -ID 0001000148415445 -v 1792 -encrypt >NUL
+::PAL
+if %percent%==71 if %evcregion%==1 call NCPatcher\dwn\sharpii.exe NUSD -ID 0001000148415450 -v 1792 -encrypt >NUL
 if %percent%==71 set /a temperrorlev=%errorlevel%
-if %percent%==71 set modul=move.exe
+if %percent%==71 set modul=Downloading NC
 if %percent%==71 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==72 if %evcregion%==1 call EVCPatcher\patch\xdelta3.exe -f -d -s 00000001.app EVCPatcher\patch\Europe.delta EVCPatcher\pack\unencrypted\00000001.app
-if %percent%==72 if %evcregion%==2 call EVCPatcher\patch\xdelta3.exe -f -d -s 00000001.app EVCPatcher\patch\USA.delta EVCPatcher\pack\unencrypted\00000001.app
-if %percent%==72 set /a temperrorlev=%errorlevel%
-if %percent%==72 set modul=xdelta.exe EVC
-if %percent%==72 if not %temperrorlev%==0 goto error_patching
+if %percent%==73 if %evcregion%==1 copy /y "NCPatcher\NUS_Downloader_Decrypt.exe" "0001000148415450v1792"
+if %percent%==73 if %evcregion%==2 copy /y "NCPatcher\NUS_Downloader_Decrypt.exe" "0001000148415445v1792"
+if %percent%==73 set /a temperrorlev=%errorlevel%
+if %percent%==73 set modul=Copying NDC.exe
+if %percent%==73 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==80 if %evcregion%==1 call EVCPatcher\pack\Sharpii.exe WAD -p "EVCPatcher\pack\unencrypted" "WAD\Everybody Votes Channel RiiConnect24 Europe" -f 
-if %percent%==80 if %evcregion%==2 call EVCPatcher\pack\Sharpii.exe WAD -p "EVCPatcher\pack\unencrypted" "WAD\Everybody Votes Channel RiiConnect24 USA" -f
-if %percent%==80 set /a temperrorlev=%errorlevel%
-if %percent%==80 set modul=Packing EVC WAD
-if %percent%==80 if not %temperrorlev%==0 goto error_patching
+if %percent%==73 if %evcregion%==1 ren "0001000148415450v1792\tmd.1792" "tmd"
+if %percent%==73 if %evcregion%==2 ren "0001000148415445v1792\tmd.1792" "tmd"
+if %percent%==73 set /a temperrorlev=%errorlevel%
+if %percent%==73 set modul=Renaming files
+if %percent%==73 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==85 if not %sdcard%==NUL set /a errorcopying=0
-if %percent%==85 if not %sdcard%==NUL if not exist "%sdcard%:\WAD" md "%sdcard%:\WAD"
-if %percent%==85 if not %sdcard%==NUL if not exist "%sdcard%:\apps" md "%sdcard%:\apps"
+if %percent%==76 if %evcregion%==1 cd 0001000148415450v1792
+if %percent%==76 if %evcregion%==1 call NUS_Downloader_Decrypt.exe >NUL
+if %percent%==76 if %evcregion%==2 cd 0001000148415445v1792
+if %percent%==76 if %evcregion%==2 call NUS_Downloader_Decrypt.exe >NUL
+if %percent%==76 set /a temperrorlev=%errorlevel%
+if %percent%==76 set modul=Decrypter error
+if %percent%==76 if not %temperrorlev%==0 cd..& goto error_patching
+if %percent%==76 cd..
 
-if %percent%==95 if not %sdcard%==NUL xcopy /y "WAD" "%sdcard%:\WAD" /e >NUL || set /a errorcopying=1
-if %percent%==95 if not %sdcard%==NUL xcopy /y "apps" "%sdcard%:\apps" /e >NUL || set /a errorcopying=1
+if %percent%==78 if %evcregion%==1 move /y "0001000148415450v1792\HATP.wad" "NCPatcher\pack"
+if %percent%==78 if %evcregion%==2 move /y "0001000148415445v1792\HATE.wad" "NCPatcher\pack"
+if %percent%==78 set /a temperrorlev=%errorlevel%
+if %percent%==78 set modul=move.exe
+if %percent%==78 if not %temperrorlev%==0 goto error_patching
+
+if %percent%==82 if %evcregion%==1 call NCPatcher\pack\Sharpii.exe WAD -u NCPatcher\pack\HATP.wad NCPatcher\pack\unencrypted >NUL
+if %percent%==82 if %evcregion%==2 call NCPatcher\pack\Sharpii.exe WAD -u NCPatcher\pack\HATE.wad NCPatcher\pack\unencrypted >NUL
+
+if %percent%==83 move /y "NCPatcher\pack\unencrypted\00000001.app" "00000001_NC.app"
+if %percent%==83 set /a temperrorlev=%errorlevel%
+if %percent%==83 set modul=move.exe
+if %percent%==83 if not %temperrorlev%==0 goto error_patching
+
+if %percent%==84 if %evcregion%==1 call NCPatcher\patch\xdelta3.exe -f -d -s 00000001_NC.app NCPatcher\patch\Europe.delta NCPatcher\pack\unencrypted\00000001.app
+if %percent%==84 if %evcregion%==2 call NCPatcher\patch\xdelta3.exe -f -d -s 00000001_NC.app NCPatcher\patch\USA.delta NCPatcher\pack\unencrypted\00000001.app
+if %percent%==84 set /a temperrorlev=%errorlevel%
+if %percent%==84 set modul=xdelta.exe NC
+if %percent%==84 if not %temperrorlev%==0 goto error_patching
+
+if %percent%==86 if %evcregion%==1 call NCPatcher\pack\Sharpii.exe WAD -p "NCPatcher\pack\unencrypted" "WAD\Nintendo Channel RiiConnect24 Europe" -f 
+if %percent%==86 if %evcregion%==2 call NCPatcher\pack\Sharpii.exe WAD -p "NCPatcher\pack\unencrypted" "WAD\Nintendo Channel RiiConnect24 USA" -f
+if %percent%==86 set /a temperrorlev=%errorlevel%
+if %percent%==86 set modul=Packing NC WAD
+if %percent%==86 if not %temperrorlev%==0 goto error_patching
+
+::Final commands
+if %percent%==94 if not %sdcard%==NUL set /a errorcopying=0
+if %percent%==94 if not %sdcard%==NUL if not exist "%sdcard%:\WAD" md "%sdcard%:\WAD"
+if %percent%==94 if not %sdcard%==NUL if not exist "%sdcard%:\apps" md "%sdcard%:\apps"
+
+if %percent%==97 if not %sdcard%==NUL xcopy /y "WAD" "%sdcard%:\WAD" /e >NUL || set /a errorcopying=1
+if %percent%==97 if not %sdcard%==NUL xcopy /y "apps" "%sdcard%:\apps" /e >NUL || set /a errorcopying=1
 
 if %percent%==99 rmdir /s /q 0001000148414A45v512
 if %percent%==99 rmdir /s /q 0001000148414A50v512
+if %percent%==99 rmdir /s /q 0001000148415450v1792
+if %percent%==99 rmdir /s /q 0001000148415445v1792 
 if %percent%==99 rmdir /s /q IOSPatcher
 if %percent%==99 rmdir /s /q EVCPatcher
+if %percent%==99 rmdir /s /q NCPatcher
 if %percent%==99 del /q 00000001.app
+if %percent%==99 del /q 00000001_NC.app
+
 
 if %percent%==100 goto 2_4
 ping localhost -n 1 >NUL
@@ -1966,7 +2327,21 @@ if %timeouterror%==1 ping localhost -n 2 >NUL
 set /a exiting=%exiting%-1
 goto end1
 
+:troubleshooting_auto_tool
+if "%modul%"=="Renaming files [Delete everything except RiiConnect24Patcher.bat]" set tempgotonext=2_2&set /a troubleshoot_auto_tool_notification=1& goto troubleshooting_5
+
+goto troubleshooting_auto_tool
+
+
+
+
+set /a modul=0
+goto error_patching
+
+
+
 :error_patching
+if "%modul%"=="Renaming files [Delete everything except RiiConnect24Patcher.bat]" goto troubleshooting_auto_tool
 cls
 echo %header%                                                                
 echo              `..````                                                  
@@ -2016,24 +2391,187 @@ if %tempiospatcher%==1 echo Please copy IOS31.wad and IOS80.wad inside WAD folde
 if %tempiospatcher%==1 echo.
 if %tempevcpatcher%==1 echo --- Patching Everybody Votes Channel Complete ---
 if %tempevcpatcher%==1 echo Please copy Everybody Votes Channel.wad inside WAD folder to your Wii SD Card.
+
+if %tempncpatcher%==1 echo.
+if %tempncpatcher%==1 echo --- Downloading Patching Nintendo Channel Complete ---
+if %tempncpatcher%==1 echo Please copy Nintendo Channel.wad inside WAD folder to your Wii SD Card.
+if %tempncpatcher%==1 echo.
 if %tempevcpatcher%==1 echo.
 if %tempsdcardapps%==1 echo --- Downloading Apps Complete ---
 if %tempsdcardapps%==1 echo Please copy the apps folder to your Wii SD Card.
 if %tempsdcardapps%==1 echo.
 
+
 echo Please choose what you want to patch.
 echo.
 echo 1. Patch RiiConnect IOS 31 and IOS 80
 echo 2. Patch Everybody Votes Channel
-echo 3. Download Wii Mod Lite and Mail Patcher
+echo 3. Patch Nintendo Channel
+echo 4. Download Wii Mod Lite and Mail Patcher
 echo R. Return to previous menu
 echo.
 set /p s=Choose: 
 if %s%==1 goto 3_iospatch
 if %s%==2 goto 3_evc_patch
-if %s%==3 goto 3_download
+if %s%==3 goto 3_nc_patch
+if %s%==4 goto 3_download
 if %s%==r goto 1
 if %s%==R goto 1
+goto 2_manual
+
+
+:3_nc_patch
+cls
+echo.
+echo %header%
+echo ---------------------------------------------------------------------------------------------------------------------------
+echo  [*] Nintendo Channel Region
+echo.
+echo Which region should I patch?
+echo.
+echo 1. Europe
+echo 2. USA
+set /p s=Choose: 
+if %s%==1 set /a evcregion=1& goto 3_nc_patch_2
+if %s%==2 set /a evcregion=2& goto 3_nc_patch_2
+goto 3_nc_patch
+
+
+:3_nc_patch_2
+cls
+echo.
+echo %header%
+echo ---------------------------------------------------------------------------------------------------------------------------
+echo  [*] Patching Nintnedo Channel... this can take some time.
+
+
+if not exist NCPatcher/patch md NCPatcher\patch
+if not exist NCPatcher/dwn md NCPatcher\dwn
+if not exist NCPatcher/dwn/0001000148415450v1792 md NCPatcher\dwn\0001000148415450v1792
+if not exist NCPatcher/dwn/0001000148415445v1792 md NCPatcher\dwn\0001000148415445v1792
+if not exist NCPatcher/pack md NCPatcher\pack
+if not exist "NCPatcher/patch/Europe.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/patch/Europe.delta"', '"NCPatcher/patch/Europe.delta"')"
+set /a temperrorlev=%errorlevel%
+set modul=Downloading Europe Delta [NC]
+if not %temperrorlev%==0 goto error_patching
+
+if not exist "NCPatcher/patch/USA.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/patch/USA.delta"', 'NCPatcher/patch/USA.delta"')"
+set /a temperrorlev=%errorlevel%
+set modul=Downloading USA Delta [NC]
+if not %temperrorlev%==0 goto error_patching
+
+if not exist "NCPatcher/NUS_Downloader_Decrypt.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/NUS_Downloader_Decrypt.exe"', 'NCPatcher/NUS_Downloader_Decrypt.exe"')"
+set /a temperrorlev=%errorlevel%
+set modul=Downloading Decrypter
+if not %temperrorlev%==0 goto error_patching
+
+if not exist "NCPatcher/patch/xdelta3.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/patch/xdelta3.exe"', 'NCPatcher/patch/xdelta3.exe"')"
+set /a temperrorlev=%errorlevel%
+set modul=Downloading xdelta3.exe
+if not %temperrorlev%==0 goto error_patching
+
+if not exist "NCPatcher/pack/libWiiSharp.dll" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/pack/libWiiSharp.dll"', 'NCPatcher/pack/libWiiSharp.dll"')"
+set /a temperrorlev=%errorlevel%
+set modul=Downloading libWiiSharp.dll
+if not %temperrorlev%==0 goto error_patching
+
+if not exist "NCPatcher/pack/Sharpii.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/pack/Sharpii.exe"', 'NCPatcher/pack/Sharpii.exe"')"
+set /a temperrorlev=%errorlevel%
+set modul=Downloading Sharpii.exe
+if not %temperrorlev%==0 goto error_patching
+
+if not exist "NCPatcher/dwn/Sharpii.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/dwn/Sharpii.exe"', 'NCPatcher/dwn/Sharpii.exe"')"
+set /a temperrorlev=%errorlevel%
+set modul=Downloading Sharpii.exe
+if not %temperrorlev%==0 goto error_patching
+
+if not exist "NCPatcher/dwn/libWiiSharp.dll" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/dwn/libWiiSharp.dll"', 'NCPatcher/dwn/libWiiSharp.dll"')"
+set /a temperrorlev=%errorlevel%
+set modul=Downloading libWiiSharp.dll
+if not %temperrorlev%==0 goto error_patching
+
+if not exist "NCPatcher/dwn/0001000148415445v1792/cetk" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/dwn/0001000148415445v1792/cetk"', 'NCPatcher/dwn/0001000148415445v1792/cetk"')"
+set /a temperrorlev=%errorlevel%
+set modul=Downloading USA CETK
+if not %temperrorlev%==0 goto error_patching
+
+if not exist "NCPatcher/dwn/0001000148415450v1792/cetk" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/dwn/0001000148415450v1792/cetk"', 'NCPatcher/dwn/0001000148415450v1792/cetk"')"
+set /a temperrorlev=%errorlevel%
+set modul=Downloading EUR CETK
+if not %temperrorlev%==0 goto error_patching
+
+::Patching
+
+if not exist WAD md WAD
+if not exist 0001000148415450v1792 md 0001000148415450v1792
+if not exist 0001000148415445v1792 md 0001000148415445v1792
+if not exist 0001000148415450v1792\cetk copy /y "NCPatcher\dwn\0001000148415450v1792\cetk" "0001000148415450v1792\cetk"
+
+if not exist 0001000148415445v1792\cetk copy /y "NCPatcher\dwn\0001000148415445v1792\cetk" "0001000148415445v1792\cetk"
+
+::USA
+if %evcregion%==2 call NCPatcher\dwn\sharpii.exe NUSD -ID 0001000148415445 -v 1792 -encrypt
+::PAL
+if %evcregion%==1 call NCPatcher\dwn\sharpii.exe NUSD -ID 0001000148415450 -v 1792 -encrypt >NUL
+
+set /a temperrorlev=%errorlevel%
+set modul=Downloading NC
+if not %temperrorlev%==0 goto error_patching
+
+if %evcregion%==1 copy /y "NCPatcher\NUS_Downloader_Decrypt.exe" "0001000148415450v1792"
+if %evcregion%==2 copy /y "NCPatcher\NUS_Downloader_Decrypt.exe" "0001000148415445v1792"
+set /a temperrorlev=%errorlevel%
+set modul=Copying NDC.exe
+if not %temperrorlev%==0 goto error_patching
+
+if %evcregion%==1 ren "0001000148415450v1792\tmd.1792" "tmd"
+if %evcregion%==2 ren "0001000148415445v1792\tmd.1792" "tmd"
+
+set /a temperrorlev=%errorlevel%
+set modul=Renaming files
+if not %temperrorlev%==0 goto error_patching
+
+if %evcregion%==1 cd 0001000148415450v1792
+if %evcregion%==1 call NUS_Downloader_Decrypt.exe >NUL
+if %evcregion%==2 cd 0001000148415445v1792
+if %evcregion%==2 call NUS_Downloader_Decrypt.exe >NUL
+set /a temperrorlev=%errorlevel%
+set modul=Decrypter error
+if not %temperrorlev%==0 cd..& goto error_patching
+cd..
+
+if %evcregion%==1 move /y "0001000148415450v1792\HATP.wad" "NCPatcher\pack"
+if %evcregion%==2 move /y "0001000148415445v1792\HATE.wad" "NCPatcher\pack"
+set /a temperrorlev=%errorlevel%
+set modul=move.exe
+if not %temperrorlev%==0 goto error_patching
+
+if %evcregion%==1 call NCPatcher\pack\Sharpii.exe WAD -u NCPatcher\pack\HATP.wad NCPatcher\pack\unencrypted >NUL
+if %evcregion%==2 call NCPatcher\pack\Sharpii.exe WAD -u NCPatcher\pack\HATE.wad NCPatcher\pack\unencrypted >NUL
+
+move /y "NCPatcher\pack\unencrypted\00000001.app" "00000001_NC.app"
+set /a temperrorlev=%errorlevel%
+set modul=move.exe
+if not %temperrorlev%==0 goto error_patching
+
+if %evcregion%==1 call NCPatcher\patch\xdelta3.exe -f -d -s 00000001_NC.app NCPatcher\patch\Europe.delta NCPatcher\pack\unencrypted\00000001.app
+if %evcregion%==2 call NCPatcher\patch\xdelta3.exe -f -d -s 00000001_NC.app NCPatcher\patch\USA.delta NCPatcher\pack\unencrypted\00000001.app
+set /a temperrorlev=%errorlevel%
+set modul=xdelta.exe NC
+if not %temperrorlev%==0 goto error_patching
+
+if %evcregion%==1 call NCPatcher\pack\Sharpii.exe WAD -p "NCPatcher\pack\unencrypted" "WAD\Nintendo Channel RiiConnect24 Europe" -f 
+if %evcregion%==2 call NCPatcher\pack\Sharpii.exe WAD -p "NCPatcher\pack\unencrypted" "WAD\Nintendo Channel RiiConnect24 USA" -f
+set /a temperrorlev=%errorlevel%
+set modul=Packing NC WAD
+if not %temperrorlev%==0 goto error_patching
+
+rmdir /s /q "NCPatcher"
+del /q 00000001_NC.app
+rmdir /s /q 0001000148415450v1792
+rmdir /s /q 0001000148415445v1792 
+
+set /a tempncpatcher=1
 goto 2_manual
 
 :3_iospatch

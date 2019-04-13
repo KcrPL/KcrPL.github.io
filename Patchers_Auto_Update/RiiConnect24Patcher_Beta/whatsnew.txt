@@ -1,3 +1,10 @@
+1.0.8 [BETA]
+- Added `Troubleshooting` menu. It has some tools that can help you fix/detect few problems.
+- Background/Test Color value will be now saved to a file and loaded upon next restart.
+- Fixed `Renaming files` error. The patcher will automatically recover after detecting the error.
+- Added "exception handlers" for few errors.
+- [STILL WORKING ON] Added failsafe for failing updates.
+
 1.0.6 [BETA]
 - Optimized speed of patching.
 - Added support for switching to beta branch from stable and to stable from beta. This way we can test if upcoming features of our patcher are ready to be released as production ready.

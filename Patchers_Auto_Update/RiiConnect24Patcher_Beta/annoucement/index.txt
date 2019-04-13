@@ -1,8 +1,6 @@
-Welcome to the RiiConnect24 Online Annoucement Server!
-Here, you will be able to check service status, progress with RiiConnect24 and also get some useful links!
+----------- RiiConnect24 Patcher Beta ----------- 
 
-The annoucement server on beta is disabled. Please switch to Stable branch and please access annoucement server from there.
+	Annoucement server is not available on [BETA] Branch.
+	Please switch to [STABLE].
 
-This will only be used for emergency or for important updates.
-
-1. Disconnect and go back to main menu.
+1. Disconnect and go to main menu
