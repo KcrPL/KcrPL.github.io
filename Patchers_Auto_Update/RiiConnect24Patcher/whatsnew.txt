@@ -1,3 +1,11 @@
+1.0.8 
+	First version to go through beta testing phase.
+- Added `Troubleshooting` menu. It has some tools that can help you fix/detect few problems.
+- Background/Test Color value will be now saved to a file and loaded upon next restart.
+- Fixed `Renaming files` error. The patcher will automatically recover after detecting the error.
+- Added "exception handlers" for few errors.
+
+
 ...1.0.7!
 - The time has come! Nintendo Channel is here! You can now patch it using the automatic patching method and through the manual patching menu. Go, check it out!
 - Some misspelling fixes

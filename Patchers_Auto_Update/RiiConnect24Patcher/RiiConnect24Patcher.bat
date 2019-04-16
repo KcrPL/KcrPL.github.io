@@ -5,10 +5,10 @@ echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: RiiConnect24 Patcher for Windows
-set version=1.0.7
+set version=1.0.8
 :: AUTHORS: KcrPL, Larsenv, Apfel
 :: ***************************************************************************
-:: Copyright (c) 2018 KcrPL, RiiConnect24 and it's (Lead) Developers
+:: Copyright (c) 2019 KcrPL, RiiConnect24 and it's (Lead) Developers
 :: ===========================================================================
 
 if exist temp.bat del /q temp.bat
@@ -30,11 +30,14 @@ set /a tempncpatcher=0
 set /a tempiospatcher=0
 set /a tempevcpatcher=0
 set /a tempsdcardapps=0
+set /a troubleshoot_auto_tool_notification=0
+set sdcard=NUL
+set tempgotonext=begin_main
 :: Window Title
 if %beta%==0 title RiiConnect24 Patcher v%version% Created by @KcrPL, @Larsenv, @Apfel
 if %beta%==1 title RiiConnect24 Patcher v%version% [BETA] Created by @KcrPL, @Larsenv, @Apfel
-set last_build=2018/02/10
-set at=12:30AM
+set last_build=2018/04/16
+set at=11:50PM
 if exist "C:\Users\%username%\Desktop\RiiConnect24Patcher.txt" goto debug_load
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
@@ -43,7 +46,7 @@ if exist "C:\Users\%username%\Desktop\RiiConnect24Patcher.txt" goto debug_load
 :: FilesHostedOn - The website and path to where the files are hosted. WARNING! DON'T END WITH "/"
 :: MainFolder/TempStorage - folder that is used to keep version.txt and whatsnew.txt. These two files are deleted every startup but if offlinestorage will be set 1, they won't be deleted.
 set /a Update_Activate=1
-set /a offlinestorage=0
+set /a offlinestorage=0 
 if %beta%==0 set FilesHostedOn=https://raw.githubusercontent.com/KcrPL/KcrPL.github.io/master/Patchers_Auto_Update/RiiConnect24Patcher
 if %beta%==1 set FilesHostedOn=https://raw.githubusercontent.com/KcrPL/KcrPL.github.io/master/Patchers_Auto_Update/RiiConnect24Patcher_Beta
 
@@ -72,8 +75,14 @@ if exist "%TempStorage%\checkforaccess.txt" del /q "%TempStorage%\checkforaccess
 :: Trying to prevent running from OS that is not Windows.
 if not "%os%"=="Windows_NT" goto not_windows_nt
 
+:: Load background color from file if it exists
+if exist "%TempStorage%\background_color.txt" set /p tempcolor=<"%TempStorage%\background_color.txt"
+if exist "%TempStorage%\background_color.txt" color %tempcolor%
+
+:: Check for SD Card
 echo.
-echo Starting up done! No errors.
+echo .. Checking for SD Card
+goto detect_sd_card
 goto begin_main
 :not_windows_nt
 cls
@@ -100,12 +109,13 @@ echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN   1. Start
 echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd   2. Credits
 echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy   3. Access the online announcements server
 echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+   4. Settings
-echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+  Do you have problems or want to contact us?  
-echo             mmmmms smMMMMMMMMMmddMMmmNmNMMMMMMMMMMMM:  Mail us at support@riiconnect24.net
-echo            `mmmmmo hNMMMMMMMMMmddNMMMNNMMMMMMMMMMMMM.
+echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+   5. Troubleshooting
+echo             mmmmms smMMMMMMMMMmddMMmmNmNMMMMMMMMMMMM:  Do you have problems or want to contact us?  
+echo            `mmmmmo hNMMMMMMMMMmddNMMMNNMMMMMMMMMMMMM.  Mail us at support@riiconnect24.net
 echo            -mmmmm/ dNMMMMMMMMMNmddMMMNdhdMMMMMMMMMMN
-echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd
-echo            +mmmmN.-mNMMMMMMMMMNmmmmMMMMMMMMMMMMMMMMy
+if not %sdcard%==NUL echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd   Detected Wii SD Card: %sdcard%:\
+if %sdcard%==NUL echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd   Could not detect your Wii SD Card.
+echo            +mmmmN.-mNMMMMMMMMMNmmmmMMMMMMMMMMMMMMMMy   R. Refresh
 echo            smmmmm`/mMMMMMMMMMNNmmmmNMMMMNMMNMMMMMNmy.
 echo            hmmmmd`omMMMMMMMMMNNmmmNmMNNMmNNNNMNdhyhh.
 echo            mmmmmh ymMMMMMMMMMNNmmmNmNNNMNNMMMMNyyhhh`
@@ -143,7 +153,208 @@ if %s%==1 goto begin_main1
 if %s%==2 goto credits
 if %s%==3 goto annoucement_network_connect
 if %s%==4 goto settings_menu
+if %s%==5 goto troubleshooting_menu
+if %s%==r goto begin_main_refresh_sdcard
+if %s%==R goto begin_main_refresh_sdcard
+if %s%==restart goto script_start
+if %s%==exit exit
 goto begin_main
+
+:begin_main_refresh_sdcard
+set sdcard=NUL
+set tempgotonext=begin_main
+goto detect_sd_card
+
+:troubleshooting_menu
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo --- Troubleshooting tools ---
+echo These tools should help you diagnose some problems with the patcher and try to repair them automatically.
+echo.
+echo 1. Could not start PowerShell / Error while checking for updates
+echo 2. Could not detect SD Card.
+echo 3. Could not copy files to the SD Card.
+echo 4. Could not download core runtime files [`Downloading 06.80.delta / Downloading libWiiSharp.dll etc.`]
+echo 5. Renaming files error
+echo.
+echo R. Return to main menu
+echo.
+echo --- Some of these tools can be used while patching, allowing patcher to recover after a failure without user interraction ---
+echo.
+set /p s=Choose: 
+if %s%==r goto begin_main
+if %s%==R goto begin_main
+
+if %s%==1 goto troubleshooting_1
+if %s%==2 goto troubleshooting_2
+if %s%==3 goto troubleshooting_3
+if %s%==4 goto troubleshooting_4
+if %s%==5 goto troubleshooting_5
+goto troubleshooting_menu
+:troubleshooting_5
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Fixing - Renaming files error
+echo.
+echo [...] Flushing files
+rmdir /s /q 0001000148414A45v512>NUL
+rmdir /s /q 0001000148414A50v512>NUL
+rmdir /s /q 0001000148415450v1792>NUL
+rmdir /s /q 0001000148415445v1792>NUL
+rmdir /s /q IOSPatcher >NUL
+rmdir /s /q EVCPatcher >NUL
+rmdir /s /q NCPatcher>NUL
+del /q 00000001.app>NUL
+del /q 00000001_NC.app>NUL
+echo [OK] Flushing files
+
+goto troubleshooting_5_2
+:troubleshooting_5_2
+if "%tempgotonext%"=="2_2" goto 2_2
+echo.
+echo --- Testing completed ---
+pause
+goto troubleshooting_menu
+
+
+:troubleshooting_4
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Testing - Downloading files.
+echo.
+
+echo [...] Testing PowerShell
+powershell -c "[console]::beep(200,1)" 
+set /a temperrorlev=%errorlevel%
+
+if %temperrorlev%==0 echo [OK] Executing PowerShell commmand.
+if not %temperrorlev%==0 echo [Error] Testing failure. Please use the "Could not start PowerShell / Error while checking for updates" option.
+if not %temperrorlev%==0 goto troubleshooting_4_3
+
+:troubleshooting_4_2
+echo.
+call powershell -command (new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/version.txt"', '"%TempStorage%\version.txt"')
+set /a temperrorlev=%errorlevel%
+
+if %temperrorlev%==0 if %beta%==1 echo [OK] Connection to the server on branch [BETA]
+if %temperrorlev%==0 if %beta%==0 echo [OK] Connection to the server on branch [STABLE]
+
+if not %temperrorlev%==0 echo [Error] Connection to the server. Couldn't connect to the update server. Maybe it's down.
+if not %temperrorlev%==0 goto troubleshooting_4_3
+
+:troubleshooting_4_3
+echo.
+echo --- Testing completed ---
+pause
+goto troubleshooting_menu
+
+:troubleshooting_3
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Testing - Checking SD Card.
+echo.
+echo [...] Running scanning script.
+set tempgotonext=troubleshooting_3_2
+goto detect_sd_card
+:troubleshooting_3_2
+if %sdcard%==NUL echo [Error] Could not find SD Card. Please make sure that it's connected. If it is connected, make a folder called apps on it and try again.
+if %sdcard%==NUL goto troubleshooting_3_3
+
+if not %sdcard%==NUL echo [OK] SD Card found: drive letter [%sdcard%:\]. Drive opened for read/write access.
+echo.
+echo [...] Saving random text file to the SD Card.
+echo.
+echo %random% >>"%temp%\deleteME.txt"
+
+copy "%temp%\deleteME.txt" "%sdcard%:\" >NUL
+set temperrorlev=%errorlevel%
+if %temperrorlev%==0 echo [OK] File saved!
+if not %temperrorlev%==0 echo [Error] The file couldn't be saved. Looks like the drive is write protected. Unlock it and try again
+if not %temperrorlev%==0 goto troubleshooting_3_3
+
+if %temperrorlev%==0 del /q %sdcard%:\deleteME.txt
+if %temperrorlev%==0 del /q "%temp%\deleteME.txt"
+set /a temperrorlev=%errorlevel%
+
+if %temperrorlev%==0 echo [OK] File deleted!
+if not %temperrorlev%==0 echo [Error] Deleting file.
+if not %temperrorlev%==0 goto troubleshooting_3_3
+
+echo Everything is ok! Drive is enabled for read/write access.
+goto troubleshooting_3_3
+:troubleshooting_3_3
+echo.
+echo --- Testing completed ---
+pause
+goto troubleshooting_menu
+
+:troubleshooting_2
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Testing - Checking SD Card.
+echo.
+echo [...] Running scanning script.
+set tempgotonext=troubleshooting_2_2
+goto detect_sd_card
+:troubleshooting_2_2
+echo.
+if %sdcard%==NUL echo [Error] Could not find SD Card. Please make sure that it's connected. If it is connected, make a folder called apps on it and try again.
+if not %sdcard%==NUL echo [OK] SD Card found: drive letter [%sdcard%:\]. Drive opened for read access only.
+goto troubleshooting_2_3
+
+:troubleshooting_2_3
+echo.
+echo --- Testing completed ---
+pause
+goto troubleshooting_menu
+
+
+:troubleshooting_1
+set /a repeat_1=0
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Testing - PowerShell
+:troubleshooting_1_1
+powershell -c "[console]::beep(200,1)" 
+set /a temperrorlev=%errorlevel%
+if %repeat_1%==1 if %temperrorlev%==0 echo [OK] Executing PowerShell commmand.
+if %repeat_1%==1 if %temperrorlev%==0 goto troublehooting_1_4
+if %repeat_1%==1 if not %temperrorlev%==0 echo [Error] Testing failure.
+if %repeat_1%==1 if not %temperrorlev%==0 goto troubleshooting_1_4
+
+if %temperrorlev%==0 echo [OK] - Testing PowerShell command&goto troubleshooting_1_3
+if not %temperrorlev%==0 echo [Error] - Testing Powershell command&goto troubleshooting_1_2
+
+goto troubleshooting_1_3
+
+:troubleshooting_1_2
+taskkill /im powershell.exe /f /t>>NUL
+echo [OK] - Taskkilled PowerShell [at least tried to]
+set /a repeat_1=1
+goto troubleshooting_1_1
+
+:troubleshooting_1_3
+powershell -c "[console]::beep(500,1)" || echo [Error] - Executing PowerShell command&goto troubleshooting_1_4
+echo [OK] - Executing PowerShell command
+goto troubleshooting_1_4
+
+:troubleshooting_1_4
+echo.
+echo --- Testing completed ---
+pause
+goto troubleshooting_menu
 :settings_menu
 cls
 echo %header%
@@ -296,17 +507,24 @@ echo 7. Blue
 echo.
 echo E. Go back
 set /p s=Choose: 
-if %s%==1 color 07
-if %s%==2 color 70
-if %s%==3 color f0
-if %s%==4 color 6
-if %s%==5 color a
-if %s%==6 color c
-if %s%==7 color 3
+if %s%==1 set tempcolor=07&goto save_color
+if %s%==2 set tempcolor=70&goto save_color
+if %s%==3 set tempcolor=f0&goto save_color
+if %s%==4 set tempcolor=6&goto save_color
+if %s%==5 set tempcolor=a&goto save_color
+if %s%==6 set tempcolor=c&goto save_color
+if %s%==7 set tempcolor=3&goto save_color
 if %s%==e goto begin_main
 if %s%==E goto begin_main
 
 goto change_color
+:save_color
+if exist "%TempStorage%\background_color.txt" del /q "%TempStorage%\background_color.txt"
+color %tempcolor%
+echo %tempcolor%>>"%TempStorage%\background_color.txt"
+goto change_color
+
+
 :annoucement_network_1
 :: Display the page 
 cls
@@ -739,7 +957,7 @@ if %Update_Activate%==1 if %offlinestorage%==0 call powershell -command (new-obj
 	set /a temperrorlev=%errorlevel%
 
 set /a updateserver=1
-	::Bind error codes to errors here
+	::Bind exit codes to errors here
 	if not %temperrorlev%==0 set /a updateserver=0
 
 if exist "%TempStorage%\version.txt`" ren "%TempStorage%\version.txt`" "version.txt"
@@ -776,7 +994,7 @@ echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
 echo ------------------------------------------------------------------------------------------------------------------------------
 echo    /---\   An error has occurred. We couldn't run Powershell on your PC.
 echo   /     \  Please disable your antivirus, run RiiConnect24Patcher.bat as an administrator and try again.
-echo  /   !   \
+echo  /   !   \ Restarting your PC could also fix the problem.
 echo  ---------
 echo             If you are on an old system like Windows XP, please use our legacy IOS Patcher.
 echo             You can find IOS Patcher at https://github.com/RiiConnect24/IOS-Patcher/releases
@@ -1359,6 +1577,7 @@ if %s%==2 set /a sdcardstatus=0& set /a sdcard=NUL& goto 2_1_summary
 goto 2_1
 :detect_sd_card
 set sdcard=NUL
+set /a check=0
 :sd_a
 set /a check=0
 if exist A:\apps set /a check=%check%+1
@@ -1473,7 +1692,12 @@ goto sd_z
 set /a check=0
 if exist Z:\apps set /a check=%check%+1
 if %check%==1 set sdcard=Z
-goto %tempgotonext%
+call :%tempgotonext%
+echo.
+echo ---------------------------------------------
+echo There was an error while returning to script. Halting now. You will be returned to main menu.
+pause
+goto begin_main
 
 :2_1_summary
 cls
@@ -1571,7 +1795,11 @@ cls
 echo.
 echo %header%
 echo ---------------------------------------------------------------------------------------------------------------------------
-echo  [*] Patching... this can take some time
+echo  [*] Patching... this can take some time depending on the processing speed (CPU) of your computer.
+if %troubleshoot_auto_tool_notification%==1 echo :------------------------------------------------------------------------------------------------------------------------:
+if %troubleshoot_auto_tool_notification%==1 echo : Warning: There was an error while patching, but the patcher ran the troubleshooting tool that should automatically fix :
+if %troubleshoot_auto_tool_notification%==1 echo : the problem. The patching process has been restarted.                                                                  :
+if %troubleshoot_auto_tool_notification%==1 echo :------------------------------------------------------------------------------------------------------------------------:
 echo.
 echo Fun Fact: %funfact%
 echo.
@@ -2099,7 +2327,21 @@ if %timeouterror%==1 ping localhost -n 2 >NUL
 set /a exiting=%exiting%-1
 goto end1
 
+:troubleshooting_auto_tool
+if "%modul%"=="Renaming files [Delete everything except RiiConnect24Patcher.bat]" set tempgotonext=2_2&set /a troubleshoot_auto_tool_notification=1& goto troubleshooting_5
+
+goto troubleshooting_auto_tool
+
+
+
+
+set /a modul=0
+goto error_patching
+
+
+
 :error_patching
+if "%modul%"=="Renaming files [Delete everything except RiiConnect24Patcher.bat]" goto troubleshooting_auto_tool
 cls
 echo %header%                                                                
 echo              `..````                                                  
@@ -2119,9 +2361,9 @@ echo   /     \  There was an error while patching.
 echo  /   !   \ Error Code: %temperrorlev%
 echo  --------- Failing module: %modul% / %percent%
 echo.
-echo Consider turning off your antivirus temporarily.
-if %temperrorlev%==-532459699 echo Please check your internet connection.
-if %temperrorlev%==-2146232576 echo Please install latest .NET Framework, then try again.  
+echo TIP: Consider turning off your antivirus temporarily.
+if %temperrorlev%==-532459699 echo SOLUTION: Please check your internet connection.
+if %temperrorlev%==-2146232576 echo SOLUTION: Please install latest .NET Framework, then try again.  
 echo       Press any key to return to main menu.
 echo ---------------------------------------------------------------------------------------------------------------------------
 echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-                  
