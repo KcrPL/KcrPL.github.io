@@ -1,3 +1,6 @@
+1.0.9 [BETA]
+- Changed the way how files are downloaded. Changed from Powershell to Curl. This should fix patching being stuck at 3%.
+
 1.0.8 [BETA]
 - Added `Troubleshooting` menu. It has some tools that can help you fix/detect few problems.
 - Background/Test Color value will be now saved to a file and loaded upon next restart.
