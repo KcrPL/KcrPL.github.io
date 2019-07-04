@@ -5,7 +5,7 @@ echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: RiiConnect24 Patcher for Windows
-set version=1.0.9
+set version=1.0.9-build1
 :: AUTHORS: KcrPL, Larsenv, Apfel
 :: ***************************************************************************
 :: Copyright (c) 2019 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -945,7 +945,7 @@ echo              `..````                                     :-----------------
 echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`    Downloading curl... Please wait.
 echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd   :-------------------------:
 echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs   
-echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+   File 1 [1.6MB] out of 1
+echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+   File 1 [3.5MB] out of 1
 echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:   100%% [----------]
 echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.
 echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN
@@ -1813,12 +1813,14 @@ set /p sdcard=
 goto 2_1_summary
 :2_2
 cls
+set /a troubleshoot_auto_tool_notification=0
 set /a temperrorlev=0
 set /a counter_done=0
 set /a percent=0
 set /a temperrorlev=0
 goto 2_3
 :random_funfact
+
 set /a funfact_number=%random% %% (1 + 30)
 if /i %funfact_number% LSS 1 goto random_funfact
 if /i %funfact_number% GTR 30 goto random_funfact
@@ -1872,11 +1874,13 @@ echo.
 echo %header%
 echo ---------------------------------------------------------------------------------------------------------------------------
 echo  [*] Patching... this can take some time depending on the processing speed (CPU) of your computer.
+
 if %troubleshoot_auto_tool_notification%==1 echo :------------------------------------------------------------------------------------------------------------------------:
 if %troubleshoot_auto_tool_notification%==1 echo : Warning: There was an error while patching, but the patcher ran the troubleshooting tool that should automatically fix :
 if %troubleshoot_auto_tool_notification%==1 echo : the problem. The patching process has been restarted.                                                                  :
 if %troubleshoot_auto_tool_notification%==1 echo :------------------------------------------------------------------------------------------------------------------------:
 echo.
+
 echo Fun Fact: %funfact%
 echo.
 echo    Progress:
@@ -1897,12 +1901,12 @@ if %percent%==1 if not exist IOSPatcher md IOSPatcher
 if %percent%==1 if not exist "IOSPatcher/00000006-31.delta" curl -s -S --insecure "%FilesHostedOn%/IOSPatcher/00000006-31.delta" --output IOSPatcher/00000006-31.delta
 if %percent%==1 set /a temperrorlev=%errorlevel%
 if %percent%==1 set modul=Downloading 06-31.delta
-if %percent%==1 if not %temperrorlev%==0 pause
+if %percent%==1 if not %temperrorlev%==0 goto error_patching
 
 if %percent%==1 if not exist "IOSPatcher/00000006-80.delta" curl -s -S --insecure "%FilesHostedOn%/IOSPatcher/00000006-80.delta" --output IOSPatcher/00000006-80.delta
 if %percent%==1 set /a temperrorlev=%errorlevel%
 if %percent%==1 set modul=Downloading 06-80.delta
-if %percent%==1 if not %temperrorlev%==0 pause
+if %percent%==1 if not %temperrorlev%==0 goto error_patching
 
 if %percent%==2 if not exist "IOSPatcher/00000006-80.delta" curl -s -S --insecure "%FilesHostedOn%/IOSPatcher/00000006-80.delta" --output IOSPatcher/00000006-80.delta
 if %percent%==2 set /a temperrorlev=%errorlevel%
@@ -1954,7 +1958,7 @@ if %percent%==8 set /a temperrorlev=%errorlevel%
 if %percent%==8 set modul=Downloading xdelta3.exe
 if %percent%==8 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==8 if not exist "EVCPatcher/pack/libWiiSharp.dll" curl -s -S --insecure "%FilesHostedOn%/EVCPatcher/pack/libWiiSharp.dll" --output EVCPatcher/pack/libWiiSharp.dll
+if %percent%==8 if not exist "EVCPatcher/pack/libWiiSharp.dll" curl -s -S --insecure "%FilesHostedOn%/EVCPatcher/pack/libWiiSharp.dll" --output "EVCPatcher/pack/libWiiSharp.dll"
 if %percent%==8 set /a temperrorlev=%errorlevel%
 if %percent%==8 set modul=Downloading libWiiSharp.dll
 if %percent%==8 if not %temperrorlev%==0 goto error_patching
@@ -1963,7 +1967,7 @@ if %percent%==8 if not exist "EVCPatcher/pack/Sharpii.exe" curl -s -S --insecure
 if %percent%==8 set /a temperrorlev=%errorlevel%
 if %percent%==8 set modul=Downloading Sharpii.exe
 if %percent%==8 if not %temperrorlev%==0 goto error_patching
-
+	
 if %percent%==8 if not exist "EVCPatcher/dwn/Sharpii.exe" curl -s -S --insecure "%FilesHostedOn%/EVCPatcher/dwn/Sharpii.exe" --output EVCPatcher/dwn/Sharpii.exe
 if %percent%==8 set /a temperrorlev=%errorlevel%
 if %percent%==8 set modul=Downloading Sharpii.exe
@@ -1983,6 +1987,7 @@ if %percent%==10 if not exist "EVCPatcher/dwn/0001000148414A50v512/cetk" curl -s
 if %percent%==10 set /a temperrorlev=%errorlevel%
 if %percent%==10 set modul=Downloading EUR CETK
 if %percent%==10 if not %temperrorlev%==0 goto error_patching
+
 
 ::NC
 
@@ -2011,7 +2016,7 @@ if %percent%==12 set /a temperrorlev=%errorlevel%
 if %percent%==12 set modul=Downloading xdelta3.exe
 if %percent%==12 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==13 if not exist "NCPatcher/pack/libWiiSharp.dll" curl -s -S --insecure %FilesHostedOn%/NCPatcher/pack/libWiiSharp.dll" --output NCPatcher/pack/libWiiSharp.dll
+if %percent%==13 if not exist "NCPatcher/pack/libWiiSharp.dll" curl -s -S --insecure "%FilesHostedOn%/NCPatcher/pack/libWiiSharp.dll" --output NCPatcher/pack/libWiiSharp.dll
 if %percent%==13 set /a temperrorlev=%errorlevel%
 if %percent%==13 set modul=Downloading libWiiSharp.dll
 if %percent%==13 if not %temperrorlev%==0 goto error_patching
@@ -2350,8 +2355,9 @@ if %percent%==99 del /q 00000001_NC.app
 if %percent%==100 goto 2_4
 ping localhost -n 1 >NUL
 
-if %percent%==0 goto random_funfact
-if %percent%==50 goto random_funfact
+if "%percent%"=="0" call :random_funfact
+if "%percent%"=="50" call :random_funfact
+
 set /a percent=%percent%+1
 goto 2_3
 :2_4
