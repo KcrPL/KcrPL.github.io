@@ -5,7 +5,7 @@ echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: RiiConnect24 Patcher for Windows
-set version=1.0.9-build2
+set version=1.0.9
 :: AUTHORS: KcrPL, Larsenv, Apfel
 :: ***************************************************************************
 :: Copyright (c) 2019 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -20,7 +20,7 @@ mode %mode%
 set s=NUL
 
 ::Beta
-set /a beta=1
+set /a beta=0
 ::This variable controls if the current version of the patcher is in the stable or beta branch. It will change updating path.
 :: 0 = stable  1 = beta
 
@@ -36,8 +36,8 @@ set tempgotonext=begin_main
 :: Window Title
 if %beta%==0 title RiiConnect24 Patcher v%version% Created by @KcrPL, @Larsenv, @Apfel
 if %beta%==1 title RiiConnect24 Patcher v%version% [BETA] Created by @KcrPL, @Larsenv, @Apfel
-set last_build=2018/07/04
-set at=10:20PM
+set last_build=2018/07/06
+set at=13:53
 if exist "C:\Users\%username%\Desktop\RiiConnect24Patcher.txt" goto debug_load
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
@@ -82,6 +82,8 @@ if exist "%TempStorage%\background_color.txt" color %tempcolor%
 :: Check for SD Card
 echo.
 echo .. Checking for SD Card
+echo    Can you see an error box? Press `Continue`.
+echo    There's nothing to worry about, everything is going ok. This error is normal.
 goto detect_sd_card
 goto begin_main
 :not_windows_nt
@@ -239,7 +241,7 @@ if not %temperrorlev%==0 goto troubleshooting_4_3
 
 :troubleshooting_4_2
 echo.
-call powershell -command (new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/version.txt" --output %TempStorage%\version.txt"')
+call curl -s -S --insecure "%FilesHostedOn%/version.txt" --output "%TempStorage%\version.txt"
 set /a temperrorlev=%errorlevel%
 
 if %temperrorlev%==0 if %beta%==1 echo [OK] Connection to the server on branch [BETA]
@@ -389,18 +391,18 @@ goto settings_menu
 set /a stable_available_check=1
 
 	if exist "%TempStorage%\version.txt" del "%TempStorage%\version.txt" /q
-	call powershell -command (new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn_Stable%/version.txt" --output %TempStorage%\version.txt"')
+	call curl -s -S --insecure "%FilesHostedOn_Stable%/version.txt" --output "%TempStorage%\version.txt"
 	echo 1
 	set /a temperrorlev=%errorlevel%
 		if not %temperrorlev%==0 set /a stable_available_check=0&goto switch_to_stable
 	if exist "%TempStorage%\version.txt" set /p updateversion_stable=<"%TempStorage%\version.txt"
-	goto switch_to_stable
+	goto switch_to_stable	
 
 :change_updating_branch_beta
 set /a beta_available_check=0
 	
 	if exist "%TempStorage%\beta_available.txt" del "%TempStorage%\beta_available.txt" /q
-	call powershell -command (new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn_Beta%/beta_available.txt" --output %TempStorage%\beta_available.txt"')
+	call curl -s -S --insecure "%FilesHostedOn_Beta%/beta_available.txt" --output "%TempStorage%\beta_available.txt"
 		set /a temperrorlev=%errorlevel%
 		if not %temperrorlev%==0 set /a beta_available_check=2&goto switch_to_beta
 	if exist "%TempStorage%\beta_available.txt" set /p beta_available=<"%TempStorage%\beta_available.txt"
@@ -411,7 +413,7 @@ set /a beta_available_check=0
 	if %beta_available_check%==0 goto switch_to_beta
 	
 	if exist "%TempStorage%\version.txt" del "%TempStorage%\version.txt" /q
-	call powershell -command (new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn_Beta%/version.txt" --output %TempStorage%\version.txt"')
+	call curl -s -S --insecure "%FilesHostedOn_Beta%/version.txt" --output "%TempStorage%\version.txt"
 		set /a temperrorlev=%errorlevel%
 		if not %temperrorlev%==0 set /a beta_available_check=2&goto switch_to_beta
 	if exist "%TempStorage%\version.txt" set /p updateversion_beta=<"%TempStorage%\version.txt"
@@ -1065,8 +1067,8 @@ if %offlinestorage%==0 if exist "%TempStorage%\whatsnew.txt" del "%TempStorage%\
 if not exist "%TempStorage%" md "%TempStorage%"
 :: Commands to download files from server.
 
-if %Update_Activate%==1 if %offlinestorage%==0 call curl -s -S --insecure "%FilesHostedOn%/whatsnew.txt" --output %TempStorage%\whatsnew.txt"
-if %Update_Activate%==1 if %offlinestorage%==0 call curl -s -S --insecure "%FilesHostedOn%/version.txt" --output %TempStorage%\version.txt"')
+if %Update_Activate%==1 if %offlinestorage%==0 call curl -s -S --insecure "%FilesHostedOn%/whatsnew.txt" --output "%TempStorage%\whatsnew.txt"
+if %Update_Activate%==1 if %offlinestorage%==0 call curl -s -S --insecure "%FilesHostedOn%/version.txt" --output "%TempStorage%\version.txt"
 	set /a temperrorlev=%errorlevel%
 
 set /a updateserver=1
@@ -1090,6 +1092,9 @@ if %Update_Activate%==1 if %updateavailable%==1 goto update_notice
 
 goto 1
 :powershell_error
+
+:: // Deprecated \\
+
 cls
 echo %header%
 echo.                                                                       
@@ -1855,6 +1860,14 @@ set /a temperrorlev=0
 set /a counter_done=0
 set /a percent=0
 set /a temperrorlev=0
+
+::
+set /a progress_downloading=0
+set /a progress_ios=0
+set /a progress_evc=0
+set /a progress_nc=0
+set /a progress_finishing=0
+
 goto 2_3
 :random_funfact
 
@@ -1932,6 +1945,19 @@ if %counter_done%==7 echo :-------   : %percent% %%
 if %counter_done%==8 echo :--------  : %percent% %%
 if %counter_done%==9 echo :--------- : %percent% %%
 if %counter_done%==10 echo :----------: %percent% %%
+echo.
+if %progress_downloading%==0 echo [ ] Downloading files
+if %progress_downloading%==1 echo [X] Downloading files
+if %progress_ios%==0 echo [ ] Patching IOS's
+if %progress_ios%==1 echo [X] Patching IOS's
+if %progress_evc%==0 echo [ ] Everybody Votes Channel
+if %progress_evc%==1 echo [X] Everybody Votes Channel
+if %progress_nc%==0 echo [ ] Nintendo Channel
+if %progress_nc%==1 echo [X] Nintendo Channel
+if %progress_finishing%==0 echo [ ] Finishing...
+if %progress_finishing%==1 echo [X] Finishing...
+
+
 
 ::Download files
 if %percent%==1 if not exist IOSPatcher md IOSPatcher
@@ -2143,6 +2169,7 @@ if %percent%==21 if not %temperrorlev%==0 goto error_patching
 
 if %percent%==22 if not exist "EVCPatcher/patch/USA.delta" curl -s -S --insecure "%FilesHostedOn%/EVCPatcher/patch/USA.delta" --output EVCPatcher/patch/USA.delta
 if %percent%==22 set /a temperrorlev=%errorlevel%
+if %percent%==22 set /a progress_downloading=1
 if %percent%==22 set modul=Downloading Wii Mod Lite
 if %percent%==22 if not %temperrorlev%==0 goto error_patching
 
@@ -2242,6 +2269,7 @@ if %percent%==43 move "IOSPatcher\WAD\IOS31.wad" "WAD"
 if %percent%==43 move "IOSPatcher\WAD\IOS80.wad" "WAD"
 
 if %percent%==44 if exist IOSPatcher rmdir /s /q IOSPatcher
+if %percent%==44 set /a progress_ios=1
 ::EVC Patcher
 
 if %percent%==50 if not exist 0001000148414A50v512 md 0001000148414A50v512
@@ -2303,6 +2331,7 @@ if %percent%==67 if %evcregion%==1 call EVCPatcher\pack\Sharpii.exe WAD -p "EVCP
 if %percent%==67 if %evcregion%==2 call EVCPatcher\pack\Sharpii.exe WAD -p "EVCPatcher\pack\unencrypted" "WAD\Everybody Votes Channel RiiConnect24 USA" -f
 if %percent%==67 set /a temperrorlev=%errorlevel%
 if %percent%==67 set modul=Packing EVC WAD
+if %percent%==67 set /a progress_evc=1
 if %percent%==67 if not %temperrorlev%==0 goto error_patching
 
 
@@ -2369,6 +2398,7 @@ if %percent%==86 if %evcregion%==2 call NCPatcher\pack\Sharpii.exe WAD -p "NCPat
 if %percent%==86 set /a temperrorlev=%errorlevel%
 if %percent%==86 set modul=Packing NC WAD
 if %percent%==86 if not %temperrorlev%==0 goto error_patching
+if %percent%==86 set /a progress_nc=1
 
 ::Final commands
 if %percent%==94 if not %sdcard%==NUL set /a errorcopying=0
@@ -2387,10 +2417,10 @@ if %percent%==99 rmdir /s /q EVCPatcher
 if %percent%==99 rmdir /s /q NCPatcher
 if %percent%==99 del /q 00000001.app
 if %percent%==99 del /q 00000001_NC.app
-
+if %percent%==99 set /a progress_finishing=1
 
 if %percent%==100 goto 2_4
-ping localhost -n 1 >NUL
+::ping localhost -n 1 >NUL
 
 if "%percent%"=="0" call :random_funfact
 if "%percent%"=="50" call :random_funfact
@@ -2448,7 +2478,6 @@ goto end1
 
 :troubleshooting_auto_tool
 if "%modul%"=="Renaming files [Delete everything except RiiConnect24Patcher.bat]" set tempgotonext=2_2&set /a troubleshoot_auto_tool_notification=1& goto troubleshooting_5
-
 if "%modul%"=="Decrypter error" set tempgotonext=2_2&set /a troubleshoot_auto_tool_notification=1& goto troubleshooting_5
 if "%modul%"=="move.exe" set tempgotonext=2_2&set /a troubleshoot_auto_tool_notification=1& goto troubleshooting_5
 
@@ -2564,7 +2593,7 @@ cls
 echo.
 echo %header%
 echo ---------------------------------------------------------------------------------------------------------------------------
-echo  [*] Patching Nintnedo Channel... this can take some time.
+echo  [*] Patching Nintendo Channel... this can take some time.
 
 
 if not exist NCPatcher/patch md NCPatcher\patch

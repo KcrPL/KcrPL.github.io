@@ -5,7 +5,7 @@ echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: RiiConnect24 Patcher for Windows
-set version=1.0.8
+set version=1.0.9
 :: AUTHORS: KcrPL, Larsenv, Apfel
 :: ***************************************************************************
 :: Copyright (c) 2019 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -36,8 +36,8 @@ set tempgotonext=begin_main
 :: Window Title
 if %beta%==0 title RiiConnect24 Patcher v%version% Created by @KcrPL, @Larsenv, @Apfel
 if %beta%==1 title RiiConnect24 Patcher v%version% [BETA] Created by @KcrPL, @Larsenv, @Apfel
-set last_build=2018/04/16
-set at=11:50PM
+set last_build=2018/07/06
+set at=13:53
 if exist "C:\Users\%username%\Desktop\RiiConnect24Patcher.txt" goto debug_load
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
@@ -82,6 +82,8 @@ if exist "%TempStorage%\background_color.txt" color %tempcolor%
 :: Check for SD Card
 echo.
 echo .. Checking for SD Card
+echo    Can you see an error box? Press `Continue`.
+echo    There's nothing to worry about, everything is going ok. This error is normal.
 goto detect_sd_card
 goto begin_main
 :not_windows_nt
@@ -239,7 +241,7 @@ if not %temperrorlev%==0 goto troubleshooting_4_3
 
 :troubleshooting_4_2
 echo.
-call powershell -command (new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/version.txt"', '"%TempStorage%\version.txt"')
+call curl -s -S --insecure "%FilesHostedOn%/version.txt" --output "%TempStorage%\version.txt"
 set /a temperrorlev=%errorlevel%
 
 if %temperrorlev%==0 if %beta%==1 echo [OK] Connection to the server on branch [BETA]
@@ -389,18 +391,18 @@ goto settings_menu
 set /a stable_available_check=1
 
 	if exist "%TempStorage%\version.txt" del "%TempStorage%\version.txt" /q
-	call powershell -command (new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn_Stable%/version.txt"', '"%TempStorage%\version.txt"')
+	call curl -s -S --insecure "%FilesHostedOn_Stable%/version.txt" --output "%TempStorage%\version.txt"
 	echo 1
 	set /a temperrorlev=%errorlevel%
 		if not %temperrorlev%==0 set /a stable_available_check=0&goto switch_to_stable
 	if exist "%TempStorage%\version.txt" set /p updateversion_stable=<"%TempStorage%\version.txt"
-	goto switch_to_stable
+	goto switch_to_stable	
 
 :change_updating_branch_beta
 set /a beta_available_check=0
 	
 	if exist "%TempStorage%\beta_available.txt" del "%TempStorage%\beta_available.txt" /q
-	call powershell -command (new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn_Beta%/beta_available.txt"', '"%TempStorage%\beta_available.txt"')
+	call curl -s -S --insecure "%FilesHostedOn_Beta%/beta_available.txt" --output "%TempStorage%\beta_available.txt"
 		set /a temperrorlev=%errorlevel%
 		if not %temperrorlev%==0 set /a beta_available_check=2&goto switch_to_beta
 	if exist "%TempStorage%\beta_available.txt" set /p beta_available=<"%TempStorage%\beta_available.txt"
@@ -411,7 +413,7 @@ set /a beta_available_check=0
 	if %beta_available_check%==0 goto switch_to_beta
 	
 	if exist "%TempStorage%\version.txt" del "%TempStorage%\version.txt" /q
-	call powershell -command (new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn_Beta%/version.txt"', '"%TempStorage%\version.txt"')
+	call curl -s -S --insecure "%FilesHostedOn_Beta%/version.txt" --output "%TempStorage%\version.txt"
 		set /a temperrorlev=%errorlevel%
 		if not %temperrorlev%==0 set /a beta_available_check=2&goto switch_to_beta
 	if exist "%TempStorage%\version.txt" set /p updateversion_beta=<"%TempStorage%\version.txt"
@@ -562,7 +564,7 @@ echo Please wait...
 echo We are connecting you to the server and downloading latest info.
 if exist "%TempStorage%\annoucement" rmdir "%TempStorage%\annoucement" /s /q
 if not exist "%TempStorage%\annoucement" md "%TempStorage%\annoucement"
-call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/index.txt"', '"%TempStorage%\annoucement\index.txt"')"
+call curl -s -S --insecure "%FilesHostedOn%/annoucement/index.txt" --output %TempStorage%\annoucement\index.txt
 set /a temperrorlev=%errorlevel%
 if not %temperrorlev%==0 goto annoucement_network_connectionerror
 
@@ -586,45 +588,45 @@ set action10=NUL
 ::howmanyactions - prevents trying to download too much files and waste time
 
 set /a howmanytodownload=10
-call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_howmanyactions.txt"', '"%TempStorage%\annoucement\%page%_howmanyactions.txt"')"
+call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_howmanyactions.txt" --output %TempStorage%\annoucement\%page%_howmanyactions.txt
 set /p howmanytodownload=<"%TempStorage%\annoucement\%page%_howmanyactions.txt"
 
-call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac1_comm.txt"', '"%TempStorage%\annoucement\%page%_ac1_comm.txt"')" >NUL
+call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac1_comm.txt" --output %TempStorage%\annoucement\%page%_ac1_comm.txt >NUL
 set /p action1=<"%TempStorage%\annoucement\%page%_ac1_comm.txt" >NUL
 if %howmanytodownload%==1 goto annoucement_network_1
 
-call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac2_comm.txt"', '"%TempStorage%\annoucement\%page%_ac2_comm.txt"')" >NUL
+call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac2_comm.txt" --output %TempStorage%\annoucement\%page%_ac2_comm.txt >NUL
 set /p action2=<"%TempStorage%\annoucement\%page%_ac2_comm.txt" >NUL
 if %howmanytodownload%==2 goto annoucement_network_1
-call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac3_comm.txt"', '"%TempStorage%\annoucement\%page%_ac3_comm.txt"')" >NUL
+call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac3_comm.txt" --output %TempStorage%\annoucement\%page%_ac3_comm.txt >NUL
 set /p action3=<"%TempStorage%\annoucement\%page%_ac3_comm.txt" >NUL
 if %howmanytodownload%==3 goto annoucement_network_1
 
-call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac4_comm.txt"', '"%TempStorage%\annoucement\%page%_ac4_comm.txt"')" >NUL
+call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac4_comm.txt" --output %TempStorage%\annoucement\%page%_ac4_comm.txt >NUL
 set /p action4=<"%TempStorage%\annoucement\%page%_ac4_comm.txt" >NUL
 if %howmanytodownload%==4 goto annoucement_network_1
 
-call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac5_comm.txt"', '"%TempStorage%\annoucement\%page%_ac5_comm.txt"')" >NUL
+call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac5_comm.txt" --output %TempStorage%\annoucement\%page%_ac5_comm.txt >NUL
 set /p action5=<"%TempStorage%\annoucement\%page%_ac5_comm.txt" >NUL
 if %howmanytodownload%==5 goto annoucement_network_1
 
-call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac6_comm.txt"', '"%TempStorage%\annoucement\%page%_ac6_comm.txt"')" >NUL
+call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac6_comm.txt" --output %TempStorage%\annoucement\%page%_ac6_comm.txt >NUL
 set /p action6=<"%TempStorage%\annoucement\%page%_ac6_comm.txt" >NUL
 if %howmanytodownload%==6 goto annoucement_network_1
 
-call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac7_comm.txt"', '"%TempStorage%\annoucement\%page%_ac7_comm.txt"')" >NUL
+call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac7_comm.txt" --output %TempStorage%\annoucement\%page%_ac7_comm.txt >NUL
 set /p action7=<"%TempStorage%\annoucement\%page%_ac7_comm.txt" >NUL
 if %howmanytodownload%==7 goto annoucement_network_1
 
-call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac8_comm.txt"', '"%TempStorage%\annoucement\%page%_ac8_comm.txt"')" >NUL
+call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac8_comm.txt" --output %TempStorage%\annoucement\%page%_ac8_comm.txt >NUL
 set /p action8=<"%TempStorage%\annoucement\%page%_ac8_comm.txt" >NUL
 if %howmanytodownload%==8 goto annoucement_network_1
 
-call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac9_comm.txt"', '"%TempStorage%\annoucement\%page%_ac9_comm.txt"')" >NUL
+call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac9_comm.txt" --output %TempStorage%\annoucement\%page%_ac9_comm.txt >NUL
 set /p action9=<"%TempStorage%\annoucement\%page%_ac9_comm.txt" >NUL
 if %howmanytodownload%==9 goto annoucement_network_1
 
-call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac10_comm.txt"', '"%TempStorage%\annoucement\%page%_ac10_comm.txt"')" >NUL
+call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac10_comm.txt" --output %TempStorage%\annoucement\%page%_ac10_comm.txt >NUL
 set /p action10=<"%TempStorage%\annoucement\%page%_ac10_comm.txt" >NUL
 if %howmanytodownload%==10 goto annoucement_network_1
 
@@ -647,7 +649,7 @@ goto annoucement_network_load
 set /a tempvar=0
 if not exist "%TempStorage%\annoucement\%page%.txt" set /a tempvar=1
 
-if %tempvar%==1 call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%.txt"', '"%TempStorage%\annoucement\%page%.txt"')"
+if %tempvar%==1 call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%.txt" --output %TempStorage%\annoucement\%page%.txt
 if %tempvar%==1 set /a temperrorlev=%errorlevel%
 if %tempvar%==1 if not %temperrorlev%==0 goto annoucement_network_404
 
@@ -663,46 +665,46 @@ set action9=NUL
 set action10=NUL
 
 set /a howmanytodownload=10
-if not exist "%TempStorage%\annoucement\%page%_howmanyactions.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_howmanyactions.txt"', '"%TempStorage%\annoucement\%page%_howmanyactions.txt"')"
+if not exist "%TempStorage%\annoucement\%page%_howmanyactions.txt" call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_howmanyactions.txt" --output %TempStorage%\annoucement\%page%_howmanyactions.txt
 set /p howmanytodownload=<"%TempStorage%\annoucement\%page%_howmanyactions.txt"
 
-if not exist "%TempStorage%\annoucement\%page%_ac1_comm.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac1_comm.txt"', '"%TempStorage%\annoucement\%page%_ac1_comm.txt"')"
+if not exist "%TempStorage%\annoucement\%page%_ac1_comm.txt" call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac1_comm.txt" --output %TempStorage%\annoucement\%page%_ac1_comm.txt
 set /p action1=<"%TempStorage%\annoucement\%page%_ac1_comm.txt
 if %howmanytodownload%==1 goto annoucement_network_1
 
-if not exist "%TempStorage%\annoucement\%page%_ac2_comm.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac2_comm.txt"', '"%TempStorage%\annoucement\%page%_ac2_comm.txt"')"
+if not exist "%TempStorage%\annoucement\%page%_ac2_comm.txt" call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac2_comm.txt" --output %TempStorage%\annoucement\%page%_ac2_comm.txt
 set /p action2=<"%TempStorage%\annoucement\%page%_ac2_comm.txt"
 if %howmanytodownload%==2 goto annoucement_network_1
 
-if not exist "%TempStorage%\annoucement\%page%_ac3_comm.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac3_comm.txt"', '"%TempStorage%\annoucement\%page%_ac3_comm.txt"')"
+if not exist "%TempStorage%\annoucement\%page%_ac3_comm.txt" call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac3_comm.txt" --output %TempStorage%\annoucement\%page%_ac3_comm.txt
 set /p action3=<"%TempStorage%\annoucement\%page%_ac3_comm.txt"
 if %howmanytodownload%==3 goto annoucement_network_1
 
-if not exist "%TempStorage%\annoucement\%page%_ac4_comm.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac4_comm.txt"', '"%TempStorage%\annoucement\%page%_ac4_comm.txt"')"
+if not exist "%TempStorage%\annoucement\%page%_ac4_comm.txt" call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac4_comm.txt" --output %TempStorage%\annoucement\%page%_ac4_comm.txt
 set /p action4=<"%TempStorage%\annoucement\%page%_ac4_comm.txt"
 if %howmanytodownload%==4 goto annoucement_network_1
 
-if not exist "%TempStorage%\annoucement\%page%_ac5_comm.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac5_comm.txt"', '"%TempStorage%\annoucement\%page%_ac5_comm.txt"')"
+if not exist "%TempStorage%\annoucement\%page%_ac5_comm.txt" call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac5_comm.txt" --output %TempStorage%\annoucement\%page%_ac5_comm.txt
 set /p action5=<"%TempStorage%\annoucement\%page%_ac5_comm.txt"
 if %howmanytodownload%==5 goto annoucement_network_1
 
-if not exist "%TempStorage%\annoucement\%page%_ac6_comm.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac6_comm.txt"', '"%TempStorage%\annoucement\%page%_ac6_comm.txt"')"
+if not exist "%TempStorage%\annoucement\%page%_ac6_comm.txt" call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac6_comm.txt" --output %TempStorage%\annoucement\%page%_ac6_comm.txt
 set /p action6=<"%TempStorage%\annoucement\%page%_ac6_comm.txt"
 if %howmanytodownload%==6 goto annoucement_network_1
 
-if not exist "%TempStorage%\annoucement\%page%_ac7_comm.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac7_comm.txt"', '"%TempStorage%\annoucement\%page%_ac7_comm.txt"')"
+if not exist "%TempStorage%\annoucement\%page%_ac7_comm.txt" call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac7_comm.txt" --output %TempStorage%\annoucement\%page%_ac7_comm.txt
 set /p action7=<"%TempStorage%\annoucement\%page%_ac7_comm.txt"
 if %howmanytodownload%==7 goto annoucement_network_1
 
-if not exist "%TempStorage%\annoucement\%page%_ac8_comm.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac8_comm.txt"', '"%TempStorage%\annoucement\%page%_ac8_comm.txt"')"
+if not exist "%TempStorage%\annoucement\%page%_ac8_comm.txt" call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac8_comm.txt" --output %TempStorage%\annoucement\%page%_ac8_comm.txt
 set /p action8=<"%TempStorage%\annoucement\%page%_ac8_comm.txt"
 if %howmanytodownload%==8 goto annoucement_network_1
 
-if not exist "%TempStorage%\annoucement\%page%_ac9_comm.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac9_comm.txt"', '"%TempStorage%\annoucement\%page%_ac9_comm.txt"')"
+if not exist "%TempStorage%\annoucement\%page%_ac9_comm.txt" call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac9_comm.txt" --output %TempStorage%\annoucement\%page%_ac9_comm.txt
 set /p action9=<"%TempStorage%\annoucement\%page%_ac9_comm.txt"
 if %howmanytodownload%==9 goto annoucement_network_1
 
-if not exist "%TempStorage%\annoucement\%page%_ac10_comm.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac10_comm.txt"', '"%TempStorage%\annoucement\%page%_ac10_comm.txt"')"
+if not exist "%TempStorage%\annoucement\%page%_ac10_comm.txt" call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac10_comm.txt" --output %TempStorage%\annoucement\%page%_ac10_comm.txt
 set /p action10=<"%TempStorage%\annoucement\%page%_ac10_comm.txt"
 if %howmanytodownload%==10 goto annoucement_network_1
 
@@ -713,13 +715,13 @@ goto annoucement_network_1
 
 if %action1%==2 goto begin_main
 
-if %action1%==1 if not exist "%TempStorage%\annoucement\%page%_ac1.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac1.txt"', '"%TempStorage%\annoucement\%page%_ac1.txt"')"
+if %action1%==1 if not exist "%TempStorage%\annoucement\%page%_ac1.txt" call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac1.txt" --output %TempStorage%\annoucement\%page%_ac1.txt
 if %action1%==1 set /a temperrorlev=%errorlevel%
 if %action1%==1 if not %temperrorlev%==0 goto annoucement_network_404
 if %action1%==1 set /p page=<"%TempStorage%\annoucement\%page%_ac1.txt"
 if %action1%==1 goto annoucement_network_load
 
-if %action1%==3 if not exist "%TempStorage%\annoucement\%page%_ac1.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac1.txt"', '"%TempStorage%\annoucement\%page%_ac1.txt"')"
+if %action1%==3 if not exist "%TempStorage%\annoucement\%page%_ac1.txt" call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac1.txt" --output %TempStorage%\annoucement\%page%_ac1.txt
 if %action1%==3 set /p tempURLStart=<"%TempStorage%\annoucement\%page%_ac1.txt"
 if %action1%==3 start %tempURLStart%
 if %action1%==3 goto annoucement_network_1
@@ -728,13 +730,13 @@ goto annoucement_network_1
 :annoucement_action_2
 if %action2%==2 goto begin_main
 
-if %action2%==1 if not exist "%TempStorage%\annoucement\%page%_ac2.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac2.txt"', '"%TempStorage%\annoucement\%page%_ac2.txt"')"
+if %action2%==1 if not exist "%TempStorage%\annoucement\%page%_ac2.txt" call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac2.txt" --output %TempStorage%\annoucement\%page%_ac2.txt
 if %action2%==1 set /a temperrorlev=%errorlevel%
 if %action2%==1 if not %temperrorlev%==0 goto annoucement_network_404
 if %action2%==1 set /p page=<"%TempStorage%\annoucement\%page%_ac2.txt"
 if %action2%==1 goto annoucement_network_load
 
-if %action2%==3 if not exist "%TempStorage%\annoucement\%page%_ac2.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac2.txt"', '"%TempStorage%\annoucement\%page%_ac2.txt"')"
+if %action2%==3 if not exist "%TempStorage%\annoucement\%page%_ac2.txt" call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac2.txt" --output %TempStorage%\annoucement\%page%_ac2.txt
 if %action2%==3 set /p tempURLStart=<"%TempStorage%\annoucement\%page%_ac2.txt"
 if %action2%==3 start %tempURLStart%
 if %action2%==3 goto annoucement_network_1
@@ -743,13 +745,13 @@ goto annoucement_network_1
 :annoucement_action_3
 if %action3%==2 goto begin_main
 
-if %action3%==1 if not exist "%TempStorage%\annoucement\%page%_ac3.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac3.txt"', '"%TempStorage%\annoucement\%page%_ac3.txt"')"
+if %action3%==1 if not exist "%TempStorage%\annoucement\%page%_ac3.txt" call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac3.txt" --output %TempStorage%\annoucement\%page%_ac3.txt
 if %action3%==1 set /a temperrorlev=%errorlevel%
 if %action3%==1 if not %temperrorlev%==0 goto annoucement_network_404
 if %action3%==1 set /p page=<"%TempStorage%\annoucement\%page%_ac3.txt"
 if %action3%==1 goto annoucement_network_load
 
-if %action3%==3 if not exist "%TempStorage%\annoucement\%page%_ac3.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac3.txt"', '"%TempStorage%\annoucement\%page%_ac3.txt"')"
+if %action3%==3 if not exist "%TempStorage%\annoucement\%page%_ac3.txt" call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac3.txt" --output %TempStorage%\annoucement\%page%_ac3.txt
 if %action3%==3 set /p tempURLStart=<"%TempStorage%\annoucement\%page%_ac3.txt"
 if %action3%==3 start %tempURLStart%
 if %action3%==3 goto annoucement_network_1
@@ -758,20 +760,20 @@ goto annoucement_network_1
 :annoucement_action_4
 if %action4%==2 goto begin_main
 
-if %action4%==1 if not exist "%TempStorage%\annoucement\%page%_ac4.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac4.txt"', '"%TempStorage%\annoucement\%page%_ac4.txt"')"
+if %action4%==1 if not exist "%TempStorage%\annoucement\%page%_ac4.txt" call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac4.txt" --output %TempStorage%\annoucement\%page%_ac4.txt
 if %action4%==1 set /a temperrorlev=%errorlevel%
 if %action4%==1 if not %temperrorlev%==0 goto annoucement_network_404
 if %action4%==1 set /p page=<"%TempStorage%\annoucement\%page%_ac4.txt"
 if %action4%==1 goto annoucement_network_load
 
-if %action4%==3 if not exist "%TempStorage%\annoucement\%page%_ac4.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac4.txt"', '"%TempStorage%\annoucement\%page%_ac4.txt"')"
+if %action4%==3 if not exist "%TempStorage%\annoucement\%page%_ac4.txt" call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac4.txt" --output %TempStorage%\annoucement\%page%_ac4.txt
 if %action4%==3 set /p tempURLStart=<"%TempStorage%\annoucement\%page%_ac4.txt"
 if %action4%==3 start %tempURLStart%
 if %action4%==3 goto annoucement_network_1
 
 goto annoucement_network_1
 :annoucement_action_5
-if %action5%==1 if not exist "%TempStorage%\annoucement\%page%_ac5.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac5.txt"', '"%TempStorage%\annoucement\%page%_ac5.txt"')"
+if %action5%==1 if not exist "%TempStorage%\annoucement\%page%_ac5.txt" call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac5.txt" --output %TempStorage%\annoucement\%page%_ac5.txt
 if %action5%==1 set /a temperrorlev=%errorlevel%
 if %action5%==1 if not %temperrorlev%==0 goto annoucement_network_404
 if %action5%==1 set /p page=<"%TempStorage%\annoucement\%page%_ac5.txt"
@@ -779,7 +781,7 @@ if %action5%==1 goto annoucement_network_load
 
 if %action5%==2 goto begin_main
 
-if %action5%==3 if not exist "%TempStorage%\annoucement\%page%_ac5.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac5.txt"', '"%TempStorage%\annoucement\%page%_ac5.txt"')"
+if %action5%==3 if not exist "%TempStorage%\annoucement\%page%_ac5.txt" call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac5.txt" --output %TempStorage%\annoucement\%page%_ac5.txt
 if %action5%==3 set /p tempURLStart=<"%TempStorage%\annoucement\%page%_ac5.txt"
 
 if %action5%==3 start %tempURLStart%
@@ -789,13 +791,13 @@ goto annoucement_network_1
 :annoucement_action_6
 if %action6%==2 goto begin_main
 
-if %action6%==1 if not exist "%TempStorage%\annoucement\%page%_ac6.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac6.txt"', '"%TempStorage%\annoucement\%page%_ac6.txt"')"
+if %action6%==1 if not exist "%TempStorage%\annoucement\%page%_ac6.txt" call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac6.txt" --output %TempStorage%\annoucement\%page%_ac6.txt
 if %action6%==1 set /a temperrorlev=%errorlevel%
 if %action6%==1 if not %temperrorlev%==0 goto annoucement_network_404
 if %action6%==1 set /p page=<"%TempStorage%\annoucement\%page%_ac6.txt"
 if %action6%==1 goto annoucement_network_load
 
-if %action6%==3 if not exist "%TempStorage%\annoucement\%page%_ac6.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac6.txt"', '"%TempStorage%\annoucement\%page%_ac6.txt"')"
+if %action6%==3 if not exist "%TempStorage%\annoucement\%page%_ac6.txt" call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac6.txt" --output %TempStorage%\annoucement\%page%_ac6.txt
 if %action6%==3 set /p tempURLStart=<"%TempStorage%\annoucement\%page%_ac6.txt"
 if %action6%==3 start %tempURLStart%
 if %action6%==3 goto annoucement_network_1
@@ -804,13 +806,13 @@ goto annoucement_network_1
 :annoucement_action_7
 if %action7%==2 goto begin_main
 
-if %action7%==1 if not exist "%TempStorage%\annoucement\%page%_ac7.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac7.txt"', '"%TempStorage%\annoucement\%page%_ac7.txt"')"
+if %action7%==1 if not exist "%TempStorage%\annoucement\%page%_ac7.txt" call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac7.txt" --output %TempStorage%\annoucement\%page%_ac7.txt
 if %action7%==1 set /a temperrorlev=%errorlevel%
 if %action7%==1 if not %temperrorlev%==0 goto annoucement_network_404
 if %action7%==1 set /p page=<"%TempStorage%\annoucement\%page%_ac7.txt"
 if %action7%==1 goto annoucement_network_load
 
-if %action7%==3 if not exist "%TempStorage%\annoucement\%page%_ac7.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac7.txt"', '"%TempStorage%\annoucement\%page%_ac7.txt"')"
+if %action7%==3 if not exist "%TempStorage%\annoucement\%page%_ac7.txt" call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac7.txt" --output %TempStorage%\annoucement\%page%_ac7.txt
 if %action7%==3 set /p tempURLStart=<"%TempStorage%\annoucement\%page%_ac7.txt"
 if %action7%==3 start %tempURLStart%
 if %action7%==3 goto annoucement_network_1
@@ -819,13 +821,13 @@ goto annoucement_network_1
 :annoucement_action_8
 if %action8%==2 goto begin_main
 
-if %action8%==1 if not exist "%TempStorage%\annoucement\%page%_ac8.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac8.txt"', '"%TempStorage%\annoucement\%page%_ac8.txt"')"
+if %action8%==1 if not exist "%TempStorage%\annoucement\%page%_ac8.txt" call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac8.txt" --output %TempStorage%\annoucement\%page%_ac8.txt
 if %action8%==1 set /a temperrorlev=%errorlevel%
 if %action8%==1 if not %temperrorlev%==0 goto annoucement_network_404
 if %action8%==1 set /p page=<"%TempStorage%\annoucement\%page%_ac8.txt"
 if %action8%==1 goto annoucement_network_load
 
-if %action8%==3 if not exist "%TempStorage%\annoucement\%page%_ac8.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac8.txt"', '"%TempStorage%\annoucement\%page%_ac8.txt"')"
+if %action8%==3 if not exist "%TempStorage%\annoucement\%page%_ac8.txt" call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac8.txt" --output %TempStorage%\annoucement\%page%_ac8.txt
 if %action8%==3 set /p tempURLStart=<"%TempStorage%\annoucement\%page%_ac8.txt"
 if %action8%==3 start %tempURLStart%
 if %action8%==3 goto annoucement_network_1
@@ -834,13 +836,13 @@ goto annoucement_network_1
 :annoucement_action_9
 if %action9%==2 goto begin_main
 
-if %action9%==1 if not exist "%TempStorage%\annoucement\%page%_ac9.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac9.txt"', '"%TempStorage%\annoucement\%page%_ac9.txt"')"
+if %action9%==1 if not exist "%TempStorage%\annoucement\%page%_ac9.txt" call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac9.txt" --output %TempStorage%\annoucement\%page%_ac9.txt
 if %action9%==1 set /a temperrorlev=%errorlevel%
 if %action9%==1 if not %temperrorlev%==0 goto annoucement_network_404
 if %action9%==1 set /p page=<"%TempStorage%\annoucement\%page%_ac9.txt"
 if %action9%==1 goto annoucement_network_load
 
-if %action9%==3 if not exist "%TempStorage%\annoucement\%page%_ac9.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac9.txt"', '"%TempStorage%\annoucement\%page%_ac9.txt"')"
+if %action9%==3 if not exist "%TempStorage%\annoucement\%page%_ac9.txt" call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac9.txt" --output %TempStorage%\annoucement\%page%_ac9.txt
 if %action9%==3 set /p tempURLStart=<"%TempStorage%\annoucement\%page%_ac9.txt"
 if %action9%==3 start %tempURLStart%
 if %action9%==3 goto annoucement_network_1
@@ -849,13 +851,13 @@ goto annoucement_network_1
 :annoucement_action_10
 if %action10%==2 goto begin_main
 
-if %action10%==1 if not exist "%TempStorage%\annoucement\%page%_ac10.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac10.txt"', '"%TempStorage%\annoucement\%page%_ac10.txt"')"
+if %action10%==1 if not exist "%TempStorage%\annoucement\%page%_ac10.txt" call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac10.txt" --output %TempStorage%\annoucement\%page%_ac10.txt
 if %action10%==1 set /a temperrorlev=%errorlevel%
 if %action10%==1 if not %temperrorlev%==0 goto annoucement_network_404
 if %action10%==1 set /p page=<"%TempStorage%\annoucement\%page%_ac10.txt"
 if %action10%==1 goto annoucement_network_load
 
-if %action10%==3 if not exist "%TempStorage%\annoucement\%page%_ac10.txt" call powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/annoucement/%page%_ac10.txt"', '"%TempStorage%\annoucement\%page%_ac10.txt"')"
+if %action10%==3 if not exist "%TempStorage%\annoucement\%page%_ac10.txt" call curl -s -S --insecure "%FilesHostedOn%/annoucement/%page%_ac10.txt" --output %TempStorage%\annoucement\%page%_ac10.txt
 if %action10%==3 set /p tempURLStart=<"%TempStorage%\annoucement\%page%_ac10.txt"
 if %action10%==3 start %tempURLStart%
 if %action10%==3 goto annoucement_network_1
@@ -900,7 +902,125 @@ echo                                   -odhhhhyddmmmmmNNmhs/:`
 echo                                     :syhdyyyyso+/-`
 pause>NUL
 goto begin_main
+:begin_main_download_curl
+cls
+echo %header%
+echo.
+echo              `..````                                     :-------------------------:
+echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`    Downloading curl... Please wait.
+echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd   :-------------------------:
+echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs   
+echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+   File 1 [3.5MB] out of 1
+echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:   0%% [          ]
+echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.
+echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN
+echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd
+echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy
+echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
+echo             mmmmms smMMMMMMMMMmddMMmmNmNMMMMMMMMMMMM:
+echo            `mmmmmo hNMMMMMMMMMmddNMMMNNMMMMMMMMMMMMM.
+echo            -mmmmm/ dNMMMMMMMMMNmddMMMNdhdMMMMMMMMMMN
+echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd
+echo            +mmmmN.-mNMMMMMMMMMNmmmmMMMMMMMMMMMMMMMMy
+echo            smmmmm`/mMMMMMMMMMNNmmmmNMMMMNMMNMMMMMNmy.
+echo            hmmmmd`omMMMMMMMMMNNmmmNmMNNMmNNNNMNdhyhh.
+echo            mmmmmh ymMMMMMMMMMNNmmmNmNNNMNNMMMMNyyhhh`
+echo           `mmmmmy hmMMNMNNMMMNNmmmmmdNMMNmmMMMMhyhhy
+echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys
+echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-
+echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm
+echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+
+echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm
+echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+
+echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm
+echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/
+echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy
+echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`
+echo                   `.              yddyo++:    `-/oymNNNNNdy+:`
+echo                                   -odhhhhyddmmmmmNNmhs/:`
+echo                                     :syhdyyyyso+/-`
+call powershell -command (new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/curl.exe"', '"curl.exe"')
+set /a temperrorlev=%errorlevel%
+if not %temperrorlev%==0 goto begin_main_download_curl_error
+cls
+echo %header%
+echo.
+echo              `..````                                     :-------------------------:
+echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`    Downloading curl... Please wait.
+echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd   :-------------------------:
+echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs   
+echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+   File 1 [3.5MB] out of 1
+echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:   100%% [----------]
+echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.
+echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN
+echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd
+echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy
+echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
+echo             mmmmms smMMMMMMMMMmddMMmmNmNMMMMMMMMMMMM:
+echo            `mmmmmo hNMMMMMMMMMmddNMMMNNMMMMMMMMMMMMM.
+echo            -mmmmm/ dNMMMMMMMMMNmddMMMNdhdMMMMMMMMMMN
+echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd
+echo            +mmmmN.-mNMMMMMMMMMNmmmmMMMMMMMMMMMMMMMMy
+echo            smmmmm`/mMMMMMMMMMNNmmmmNMMMMNMMNMMMMMNmy.
+echo            hmmmmd`omMMMMMMMMMNNmmmNmMNNMmNNNNMNdhyhh.
+echo            mmmmmh ymMMMMMMMMMNNmmmNmNNNMNNMMMMNyyhhh`
+echo           `mmmmmy hmMMNMNNMMMNNmmmmmdNMMNmmMMMMhyhhy
+echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys
+echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-
+echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm
+echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+
+echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm
+echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+
+echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm
+echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/
+echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy
+echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`
+echo                   `.              yddyo++:    `-/oymNNNNNdy+:`
+echo                                   -odhhhhyddmmmmmNNmhs/:`
+echo                                     :syhdyyyyso+/-`
+timeout 2 /nobreak >NUL
+goto begin_main1
+:begin_main_download_curl_error
+cls
+echo %header%                                                                
+echo              `..````                                                  
+echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`                
+echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd                
+echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs                
+echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+        
+echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:                
+echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.                
+echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN            
+echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd                 
+echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy                 
+echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+                 
+echo ---------------------------------------------------------------------------------------------------------------------------
+echo    /---\   ERROR.              
+echo   /     \  There was an error while downloading curl.
+echo  /   !   \ Curl is used for downloading files from update server and files needed for patching. 
+echo  --------- Please restart your PC and try running the patcher again.
+echo            If it won't work, please download curl and put it in a folder next to RiiConnect24 Patcher.bat 
+echo       Press any key to open download page in browser and to return to menu.
+echo ---------------------------------------------------------------------------------------------------------------------------
+echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-                  
+echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm                     
+echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+                    
+echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm                    
+echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+                   
+echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm                   
+echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/    
+echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy   
+echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`   
+echo                   `.              yddyo++:    `-/oymNNNNNdy+:`        
+echo                                   -odhhhhyddmmmmmNNmhs/:`             
+echo                                     :syhdyyyyso+/-`                   
+pause>NUL
+start %FilesHostedOn%/curl.exe
+goto begin_main
+
 :begin_main1
+if not exist curl.exe goto begin_main_download_curl
+
 cls
 echo %header%
 echo.
@@ -937,23 +1057,18 @@ echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`
 echo                   `.              yddyo++:    `-/oymNNNNNdy+:`
 echo                                   -odhhhhyddmmmmmNNmhs/:`
 echo                                     :syhdyyyyso+/-`
-powershell /? >NUL
-set /a temperrorlev=%errorlevel%
-if not %temperrorlev%==0 goto powershell_error
 
 :: Update script.
 set updateversion=0.0.0
 :: Delete version.txt and whatsnew.txt
 if %offlinestorage%==0 if exist "%TempStorage%\version.txt" del "%TempStorage%\version.txt" /q
-if %offlinestorage%==0 if exist "%TempStorage%\version.txt`" del "%TempStorage%\version.txt`" /q
 if %offlinestorage%==0 if exist "%TempStorage%\whatsnew.txt" del "%TempStorage%\whatsnew.txt" /q
-if %offlinestorage%==0 if exist "%TempStorage%\whatsnew.txt`" del "%TempStorage%\whatsnew.txt`" /q
 
 if not exist "%TempStorage%" md "%TempStorage%"
 :: Commands to download files from server.
 
-if %Update_Activate%==1 if %offlinestorage%==0 call powershell -command (new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/whatsnew.txt"', '"%TempStorage%\whatsnew.txt"')
-if %Update_Activate%==1 if %offlinestorage%==0 call powershell -command (new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/version.txt"', '"%TempStorage%\version.txt"')
+if %Update_Activate%==1 if %offlinestorage%==0 call curl -s -S --insecure "%FilesHostedOn%/whatsnew.txt" --output "%TempStorage%\whatsnew.txt"
+if %Update_Activate%==1 if %offlinestorage%==0 call curl -s -S --insecure "%FilesHostedOn%/version.txt" --output "%TempStorage%\version.txt"
 	set /a temperrorlev=%errorlevel%
 
 set /a updateserver=1
@@ -970,13 +1085,16 @@ if %Update_Activate%==1 if exist "%TempStorage%\version.txt" set /a updateavaila
 if %updateversion%==%version% set /a updateavailable=0
 
 if exist "%TempStorage%\annoucement.txt" del /q "%TempStorage%\annoucement.txt"
-powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/annoucement.txt', '%TempStorage%\annoucement.txt')"
+curl -s -S --insecure "%FilesHostedOn%/annoucement.txt" --output %TempStorage%\annoucement.txt"
 
 if %Update_Activate%==1 if %updateavailable%==1 set /a updateserver=2
 if %Update_Activate%==1 if %updateavailable%==1 goto update_notice
 
 goto 1
 :powershell_error
+
+:: // Deprecated \\
+
 cls
 echo %header%
 echo.                                                                       
@@ -1096,16 +1214,16 @@ echo                                   -odhhhhyddmmmmmNNmhs/:`
 echo                                     :syhdyyyyso+/-`
 set /a file=1
 :update_1
-powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/howmanyfiles.txt', '%TempStorage%/howmanyfiles.txt')"
+curl -s -S --insecure "%FilesHostedOn%/howmanyfiles.txt" --output %TempStorage%/howmanyfiles.txt"
 set /p update_howmanyfiles=<"%TempStorage%/howmanyfiles.txt"
 goto update_2
 :update_2
 :: Do not count RiiConnect24Patcher.bat in howmanyfiles.txt
 if %update_howmanyfiles%==0 goto update_3
-powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/file_%file%.txt', '%TempStorage%/file_%file%.txt')"
+curl -s -S --insecure "%FilesHostedOn%/file_%file%.txt" --output %TempStorage%/file_%file%.txt"
 set /p filetemp=<"%TempStorage%/file_%file%.txt"
 
-powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/%filetemp%', '%filetemp%`')"
+curl -s -S --insecure "%FilesHostedOn%/%filetemp%" --output %filetemp%"
 if exist "%filetemp%" del /q "%filetemp%"
 ren "%filetemp%`" "%filetemp%"
 
@@ -1115,7 +1233,7 @@ set /a file=%file%+1
 goto update_2
 :update_3
 
-powershell -command "(new-object System.Net.WebClient).DownloadFile('%FilesHostedOn%/RiiConnect24Patcher.bat', 'RiiConnect24Patcher.bat`')"
+curl -s -S --insecure "%FilesHostedOn%/RiiConnect24Patcher.bat" --output RiiConnect24Patcher.bat
 
 echo echo off >>temp.bat
 echo ping localhost -n 2^>NUL >>temp.bat
@@ -1322,37 +1440,37 @@ if %counter_done%==10 echo :----------: %percent% %%
 
 ::Download files
 if %percent%==1 if not exist IOSPatcher md IOSPatcher
-if %percent%==1 if not exist "IOSPatcher/00000006-31.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/00000006-31.delta"', 'IOSPatcher/00000006-31.delta"')"
+if %percent%==1 if not exist "IOSPatcher/00000006-31.delta" curl -s -S --insecure "%FilesHostedOn%/IOSPatcher/00000006-31.delta" --output IOSPatcher/00000006-31.delta
 if %percent%==1 set /a temperrorlev=%errorlevel%
 if %percent%==1 set modul=Downloading 06-31.delta
 if %percent%==1 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==3 if not exist "IOSPatcher/00000006-80.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/00000006-80.delta"', 'IOSPatcher/00000006-80.delta"')"
+if %percent%==3 if not exist "IOSPatcher/00000006-80.delta" curl -s -S --insecure "%FilesHostedOn%/IOSPatcher/00000006-80.delta" --output IOSPatcher/00000006-80.delta
 if %percent%==3 set /a temperrorlev=%errorlevel%
 if %percent%==3 set modul=Downloading 06-80.delta
 if %percent%==3 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==6 if not exist "IOSPatcher/00000006-80.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/00000006-80.delta"', 'IOSPatcher/00000006-80.delta"')"
+if %percent%==6 if not exist "IOSPatcher/00000006-80.delta" curl -s -S --insecure "%FilesHostedOn%/IOSPatcher/00000006-80.delta" --output IOSPatcher/00000006-80.delta
 if %percent%==6 set /a temperrorlev=%errorlevel%
 if %percent%==6 set modul=Downloading 06-80.delta
 if %percent%==6 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==9 if not exist "IOSPatcher/libWiiSharp.dll" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/libWiiSharp.dll"', 'IOSPatcher/libWiiSharp.dll"')"
+if %percent%==9 if not exist "IOSPatcher/libWiiSharp.dll" curl -s -S --insecure "%FilesHostedOn%/IOSPatcher/libWiiSharp.dll" --output IOSPatcher/libWiiSharp.dll
 if %percent%==9 set /a temperrorlev=%errorlevel%
 if %percent%==9 set modul=Downloading libWiiSharp.dll
 if %percent%==9 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==12 if not exist "IOSPatcher/Sharpii.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/Sharpii.exe"', 'IOSPatcher/Sharpii.exe"')"
+if %percent%==12 if not exist "IOSPatcher/Sharpii.exe" curl -s -S --insecure "%FilesHostedOn%/IOSPatcher/Sharpii.exe" --output IOSPatcher/Sharpii.exe
 if %percent%==12 set /a temperrorlev=%errorlevel%
 if %percent%==12 set modul=Downloading Sharpii.exe
 if %percent%==12 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==15 if not exist "IOSPatcher/WadInstaller.dll" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/WadInstaller.dll"', 'IOSPatcher/WadInstaller.dll"')"
+if %percent%==15 if not exist "IOSPatcher/WadInstaller.dll" curl -s -S --insecure "%FilesHostedOn%/IOSPatcher/WadInstaller.dll" --output IOSPatcher/WadInstaller.dll
 if %percent%==15 set /a temperrorlev=%errorlevel%
 if %percent%==15 set modul=Downloading WadInstaller.dll
 if %percent%==15 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==17 if not exist "IOSPatcher/xdelta3.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/xdelta3.exe"', 'IOSPatcher/xdelta3.exe"')"
+if %percent%==17 if not exist "IOSPatcher/xdelta3.exe" curl -s -S --insecure "%FilesHostedOn%/IOSPatcher/xdelta3.exe" --output IOSPatcher/xdelta3.exe
 if %percent%==17 set /a temperrorlev=%errorlevel%
 if %percent%==17 set modul=Downloading xdelta3.exe
 if %percent%==17 if not %temperrorlev%==0 goto error_patching
@@ -1362,62 +1480,62 @@ if %percent%==20 if not exist apps md apps
 
 if %percent%==23 if not exist apps/WiiModLite md apps\WiiModLite
 if %percent%==23 if not exist apps/WiiXplorer md apps\WiiXplorer
-if %percent%==23 if not exist "apps/WiiModLite/boot.dol" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/boot.dol"', 'apps/WiiModLite/boot.dol"')"
+if %percent%==23 if not exist "apps/WiiModLite/boot.dol" curl -s -S --insecure "%FilesHostedOn%/apps/WiiModLite/boot.dol" --output apps/WiiModLite/boot.dol
 if %percent%==23 set /a temperrorlev=%errorlevel%
 if %percent%==23 set modul=Downloading Wii Mod Lite
 if %percent%==23 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==25 if not exist "apps/WiiModLite/database.txt" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/database.txt"', 'apps/WiiModLite/database.txt"')"
+if %percent%==25 if not exist "apps/WiiModLite/database.txt" curl -s -S --insecure "%FilesHostedOn%/apps/WiiModLite/database.txt" --output apps/WiiModLite/database.txt
 if %percent%==25 set /a temperrorlev=%errorlevel%
 if %percent%==25 set modul=Downloading Wii Mod Lite
 if %percent%==25 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==27 if not exist "apps/WiiModLite/icon.png" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/icon.png"', 'apps/WiiModLite/icon.png"')"
+if %percent%==27 if not exist "apps/WiiModLite/icon.png" curl -s -S --insecure "%FilesHostedOn%/apps/WiiModLite/icon.png" --output apps/WiiModLite/icon.png
 if %percent%==27 set /a temperrorlev=%errorlevel%
 if %percent%==27 set modul=Downloading Wii Mod Lite
 if %percent%==27 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==30 if not exist "apps/WiiModLite/icon.png" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/icon.png"', 'apps/WiiModLite/icon.png"')"
+if %percent%==30 if not exist "apps/WiiModLite/icon.png" curl -s -S --insecure "%FilesHostedOn%/apps/WiiModLite/icon.png" --output apps/WiiModLite/icon.png
 if %percent%==30 set /a temperrorlev=%errorlevel%
 if %percent%==30 set modul=Downloading Wii Mod Lite
 if %percent%==30 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==32 if not exist "apps/WiiModLite/meta.xml" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/meta.xml"', 'apps/WiiModLite/meta.xml"')"
+if %percent%==32 if not exist "apps/WiiModLite/meta.xml" curl -s -S --insecure "%FilesHostedOn%/apps/WiiModLite/meta.xml" --output apps/WiiModLite/meta.xml"
 if %percent%==32 set /a temperrorlev=%errorlevel%
 if %percent%==32 set modul=Downloading Wii Mod Lite
 if %percent%==32 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==34 if not exist "apps/WiiModLite/wiimod.txt" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/wiimod.txt"', 'apps/WiiModLite/wiimod.txt"')"
+if %percent%==34 if not exist "apps/WiiModLite/wiimod.txt" curl -s -S --insecure "%FilesHostedOn%/apps/WiiModLite/wiimod.txt" --output apps/WiiModLite/wiimod.txt
 if %percent%==34 set /a temperrorlev=%errorlevel%
 if %percent%==34 set modul=Downloading Wii Mod Lite
 if %percent%==34 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==36 if not exist "apps/WiiXplorer/boot.dol" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiXplorer/boot.dol"', 'apps/WiiXplorer/boot.dol"')"
+if %percent%==36 if not exist "apps/WiiXplorer/boot.dol" curl -s -S --insecure "%FilesHostedOn%/apps/WiiXplorer/boot.dol" --output apps/WiiXplorer/boot.dol
 if %percent%==36 set /a temperrorlev=%errorlevel%
 if %percent%==36 set modul=Downloading WiiXplorer
 if %percent%==36 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==38 if not exist "apps/WiiXplorer/icon.png" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiXplorer/icon.png"', 'apps/WiiXplorer/icon.png"')"
+if %percent%==38 if not exist "apps/WiiXplorer/icon.png" curl -s -S --insecure "%FilesHostedOn%/apps/WiiXplorer/icon.png" --output apps/WiiXplorer/icon.png
 if %percent%==38 set /a temperrorlev=%errorlevel%
 if %percent%==38 set modul=Downloading WiiXplorer
 if %percent%==38 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==39 if not exist "apps/WiiXplorer/meta.xml" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiXplorer/meta.xml"', 'apps/WiiXplorer/meta.xml"')"
+if %percent%==39 if not exist "apps/WiiXplorer/meta.xml" curl -s -S --insecure "%FilesHostedOn%/apps/WiiXplorer/meta.xml" --output apps/WiiXplorer/meta.xml
 if %percent%==39 set /a temperrorlev=%errorlevel%
 if %percent%==39 set modul=Downloading WiiXplorer
 if %percent%==39 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==40 if %uninstall_2_1%==1 if not exist "apps/WiiXplorer/meta.xml" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/meta.xml"', 'apps/WiiModLite/meta.xml"')"
+if %percent%==40 if %uninstall_2_1%==1 if not exist "apps/WiiXplorer/meta.xml" curl -s -S --insecure "%FilesHostedOn%/apps/WiiModLite/meta.xml" --output apps/WiiModLite/meta.xml
 if %percent%==40 if %uninstall_2_1%==1 set /a temperrorlev=%errorlevel%
 if %percent%==40 if %uninstall_2_1%==1 set modul=Downloading WiiXplorer
 if %percent%==40 if %uninstall_2_1%==1 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==45 if %uninstall_2_1%==1 if not exist "apps/WiiXplorer/icon.png" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/meta.xml"', 'apps/WiiModLite/meta.xml"')"
+if %percent%==45 if %uninstall_2_1%==1 if not exist "apps/WiiXplorer/icon.png" curl -s -S --insecure "%FilesHostedOn%/apps/WiiModLite/meta.xml" --output apps/WiiModLite/meta.xml
 if %percent%==45 if %uninstall_2_1%==1 set /a temperrorlev=%errorlevel%
 if %percent%==45 if %uninstall_2_1%==1 set modul=Downloading WiiXplorer
 if %percent%==45 if %uninstall_2_1%==1 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==48 if %uninstall_2_1%==1 if not exist "apps/WiiXplorer/boot.dol" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/meta.xml"', 'apps/WiiModLite/meta.xml"')"
+if %percent%==48 if %uninstall_2_1%==1 if not exist "apps/WiiXplorer/boot.dol" curl -s -S --insecure "%FilesHostedOn%/apps/WiiModLite/meta.xml" --output apps/WiiModLite/meta.xml
 if %percent%==48 if %uninstall_2_1%==1 set /a temperrorlev=%errorlevel%
 if %percent%==48 if %uninstall_2_1%==1 set modul=Downloading WiiXplorer
 if %percent%==48 if %uninstall_2_1%==1 if not %temperrorlev%==0 goto error_patching
@@ -1737,12 +1855,22 @@ set /p sdcard=
 goto 2_1_summary
 :2_2
 cls
+set /a troubleshoot_auto_tool_notification=0
 set /a temperrorlev=0
 set /a counter_done=0
 set /a percent=0
 set /a temperrorlev=0
+
+::
+set /a progress_downloading=0
+set /a progress_ios=0
+set /a progress_evc=0
+set /a progress_nc=0
+set /a progress_finishing=0
+
 goto 2_3
 :random_funfact
+
 set /a funfact_number=%random% %% (1 + 30)
 if /i %funfact_number% LSS 1 goto random_funfact
 if /i %funfact_number% GTR 30 goto random_funfact
@@ -1796,11 +1924,13 @@ echo.
 echo %header%
 echo ---------------------------------------------------------------------------------------------------------------------------
 echo  [*] Patching... this can take some time depending on the processing speed (CPU) of your computer.
+
 if %troubleshoot_auto_tool_notification%==1 echo :------------------------------------------------------------------------------------------------------------------------:
 if %troubleshoot_auto_tool_notification%==1 echo : Warning: There was an error while patching, but the patcher ran the troubleshooting tool that should automatically fix :
 if %troubleshoot_auto_tool_notification%==1 echo : the problem. The patching process has been restarted.                                                                  :
 if %troubleshoot_auto_tool_notification%==1 echo :------------------------------------------------------------------------------------------------------------------------:
 echo.
+
 echo Fun Fact: %funfact%
 echo.
 echo    Progress:
@@ -1815,40 +1945,53 @@ if %counter_done%==7 echo :-------   : %percent% %%
 if %counter_done%==8 echo :--------  : %percent% %%
 if %counter_done%==9 echo :--------- : %percent% %%
 if %counter_done%==10 echo :----------: %percent% %%
+echo.
+if %progress_downloading%==0 echo [ ] Downloading files
+if %progress_downloading%==1 echo [X] Downloading files
+if %progress_ios%==0 echo [ ] Patching IOS's
+if %progress_ios%==1 echo [X] Patching IOS's
+if %progress_evc%==0 echo [ ] Everybody Votes Channel
+if %progress_evc%==1 echo [X] Everybody Votes Channel
+if %progress_nc%==0 echo [ ] Nintendo Channel
+if %progress_nc%==1 echo [X] Nintendo Channel
+if %progress_finishing%==0 echo [ ] Finishing...
+if %progress_finishing%==1 echo [X] Finishing...
+
+
 
 ::Download files
 if %percent%==1 if not exist IOSPatcher md IOSPatcher
-if %percent%==1 if not exist "IOSPatcher/00000006-31.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/00000006-31.delta"', 'IOSPatcher/00000006-31.delta"')"
+if %percent%==1 if not exist "IOSPatcher/00000006-31.delta" curl -s -S --insecure "%FilesHostedOn%/IOSPatcher/00000006-31.delta" --output IOSPatcher/00000006-31.delta
 if %percent%==1 set /a temperrorlev=%errorlevel%
 if %percent%==1 set modul=Downloading 06-31.delta
 if %percent%==1 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==1 if not exist "IOSPatcher/00000006-80.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/00000006-80.delta"', 'IOSPatcher/00000006-80.delta"')"
+if %percent%==1 if not exist "IOSPatcher/00000006-80.delta" curl -s -S --insecure "%FilesHostedOn%/IOSPatcher/00000006-80.delta" --output IOSPatcher/00000006-80.delta
 if %percent%==1 set /a temperrorlev=%errorlevel%
 if %percent%==1 set modul=Downloading 06-80.delta
 if %percent%==1 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==2 if not exist "IOSPatcher/00000006-80.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/00000006-80.delta"', 'IOSPatcher/00000006-80.delta"')"
+if %percent%==2 if not exist "IOSPatcher/00000006-80.delta" curl -s -S --insecure "%FilesHostedOn%/IOSPatcher/00000006-80.delta" --output IOSPatcher/00000006-80.delta
 if %percent%==2 set /a temperrorlev=%errorlevel%
 if %percent%==2 set modul=Downloading 06-80.delta
 if %percent%==2 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==3 if not exist "IOSPatcher/libWiiSharp.dll" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/libWiiSharp.dll"', 'IOSPatcher/libWiiSharp.dll"')"
+if %percent%==3 if not exist "IOSPatcher/libWiiSharp.dll" curl -s -S --insecure "%FilesHostedOn%/IOSPatcher/libWiiSharp.dll" --output IOSPatcher/libWiiSharp.dll
 if %percent%==3 set /a temperrorlev=%errorlevel%
 if %percent%==3 set modul=Downloading libWiiSharp.dll
 if %percent%==3 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==3 if not exist "IOSPatcher/Sharpii.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/Sharpii.exe"', 'IOSPatcher/Sharpii.exe"')"
+if %percent%==3 if not exist "IOSPatcher/Sharpii.exe" curl -s -S --insecure "%FilesHostedOn%/IOSPatcher/Sharpii.exe" --output IOSPatcher/Sharpii.exe
 if %percent%==3 set /a temperrorlev=%errorlevel%
 if %percent%==3 set modul=Downloading Sharpii.exe
 if %percent%==3 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==4 if not exist "IOSPatcher/WadInstaller.dll" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/WadInstaller.dll"', 'IOSPatcher/WadInstaller.dll"')"
+if %percent%==4 if not exist "IOSPatcher/WadInstaller.dll" curl -s -S --insecure "%FilesHostedOn%/IOSPatcher/WadInstaller.dll" --output IOSPatcher/WadInstaller.dll
 if %percent%==4 set /a temperrorlev=%errorlevel%
 if %percent%==4 set modul=Downloading WadInstaller.dll
 if %percent%==4 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==5 if not exist "IOSPatcher/xdelta3.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/xdelta3.exe"', 'IOSPatcher/xdelta3.exe"')"
+if %percent%==5 if not exist "IOSPatcher/xdelta3.exe" curl -s -S --insecure "%FilesHostedOn%/IOSPatcher/xdelta3.exe" --output IOSPatcher/xdelta3.exe
 if %percent%==5 set /a temperrorlev=%errorlevel%
 if %percent%==5 set modul=Downloading xdelta3.exe
 if %percent%==5 if not %temperrorlev%==0 goto error_patching
@@ -1858,55 +2001,56 @@ if %percent%==6 if not exist EVCPatcher/dwn md EVCPatcher\dwn
 if %percent%==6 if not exist EVCPatcher/dwn/0001000148414A45v512 md EVCPatcher\dwn\0001000148414A45v512
 if %percent%==6 if not exist EVCPatcher/dwn/0001000148414A50v512 md EVCPatcher\dwn\0001000148414A50v512
 if %percent%==6 if not exist EVCPatcher/pack md EVCPatcher\pack
-if %percent%==6 if not exist "EVCPatcher/patch/Europe.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/patch/Europe.delta"', '"EVCPatcher/patch/Europe.delta"')"
+if %percent%==6 if not exist "EVCPatcher/patch/Europe.delta" curl -s -S --insecure "%FilesHostedOn%/EVCPatcher/patch/Europe.delta" --output EVCPatcher/patch/Europe.delta
 if %percent%==6 set /a temperrorlev=%errorlevel%
 if %percent%==6 set modul=Downloading Europe Delta
 if %percent%==6 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==6 if not exist "EVCPatcher/patch/USA.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/patch/USA.delta"', 'EVCPatcher/patch/USA.delta"')"
+if %percent%==6 if not exist "EVCPatcher/patch/USA.delta" curl -s -S --insecure "%FilesHostedOn%/EVCPatcher/patch/USA.delta" --output EVCPatcher/patch/USA.delta
 if %percent%==6 set /a temperrorlev=%errorlevel%
-if %percent%==6 set modul=Downloading Europe Delta
+if %percent%==6 set modul=Downloading USA Delta
 if %percent%==6 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==7 if not exist "EVCPatcher/NUS_Downloader_Decrypt.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/NUS_Downloader_Decrypt.exe"', 'EVCPatcher/NUS_Downloader_Decrypt.exe"')"
+if %percent%==7 if not exist "EVCPatcher/NUS_Downloader_Decrypt.exe" curl -s -S --insecure "%FilesHostedOn%/EVCPatcher/NUS_Downloader_Decrypt.exe" --output EVCPatcher/NUS_Downloader_Decrypt.exe
 if %percent%==7 set /a temperrorlev=%errorlevel%
-if %percent%==7 set modul=Downloading EUR evc
+if %percent%==7 set modul=Downloading decrypter
 if %percent%==7 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==8 if not exist "EVCPatcher/patch/xdelta3.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/patch/xdelta3.exe"', 'EVCPatcher/patch/xdelta3.exe"')"
+if %percent%==8 if not exist "EVCPatcher/patch/xdelta3.exe" curl -s -S --insecure "%FilesHostedOn%/EVCPatcher/patch/xdelta3.exe" --output EVCPatcher/patch/xdelta3.exe
 if %percent%==8 set /a temperrorlev=%errorlevel%
 if %percent%==8 set modul=Downloading xdelta3.exe
 if %percent%==8 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==8 if not exist "EVCPatcher/pack/libWiiSharp.dll" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/pack/libWiiSharp.dll"', 'EVCPatcher/pack/libWiiSharp.dll"')"
+if %percent%==8 if not exist "EVCPatcher/pack/libWiiSharp.dll" curl -s -S --insecure "%FilesHostedOn%/EVCPatcher/pack/libWiiSharp.dll" --output "EVCPatcher/pack/libWiiSharp.dll"
 if %percent%==8 set /a temperrorlev=%errorlevel%
 if %percent%==8 set modul=Downloading libWiiSharp.dll
 if %percent%==8 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==8 if not exist "EVCPatcher/pack/Sharpii.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/pack/Sharpii.exe"', 'EVCPatcher/pack/Sharpii.exe"')"
+if %percent%==8 if not exist "EVCPatcher/pack/Sharpii.exe" curl -s -S --insecure "%FilesHostedOn%/EVCPatcher/pack/Sharpii.exe" --output EVCPatcher/pack/Sharpii.exe
+if %percent%==8 set /a temperrorlev=%errorlevel%
+if %percent%==8 set modul=Downloading Sharpii.exe
+if %percent%==8 if not %temperrorlev%==0 goto error_patching
+	
+if %percent%==8 if not exist "EVCPatcher/dwn/Sharpii.exe" curl -s -S --insecure "%FilesHostedOn%/EVCPatcher/dwn/Sharpii.exe" --output EVCPatcher/dwn/Sharpii.exe
 if %percent%==8 set /a temperrorlev=%errorlevel%
 if %percent%==8 set modul=Downloading Sharpii.exe
 if %percent%==8 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==8 if not exist "EVCPatcher/dwn/Sharpii.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/dwn/Sharpii.exe"', 'EVCPatcher/dwn/Sharpii.exe"')"
-if %percent%==8 set /a temperrorlev=%errorlevel%
-if %percent%==8 set modul=Downloading Sharpii.exe
-if %percent%==8 if not %temperrorlev%==0 goto error_patching
-
-if %percent%==9 if not exist "EVCPatcher/dwn/libWiiSharp.dll" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/dwn/libWiiSharp.dll"', 'EVCPatcher/dwn/libWiiSharp.dll"')"
+if %percent%==9 if not exist "EVCPatcher/dwn/libWiiSharp.dll" curl -s -S --insecure "%FilesHostedOn%/EVCPatcher/dwn/libWiiSharp.dll" --output EVCPatcher/dwn/libWiiSharp.dll
 if %percent%==9 set /a temperrorlev=%errorlevel%
 if %percent%==9 set modul=Downloading libWiiSharp.dll
 if %percent%==9 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==10 if not exist "EVCPatcher/dwn/0001000148414A45v512/cetk" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/dwn/0001000148414A45v512/cetk"', 'EVCPatcher/dwn/0001000148414A45v512/cetk"')"
+if %percent%==10 if not exist "EVCPatcher/dwn/0001000148414A45v512/cetk" curl -s -S --insecure "%FilesHostedOn%/EVCPatcher/dwn/0001000148414A45v512/cetk" --output EVCPatcher/dwn/0001000148414A45v512/cetk
 if %percent%==10 set /a temperrorlev=%errorlevel%
 if %percent%==10 set modul=Downloading USA CETK
 if %percent%==10 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==10 if not exist "EVCPatcher/dwn/0001000148414A50v512/cetk" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/dwn/0001000148414A50v512/cetk"', 'EVCPatcher/dwn/0001000148414A50v512/cetk"')"
+if %percent%==10 if not exist "EVCPatcher/dwn/0001000148414A50v512/cetk" curl -s -S --insecure "%FilesHostedOn%/EVCPatcher/dwn/0001000148414A50v512/cetk" --output EVCPatcher/dwn/0001000148414A50v512/cetk
 if %percent%==10 set /a temperrorlev=%errorlevel%
 if %percent%==10 set modul=Downloading EUR CETK
 if %percent%==10 if not %temperrorlev%==0 goto error_patching
+
 
 ::NC
 
@@ -1915,52 +2059,52 @@ if %percent%==11 if not exist NCPatcher/dwn md NCPatcher\dwn
 if %percent%==11 if not exist NCPatcher/dwn/0001000148415450v1792 md NCPatcher\dwn\0001000148415450v1792
 if %percent%==11 if not exist NCPatcher/dwn/0001000148415445v1792 md NCPatcher\dwn\0001000148415445v1792
 if %percent%==11 if not exist NCPatcher/pack md NCPatcher\pack
-if %percent%==11 if not exist "NCPatcher/patch/Europe.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/patch/Europe.delta"', '"NCPatcher/patch/Europe.delta"')"
+if %percent%==11 if not exist "NCPatcher/patch/Europe.delta" curl -s -S --insecure "%FilesHostedOn%/NCPatcher/patch/Europe.delta" --output NCPatcher/patch/Europe.delta
 if %percent%==11 set /a temperrorlev=%errorlevel%
 if %percent%==11 set modul=Downloading Europe Delta [NC]
 if %percent%==11 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==12 if not exist "NCPatcher/patch/USA.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/patch/USA.delta"', 'NCPatcher/patch/USA.delta"')"
+if %percent%==12 if not exist "NCPatcher/patch/USA.delta" curl -s -S --insecure "%FilesHostedOn%/NCPatcher/patch/USA.delta" --output NCPatcher/patch/USA.delta
 if %percent%==12 set /a temperrorlev=%errorlevel%
 if %percent%==12 set modul=Downloading USA Delta [NC]
 if %percent%==12 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==12 if not exist "NCPatcher/NUS_Downloader_Decrypt.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/NUS_Downloader_Decrypt.exe"', 'NCPatcher/NUS_Downloader_Decrypt.exe"')"
+if %percent%==12 if not exist "NCPatcher/NUS_Downloader_Decrypt.exe" curl -s -S --insecure "%FilesHostedOn%/NCPatcher/NUS_Downloader_Decrypt.exe" --output NCPatcher/NUS_Downloader_Decrypt.exe
 if %percent%==12 set /a temperrorlev=%errorlevel%
 if %percent%==12 set modul=Downloading Decrypter
 if %percent%==12 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==12 if not exist "NCPatcher/patch/xdelta3.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/patch/xdelta3.exe"', 'NCPatcher/patch/xdelta3.exe"')"
+if %percent%==12 if not exist "NCPatcher/patch/xdelta3.exe" curl -s -S --insecure "%FilesHostedOn%/NCPatcher/patch/xdelta3.exe" --output NCPatcher/patch/xdelta3.exe
 if %percent%==12 set /a temperrorlev=%errorlevel%
 if %percent%==12 set modul=Downloading xdelta3.exe
 if %percent%==12 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==13 if not exist "NCPatcher/pack/libWiiSharp.dll" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/pack/libWiiSharp.dll"', 'NCPatcher/pack/libWiiSharp.dll"')"
+if %percent%==13 if not exist "NCPatcher/pack/libWiiSharp.dll" curl -s -S --insecure "%FilesHostedOn%/NCPatcher/pack/libWiiSharp.dll" --output NCPatcher/pack/libWiiSharp.dll
 if %percent%==13 set /a temperrorlev=%errorlevel%
 if %percent%==13 set modul=Downloading libWiiSharp.dll
 if %percent%==13 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==13 if not exist "NCPatcher/pack/Sharpii.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/pack/Sharpii.exe"', 'NCPatcher/pack/Sharpii.exe"')"
+if %percent%==13 if not exist "NCPatcher/pack/Sharpii.exe" curl -s -S --insecure "%FilesHostedOn%/NCPatcher/pack/Sharpii.exe" --output NCPatcher/pack/Sharpii.exe
 if %percent%==13 set /a temperrorlev=%errorlevel%
 if %percent%==13 set modul=Downloading Sharpii.exe
 if %percent%==13 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==14 if not exist "NCPatcher/dwn/Sharpii.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/dwn/Sharpii.exe"', 'NCPatcher/dwn/Sharpii.exe"')"
+if %percent%==14 if not exist "NCPatcher/dwn/Sharpii.exe" curl -s -S --insecure "%FilesHostedOn%/NCPatcher/dwn/Sharpii.exe" --output NCPatcher/dwn/Sharpii.exe
 if %percent%==14 set /a temperrorlev=%errorlevel%
 if %percent%==14 set modul=Downloading Sharpii.exe
 if %percent%==14 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==14 if not exist "NCPatcher/dwn/libWiiSharp.dll" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/dwn/libWiiSharp.dll"', 'NCPatcher/dwn/libWiiSharp.dll"')"
+if %percent%==14 if not exist "NCPatcher/dwn/libWiiSharp.dll" curl -s -S --insecure "%FilesHostedOn%/NCPatcher/dwn/libWiiSharp.dll" --output NCPatcher/dwn/libWiiSharp.dll
 if %percent%==14 set /a temperrorlev=%errorlevel%
 if %percent%==14 set modul=Downloading libWiiSharp.dll
 if %percent%==14 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==15 if not exist "NCPatcher/dwn/0001000148415445v1792/cetk" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/dwn/0001000148415445v1792/cetk"', 'NCPatcher/dwn/0001000148415445v1792/cetk"')"
+if %percent%==15 if not exist "NCPatcher/dwn/0001000148415445v1792/cetk" curl -s -S --insecure "%FilesHostedOn%/NCPatcher/dwn/0001000148415445v1792/cetk" --output NCPatcher/dwn/0001000148415445v1792/cetk
 if %percent%==15 set /a temperrorlev=%errorlevel%
 if %percent%==15 set modul=Downloading USA CETK
 if %percent%==15 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==15 if not exist "NCPatcher/dwn/0001000148415450v1792/cetk" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/dwn/0001000148415450v1792/cetk"', 'NCPatcher/dwn/0001000148415450v1792/cetk"')"
+if %percent%==15 if not exist "NCPatcher/dwn/0001000148415450v1792/cetk" curl -s -S --insecure "%FilesHostedOn%/NCPatcher/dwn/0001000148415450v1792/cetk" --output NCPatcher/dwn/0001000148415450v1792/cetk
 if %percent%==15 set /a temperrorlev=%errorlevel%
 if %percent%==15 set modul=Downloading EUR CETK
 if %percent%==15 if not %temperrorlev%==0 goto error_patching
@@ -1968,19 +2112,19 @@ if %percent%==15 if not %temperrorlev%==0 goto error_patching
 ::Everything else
 if %percent%==16 if not exist apps md apps
 if %percent%==16 if not exist apps/Mail-Patcher md apps\Mail-Patcher
-if %percent%==16 if not exist "apps/Mail-Patcher/boot.dol" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/Mail-Patcher/boot.dol"', 'apps/Mail-Patcher/boot.dol"')"
+if %percent%==16 if not exist "apps/Mail-Patcher/boot.dol" curl -s -S --insecure "%FilesHostedOn%/apps/Mail-Patcher/boot.dol" --output apps/Mail-Patcher/boot.dol
 if %percent%==16 set /a temperrorlev=%errorlevel%
 if %percent%==16 set modul=Downloading Mail Patcher
 if %percent%==16 if not %temperrorlev%==0 goto error_patching
 
 
-if %percent%==16 if not exist "apps/Mail-Patcher/icon.png" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/Mail-Patcher/icon.png"', 'apps/Mail-Patcher/icon.png"')"
+if %percent%==16 if not exist "apps/Mail-Patcher/icon.png" curl -s -S --insecure "%FilesHostedOn%/apps/Mail-Patcher/icon.png" --output apps/Mail-Patcher/icon.png
 if %percent%==16 set /a temperrorlev=%errorlevel%
 if %percent%==16 set modul=Downloading Mail Patcher
 if %percent%==16 if not %temperrorlev%==0 goto error_patching
 
 
-if %percent%==17 if not exist "apps/Mail-Patcher/meta.xml" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/Mail-Patcher/meta.xml"', 'apps/Mail-Patcher/meta.xml"')"
+if %percent%==17 if not exist "apps/Mail-Patcher/meta.xml" curl -s -S --insecure "%FilesHostedOn%/apps/Mail-Patcher/meta.xml" --output apps/Mail-Patcher/meta.xml
 if %percent%==17 set /a temperrorlev=%errorlevel%
 if %percent%==17 set modul=Downloading Mail Patcher
 if %percent%==17 if not %temperrorlev%==0 goto error_patching
@@ -1988,43 +2132,44 @@ if %percent%==17 if not %temperrorlev%==0 goto error_patching
 
 if %percent%==18 if not exist apps/WiiModLite md apps\WiiModLite
 if %percent%==18 if not exist apps/Mail-Patcher md apps\Mail-Patcher
-if %percent%==18 if not exist "apps/WiiModLite/boot.dol" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/boot.dol"', 'apps/WiiModLite/boot.dol"')"
+if %percent%==18 if not exist "apps/WiiModLite/boot.dol" curl -s -S --insecure "%FilesHostedOn%/apps/WiiModLite/boot.dol" --output apps/WiiModLite/boot.dol
 if %percent%==18 set /a temperrorlev=%errorlevel%
 if %percent%==18 set modul=Downloading Wii Mod Lite
 if %percent%==18 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==19 if not exist "apps/WiiModLite/database.txt" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/database.txt"', 'apps/WiiModLite/database.txt"')"
+if %percent%==19 if not exist "apps/WiiModLite/database.txt" curl -s -S --insecure "%FilesHostedOn%/apps/WiiModLite/database.txt" --output apps/WiiModLite/database.txt
 if %percent%==19 set /a temperrorlev=%errorlevel%
 if %percent%==19 set modul=Downloading Wii Mod Lite
 if %percent%==19 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==19 if not exist "apps/WiiModLite/icon.png" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/icon.png"', 'apps/WiiModLite/icon.png"')"
+if %percent%==19 if not exist "apps/WiiModLite/icon.png" curl -s -S --insecure "%FilesHostedOn%/apps/WiiModLite/icon.png" --output apps/WiiModLite/icon.png
 if %percent%==19 set /a temperrorlev=%errorlevel%
 if %percent%==19 set modul=Downloading Wii Mod Lite
 if %percent%==19 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==20 if not exist "apps/WiiModLite/icon.png" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/icon.png"', 'apps/WiiModLite/icon.png"')"
+if %percent%==20 if not exist "apps/WiiModLite/icon.png" curl -s -S --insecure "%FilesHostedOn%/apps/WiiModLite/icon.png" --output apps/WiiModLite/icon.png
 if %percent%==20 set /a temperrorlev=%errorlevel%
 if %percent%==20 set modul=Downloading Wii Mod Lite
 if %percent%==20 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==20 if not exist "apps/WiiModLite/meta.xml" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/meta.xml"', 'apps/WiiModLite/meta.xml"')"
+if %percent%==20 if not exist "apps/WiiModLite/meta.xml" curl -s -S --insecure "%FilesHostedOn%/apps/WiiModLite/meta.xml" --output apps/WiiModLite/meta.xml
 if %percent%==20 set /a temperrorlev=%errorlevel%
 if %percent%==20 set modul=Downloading Wii Mod Lite
 if %percent%==20 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==20 if not exist "apps/WiiModLite/wiimod.txt" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/wiimod.txt"', 'apps/WiiModLite/wiimod.txt"')"
+if %percent%==20 if not exist "apps/WiiModLite/wiimod.txt" curl -s -S --insecure "%FilesHostedOn%/apps/WiiModLite/wiimod.txt" --output apps/WiiModLite/wiimod.txt
 if %percent%==20 set /a temperrorlev=%errorlevel%
 if %percent%==20 set modul=Downloading Wii Mod Lite
 if %percent%==20 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==21 if not exist "EVCPatcher/patch/Europe.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%EVCPatcher/patch/Europe.delta"', '"EVCPatcher/patch/Europe.delta"')"
+if %percent%==21 if not exist "EVCPatcher/patch/Europe.delta" curl -s -S --insecure "%FilesHostedOn%EVCPatcher/patch/Europe.delta" --output EVCPatcher/patch/Europe.delta
 if %percent%==21 set /a temperrorlev=%errorlevel%
 if %percent%==21 set modul=Downloading Europe Delta
 if %percent%==21 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==22 if not exist "EVCPatcher/patch/USA.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/patch/USA.delta"', 'EVCPatcher/patch/USA.delta"')"
+if %percent%==22 if not exist "EVCPatcher/patch/USA.delta" curl -s -S --insecure "%FilesHostedOn%/EVCPatcher/patch/USA.delta" --output EVCPatcher/patch/USA.delta
 if %percent%==22 set /a temperrorlev=%errorlevel%
+if %percent%==22 set /a progress_downloading=1
 if %percent%==22 set modul=Downloading Wii Mod Lite
 if %percent%==22 if not %temperrorlev%==0 goto error_patching
 
@@ -2124,6 +2269,7 @@ if %percent%==43 move "IOSPatcher\WAD\IOS31.wad" "WAD"
 if %percent%==43 move "IOSPatcher\WAD\IOS80.wad" "WAD"
 
 if %percent%==44 if exist IOSPatcher rmdir /s /q IOSPatcher
+if %percent%==44 set /a progress_ios=1
 ::EVC Patcher
 
 if %percent%==50 if not exist 0001000148414A50v512 md 0001000148414A50v512
@@ -2185,6 +2331,7 @@ if %percent%==67 if %evcregion%==1 call EVCPatcher\pack\Sharpii.exe WAD -p "EVCP
 if %percent%==67 if %evcregion%==2 call EVCPatcher\pack\Sharpii.exe WAD -p "EVCPatcher\pack\unencrypted" "WAD\Everybody Votes Channel RiiConnect24 USA" -f
 if %percent%==67 set /a temperrorlev=%errorlevel%
 if %percent%==67 set modul=Packing EVC WAD
+if %percent%==67 set /a progress_evc=1
 if %percent%==67 if not %temperrorlev%==0 goto error_patching
 
 
@@ -2251,6 +2398,7 @@ if %percent%==86 if %evcregion%==2 call NCPatcher\pack\Sharpii.exe WAD -p "NCPat
 if %percent%==86 set /a temperrorlev=%errorlevel%
 if %percent%==86 set modul=Packing NC WAD
 if %percent%==86 if not %temperrorlev%==0 goto error_patching
+if %percent%==86 set /a progress_nc=1
 
 ::Final commands
 if %percent%==94 if not %sdcard%==NUL set /a errorcopying=0
@@ -2269,13 +2417,14 @@ if %percent%==99 rmdir /s /q EVCPatcher
 if %percent%==99 rmdir /s /q NCPatcher
 if %percent%==99 del /q 00000001.app
 if %percent%==99 del /q 00000001_NC.app
-
+if %percent%==99 set /a progress_finishing=1
 
 if %percent%==100 goto 2_4
-ping localhost -n 1 >NUL
+::ping localhost -n 1 >NUL
 
-if %percent%==0 goto random_funfact
-if %percent%==50 goto random_funfact
+if "%percent%"=="0" call :random_funfact
+if "%percent%"=="50" call :random_funfact
+
 set /a percent=%percent%+1
 goto 2_3
 :2_4
@@ -2329,6 +2478,8 @@ goto end1
 
 :troubleshooting_auto_tool
 if "%modul%"=="Renaming files [Delete everything except RiiConnect24Patcher.bat]" set tempgotonext=2_2&set /a troubleshoot_auto_tool_notification=1& goto troubleshooting_5
+if "%modul%"=="Decrypter error" set tempgotonext=2_2&set /a troubleshoot_auto_tool_notification=1& goto troubleshooting_5
+if "%modul%"=="move.exe" set tempgotonext=2_2&set /a troubleshoot_auto_tool_notification=1& goto troubleshooting_5
 
 goto troubleshooting_auto_tool
 
@@ -2442,7 +2593,7 @@ cls
 echo.
 echo %header%
 echo ---------------------------------------------------------------------------------------------------------------------------
-echo  [*] Patching Nintnedo Channel... this can take some time.
+echo  [*] Patching Nintendo Channel... this can take some time.
 
 
 if not exist NCPatcher/patch md NCPatcher\patch
@@ -2450,52 +2601,52 @@ if not exist NCPatcher/dwn md NCPatcher\dwn
 if not exist NCPatcher/dwn/0001000148415450v1792 md NCPatcher\dwn\0001000148415450v1792
 if not exist NCPatcher/dwn/0001000148415445v1792 md NCPatcher\dwn\0001000148415445v1792
 if not exist NCPatcher/pack md NCPatcher\pack
-if not exist "NCPatcher/patch/Europe.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/patch/Europe.delta"', '"NCPatcher/patch/Europe.delta"')"
+if not exist "NCPatcher/patch/Europe.delta" curl -s -S --insecure "%FilesHostedOn%/NCPatcher/patch/Europe.delta" --output NCPatcher/patch/Europe.delta
 set /a temperrorlev=%errorlevel%
 set modul=Downloading Europe Delta [NC]
 if not %temperrorlev%==0 goto error_patching
 
-if not exist "NCPatcher/patch/USA.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/patch/USA.delta"', 'NCPatcher/patch/USA.delta"')"
+if not exist "NCPatcher/patch/USA.delta" curl -s -S --insecure "%FilesHostedOn%/NCPatcher/patch/USA.delta" --output NCPatcher/patch/USA.delta
 set /a temperrorlev=%errorlevel%
 set modul=Downloading USA Delta [NC]
 if not %temperrorlev%==0 goto error_patching
 
-if not exist "NCPatcher/NUS_Downloader_Decrypt.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/NUS_Downloader_Decrypt.exe"', 'NCPatcher/NUS_Downloader_Decrypt.exe"')"
+if not exist "NCPatcher/NUS_Downloader_Decrypt.exe" curl -s -S --insecure "%FilesHostedOn%/NCPatcher/NUS_Downloader_Decrypt.exe" --output NCPatcher/NUS_Downloader_Decrypt.exe
 set /a temperrorlev=%errorlevel%
 set modul=Downloading Decrypter
 if not %temperrorlev%==0 goto error_patching
 
-if not exist "NCPatcher/patch/xdelta3.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/patch/xdelta3.exe"', 'NCPatcher/patch/xdelta3.exe"')"
+if not exist "NCPatcher/patch/xdelta3.exe" curl -s -S --insecure "%FilesHostedOn%/NCPatcher/patch/xdelta3.exe" --output NCPatcher/patch/xdelta3.exe
 set /a temperrorlev=%errorlevel%
 set modul=Downloading xdelta3.exe
 if not %temperrorlev%==0 goto error_patching
 
-if not exist "NCPatcher/pack/libWiiSharp.dll" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/pack/libWiiSharp.dll"', 'NCPatcher/pack/libWiiSharp.dll"')"
+if not exist "NCPatcher/pack/libWiiSharp.dll" curl -s -S --insecure "%FilesHostedOn%/NCPatcher/pack/libWiiSharp.dll" --output NCPatcher/pack/libWiiSharp.dll
 set /a temperrorlev=%errorlevel%
 set modul=Downloading libWiiSharp.dll
 if not %temperrorlev%==0 goto error_patching
 
-if not exist "NCPatcher/pack/Sharpii.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/pack/Sharpii.exe"', 'NCPatcher/pack/Sharpii.exe"')"
+if not exist "NCPatcher/pack/Sharpii.exe" curl -s -S --insecure "%FilesHostedOn%/NCPatcher/pack/Sharpii.exe" --output NCPatcher/pack/Sharpii.exe
 set /a temperrorlev=%errorlevel%
 set modul=Downloading Sharpii.exe
 if not %temperrorlev%==0 goto error_patching
 
-if not exist "NCPatcher/dwn/Sharpii.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/dwn/Sharpii.exe"', 'NCPatcher/dwn/Sharpii.exe"')"
+if not exist "NCPatcher/dwn/Sharpii.exe" curl -s -S --insecure "%FilesHostedOn%/NCPatcher/dwn/Sharpii.exe" --output NCPatcher/dwn/Sharpii.exe
 set /a temperrorlev=%errorlevel%
 set modul=Downloading Sharpii.exe
 if not %temperrorlev%==0 goto error_patching
 
-if not exist "NCPatcher/dwn/libWiiSharp.dll" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/dwn/libWiiSharp.dll"', 'NCPatcher/dwn/libWiiSharp.dll"')"
+if not exist "NCPatcher/dwn/libWiiSharp.dll" curl -s -S --insecure "%FilesHostedOn%/NCPatcher/dwn/libWiiSharp.dll" --output NCPatcher/dwn/libWiiSharp.dll
 set /a temperrorlev=%errorlevel%
 set modul=Downloading libWiiSharp.dll
 if not %temperrorlev%==0 goto error_patching
 
-if not exist "NCPatcher/dwn/0001000148415445v1792/cetk" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/dwn/0001000148415445v1792/cetk"', 'NCPatcher/dwn/0001000148415445v1792/cetk"')"
+if not exist "NCPatcher/dwn/0001000148415445v1792/cetk" curl -s -S --insecure "%FilesHostedOn%/NCPatcher/dwn/0001000148415445v1792/cetk" --output NCPatcher/dwn/0001000148415445v1792/cetk
 set /a temperrorlev=%errorlevel%
 set modul=Downloading USA CETK
 if not %temperrorlev%==0 goto error_patching
 
-if not exist "NCPatcher/dwn/0001000148415450v1792/cetk" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/NCPatcher/dwn/0001000148415450v1792/cetk"', 'NCPatcher/dwn/0001000148415450v1792/cetk"')"
+if not exist "NCPatcher/dwn/0001000148415450v1792/cetk" curl -s -S --insecure "%FilesHostedOn%/NCPatcher/dwn/0001000148415450v1792/cetk" --output NCPatcher/dwn/0001000148415450v1792/cetk
 set /a temperrorlev=%errorlevel%
 set modul=Downloading EUR CETK
 if not %temperrorlev%==0 goto error_patching
@@ -2582,37 +2733,37 @@ echo ---------------------------------------------------------------------------
 echo  [*] Patching IOS's... this can take some time.
 echo.
 if not exist IOSPatcher md IOSPatcher
-if not exist "IOSPatcher/00000006-31.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/00000006-31.delta"', 'IOSPatcher/00000006-31.delta"')"
+if not exist "IOSPatcher/00000006-31.delta" curl -s -S --insecure "%FilesHostedOn%/IOSPatcher/00000006-31.delta" --output IOSPatcher/00000006-31.delta
 set /a temperrorlev=%errorlevel%
 set modul=Downloading 06-31.delta
 if not %temperrorlev%==0 goto error_patching
 
-if not exist "IOSPatcher/00000006-80.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/00000006-80.delta"', 'IOSPatcher/00000006-80.delta"')"
+if not exist "IOSPatcher/00000006-80.delta" curl -s -S --insecure "%FilesHostedOn%/IOSPatcher/00000006-80.delta" --output IOSPatcher/00000006-80.delta
 set /a temperrorlev=%errorlevel%
 set modul=Downloading 06-80.delta
 if not %temperrorlev%==0 goto error_patching
 
-if not exist "IOSPatcher/00000006-80.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/00000006-80.delta"', 'IOSPatcher/00000006-80.delta"')"
+if not exist "IOSPatcher/00000006-80.delta" curl -s -S --insecure "%FilesHostedOn%/IOSPatcher/00000006-80.delta" --output IOSPatcher/00000006-80.delta
 set /a temperrorlev=%errorlevel%
 set modul=Downloading 06-80.delta
 if not %temperrorlev%==0 goto error_patching
 
-if not exist "IOSPatcher/libWiiSharp.dll" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/libWiiSharp.dll"', 'IOSPatcher/libWiiSharp.dll"')"
+if not exist "IOSPatcher/libWiiSharp.dll" curl -s -S --insecure "%FilesHostedOn%/IOSPatcher/libWiiSharp.dll" --output IOSPatcher/libWiiSharp.dll
 set /a temperrorlev=%errorlevel%
 set modul=Downloading libWiiSharp.dll
 if not %temperrorlev%==0 goto error_patching
 
-if not exist "IOSPatcher/Sharpii.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/Sharpii.exe"', 'IOSPatcher/Sharpii.exe"')"
+if not exist "IOSPatcher/Sharpii.exe" curl -s -S --insecure "%FilesHostedOn%/IOSPatcher/Sharpii.exe" --output IOSPatcher/Sharpii.exe
 set /a temperrorlev=%errorlevel%
 set modul=Downloading Sharpii.exe
 if not %temperrorlev%==0 goto error_patching
 
-if not exist "IOSPatcher/WadInstaller.dll" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/WadInstaller.dll"', 'IOSPatcher/WadInstaller.dll"')"
+if not exist "IOSPatcher/WadInstaller.dll" curl -s -S --insecure "%FilesHostedOn%/IOSPatcher/WadInstaller.dll" --output IOSPatcher/WadInstaller.dll
 set /a temperrorlev=%errorlevel%
 set modul=Downloading WadInstaller.dll
 if not %temperrorlev%==0 goto error_patching
 
-if not exist "IOSPatcher/xdelta3.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/IOSPatcher/xdelta3.exe"', 'IOSPatcher/xdelta3.exe"')"
+if not exist "IOSPatcher/xdelta3.exe" curl -s -S --insecure "%FilesHostedOn%/IOSPatcher/xdelta3.exe" --output IOSPatcher/xdelta3.exe
 set /a temperrorlev=%errorlevel%
 set modul=Downloading xdelta3.exe
 if not %temperrorlev%==0 goto error_patching
@@ -2743,72 +2894,72 @@ set /a temperrorlev=0
 if not exist WAD md WAD
 if not exist EVCPatcher md EVCPatcher
 if not exist EVCPatcher/patch md EVCPatcher\patch
-if not exist "EVCPatcher/patch/Europe.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/patch/Europe.delta"', 'EVCPatcher/patch/Europe.delta"')"
+if not exist "EVCPatcher/patch/Europe.delta" curl -s -S --insecure "%FilesHostedOn%/EVCPatcher/patch/Europe.delta" --output EVCPatcher/patch/Europe.delta
 set /a temperrorlev=%errorlevel%
 set modul=Downloading Europe Delta
 if not %temperrorlev%==0 goto error_patching
 
-if not exist "EVCPatcher/patch/USA.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/patch/USA.delta"', 'EVCPatcher/patch/USA.delta"')"
+if not exist "EVCPatcher/patch/USA.delta" curl -s -S --insecure "%FilesHostedOn%/EVCPatcher/patch/USA.delta" --output EVCPatcher/patch/USA.delta
 set /a temperrorlev=%errorlevel%
 set modul=Downloading USA Delta
 if not %temperrorlev%==0 goto error_patching
 
-if not exist "EVCPatcher/NUS_Downloader_Decrypt.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/NUS_Downloader_Decrypt.exe"', 'EVCPatcher/NUS_Downloader_Decrypt.exe"')"
+if not exist "EVCPatcher/NUS_Downloader_Decrypt.exe" curl -s -S --insecure "%FilesHostedOn%/EVCPatcher/NUS_Downloader_Decrypt.exe" --output EVCPatcher/NUS_Downloader_Decrypt.exe
 set /a temperrorlev=%errorlevel%
 set modul=Downloading EUR evc
 if not %temperrorlev%==0 goto error_patching
 
-if not exist "EVCPatcher/patch/xdelta3.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/patch/xdelta3.exe"', 'EVCPatcher/patch/xdelta3.exe"')"
+if not exist "EVCPatcher/patch/xdelta3.exe" curl -s -S --insecure "%FilesHostedOn%/EVCPatcher/patch/xdelta3.exe" --output EVCPatcher/patch/xdelta3.exe
 set /a temperrorlev=%errorlevel%
 set modul=Downloading xdelta3.exe
 if not %temperrorlev%==0 goto error_patching
 
 if not exist EVCPatcher/pack md EVCPatcher\pack
-if not exist "EVCPatcher/pack/libWiiSharp.dll" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/pack/libWiiSharp.dll"', 'EVCPatcher/pack/libWiiSharp.dll"')"
+if not exist "EVCPatcher/pack/libWiiSharp.dll" curl -s -S --insecure "%FilesHostedOn%/EVCPatcher/pack/libWiiSharp.dll" --output EVCPatcher/pack/libWiiSharp.dll
 set /a temperrorlev=%errorlevel%
 set modul=Downloading libWiiSharp.dll
 if not %temperrorlev%==0 goto error_patching
 
-if not exist "EVCPatcher/pack/Sharpii.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/pack/Sharpii.exe"', 'EVCPatcher/pack/Sharpii.exe"')"
+if not exist "EVCPatcher/pack/Sharpii.exe" curl -s -S --insecure "%FilesHostedOn%/EVCPatcher/pack/Sharpii.exe" --output EVCPatcher/pack/Sharpii.exe
 set /a temperrorlev=%errorlevel%
 set modul=Downloading Sharpii.exe
 if not %temperrorlev%==0 goto error_patching
 
 if not exist EVCPatcher/dwn md EVCPatcher\dwn
-if not exist "EVCPatcher/dwn/Sharpii.exe" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/dwn/Sharpii.exe"', 'EVCPatcher/dwn/Sharpii.exe"')"
+if not exist "EVCPatcher/dwn/Sharpii.exe" curl -s -S --insecure "%FilesHostedOn%/EVCPatcher/dwn/Sharpii.exe" --output EVCPatcher/dwn/Sharpii.exe
 set /a temperrorlev=%errorlevel%
 set modul=Downloading Sharpii.exe
 if not %temperrorlev%==0 goto error_patching
 
-if not exist "EVCPatcher/dwn/libWiiSharp.dll" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/dwn/libWiiSharp.dll"', 'EVCPatcher/dwn/libWiiSharp.dll"')"
+if not exist "EVCPatcher/dwn/libWiiSharp.dll" curl -s -S --insecure "%FilesHostedOn%/EVCPatcher/dwn/libWiiSharp.dll" --output EVCPatcher/dwn/libWiiSharp.dll
 set /a temperrorlev=%errorlevel%
 set modul=Downloading libWiiSharp.dll
 if not %temperrorlev%==0 goto error_patching
 
-if not exist "EVCPatcher/dwn/libWiiSharp.dll" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/dwn/libWiiSharp.dll"', 'EVCPatcher/dwn/libWiiSharp.dll"')"
+if not exist "EVCPatcher/dwn/libWiiSharp.dll" curl -s -S --insecure "%FilesHostedOn%/EVCPatcher/dwn/libWiiSharp.dll" --output EVCPatcher/dwn/libWiiSharp.dll
 set /a temperrorlev=%errorlevel%
 set modul=Downloading libWiiSharp.dll
 if not %temperrorlev%==0 goto error_patching
 
 if not exist EVCPatcher/dwn/0001000148414A45v512 md EVCPatcher\dwn\0001000148414A45v512
 if not exist EVCPatcher/dwn/0001000148414A50v512 md EVCPatcher\dwn\0001000148414A50v512
-if not exist "EVCPatcher/dwn/0001000148414A45v512/cetk" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/dwn/0001000148414A45v512/cetk"', 'EVCPatcher/dwn/0001000148414A45v512/cetk"')"
+if not exist "EVCPatcher/dwn/0001000148414A45v512/cetk" curl -s -S --insecure "%FilesHostedOn%/EVCPatcher/dwn/0001000148414A45v512/cetk" --output EVCPatcher/dwn/0001000148414A45v512/cetk
 set /a temperrorlev=%errorlevel%
 set modul=Downloading USA CETK
 if not %temperrorlev%==0 goto error_patching
 
-if not exist "EVCPatcher/dwn/0001000148414A50v512/cetk" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/dwn/0001000148414A50v512/cetk"', 'EVCPatcher/dwn/0001000148414A50v512/cetk"')"
+if not exist "EVCPatcher/dwn/0001000148414A50v512/cetk" curl -s -S --insecure "%FilesHostedOn%/EVCPatcher/dwn/0001000148414A50v512/cetk" --output EVCPatcher/dwn/0001000148414A50v512/cetk
 set /a temperrorlev=%errorlevel%
 set modul=Downloading EUR CETK
 if not %temperrorlev%==0 goto error_patching
 
 
-if not exist "EVCPatcher/patch/Europe.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/patch/Europe.delta"', 'EVCPatcher/patch/Europe.delta"')"
+if not exist "EVCPatcher/patch/Europe.delta" curl -s -S --insecure "%FilesHostedOn%/EVCPatcher/patch/Europe.delta" --output EVCPatcher/patch/Europe.delta
 set /a temperrorlev=%errorlevel%
 set modul=Downloading Europe Delta
 if not %temperrorlev%==0 goto error_patching
 
-if not exist "EVCPatcher/patch/USA.delta" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/EVCPatcher/patch/USA.delta"', 'EVCPatcher/patch/USA.delta"')"
+if not exist "EVCPatcher/patch/USA.delta" curl -s -S --insecure "%FilesHostedOn%/EVCPatcher/patch/USA.delta" --output EVCPatcher/patch/USA.delta
 set /a temperrorlev=%errorlevel%
 set modul=Downloading Wii Mod Lite
 if not %temperrorlev%==0 goto error_patching
@@ -2890,50 +3041,50 @@ echo ---------------------------------------------------------------------------
 echo  [*] Downloading apps... this can take some time.
 echo.
 if not exist apps/Mail-Patcher md apps\Mail-Patcher
-if not exist "apps/Mail-Patcher/boot.dol" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/Mail-Patcher/boot.dol"', 'apps/Mail-Patcher/boot.dol"')"
+if not exist "apps/Mail-Patcher/boot.dol" curl -s -S --insecure "%FilesHostedOn%/apps/Mail-Patcher/boot.dol" --output apps/Mail-Patcher/boot.dol
 set /a temperrorlev=%errorlevel%
 set modul=Downloading Mail Patcher
 if not %temperrorlev%==0 goto error_patching
 
 
-if not exist "apps/Mail-Patcher/icon.png" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/Mail-Patcher/icon.png"', 'apps/Mail-Patcher/icon.png"')"
+if not exist "apps/Mail-Patcher/icon.png" curl -s -S --insecure "%FilesHostedOn%/apps/Mail-Patcher/icon.png" --output apps/Mail-Patcher/icon.png
 set /a temperrorlev=%errorlevel%
 set modul=Downloading Mail Patcher
 if not %temperrorlev%==0 goto error_patching
 
 
-if not exist "apps/Mail-Patcher/meta.xml" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/Mail-Patcher/meta.xml"', 'apps/Mail-Patcher/meta.xml"')"
+if not exist "apps/Mail-Patcher/meta.xml" curl -s -S --insecure "%FilesHostedOn%/apps/Mail-Patcher/meta.xml" --output apps/Mail-Patcher/meta.xml
 set /a temperrorlev=%errorlevel%
 set modul=Downloading Mail Patcher
 if not %temperrorlev%==0 goto error_patching
 
 if not exist apps/WiiModLite md apps\WiiModLite
-if not exist "apps/WiiModLite/boot.dol" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/boot.dol"', 'apps/WiiModLite/boot.dol"')"
+if not exist "apps/WiiModLite/boot.dol" curl -s -S --insecure "%FilesHostedOn%/apps/WiiModLite/boot.dol" --output apps/WiiModLite/boot.dol
 set /a temperrorlev=%errorlevel%
 set modul=Downloading Wii Mod Lite
 if not %temperrorlev%==0 goto error_patching
 
-if not exist "apps/WiiModLite/database.txt" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/database.txt"', 'apps/WiiModLite/database.txt"')"
+if not exist "apps/WiiModLite/database.txt" curl -s -S --insecure "%FilesHostedOn%/apps/WiiModLite/database.txt" --output apps/WiiModLite/database.txt
 set /a temperrorlev=%errorlevel%
 set modul=Downloading Wii Mod Lite
 if not %temperrorlev%==0 goto error_patching
 
-if not exist "apps/WiiModLite/icon.png" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/icon.png"', 'apps/WiiModLite/icon.png"')"
+if not exist "apps/WiiModLite/icon.png" curl -s -S --insecure "%FilesHostedOn%/apps/WiiModLite/icon.png" --output apps/WiiModLite/icon.png
 set /a temperrorlev=%errorlevel%
 set modul=Downloading Wii Mod Lite
 if not %temperrorlev%==0 goto error_patching
 
-if not exist "apps/WiiModLite/icon.png" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/icon.png"', 'apps/WiiModLite/icon.png"')"
+if not exist "apps/WiiModLite/icon.png" curl -s -S --insecure "%FilesHostedOn%/apps/WiiModLite/icon.png" --output apps/WiiModLite/icon.png
 set /a temperrorlev=%errorlevel%
 set modul=Downloading Wii Mod Lite
 if not %temperrorlev%==0 goto error_patching
 
-if not exist "apps/WiiModLite/meta.xml" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/meta.xml"', 'apps/WiiModLite/meta.xml"')"
+if not exist "apps/WiiModLite/meta.xml" curl -s -S --insecure "%FilesHostedOn%/apps/WiiModLite/meta.xml" --output apps/WiiModLite/meta.xml
 set /a temperrorlev=%errorlevel%
 set modul=Downloading Wii Mod Lite
 if not %temperrorlev%==0 goto error_patching
 
-if not exist "apps/WiiModLite/wiimod.txt" powershell -command "(new-object System.Net.WebClient).DownloadFile('"%FilesHostedOn%/apps/WiiModLite/wiimod.txt"', 'apps/WiiModLite/wiimod.txt"')"
+if not exist "apps/WiiModLite/wiimod.txt" curl -s -S --insecure "%FilesHostedOn%/apps/WiiModLite/wiimod.txt" --output apps/WiiModLite/wiimod.txt
 set /a temperrorlev=%errorlevel%
 set modul=Downloading Wii Mod Lite
 if not %temperrorlev%==0 goto error_patching

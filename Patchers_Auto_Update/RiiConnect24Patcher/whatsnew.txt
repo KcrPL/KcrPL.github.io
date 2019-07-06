@@ -1,3 +1,13 @@
+1.0.9
+    Finished Beta testing successfully!
+- Changed the way how patcher downloads files from internet. We won't have any Powershell errors now!
+- Added a new progress bar. It will now show what the patcher is doing at the moment.
+- Added a failsafe for new errors. After the patcher encounters an error, it will try to auto troubleshoot it and restart the patching process. Everything without notifying the user	.
+- Made patching process a lot faster... and more stable.
+- Fix for few bugs
+
+This is really important update. See any errors? Mail me at support@riiconnect24.net
+
 1.0.8 
 	First version to go through beta testing phase.
 - Added `Troubleshooting` menu. It has some tools that can help you fix/detect few problems.
@@ -10,7 +20,7 @@
 - The time has come! Nintendo Channel is here! You can now patch it using the automatic patching method and through the manual patching menu. Go, check it out!
 - Some misspelling fixes
 - Changed how the progress bar measures it's state.
-- Bug fixes
+- Bug fixes	
 
 1.0.6
 - Added support for switching to beta branch from stable and to stable from beta. This way we can test if upcoming features of our patcher are ready to be released as production ready.
