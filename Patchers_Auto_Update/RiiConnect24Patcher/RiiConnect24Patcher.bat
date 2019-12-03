@@ -2092,11 +2092,6 @@ if %troubleshoot_auto_tool_notification%==1 echo : Warning: There was an error w
 if %troubleshoot_auto_tool_notification%==1 echo : the problem. The patching process has been restarted.                                                                  :
 if %troubleshoot_auto_tool_notification%==1 echo :------------------------------------------------------------------------------------------------------------------------:
 echo.
-echo debug:
-echo custominstal_evc %custominstall_evc%
-echo custominstal_cmoc %custominstall_cmoc%
-echo custominstal_ios %custominstall_ios%
-echo.
 echo Fun Fact: %funfact%
 echo.
 echo    Progress:
