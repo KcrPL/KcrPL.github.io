@@ -49,6 +49,7 @@ goto begin_main
 
 :rc24_aio_patcher_script_enable
 set /a aio_assisted=1
+set /a errorwinxp=0
 set /a updateserver=1
 goto choose_patch_type
 
