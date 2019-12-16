@@ -647,7 +647,8 @@ echo.
 echo Let's begin.
 echo.
 echo In order to patch wad file, I need a wad file.
-echo So, if you can, please copy any wad file to this directory where I am.
+if %aio_assisted%==0 echo So, if you can, please copy any wad file to this directory where I am.
+if %aio_assisted%==1 echo Please copy the .WAD file to WiiWare-Patcher folder that was made by RiiConnect24 Patcher.
 echo.
 if %rep%==1 if exist "*.wad" set /a cor=1
 if %rep%==1 if exist "*.wad" goto letsbegin
