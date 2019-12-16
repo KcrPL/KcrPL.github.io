@@ -1,6 +1,0 @@
------------ RiiConnect24 Patcher Beta ----------- 
-
-	Annoucement server is not available on [BETA] Branch.
-	Please switch to [STABLE].
-
-1. Disconnect and go to main menu

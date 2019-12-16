@@ -1,2 +1,1 @@
-This is the beta version of the patcher. Here we will test new features of the patcher
-before releasing it as production ready.
+You're now beta testing the patcher! Thank you <3
