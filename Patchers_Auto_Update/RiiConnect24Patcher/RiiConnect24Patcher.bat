@@ -1,11 +1,12 @@
 @echo off
 setlocal enableextensions
+setlocal enableDelayedExpansion
 cd /d "%~dp0"
 echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: RiiConnect24 Patcher for Windows
-set version=1.1.0
+set version=1.1.1
 :: AUTHORS: KcrPL, Larsenv, Apfel
 :: ***************************************************************************
 :: Copyright (c) 2019 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -36,9 +37,8 @@ set tempgotonext=begin_main
 :: Window Title
 if %beta%==0 title RiiConnect24 Patcher v%version% Created by @KcrPL, @Larsenv, @Apfel
 if %beta%==1 title RiiConnect24 Patcher v%version% [BETA] Created by @KcrPL, @Larsenv, @Apfel
-set last_build=2019/12/01
-set at=23:06
-if exist "C:\Users\%username%\Desktop\RiiConnect24Patcher.txt" goto debug_load
+set last_build=2019/12/16
+set at=23:34
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
@@ -49,6 +49,10 @@ set /a Update_Activate=1
 set /a offlinestorage=0 
 if %beta%==0 set FilesHostedOn=https://raw.githubusercontent.com/KcrPL/KcrPL.github.io/master/Patchers_Auto_Update/RiiConnect24Patcher
 if %beta%==1 set FilesHostedOn=https://raw.githubusercontent.com/KcrPL/KcrPL.github.io/master/Patchers_Auto_Update/RiiConnect24Patcher_Beta
+
+:: Other patchers repositories
+set FilesHostedOn_WiiWarePatcher=https://raw.githubusercontent.com/KcrPL/KcrPL.github.io/master/Patchers_Auto_Update/WiiWare-Patcher
+
 
 
 set FilesHostedOn_Beta=https://raw.githubusercontent.com/KcrPL/KcrPL.github.io/master/Patchers_Auto_Update/RiiConnect24Patcher_Beta
@@ -88,17 +92,17 @@ goto detect_sd_card
 goto begin_main
 :not_windows_nt
 cls
-echo %header%
 echo.
 echo Hi,
 echo Please don't run RiiConnect24 Patcher in MS-DOS
 echo.
 echo Press any button or CTRL+C to quit.
-pause>NUL
+pause
 exit
 goto not_windows_nt
 :begin_main
 cls
+mode %mode%
 echo %header%
 echo              `..````
 echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`
@@ -138,7 +142,7 @@ if %beta%==0 echo                                     :syhdyyyyso+/-`
 
 if %beta%==1 echo ----------------------------------------------------------------------------------------------------:
 if %beta%==1 echo            .sho.          
-if %beta%==1 echo         .oy: :ys.          Warning!
+if %beta%==1 echo         .oy: :ys.          Warning^^!
 if %beta%==1 echo       -sy-     -ss-      
 if %beta%==1 echo    `:ss-   ...   -ss-`   
 if %beta%==1 echo  `:ss-`   .ysy     -ss:`   You are using an experimental version of this program.
@@ -203,6 +207,8 @@ echo.
 echo Fixing - Renaming files error
 echo.
 echo [...] Flushing files
+rmdir /s /q 0001000148415045v512>NUL
+rmdir /s /q 0001000148415050v512>NUL
 rmdir /s /q 0001000148414A45v512>NUL
 rmdir /s /q 0001000148414A50v512>NUL
 rmdir /s /q 0001000148415450v1792>NUL
@@ -279,7 +285,7 @@ echo %random% >>"%temp%\deleteME.txt"
 
 copy "%temp%\deleteME.txt" "%sdcard%:\" >NUL
 set temperrorlev=%errorlevel%
-if %temperrorlev%==0 echo [OK] File saved!
+if %temperrorlev%==0 echo [OK] File saved^^!
 if not %temperrorlev%==0 echo [Error] The file couldn't be saved. Looks like the drive is write protected. Unlock it and try again
 if not %temperrorlev%==0 goto troubleshooting_3_3
 
@@ -287,11 +293,11 @@ if %temperrorlev%==0 del /q %sdcard%:\deleteME.txt
 if %temperrorlev%==0 del /q "%temp%\deleteME.txt"
 set /a temperrorlev=%errorlevel%
 
-if %temperrorlev%==0 echo [OK] File deleted!
+if %temperrorlev%==0 echo [OK] File deleted^^!
 if not %temperrorlev%==0 echo [Error] Deleting file.
 if not %temperrorlev%==0 goto troubleshooting_3_3
 
-echo Everything is ok! Drive is enabled for read/write access.
+echo Everything is ok^^! Drive is enabled for read/write access.
 goto troubleshooting_3_3
 :troubleshooting_3_3
 echo.
@@ -385,8 +391,8 @@ echo ---------------------------------------------------------------------------
 echo.
 echo Please wait... fetching data.
 echo.
-if "%beta%"=="1" goto change_updating_branch_stable
-if "%beta%"=="0" goto change_updating_branch_beta
+if "%beta%"=="1" call :change_updating_branch_stable
+if "%beta%"=="0" call :change_updating_branch_beta
 goto settings_menu
 :change_updating_branch_stable
 set /a stable_available_check=1
@@ -479,7 +485,7 @@ cls
 echo %header%
 echo -----------------------------------------------------------------------------------------------------------------------------
 echo.
-echo WAIT! Are you trying to disable updating? 
+echo WAIT^^! Are you trying to disable updating? 
 echo Please do remember that updates will keep you safe and updated about the patcher.
 echo.
 echo Only use this option for debugging and troubleshooting.
@@ -998,7 +1004,7 @@ echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
 echo ---------------------------------------------------------------------------------------------------------------------------
 echo    /---\   ERROR.              
 echo   /     \  There was an error while downloading curl.
-echo  /   !   \ Curl is used for downloading files from update server and files needed for patching. 
+echo  /   ^^!   \ Curl is used for downloading files from update server and files needed for patching. 
 echo  --------- Please restart your PC and try running the patcher again.
 echo            If it won't work, please download curl and put it in a folder next to RiiConnect24 Patcher.bat 
 echo       Press any key to open download page in browser and to return to menu.
@@ -1092,47 +1098,6 @@ if %Update_Activate%==1 if %updateavailable%==1 set /a updateserver=2
 if %Update_Activate%==1 if %updateavailable%==1 goto update_notice
 
 goto 1
-:powershell_error
-
-:: // Deprecated \\
-
-cls
-echo %header%
-echo.                                                                       
-echo              `..````                                                  
-echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`                
-echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd                
-echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs                
-echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+        
-echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:                
-echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.                
-echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN            
-echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd                 
-echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy                 
-echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+                 
-echo ------------------------------------------------------------------------------------------------------------------------------
-echo    /---\   An error has occurred. We couldn't run Powershell on your PC.
-echo   /     \  Please disable your antivirus, run RiiConnect24Patcher.bat as an administrator and try again.
-echo  /   !   \ Restarting your PC could also fix the problem.
-echo  ---------
-echo             If you are on an old system like Windows XP, please use our legacy IOS Patcher.
-echo             You can find IOS Patcher at https://github.com/RiiConnect24/IOS-Patcher/releases
-echo ------------------------------------------------------------------------------------------------------------------------------    
-echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys                  
-echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-                  
-echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm                     
-echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+                    
-echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm                    
-echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+                   
-echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm                   
-echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/    
-echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy   
-echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`   
-echo                   `.              yddyo++:    `-/oymNNNNNdy+:`        
-echo                                   -odhhhhyddmmmmmNNmhs/:`             
-echo                                     :syhdyyyyso+/-`
-pause>NUL
-goto begin_main
 :update_notice
 if exist "%MainFolder%\failsafe.txt" del /q "%MainFolder%\failsafe.txt"
 if %updateversion%==0.0.0 goto error_update_not_available
@@ -1154,7 +1119,7 @@ echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
 echo ------------------------------------------------------------------------------------------------------------------------------
 echo    /---\   An Update is available.              
 echo   /     \  An Update for this program is available. We suggest updating the RiiConnect24 Patcher to the latest version.
-echo  /   !   \ 
+echo  /   ^^!   \ 
 echo  ---------  Current version: %version%
 echo             New version: %updateversion%
 echo                       1. Update                      2. Dismiss               3. What's new in this update?
@@ -1195,9 +1160,9 @@ echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
 echo ------------------------------------------------------------------------------------------------------------------------------
 echo    /---\   Updating.
 echo   /     \  Please wait...
-echo  /   !   \ 
+echo  /   ^^!   \ 
 echo  --------- RiiConnect24 Patcher will restart shortly... 
-echo.           Now working on: Downloading files from server and replacing old with the new ones. Give me a second, please! :)  
+echo.           Now working on: Downloading files from server and replacing old with the new ones. Give me a second, please^^! :)  
 echo.
 echo ------------------------------------------------------------------------------------------------------------------------------
 echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys                  
@@ -1234,12 +1199,12 @@ set /a file=%file%+1
 goto update_2
 :update_3
 
-curl -s -S --insecure "%FilesHostedOn%/RiiConnect24Patcher.bat" --output RiiConnect24Patcher.bat
+curl -s -S --insecure "%FilesHostedOn%/RiiConnect24Patcher.bat" --output TempRiiConnect24Patcher.bat
 
 echo echo off >>temp.bat
 echo ping localhost -n 2^>NUL >>temp.bat
 echo del RiiConnect24Patcher.bat /q >>temp.bat
-echo ren "RiiConnect24Patcher.bat`" "RiiConnect24Patcher.bat" >>temp.bat
+echo ren "TempRiiConnect24Patcher.bat" "RiiConnect24Patcher.bat" >>temp.bat
 echo start RiiConnect24Patcher.bat >>temp.bat
 echo exit >>temp.bat
 
@@ -1284,10 +1249,245 @@ echo.
 echo 2. Uninstall RiiConnect24 from your Wii.
 echo   - This will help you uninstall RiiConnect24 from your Wii.
 echo.
+echo --- Other patchers ---
+echo.
+echo 3. Patch Wii WAD Games to work with Wiimmfi.
+echo   - This will patch WAD Games (WiiWare) for use with Wiimmfi which will allow you to play online with other people.
+echo.
+echo 4. Patch Mario Kart Wii to work with Wiimmfi.
+echo   - This will patch your copy of Mario Kart Wii to work with Wiimmfi which will enable online multiplayer to work again.
+echo.
+echo 5. Patch other Wii Games to work with Wiimmfi.
+echo   - This will patch any other game than Mario Kart Wii to work with Wiimmfi. 
+echo.	
 set /p s=Choose: 
 if %s%==1 goto 2_auto_ask
 if %s%==2 goto 2_uninstall
+if %s%==3 goto wadgames_patch_info
+if %s%==4 goto mariokartwii_patch
+if %s%==5 goto wiigames_patch
 goto 1
+
+:wiigames_patch
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Preparing for use with Wiimmfi Patcher...
+echo Please wait...
+echo.
+echo Progress:
+set tempCD=%cd%
+if exist Wiimmfi-Patcher rmdir /s /q Wiimmfi-Patcher
+md Wiimmfi-Patcher
+echo 25%%
+curl -s -S --insecure "https://download.wiimm.de/wiimmfi/patcher/wiimmfi-patcher-v4.7z" --output "Wiimmfi-Patcher\wiimmfi-patcher-v4.7z"
+echo 50%%
+curl -s -S --insecure "%FilesHostedOn%/7z.exe" --output "Wiimmfi-Patcher\7z.exe"
+echo 75%%
+cd Wiimmfi-Patcher
+7z.exe x wiimmfi-patcher-v4.7z>NUL
+cd /d %tempCD%
+echo 100%%
+goto wiigames_patch_ask
+
+:wiigames_patch_ask
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Mario Kart Wii Wiimmfi Patcher is ready^^!
+echo Please the game image (can be ISO or WBFS) in a folder where RiiConnect24 Patcher is and choose "Ready".
+echo.
+if exist "*.ISO" echo ISO Files: Found
+if not exist "*.ISO" echo ISO Files: Not Found
+if exist "*.WBFS" echo WBFS Files: Found
+if not exist "*.WBFS" echo WBFS Files: Not Found
+echo.
+echo 1. Ready. Start Wiimmfi Patcher.
+echo 2. Go back to Main Menu.
+set /p s=Choose: 
+if %s%==1 goto check_start_wiimmfi-patcher
+if %s%==2 rmdir /s /q Wiimmfi-Patcher&goto begin_main
+goto wiigames_patch_ask
+:start_wiimmfi-patcher
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+
+if exist "*.WBFS" move "*.WBFS" "Wiimmfi-Patcher\wiimmfi-patcher-v4\Windows"
+if exist "*.ISO" move "*.ISO" "Wiimmfi-Patcher\wiimmfi-patcher-v4\Windows"
+
+cd Wiimmfi-Patcher\wiimmfi-patcher-v4\Windows
+
+@echo off
+
+wit cp . --DEST ../wiimmfi-images/ --update --psel=data --wiimmfi -vv
+
+cd %tempCD%
+
+if not exist wiimmfi-images md wiimmfi-images
+move "Wiimmfi-Patcher\wiimmfi-patcher-v4\wiimmfi-images\*.iso" "wiimmfi-images"
+move "Wiimmfi-Patcher\wiimmfi-patcher-v4\wiimmfi-images\*.wbfs" "wiimmfi-images"
+ping localhost -n 2>NUL
+rmdir Wiimmfi-Patcher
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo The Wiimmfi Patcher is done^^! 
+echo The game image file has been moved to the wiimmfi-images folder next to RiiConnect24 Patcher.
+echo.
+echo Press any button to go back to main menu.
+pause>NUL
+
+goto script_start
+
+:mariokartwii_patch
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Preparing for use with Mario Kart Wii Wiimmfi Patcher...
+echo Please wait...
+echo.
+echo Progress:
+set tempCD=%cd%
+if exist MKWii-Patcher rmdir /s /q MKWii-Patcher
+md MKWii-Patcher
+echo 25%%
+curl -s -S --insecure "https://download.wiimm.de/wiimmfi/patcher/mkw-wiimmfi-patcher-v6.zip" --output "MKWii-Patcher\mkw-wiimmfi-patcher-v6.zip"
+echo 50%%
+curl -s -S --insecure "%FilesHostedOn%/7z.exe" --output "MKWii-Patcher\7z.exe"
+echo 75%%
+cd MKWii-Patcher
+7z.exe x mkw-wiimmfi-patcher-v6.zip>NUL
+cd..
+echo 100%%
+goto mariokartwii_patch_ask
+
+:mariokartwii_patch_ask
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Mario Kart Wii Wiimmfi Patcher is ready^^!
+echo Please put the Mario Kart Wii image file (can be ISO or WBFS) in a folder where RiiConnect24 Patcher is and choose "Ready".
+echo.
+if exist "*.ISO" echo ISO Files: Found
+if not exist "*.ISO" echo ISO Files: Not Found
+if exist "*.WBFS" echo WBFS Files: Found
+if not exist "*.WBFS" echo WBFS Files: Not Found
+echo.
+echo 1. Ready. Start Mario Kart Wii Patcher.
+echo 2. Go back to Main Menu.
+set /p s=Choose: 
+if %s%==1 goto start_mkwii-patcher
+if %s%==2 rmdir /s /q MKWii-Patcher&goto begin_main
+goto mariokartwii_patch_ask
+:start_mkwii-patcher
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+
+if exist "*.WBFS" move "*.WBFS" "MKWii-Patcher\mkw-wiimmfi-patcher-v6\"
+if exist "*.ISO" move "*.ISO" "MKWii-Patcher\mkw-wiimmfi-patcher-v6\"
+
+cd MKWii-Patcher\mkw-wiimmfi-patcher-v6
+
+@echo off
+
+::Actual patching
+set PATH=bin\cygwin;%PATH%
+bash ./patch-wiimmfi.sh %1 %2 %3 %4 %5 %6 %7 %8 %9
+
+cd /d %tempCD%
+if not exist wiimmfi-images md wiimmfi-images
+move "MKWii-Patcher\mkw-wiimmfi-patcher-v6\wiimmfi-images\*.iso" "wiimmfi-images"
+move "MKWii-Patcher\mkw-wiimmfi-patcher-v6\wiimmfi-images\*.wbfs" "wiimmfi-images"
+rmdir MKWii-Patcher
+
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo The Wiimmfi Patcher is done^^! 
+echo Mario Kart Wii image file has been moved to the wiimmfi-images folder next to RiiConnect24 Patcher.
+echo.
+echo Press any button to go back to main menu.
+pause>NUL
+
+goto script_start
+
+
+
+:wadgames_patch_info
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Preparing for use with WiiWare Patcher...
+echo Please wait...
+echo.
+echo Progress:
+if exist WiiWare-Patcher rmdir /s /q WiiWare-Patcher
+md WiiWare-Patcher
+echo 14%%
+curl -s -S --insecure "%FilesHostedOn_WiiWarePatcher%/libWiiSharp.dll" --output WiiWare-Patcher/libWiiSharp.dll
+echo 28%%
+curl -s -S --insecure "%FilesHostedOn_WiiWarePatcher%/lzx.exe" --output WiiWare-Patcher/lzx.exe
+echo 42%%
+curl -s -S --insecure "%FilesHostedOn_WiiWarePatcher%/patcher.bat" --output WiiWare-Patcher/patcher.bat
+echo 57%%
+curl -s -S --insecure "%FilesHostedOn_WiiWarePatcher%/Sharpii.exe" --output WiiWare-Patcher/Sharpii.exe
+echo 71%%
+curl -s -S --insecure "%FilesHostedOn_WiiWarePatcher%/WadInstaller.dll" --output WiiWare-Patcher/WadInstaller.dll
+echo 85%%
+curl -s -S --insecure "%FilesHostedOn_WiiWarePatcher%/WiiwarePatcher.exe" --output WiiWare-Patcher/WiiwarePatcher.exe
+echo 100%%
+goto wadgames_patch_ask
+:wadgames_patch_ask
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo A WiiWare-Patcher folder has been made. Please put your .WAD files in that folder and choose "Ready" when you're ready.
+echo.
+echo 1. Ready. Start WiiWare Patcher.
+echo 2. Go back to Main Menu.
+set /p s=Choose: 
+if %s%==1 goto start_wiiware-patcher
+if %s%==2 rmdir /s /q WiiWare-Patcher&goto begin_main
+
+:start_wiiware-patcher
+if exist WiiWare-Patcher\RC24PATCHER_START_PATCHING_SCRIPT del /q WiiWare-Patcher\RC24PATCHER_START_PATCHING_SCRIPT
+echo 1>>WiiWare-Patcher\RC24PATCHER_START_PATCHING_SCRIPT
+::
+cd WiiWare-Patcher
+call patcher
+cd..
+::
+cls
+echo Moving files... please wait.
+if exist WiiWare-Patcher\backup-wads md backup-wads
+if exist WiiWare-Patcher\wiimmfi-wads md wiimmfi-wads
+if exist WiiWare-Patcher\backup-wads move "WiiWare-Patcher\backup-wads\*.wad" "backup-wads\"
+if exist WiiWare-Patcher\wiimmfi-wads move "WiiWare-Patcher\wiimmfi-wads\*.wad" "wiimmfi-wads\"
+
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo WiiWare Patcher has exited...
+echo If the files were patched, you can find the patched .WAD files in the wiimmfi-wads folder next to the RiiConnect24 Patcher.
+echo.
+echo Press any button to return to main menu.
+pause>NUL
+goto script_start
+
+
 :2_uninstall
 cls
 echo %header%
@@ -1369,7 +1569,7 @@ echo After downloading all the files, do you want to copy them to your SD Card?
 echo.
 echo Please connect your Wii SD Card to the computer.
 echo.
-echo 1. Connected!
+echo 1. Connected^^!
 echo 2. I can't connect an SD Card to the computer.
 set sdcard=NUL
 set /p sdcard=Choose: 
@@ -1386,8 +1586,8 @@ if %sdcardstatus%==1 if %sdcard%==NUL echo Hmm... looks like an SD Card wasn't f
 if %sdcardstatus%==1 if %sdcard%==NUL echo to set your SD Card drive letter manually.
 if %sdcardstatus%==1 if %sdcard%==NUL echo.
 if %sdcardstatus%==1 if %sdcard%==NUL echo Otherwise, starting patching will set copying to manual so you will have to copy them later.
-if %sdcardstatus%==1 if not %sdcard%==NUL echo Congrats! I've successfully detected your SD Card! Drive letter: %sdcard%
-if %sdcardstatus%==1 if not %sdcard%==NUL echo I will be able to automatically download and install everything on your SD Card!	
+if %sdcardstatus%==1 if not %sdcard%==NUL echo Congrats^^! I've successfully detected your SD Card^^! Drive letter: %sdcard%
+if %sdcardstatus%==1 if not %sdcard%==NUL echo I will be able to automatically download and install everything on your SD Card^^!	
 echo.
 echo The entire patching process will download about 5MB of data.
 echo.
@@ -1564,7 +1764,7 @@ cls
 echo %header%
 echo -----------------------------------------------------------------------------------------------------------------------------
 echo.
-echo Patching done! Now please follow these instructions:
+echo Patching done^^! Now please follow these instructions:
 echo.
 if %sdcard%==NUL echo - Plaese copy the wad and apps folder next to the patcher to your SD Card.
 if %sdcard%==NUL echo.
@@ -1589,7 +1789,7 @@ echo Part II - Restoring the nwc24msg.cfg to it's factory default.
 echo.
 echo 1. Please launch WiiXplorer from the Homebrew Channel.
 echo 2. In WiiXplorer, press Start -^> Settings -^> Boot Settings -^> NAND Write Access (turn on)
-echo    - Remember to turn it on because it's important!
+echo    - Remember to turn it on because it's important^^!
 echo 3. Change your device to NAND (on the bar on top)
 echo 4. Go to shared2 -^> wc24
 echo 5. Hover your cursor over nwc24msg.cfg, press + on your Wii Remote and delete it.
@@ -1631,7 +1831,7 @@ cls
 echo %header%
 echo -----------------------------------------------------------------------------------------------------------------------------
 echo.
-echo That's it! RiiConnect24 should be now gone from your Wii!
+echo That's it^^! RiiConnect24 should be now gone from your Wii^^!
 echo Please come back to us soon :)
 echo.
 echo Press any key to exit the patcher.
@@ -1654,7 +1854,7 @@ cls
 echo %header%
 echo -----------------------------------------------------------------------------------------------------------------------------
 echo.
-echo Install RiiConnect24
+echo Install RiiConnect24.
 echo.
 echo Choose instalation type:
 echo 1. Express (Recommended)
@@ -1671,6 +1871,7 @@ echo   - You will be asked what you want to patch.
 set /p s=
 if %s%==1 goto 2_auto
 if %s%==2 goto 2_auto_ask_2
+goto 2_auto_ask
 :2_auto_ask_2
 set /a tick=1
 set /a anim_1=1
@@ -1748,7 +1949,7 @@ if %custominstall_nc%==0 echo 4. [ ] Nintendo Channel
 if %custominstall_cmoc%==1 echo 5. [X] Check Mii Out Channel / Mii Contest Channel
 if %custominstall_cmoc%==0 echo 5. [ ] Check Mii Out Channel / Mii Contest Channel
 echo.
-echo 6. Begin patching!
+echo 6. Begin patching^^!
 echo R. Go back.
 set /p s=
 if %s%==1 goto 2_switch_region
@@ -1829,15 +2030,15 @@ cls
 echo %header%
 echo -----------------------------------------------------------------------------------------------------------------------------
 echo.
-echo Great!
-echo After passing this screen, any user interraction won't be needed so you can relax and let me do the work! :)
+echo Great^^!
+echo After passing this screen, any user interraction won't be needed so you can relax and let me do the work^^! :)
 echo.
-echo Did I forget about something? Yes! To make patching even easier, I can download everything that you need and put it on 
-echo your SD Card!
+echo Did I forget about something? Yes^^! To make patching even easier, I can download everything that you need and put it on 
+echo your SD Card^^!
 echo.
 echo Please connect your Wii SD Card to the computer.
 echo.
-echo 1. Connected!
+echo 1. Connected^^!
 echo 2. I can't connect an SD Card to the computer.
 set /p s=
 set sdcard=NUL
@@ -1846,137 +2047,30 @@ if %s%==2 set /a sdcardstatus=0& set /a sdcard=NUL& goto 2_1_summary
 goto 2_1
 :detect_sd_card
 set sdcard=NUL
-set /a check=0
-:sd_a
-set /a check=0
-if exist A:\apps set /a check=%check%+1
-if %check%==1 set sdcard=A
-goto sd_b
-:sd_b
-set /a check=0
-if exist B:\apps set /a check=%check%+1
-if %check%==1 set sdcard=B
-goto sd_d
-:sd_d
-set /a check=0
-if exist D:\apps set /a check=%check%+1
-if %check%==1 set sdcard=D
-goto sd_e
-:sd_e
-set /a check=0
-if exist E:\apps set /a check=%check%+1
-if %check%==1 set sdcard=E
-goto sd_f
-:sd_f
-set /a check=0
-if exist F:\apps set /a check=%check%+1
-if %check%==1 set sdcard=F
-goto sd_g
-:sd_g
-set /a check=0
-if exist G:\apps set /a check=%check%+1
-if %check%==1 set sdcard=G
-goto sd_h
-:sd_h
-set /a check=0
-if exist H:\apps set /a check=%check%+1
-if %check%==1 set sdcard=H
-goto sd_i
-:sd_i
-set /a check=0
-if exist I:\apps set /a check=%check%+1
-if %check%==1 set sdcard=I
-goto sd_j
-:sd_j
-set /a check=0
-if exist J:\apps set /a check=%check%+1
-if %check%==1 set sdcard=J
-goto sd_k
-:sd_k
-set /a check=0
-if exist K:\apps set /a check=%check%+1
-if %check%==1 set sdcard=K
-goto sd_l
-:sd_l
-set /a check=0
-if exist L:\apps set /a check=%check%+1
-if %check%==1 set sdcard=L
-goto sd_m
-:sd_m
-set /a check=0
-if exist M:\apps set /a check=%check%+1
-if %check%==1 set sdcard=M
-goto sd_n
-:sd_n
-set /a check=0
-if exist N:\apps set /a check=%check%+1
-if %check%==1 set sdcard=N
-goto sd_o
-:sd_o
-set /a check=0
-if exist O:\apps set /a check=%check%+1
-if %check%==1 set sdcard=O
-goto sd_p
-:sd_p
-set /a check=0
-if exist P:\apps set /a check=%check%+1
-if %check%==1 set sdcard=P
-goto sd_q
-:sd_q
-set /a check=0
-if exist Q:\apps set /a check=%check%+1
-if %check%==1 set sdcard=Q
-goto sd_r
-:sd_r
-set /a check=0
-if exist R:\apps set /a check=%check%+1
-if %check%==1 set sdcard=R
-goto sd_s
-:sd_s
-set /a check=0
-if exist S:\apps set /a check=%check%+1
-if %check%==1 set sdcard=S
-goto sd_t
-:sd_t
-set /a check=0
-if exist T:\apps set /a check=%check%+1
-if %check%==1 set sdcard=T
-goto sd_u
-:sd_u
-set /a check=0
-if exist U:\apps set /a check=%check%+1
-if %check%==1 set sdcard=U
-goto sd_v
-:sd_v
-set /a check=0
-if exist V:\apps set /a check=%check%+1
-if %check%==1 set sdcard=V
-goto sd_w
-:sd_w
-set /a check=0
-if exist W:\apps set /a check=%check%+1
-if %check%==1 set sdcard=W
-goto sd_x
-:sd_x
-set /a check=0
-if exist X:\apps set /a check=%check%+1
-if %check%==1 set sdcard=X
-goto sd_y
-:sd_y
-set /a check=0
-if exist Y:\apps set /a check=%check%+1
-if %check%==1 set sdcard=Y
-goto sd_z
-:sd_z
-set /a check=0
-if exist Z:\apps set /a check=%check%+1
-if %check%==1 set sdcard=Z
+set counter=-1
+set letters=ABCDEFGHIJKLMNOPQRSTUVWXYZ
+set looking_for=
+:detect_sd_card_2
+set /a counter=%counter%+1
+set looking_for=!letters:~%counter%,1!
+if exist %looking_for%:/apps (
+set sdcard=%looking_for%
 call :%tempgotonext%
-echo.
 echo ---------------------------------------------
 echo There was an error while returning to script. Halting now. You will be returned to main menu.
 pause
 goto begin_main
+)
+
+if %looking_for%==Z (
+set sdcard=NUL
+call :%tempgotonext%
+echo ---------------------------------------------
+echo There was an error while returning to script. Halting now. You will be returned to main menu.
+pause
+goto begin_main
+)
+goto detect_sd_card_2
 
 :2_1_summary
 cls
@@ -1988,8 +2082,8 @@ if %sdcardstatus%==1 if %sdcard%==NUL echo Hmm... looks like an SD Card wasn't f
 if %sdcardstatus%==1 if %sdcard%==NUL echo to set your SD Card drive letter manually.
 if %sdcardstatus%==1 if %sdcard%==NUL echo.
 if %sdcardstatus%==1 if %sdcard%==NUL echo Otherwise, starting patching will set copying to manual so you will have to copy them later.
-if %sdcardstatus%==1 if not %sdcard%==NUL echo Congrats! I've successfully detected your SD Card! Drive letter: %sdcard%
-if %sdcardstatus%==1 if not %sdcard%==NUL echo I will be able to automatically download and install everything on your SD Card!	
+if %sdcardstatus%==1 if not %sdcard%==NUL echo Congrats^^! I've successfully detected your SD Card^^! Drive letter: %sdcard%
+if %sdcardstatus%==1 if not %sdcard%==NUL echo I will be able to automatically download and install everything on your SD Card^^!	
 echo.
 echo The entire patching process will download about 30MB of data.
 echo.
@@ -2045,7 +2139,7 @@ if %funfact_number%==6 set funfact=Did you know the letters in the Wii model num
 if %funfact_number%==7 set funfact=The music used in many of the Wii's channels (including the Wii Shop, Mii, Check Mii Out, and Forecast Channel) was composed by Kazumi Totaka.
 if %funfact_number%==8 set funfact=The Internet Channel once costed 500 Wii Points.
 if %funfact_number%==9 set funfact=It's possible to use candles as a Wii Sensor Bar.
-if %funfact_number%==10 set funfact=The blinking blue light that indicates a system message has been received is actually synced to the bird call of the Japanese bush warbler. More info about it on RiiConnect24 YouTube Channel!
+if %funfact_number%==10 set funfact=The blinking blue light that indicates a system message has been received is actually synced to the bird call of the Japanese bush warbler. More info about it on RiiConnect24 YouTube Channel^^!
 if %funfact_number%==11 set funfact=Wii sports is the most sold game on the Wii. It sold 82.85 million. Overall it is the 3rd most sold game in the world.
 if %funfact_number%==12 set funfact=Did you know that most of the scripts used to make RiiConnect24 work are written in Python?
 if %funfact_number%==13 set funfact=Thank you Spotlight for making our mail system secure.
@@ -2695,7 +2789,7 @@ if %custominstall_nc%==1 if %percent%==94 set modul=xdelta.exe NC
 if %custominstall_nc%==1 if %percent%==94 if not %temperrorlev%==0 goto error_patching
 
 if %custominstall_nc%==1 if %percent%==95 if %evcregion%==1 call NCPatcher\pack\Sharpii.exe WAD -p "NCPatcher\pack\unencrypted" "WAD\Nintendo Channel (Europe) (Channel) (RiiConnect24)" -f 
-if %custominstall_nc%==1 if %percent%==95 if %evcregion%==2 call NCPatcher\pack\Sharpii.exe WAD -p "NCPatcher\pack\unencrypted" "WAD\Nintnedo Channel (USA) (Channel) (RiiConnect24)" -f
+if %custominstall_nc%==1 if %percent%==95 if %evcregion%==2 call NCPatcher\pack\Sharpii.exe WAD -p "NCPatcher\pack\unencrypted" "WAD\Nintendo Channel (USA) (Channel) (RiiConnect24)" -f
 if %custominstall_nc%==1 if %percent%==95 set /a temperrorlev=%errorlevel%
 if %custominstall_nc%==1 if %percent%==95 set modul=Packing NC WAD
 if %custominstall_nc%==1 if %percent%==95 if not %temperrorlev%==0 goto error_patching
@@ -2706,6 +2800,7 @@ if %percent%==98 if not %sdcard%==NUL set /a errorcopying=0
 if %percent%==98 if not %sdcard%==NUL if not exist "%sdcard%:\WAD" md "%sdcard%:\WAD"
 if %percent%==98 if not %sdcard%==NUL if not exist "%sdcard%:\apps" md "%sdcard%:\apps"
 
+if %percent%==99 echo.&echo Don't worry^^! It might take some time... Now copying files to your SD Card...
 if %percent%==99 if not %sdcard%==NUL xcopy /y "WAD" "%sdcard%:\WAD" /e >NUL || set /a errorcopying=1
 if %percent%==99 if not %sdcard%==NUL xcopy /y "apps" "%sdcard%:\apps" /e >NUL || set /a errorcopying=1
 
@@ -2738,12 +2833,12 @@ cls
 echo.
 echo %header%
 echo ---------------------------------------------------------------------------------------------------------------------------
-echo Patching done!
+echo Patching done^^!
 echo.
 if %sdcardstatus%==0 echo Please connect your Wii SD Card and copy apps and WAD folder to the root (main folder) of your SD Card. You can find these folders next to RiiConnect24Patcher.bat
 if %sdcardstatus%==1 if %sdcard%==NUL echo Please connect your Wii SD Card and copy apps and WAD folder to the root (main folder) of your SD Card. You can find these folders next to RiiConnect24Patcher.bat
 
-if %sdcardstatus%==1 if not %sdcard%==NUL if %errorcopying%==0 echo Every file is in it's place on your SD Card!
+if %sdcardstatus%==1 if not %sdcard%==NUL if %errorcopying%==0 echo Every file is in it's place on your SD Card^^!
 if %sdcardstatus%==1 if not %sdcard%==NUL if %errorcopying%==1 echo Unfortunately, I wasn't able to put some of the files on your SD Card. Please copy WAD and apps folder manually to the root (main folder) of your SD Card. You can find these folders next to RiiConnect24Patcher.bat.
 echo.
 echo Please proceed with the tutorial that you can find on https://wii.guide/riiconnect24
@@ -2761,9 +2856,9 @@ cls
 echo.
 echo %header%
 echo ---------------------------------------------------------------------------------------------------------------------------
-echo  [*] Thank you very much for using this patcher! :)
+echo  [*] Thank you very much for using this patcher^^! :)
 echo.
-if %exitmessage%==1 echo Have fun using RiiConnect24!
+if %exitmessage%==1 echo Have fun using RiiConnect24^^!
 echo Closing the patcher in:
 if %exiting%==10 echo :----------: 10
 if %exiting%==9 echo :--------- : 9
@@ -2815,7 +2910,7 @@ echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
 echo ---------------------------------------------------------------------------------------------------------------------------
 echo    /---\   ERROR.              
 echo   /     \  There was an error while patching.
-echo  /   !   \ Error Code: %temperrorlev%
+echo  /   ^^!   \ Error Code: %temperrorlev%
 echo  --------- Failing module: %modul% / %percent%
 echo.
 echo TIP: Consider turning off your antivirus temporarily.
