@@ -1296,7 +1296,7 @@ cls
 echo %header%
 echo -----------------------------------------------------------------------------------------------------------------------------
 echo.
-echo Mario Kart Wii Wiimmfi Patcher is ready^^!
+echo Wiimmfi Patcher is ready^^!
 echo Please the game image (can be ISO or WBFS) in a folder where RiiConnect24 Patcher is and choose "Ready".
 echo.
 if exist "*.ISO" echo ISO Files: Found
@@ -1307,7 +1307,7 @@ echo.
 echo 1. Ready. Start Wiimmfi Patcher.
 echo 2. Go back to Main Menu.
 set /p s=Choose: 
-if %s%==1 goto check_start_wiimmfi-patcher
+if %s%==1 goto start_wiimmfi-patcher
 if %s%==2 rmdir /s /q Wiimmfi-Patcher&goto begin_main
 goto wiigames_patch_ask
 :start_wiimmfi-patcher
