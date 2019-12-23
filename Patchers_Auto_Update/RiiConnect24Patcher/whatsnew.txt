@@ -1,3 +1,11 @@
+1.1.2
+- Another bug fixes.
+- Optimized patching script. Now patches about 30% faster! ...I wonder how much on your PC.
+- Fixed an error with "Downloading 06-31.delta".
+- Now Windows 10 users won't need to wait for the patcher to download curl. It's built in the OS! On older OS's such as Windows 7/Windows 8.1 - the program will automatically take care of you.
+- Now fun facts will change every 20 seconds.
+- Excluded C drive from SD Card check.
+
 1.1.1
 - Bug fixes
 - Added integration with WiiWare Patcher so you can patch your WAD files using this patcher!
@@ -12,12 +20,3 @@
 - Changed the way how manual patching works
 - Fixed problems accessing Q and V drives.
 - Bug fixes
-
-
-1.0.9
-    Finished Beta testing successfully!
-- Changed the way how patcher downloads files from internet. We won't have any Powershell errors now!
-- Added a new progress bar. It will now show what the patcher is doing at the moment.
-- Added a failsafe for new errors. After the patcher encounters an error, it will try to auto troubleshoot it and restart the patching process. Everything without notifying the user	.
-- Made patching process a lot faster... and more stable.
-- Fix for few bugs
