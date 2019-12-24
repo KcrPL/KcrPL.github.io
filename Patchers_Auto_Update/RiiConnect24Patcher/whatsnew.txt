@@ -1,3 +1,11 @@
+1.1.2.1
+- Changed the way how GitHub parses .bat files on our repository - fixed updating on all previous versions.
+- Fixed Nintendo Channel patching for USA.
+- Now the patcher will show you an error if you don't have internet connection.
+- Added option to redownload/repair the patcher.
+- Fixed the "Next fun fact in" counter.
+
+
 1.1.2
 - Another bug fixes.
 - Optimized patching script. Now patches about 30% faster! ...I wonder how much on your PC.

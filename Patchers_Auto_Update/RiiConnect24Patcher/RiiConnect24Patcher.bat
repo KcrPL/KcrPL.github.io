@@ -6,10 +6,10 @@ echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: RiiConnect24 Patcher for Windows
-set version=1.1.2
+set version=1.1.2.1
 :: AUTHORS: KcrPL, Larsenv, Apfel
 :: ***************************************************************************
-:: Copyright (c) 2019 KcrPL, RiiConnect24 and it's (Lead) Developers
+:: Copyright (c) 2018-2019 KcrPL, RiiConnect24 and it's (Lead) Developers
 :: ===========================================================================
 
 if exist temp.bat del /q temp.bat
@@ -43,8 +43,8 @@ set hh=0
 :: Window Title
 if %beta%==0 title RiiConnect24 Patcher v%version% Created by @KcrPL, @Larsenv, @Apfel
 if %beta%==1 title RiiConnect24 Patcher v%version% [BETA] Created by @KcrPL, @Larsenv, @Apfel
-set last_build=2019/12/23
-set at=15:46
+set last_build=2019/12/14
+set at=19:59
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
@@ -136,7 +136,7 @@ echo            `mmmmmo hNMMMMMMMMMmddNMMMNNMMMMMMMMMMMMM.  Mail us at support@r
 echo            -mmmmm/ dNMMMMMMMMMNmddMMMNdhdMMMMMMMMMMN
 if not %sdcard%==NUL echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd   Detected Wii SD Card: %sdcard%:\
 if %sdcard%==NUL echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd   Could not detect your Wii SD Card.
-echo            +mmmmN.-mNMMMMMMMMMNmmmmMMMMMMMMMMMMMMMMy   R. Refresh
+echo            +mmmmN.-mNMMMMMMMMMNmmmmMMMMMMMMMMMMMMMMy   R. Refresh ^| If incorrect, you can change later.
 echo            smmmmm`/mMMMMMMMMMNNmmmmNMMMMNMMNMMMMMNmy.
 echo            hmmmmd`omMMMMMMMMMNNmmmNmMNNMmNNNNMNdhyhh.
 echo            mmmmmh ymMMMMMMMMMNNmmmNmNNNMNNMMMMNyyhhh`
@@ -392,12 +392,14 @@ if %Update_Activate%==1 echo 3. Turn off/on updating. [Currently:  ON]
 if %Update_Activate%==0 echo 3. Turn off/on updating. [Currently: OFF]
 if %beta%==0 echo 4. Change updating branch to Beta. [Currently: Stable]
 if %beta%==1 echo 4. Change updating branch to Stable. [Currently: Beta]
+echo 5. Repair patcher file (Redownload)
 echo.
 set /p s=Choose:
 if %s%==1 goto begin_main
 if %s%==2 goto change_color
 if %s%==3 goto change_updating
 if %s%==4 goto change_updating_branch
+if %s%==5 goto update_files
 goto settings_menu
 :change_updating_branch
 cls
@@ -1058,9 +1060,10 @@ if not exist "%TempStorage%" md "%TempStorage%"
 if %Update_Activate%==1 if %offlinestorage%==0 call curl -s -S --insecure "%FilesHostedOn%/whatsnew.txt" --output "%TempStorage%\whatsnew.txt"
 if %Update_Activate%==1 if %offlinestorage%==0 call curl -s -S --insecure "%FilesHostedOn%/version.txt" --output "%TempStorage%\version.txt"
 	set /a temperrorlev=%errorlevel%
-
+	
 set /a updateserver=1
 	::Bind exit codes to errors here
+	if "%temperrorlev%"=="6" goto no_internet_connection
 	if not %temperrorlev%==0 set /a updateserver=0
 
 if exist "%TempStorage%\version.txt`" ren "%TempStorage%\version.txt`" "version.txt"
@@ -2827,11 +2830,11 @@ if %custominstall_nc%==1 if %percent%==81 if not exist 0001000148415450v1792\cet
 
 if %custominstall_nc%==1 if %percent%==81 if not exist 0001000148415445v1792\cetk copy /y "NCPatcher\dwn\0001000148415445v1792\cetk" "0001000148415445v1792\cetk"
 
+:patching_fast_travel_85
 ::USA
 if %custominstall_nc%==1 if %percent%==85 if %evcregion%==2 call NCPatcher\dwn\sharpii.exe NUSD -ID 0001000148415445 -v 1792 -encrypt >NUL
 ::PAL
 goto patching_fast_travel_100
-:patching_fast_travel_85
 if %custominstall_nc%==1 if %percent%==85 if %evcregion%==1 call NCPatcher\dwn\sharpii.exe NUSD -ID 0001000148415450 -v 1792 -encrypt >NUL
 if %custominstall_nc%==1 if %percent%==85 set /a temperrorlev=%errorlevel%
 if %custominstall_nc%==1 if %percent%==85 set modul=Downloading NC
@@ -2929,7 +2932,7 @@ goto patching_fast_travel_100
 if %percent%==100 goto 2_4
 ::ping localhost -n 1 >NUL
 
-if /i %refreshing_in% LEQ 0 goto random_funfact
+if /i %ss% GEQ 20 goto random_funfact
 set /a percent=%percent%+1
 goto 2_3
 :2_4
@@ -2947,9 +2950,16 @@ if %sdcardstatus%==1 if not %sdcard%==NUL if %errorcopying%==1 echo Unfortunatel
 echo.
 echo Please proceed with the tutorial that you can find on https://wii.guide/riiconnect24
 echo.
-echo Press any key to close this patcher.
-pause>NUL
-goto end
+echo What to do next?
+echo.
+echo 1. Return to main menu
+echo 2. Close the patcher
+echo 3. Close the patcher and cleanup all temporary data created by the patcher.
+set /p s=Choose: 
+if %s%==1 goto script_start
+if %s%==2 goto end
+if %s%==3 rmdir /s /q "%MainFolder%"&goto end
+goto 2_4
 :end
 set /a exiting=10
 set /a timeouterror=1
@@ -2992,8 +3002,36 @@ set /a modul=0
 goto error_patching
 
 
+:no_internet_connection
+cls
+echo %header%                                                                
+echo.                 
+echo.                 
+echo.                 
+echo.                 
+echo.                 
+echo.                 
+echo.                 
+echo.                 
+echo.                 
+echo.                 
+echo.                 
+echo.
+echo ---------------------------------------------------------------------------------------------------------------------------
+echo    /---\   ERROR             
+echo   /     \  There is no internet connection.
+echo  /   ^^!   \ 
+echo  --------- Could not connect to remote server. 
+echo            Check your internet connection or check if your firewall isn't blocking curl.
+echo.
+echo       Press any key to return to main menu.
+echo ---------------------------------------------------------------------------------------------------------------------------
+pause>NUL
+goto begin_main
 
 :error_patching
+if "%temperrorlev%"=="6" goto no_internet_connection
+if "%temperrorlev%"=="7" goto no_internet_connection
 if "%modul%"=="Renaming files [Delete everything except RiiConnect24Patcher.bat]" goto troubleshooting_auto_tool
 if "%percent%"=="1" goto troubleshooting_auto_tool
 cls
@@ -3017,6 +3055,7 @@ echo  --------- Failing module: %modul% / %percent%
 echo.
 echo TIP: Consider turning off your antivirus temporarily.
 if %temperrorlev%==-532459699 echo SOLUTION: Please check your internet connection.
+if %temperrorlev%==23 echo ERROR DETAILS: Curl write error. Try moving the patcher to desktop and try again.
 if %temperrorlev%==-2146232576 echo SOLUTION: Please install latest .NET Framework, then try again.  
 echo       Press any key to return to main menu.
 echo ---------------------------------------------------------------------------------------------------------------------------
