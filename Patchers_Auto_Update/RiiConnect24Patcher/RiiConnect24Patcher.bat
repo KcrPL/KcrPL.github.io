@@ -6,7 +6,7 @@ echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: RiiConnect24 Patcher for Windows
-set version=1.1.2.2
+set version=1.1.2.3
 :: AUTHORS: KcrPL, Larsenv, Apfel
 :: ***************************************************************************
 :: Copyright (c) 2018-2019 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -43,8 +43,8 @@ set hh=0
 :: Window Title
 if %beta%==0 title RiiConnect24 Patcher v%version% Created by @KcrPL, @Larsenv, @Apfel
 if %beta%==1 title RiiConnect24 Patcher v%version% [BETA] Created by @KcrPL, @Larsenv, @Apfel
-set last_build=2019/12/14
-set at=23:01
+set last_build=2019/12/27
+set at=13:47
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
@@ -2221,16 +2221,16 @@ if %counter_done%==10 echo :----------: %percent% %%
 echo.
 if %progress_downloading%==0 echo [ ] Downloading files
 if %progress_downloading%==1 echo [X] Downloading files
-if %progress_ios%==0 echo [ ] Patching IOS's
-if %progress_ios%==1 echo [X] Patching IOS's
-if %progress_evc%==0 echo [ ] Everybody Votes Channel
-if %progress_evc%==1 echo [X] Everybody Votes Channel
-if %evcregion%==1 if %progress_cmoc%==0 echo [ ] Mii Contest Channel
-if %evcregion%==1 if %progress_cmoc%==1 echo [X] Mii Contest Channel
-if %evcregion%==2 if %progress_cmoc%==0 echo [ ] Check Mii Out Channel
-if %evcregion%==2 if %progress_cmoc%==1 echo [X] Check Mii Out Channel
-if %progress_nc%==0 echo [ ] Nintendo Channel
-if %progress_nc%==1 echo [X] Nintendo Channel
+if %custominstall_ios%==1 if %progress_ios%==0 echo [ ] Patching IOS's
+if %custominstall_ios%==1 if %progress_ios%==1 echo [X] Patching IOS's
+if %custominstall_evc%==1 if %progress_evc%==0 echo [ ] Everybody Votes Channel
+if %custominstall_evc%==1 if %progress_evc%==1 echo [X] Everybody Votes Channel
+if %custominstall_cmoc%==1 if %evcregion%==1 if %progress_cmoc%==0 echo [ ] Mii Contest Channel
+if %custominstall_cmoc%==1 if %evcregion%==1 if %progress_cmoc%==1 echo [X] Mii Contest Channel
+if %custominstall_cmoc%==1 if %evcregion%==2 if %progress_cmoc%==0 echo [ ] Check Mii Out Channel
+if %custominstall_cmoc%==1 if %evcregion%==2 if %progress_cmoc%==1 echo [X] Check Mii Out Channel
+if %custominstall_nc%==1 if %progress_nc%==0 echo [ ] Nintendo Channel
+if %custominstall_nc%==1 if %progress_nc%==1 echo [X] Nintendo Channel
 if %progress_finishing%==0 echo [ ] Finishing...
 if %progress_finishing%==1 echo [X] Finishing...
 
@@ -2834,7 +2834,6 @@ if %custominstall_nc%==1 if %percent%==81 if not exist 0001000148415445v1792\cet
 ::USA
 if %custominstall_nc%==1 if %percent%==85 if %evcregion%==2 call NCPatcher\dwn\sharpii.exe NUSD -ID 0001000148415445 -v 1792 -encrypt >NUL
 ::PAL
-goto patching_fast_travel_100
 if %custominstall_nc%==1 if %percent%==85 if %evcregion%==1 call NCPatcher\dwn\sharpii.exe NUSD -ID 0001000148415450 -v 1792 -encrypt >NUL
 if %custominstall_nc%==1 if %percent%==85 set /a temperrorlev=%errorlevel%
 if %custominstall_nc%==1 if %percent%==85 set modul=Downloading NC

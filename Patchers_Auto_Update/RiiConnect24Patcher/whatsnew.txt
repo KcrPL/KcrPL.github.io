@@ -1,3 +1,7 @@
+1.1.2.3
+- Europe patching fixed
+- Now when using Custom Install, progress bar will only show you progress of the components that you've chosen.
+
 1.1.2.2
 - LF -> CR LF Fix.
 
@@ -15,18 +19,3 @@
 - Now Windows 10 users won't need to wait for the patcher to download curl. It's built in the OS! On older OS's such as Windows 7/Windows 8.1 - the program will automatically take care of you.
 - Now fun facts will change every 20 seconds.
 - Excluded C drive from SD Card check.
-
-1.1.1
-- Bug fixes
-- Added integration with WiiWare Patcher so you can patch your WAD files using this patcher!
-- Added integration with Wiimmfi Patcher so you can patch both your Mario Kart Wii and other games to work with Wiimmfi!
-- Fixed updating which was partially broken.
-- Changed the way how the patcher detects SD Cards. Thanks CommandMC ;)
-	I'm sure that few things may be broken... or not haha
-	BUT! See any bugs? Mail me at support@riiconnect24.net and report it! :)
-
-1.1.0
-	Check MIi Out Channel is out!
-- Changed the way how manual patching works
-- Fixed problems accessing Q and V drives.
-- Bug fixes
