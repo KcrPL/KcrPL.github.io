@@ -3,6 +3,7 @@
 - Once and for all, fixed all updating problems.
 NOTE: All previous versions of patchers should migrate to new style of updating without any issues. If not, download manually from GitHub.
 - Added a check so the patcher can tell if NUS is up or down.
+- Got rid of the announcement network.
 
 1.1.2.3
 - Europe patching fixed

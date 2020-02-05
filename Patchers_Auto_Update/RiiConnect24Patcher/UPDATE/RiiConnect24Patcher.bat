@@ -13,7 +13,7 @@ set version=1.1.3
 :: ===========================================================================
 
 if exist temp.bat del /q temp.bat
-::if exist update_assistant.bat del /q update_assistant.bat
+if exist update_assistant.bat del /q update_assistant.bat
 :script_start
 echo 	.. Setting up the variables
 :: Window size (Lines, columns)
