@@ -29,8 +29,10 @@ goto no_parameters
 
 :no_parameters
 echo.
-echo RiiConnect24 Update Assistant for Windows.
-echo Usage: update_assistant.bat [options...]
+echo :---------------------------------------------:
+echo : RiiConnect24 Update Assistant for Windows.  :
+echo : Usage: update_assistant.bat [options...]    :
+echo :---------------------------------------------:
 echo.
 echo -RC24_Patcher        Will download latest RiiConnect24 Patcher to current dir
 echo -no_start            Won't start the patcher after the download is complete
