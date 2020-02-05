@@ -5,10 +5,6 @@ set FilesHostedOn=https://kcrPL.github.io/Patchers_Auto_Update/RiiConnect24Patch
 
 curl -s -S --insecure "%FilesHostedOn%/UPDATE/update_assistant.bat" --output "update_assistant.bat"
 
-echo echo off >>temp.bat
-echo ping localhost -n 2^>NUL >>temp.bat
-echo start update_assistant.bat -RC24_Patcher>>temp.bat
-echo exit >>temp.bat
+start update_assistant.bat -RC24_Patcher
 
-start temp.bat
 exit
