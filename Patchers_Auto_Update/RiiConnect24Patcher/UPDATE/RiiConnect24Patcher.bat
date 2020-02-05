@@ -739,7 +739,7 @@ if %Update_Activate%==1 if exist "%TempStorage%\version.txt" set /a updateavaila
 if %updateversion%==%version% set /a updateavailable=0
 
 if exist "%TempStorage%\annoucement.txt" del /q "%TempStorage%\annoucement.txt"
-curl -s -S --insecure "%FilesHostedOn%/annoucement.txt" --output %TempStorage%\annoucement.txt"
+curl -s -S --insecure "%FilesHostedOn%/UPDATE/annoucement.txt" --output %TempStorage%\annoucement.txt"
 
 if %Update_Activate%==1 if %updateavailable%==1 set /a updateserver=2
 if %Update_Activate%==1 if %updateavailable%==1 goto update_notice

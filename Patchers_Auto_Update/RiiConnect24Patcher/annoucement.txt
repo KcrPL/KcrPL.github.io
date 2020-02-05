@@ -1,3 +1,0 @@
-We've identified issue with updating system. If you updated from previous version to the current version and if you are getting fatal errors during the patching procedure, please go to Main Menu -> Settings and choose an option to Repair patcher.
-
-If this won't work, contact us at support@riiconnect24.net
