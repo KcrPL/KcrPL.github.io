@@ -7,7 +7,7 @@ curl -s -S --insecure "%FilesHostedOn%/UPDATE/update_assistant.bat" --output "up
 
 echo echo off >>temp.bat
 echo ping localhost -n 2^>NUL >>temp.bat
-echo start update_assistant.bat /q >>temp.bat
+echo start update_assistant.bat -RC24_Patcher >>temp.bat
 echo exit >>temp.bat
 
 start temp.bat
