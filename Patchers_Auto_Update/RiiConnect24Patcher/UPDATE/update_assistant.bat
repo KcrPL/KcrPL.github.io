@@ -24,7 +24,6 @@ if "%2"=="-no_start" set /a no_start=1
 if "%1"=="-RC24_Patcher" goto start_download_rc24_patcher
 if "%2"=="-RC24_Patcher" goto start_download_rc24_patcher
 
-echo %file_name%
 goto no_parameters
 
 :no_parameters

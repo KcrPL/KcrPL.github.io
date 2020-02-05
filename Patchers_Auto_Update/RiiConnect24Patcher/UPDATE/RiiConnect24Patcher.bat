@@ -13,6 +13,7 @@ set version=1.1.2.3
 :: ===========================================================================
 
 if exist temp.bat del /q temp.bat
+::if exist update_assistant.bat del /q update_assistant.bat
 :script_start
 echo 	.. Setting up the variables
 :: Window size (Lines, columns)
@@ -828,7 +829,7 @@ set /a file=1
 :update_1
 curl -s -S --insecure "%FilesHostedOn%/UPDATE/update_assistant.bat" --output "update_assistant.bat"
 
-start update_assistant.bat -RC24_Patcher
+start update_assistant.bat -RC24_Patcher -no_start
 exit
 
 :whatsnew
