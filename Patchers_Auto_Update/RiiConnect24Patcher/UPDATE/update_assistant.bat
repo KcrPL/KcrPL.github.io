@@ -16,6 +16,7 @@ set at=12:00
 set header=Update Assistant - (C) KcrPL v%version% (Compiled on %last_build% at %at%)
 ::
 set /a no_start=0
+set FilesHostedOn=https://kcrPL.github.io/Patchers_Auto_Update/RiiConnect24Patcher
 ::
 
 if "%1"=="-no_start" set /a no_start=1
