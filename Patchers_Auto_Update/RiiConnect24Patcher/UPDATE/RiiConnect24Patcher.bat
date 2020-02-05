@@ -6,10 +6,10 @@ echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: RiiConnect24 Patcher for Windows
-set version=1.1.2.3
+set version=1.1.3
 :: AUTHORS: KcrPL, Larsenv, Apfel
 :: ***************************************************************************
-:: Copyright (c) 2018-2019 KcrPL, RiiConnect24 and it's (Lead) Developers
+:: Copyright (c) 2018-2020 KcrPL, RiiConnect24 and it's (Lead) Developers
 :: ===========================================================================
 
 if exist temp.bat del /q temp.bat
@@ -44,8 +44,8 @@ set hh=0
 :: Window Title
 if %beta%==0 title RiiConnect24 Patcher v%version% Created by @KcrPL, @Larsenv, @Apfel
 if %beta%==1 title RiiConnect24 Patcher v%version% [BETA] Created by @KcrPL, @Larsenv, @Apfel
-set last_build=2019/12/27
-set at=13:47
+set last_build=2020/02/05
+set at=13:13
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
@@ -62,8 +62,8 @@ set FilesHostedOn_WiiWarePatcher=https://raw.githubusercontent.com/KcrPL/KcrPL.g
 
 
 
-set FilesHostedOn_Beta=https://raw.githubusercontent.com/KcrPL/KcrPL.github.io/master/Patchers_Auto_Update/RiiConnect24Patcher_Beta
-set FilesHostedOn_Stable=https://raw.githubusercontent.com/KcrPL/KcrPL.github.io/master/Patchers_Auto_Update/RiiConnect24Patcher
+set FilesHostedOn_Beta=https://KcrPL.github.io/Patchers_Auto_Update/RiiConnect24Patcher_Beta
+set FilesHostedOn_Stable=https://KcrPL.github.io/Patchers_Auto_Update/RiiConnect24Patcher
 
 set MainFolder=%appdata%\RiiConnect24Patcher
 set TempStorage=%appdata%\RiiConnect24Patcher\internet\temp
@@ -222,18 +222,18 @@ echo.
 echo Fixing - Renaming files error
 echo.
 echo [...] Flushing files
-rmdir /s /q 0001000148415045v512>NUL
-rmdir /s /q 0001000148415050v512>NUL
-rmdir /s /q 0001000148414A45v512>NUL
-rmdir /s /q 0001000148414A50v512>NUL
-rmdir /s /q 0001000148415450v1792>NUL
-rmdir /s /q 0001000148415445v1792>NUL
+rmdir /s /q 0001000148415045v512 >NUL
+rmdir /s /q 0001000148415050v512 >NUL
+rmdir /s /q 0001000148414A45v512 >NUL
+rmdir /s /q 0001000148414A50v512 >NUL
+rmdir /s /q 0001000148415450v1792 >NUL
+rmdir /s /q 0001000148415445v1792 >NUL
 rmdir /s /q IOSPatcher >NUL
 rmdir /s /q EVCPatcher >NUL
-rmdir /s /q NCPatcher>NUL
-rmdir /s /q CMOCPatcher>NUL
-del /q 00000001.app>NUL
-del /q 00000001_NC.app>NUL
+rmdir /s /q NCPatcher >NUL
+rmdir /s /q CMOCPatcher >NUL
+del /q 00000001.app >NUL
+del /q 00000001_NC.app >NUL
 echo [OK] Flushing files
 
 goto troubleshooting_5_2
@@ -415,7 +415,7 @@ goto settings_menu
 set /a stable_available_check=1
 
 	if exist "%TempStorage%\version.txt" del "%TempStorage%\version.txt" /q
-	call curl -s -S --insecure "%FilesHostedOn_Stable%/version.txt" --output "%TempStorage%\version.txt"
+	call curl -s -S --insecure "%FilesHostedOn_Stable%/UPDATE/version.txt" --output "%TempStorage%\version.txt"
 	echo 1
 	set /a temperrorlev=%errorlevel%
 		if not %temperrorlev%==0 set /a stable_available_check=0&goto switch_to_stable
@@ -426,7 +426,7 @@ set /a stable_available_check=1
 set /a beta_available_check=0
 	
 	if exist "%TempStorage%\beta_available.txt" del "%TempStorage%\beta_available.txt" /q
-	call curl -s -S --insecure "%FilesHostedOn_Beta%/beta_available.txt" --output "%TempStorage%\beta_available.txt"
+	call curl -s -S --insecure "%FilesHostedOn_Beta%/UPDATE/beta_available.txt" --output "%TempStorage%\beta_available.txt"
 		set /a temperrorlev=%errorlevel%
 		if not %temperrorlev%==0 set /a beta_available_check=2&goto switch_to_beta
 	if exist "%TempStorage%\beta_available.txt" set /p beta_available=<"%TempStorage%\beta_available.txt"
@@ -437,7 +437,7 @@ set /a beta_available_check=0
 	if %beta_available_check%==0 goto switch_to_beta
 	
 	if exist "%TempStorage%\version.txt" del "%TempStorage%\version.txt" /q
-	call curl -s -S --insecure "%FilesHostedOn_Beta%/version.txt" --output "%TempStorage%\version.txt"
+	call curl -s -S --insecure "%FilesHostedOn_Beta%/UPDATE/version.txt" --output "%TempStorage%\version.txt"
 		set /a temperrorlev=%errorlevel%
 		if not %temperrorlev%==0 set /a beta_available_check=2&goto switch_to_beta
 	if exist "%TempStorage%\version.txt" set /p updateversion_beta=<"%TempStorage%\version.txt"
@@ -720,8 +720,8 @@ if %offlinestorage%==0 if exist "%TempStorage%\whatsnew.txt" del "%TempStorage%\
 if not exist "%TempStorage%" md "%TempStorage%"
 :: Commands to download files from server.
 
-if %Update_Activate%==1 if %offlinestorage%==0 call curl -s -S --insecure "%FilesHostedOn%/whatsnew.txt" --output "%TempStorage%\whatsnew.txt"
-if %Update_Activate%==1 if %offlinestorage%==0 call curl -s -S --insecure "%FilesHostedOn%/version.txt" --output "%TempStorage%\version.txt"
+if %Update_Activate%==1 if %offlinestorage%==0 call curl -s -S --insecure "%FilesHostedOn%/UPDATE/whatsnew.txt" --output "%TempStorage%\whatsnew.txt"
+if %Update_Activate%==1 if %offlinestorage%==0 call curl -s -S --insecure "%FilesHostedOn%/UPDATE/version.txt" --output "%TempStorage%\version.txt"
 	set /a temperrorlev=%errorlevel%
 	
 set /a updateserver=1
@@ -825,13 +825,50 @@ echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`
 echo                   `.              yddyo++:    `-/oymNNNNNdy+:`        
 echo                                   -odhhhhyddmmmmmNNmhs/:`             
 echo                                     :syhdyyyyso+/-`
-set /a file=1
 :update_1
 curl -s -S --insecure "%FilesHostedOn%/UPDATE/update_assistant.bat" --output "update_assistant.bat"
-
-start update_assistant.bat -RC24_Patcher -no_start
+	set temperrorlev=%errorlevel%
+	if not %temperrorlev%==0 goto error_updating
+start update_assistant.bat -RC24_Patcher
 exit
-
+:error_updating
+cls
+echo %header%
+echo.                                                                       
+echo              `..````                                                  
+echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`                
+echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd                
+echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs                
+echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+        
+echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:                
+echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.                
+echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN            
+echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd                 
+echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy                 
+echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+                 
+echo ------------------------------------------------------------------------------------------------------------------------------
+echo    /---\   ERROR
+echo   /     \  There was an error while downloading the update assistant.
+echo  /   ^^!   \ 
+echo  --------- Press any key to return to main menu.
+echo.  
+echo.
+echo ------------------------------------------------------------------------------------------------------------------------------
+echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys                  
+echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-                  
+echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm                     
+echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+                    
+echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm                    
+echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+                   
+echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm                   
+echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/    
+echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy   
+echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`   
+echo                   `.              yddyo++:    `-/oymNNNNNdy+:`        
+echo                                   -odhhhhyddmmmmmNNmhs/:`             
+echo                                     :syhdyyyyso+/-`
+pause>NUL
+goto begin_main
 :whatsnew
 cls
 if not exist %TempStorage%\whatsnew.txt goto whatsnew_notexist

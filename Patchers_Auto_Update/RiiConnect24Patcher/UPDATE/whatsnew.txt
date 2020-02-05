@@ -1,21 +1,12 @@
+1.1.3
+- Changed our update system to be more flexible.
+- Once and for all, fixed all updating problems.
+NOTE: All previous versions of patchers should migrate to new style of updating without any issues. If not, download manually from GitHub.
+- Added a check so the patcher can tell if NUS is up or down.
+
 1.1.2.3
 - Europe patching fixed
 - Now when using Custom Install, progress bar will only show you progress of the components that you've chosen.
 
 1.1.2.2
 - LF -> CR LF Fix.
-
-1.1.2.1
-- Changed the way how GitHub parses .bat files on our repository - fixed updating on all previous versions.
-- Fixed Nintendo Channel patching for USA.
-- Now the patcher will show you an error if you don't have internet connection.
-- Added option to redownload/repair the patcher.
-- Fixed the "Next fun fact in" counter.
-
-1.1.2
-- Another bug fixes.
-- Optimized patching script. Now patches about 30% faster! ...I wonder how much on your PC.
-- Fixed an error with "Downloading 06-31.delta".
-- Now Windows 10 users won't need to wait for the patcher to download curl. It's built in the OS! On older OS's such as Windows 7/Windows 8.1 - the program will automatically take care of you.
-- Now fun facts will change every 20 seconds.
-- Excluded C drive from SD Card check.

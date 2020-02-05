@@ -11,7 +11,7 @@ setlocal EnableDelayedExpansion
 
 if exist temp.bat del /q temp.bat
 
-set last_build=05.02.2020
+set last_build=2020/02/05
 set at=12:00
 set header=Update Assistant - (C) KcrPL v%version% (Compiled on %last_build% at %at%)
 ::
@@ -33,7 +33,7 @@ echo RiiConnect24 Update Assistant for Windows.
 echo Usage: update_assistant.bat [options...]
 echo.
 echo -RC24_Patcher        Will download latest RiiConnect24 Patcher to current dir
-echo -no_start            Won't start the patcher after the download is complete 
+echo -no_start            Won't start the patcher after the download is complete
 GOTO:EOF
 :start_download_rc24_patcher
 set mode=128,37
