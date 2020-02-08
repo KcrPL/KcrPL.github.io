@@ -24,6 +24,7 @@ if "%2"=="-no_start" set /a no_start=1
 
 if "%1"=="-RC24_Patcher" goto start_download_rc24_patcher
 if "%2"=="-RC24_Patcher" goto start_download_rc24_patcher
+if "%1"=="-VFF_Downloader_Main_Exec" goto start_download_vff_downloader_main_exec
 
 goto no_parameters
 
@@ -34,9 +35,30 @@ echo : RiiConnect24 Update Assistant for Windows.  :
 echo : Usage: update_assistant.bat [options...]    :
 echo :---------------------------------------------:
 echo.
-echo -RC24_Patcher        Will download latest RiiConnect24 Patcher to current dir
-echo -no_start            Won't start the patcher after the download is complete
+echo -RC24_Patcher             Will download latest RiiConnect24 Patcher to current dir
+echo -VFF_Downloader_Main_Exec Will download executable for VFF Downloader for Dolphin
+echo -no_start                 Won't start the patcher after the download is complete
 GOTO:EOF
+:start_download_vff_downloader_main_exec
+set mode=128,37
+mode %mode%
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Please wait! We are now downloading your new VFF Downloader for Dolphin update.
+curl -s -S --insecure "https://kcrPL.github.io/Patchers_Auto_Update/VFF-Downloader-for-Dolphin/UPDATE/VFF-Downloader-for-Dolphin.exe" --output "VFF-Downloader-for-DolphinTEMP.exe"
+
+set temperrorlev=%errorlevel%
+if not %temperrorlev%==0 goto error_download
+
+del VFF-Downloader-for-Dolphin.exe
+ren "VFF-Downloader-for-DolphinTEMP.exe" "VFF-Downloader-for-Dolphin.exe"
+
+if %no_start%==0 start VFF-Downloader-for-Dolphin.exe
+del /q "%~n0~x0"
+exit
+
 :start_download_rc24_patcher
 set mode=128,37
 mode %mode%
