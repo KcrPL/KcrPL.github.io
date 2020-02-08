@@ -4,7 +4,7 @@ setlocal enableDelayedExpansion
 cd /d "%~dp0"
 :: ===========================================================================
 :: .VFF File Downloader for Dolphin - main script
-set version=1.0.0
+set version=1.0.1
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2020 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -17,6 +17,7 @@ set at=23:34
 if exist update_assistant.bat del /q update_assistant.bat
 set /a alternative_curl=0
 set /a first_start=0
+set /a run_once=0
 :: Arguments
 if "%1"=="-first_start" set /a first_start=1
 if "%1"=="-run_once" set /a run_once=1
@@ -150,11 +151,10 @@ if %first_start%==1 start "" "%appdata%\warning.vbs"
 set last_hour_download=%time:~0,2%
 set /a already_checked_this_hour=1
 
-if %run_once%==1 (
-echo x=MsgBox("Done successfully - the program will now exit.",64,"RiiConnect24 .VFF Downloader for Dolphin"^)>"%appdata%\warning.vbs"
-start "" "%appdata%\warning.vbs"
-exit
-)	
+if %run_once%==1 echo x=MsgBox("Done successfully - the program will now exit.",64,"RiiConnect24 .VFF Downloader for Dolphin"^)>"%appdata%\warning.vbs"
+if %run_once%==1 start "" "%appdata%\warning.vbs"
+if %run_once%==1 exit
+
 goto count_time
 
 :count_time
