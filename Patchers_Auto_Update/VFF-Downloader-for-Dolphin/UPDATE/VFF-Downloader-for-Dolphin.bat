@@ -125,14 +125,13 @@ if %alternative_curl%==1 %alternative_curl_path% -s -S --insecure "http://weathe
 if %alternative_curl%==0 curl -s -S --insecure "http://news.wii.rc24.xyz/v2/%news_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_news.vff"
 if %alternative_curl%==1 %alternative_curl_path% -s -S --insecure "http://news.wii.rc24.xyz/v2/%news_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_news.vff"
 
-if not exist "%dolphin_installation%\48414645" md "%dolphin_installation%\48414645"
-if not exist "%dolphin_installation%\4841464a" md "%dolphin_installation%\4841464a"
-if not exist "%dolphin_installation%\48414650" md "%dolphin_installation%\48414650"
-if not exist "%dolphin_installation%\48414745" md "%dolphin_installation%\48414745"
-if not exist "%dolphin_installation%\4841474a" md "%dolphin_installation%\4841474a"
-if not exist "%dolphin_installation%\48414750" md "%dolphin_installation%\48414750"
- 
- 
+if not exist "%dolphin_installation%\48414645\data" md "%dolphin_installation%\48414645\data"
+if not exist "%dolphin_installation%\4841464a\data" md "%dolphin_installation%\4841464a\data"
+if not exist "%dolphin_installation%\48414650\data" md "%dolphin_installation%\48414650\data"
+if not exist "%dolphin_installation%\48414745\data" md "%dolphin_installation%\48414745\data"
+if not exist "%dolphin_installation%\4841474a\data" md "%dolphin_installation%\4841474a\data"
+if not exist "%dolphin_installation%\48414750\data" md "%dolphin_installation%\48414750\data"
+
 echo --- Copy ---
 copy "%dolphin_installation%\wc24dl_forecast.vff" "%dolphin_installation%\48414645\data\wc24dl.vff"
 copy "%dolphin_installation%\wc24dl_forecast.vff" "%dolphin_installation%\4841464a\data\wc24dl.vff"

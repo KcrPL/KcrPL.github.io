@@ -463,15 +463,15 @@ set /a detected=0
 
 FOR /F "tokens=2* skip=2" %%a in ('reg query "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" /v "Personal"') do set Documents_Folder=%%b
 
+set userprofile=
 set /a fix_detect=0
-echo %Documents_Folder% | findstr "C:\Users"
-if not %errorlevel%==0 set /a fix_detect=1
+echo %Documents_Folder% | findstr "%USERPROFILE% && set /a fix_detect=1
 
 if %fix_detect%==1 if exist "%Documents_Folder%\Dolphin Emulator\Wii\title\00010002" set /a detected=1
 if %fix_detect%==0 if exist "C:\Users\%username%\Documents\Dolphin Emulator\Wii\title\00010002" set /a detected=1
 
 if %detected%==1 if %fix_detect%==1 echo %Documents_Folder%\Dolphin Emulator\Wii\title\00010002> "%config%\path_to_install.txt"
-if %detected%==1 if %fix_detect%==0 echo C:\Users\%username%\Dolphin Emulator\Wii\title\00010002> "%config%\path_to_install.txt"
+if %detected%==1 if %fix_detect%==0 echo C:\Users\%username%\Documents\Dolphin Emulator\Wii\title\00010002> "%config%\path_to_install.txt"
 goto 1_detect_%detected%
 
 :1_detect_0
@@ -767,8 +767,9 @@ cls
 echo %header%
 echo -----------------------------------------------------------------------------------------------------------------------------
 echo.
+if exist "%MainFolder%/UPDATE/VFF-Downloader-for-Dolphin.exe" del /q "%MainFolder%/VFF-Downloader-for-Dolphin.exe"
 echo Downloading the script... please wait.
-curl -s -S --insecure "%FilesHostedOn%/UPDATE/VFF-Downloader-for-Dolphin.exe" --output "%MainFolder%/VFF-Downloader-for-Dolphin.exe"
+curl -s -S --insecure "https://kcrpl.github.io/Patchers_Auto_Update/VFF-Downloader-for-Dolphin/UPDATE/VFF-Downloader-for-Dolphin.exe" --output "%MainFolder%/VFF-Downloader-for-Dolphin.exe"
 goto 4_manual_2
 :4_manual_2
 cls
@@ -807,8 +808,9 @@ cls
 echo %header%
 echo -----------------------------------------------------------------------------------------------------------------------------
 echo.
+if exist "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\VFF-Downloader-for-Dolphin.exe" del /q "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\VFF-Downloader-for-Dolphin.exe"
 echo Downloading the script... please wait.
-curl -s -S --insecure "%FilesHostedOn%/UPDATE/VFF-Downloader-for-Dolphin.exe" --output "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\VFF-Downloader-for-Dolphin.exe"
+curl -s -S --insecure "https://kcrpl.github.io/Patchers_Auto_Update/VFF-Downloader-for-Dolphin/UPDATE/VFF-Downloader-for-Dolphin.exe" --output "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\VFF-Downloader-for-Dolphin.exe"
 if exist curl.exe copy /Y "curl.exe" "%MainFolder%"
  
 goto 4_startup_done
