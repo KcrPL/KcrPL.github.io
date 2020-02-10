@@ -5,7 +5,7 @@ echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: .VFF File Downloader for Dolphin
-set version=1.0.2
+set version=1.0.3
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2020 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -22,12 +22,14 @@ set s=NUL
 set /a detected=0
 set /a incorrect_region=0
 set /a temp=0
+set user_name=%userprofile:~9%
+
 
 :: Window Title
 title .VFF File Downloader for Dolphin v%version% Created by @KcrPL
 
-set last_build=2020/02/09
-set at=16:18
+set last_build=2020/02/10
+set at=18:18
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
@@ -66,7 +68,7 @@ echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.
 echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN   1. Start
 echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd   2. Settings
 if exist "%MainFolder%/VFF-Downloader-for-Dolphin.exe" echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy   3. Run the VFF Downloader once.   
-if exist "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\VFF-Downloader-for-Dolphin.exe" echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy   4. Manage startup VFF Downloader
+if exist "C:\Users\%user_name%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\VFF-Downloader-for-Dolphin.exe" echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy   4. Manage startup VFF Downloader
 echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy   
 echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
 echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
@@ -488,8 +490,8 @@ echo %Documents_Folder% | findstr "%%USERPROFILE%% && set /a fix_detect=1
 if %fix_detect%==1 if exist "%Documents_Folder%\Dolphin Emulator\Wii\title\00010002" set detected=1
 if %fix_detect%==0 if exist "%userprofile%\Documents\Dolphin Emulator\Wii\title\00010002" set detected=1
 
-if %detected%==1 if %fix_detect%==1 >"%config%\path_to_install.txt" echo "%Documents_Folder%\Dolphin Emulator\Wii\title\00010002"
-if %detected%==1 if %fix_detect%==0 >"%config%\path_to_install.txt" echo "%userprofile%\Documents\Dolphin Emulator\Wii\title\00010002"
+if %detected%==1 if %fix_detect%==1 >"%config%\path_to_install.txt" echo %Documents_Folder%\Dolphin Emulator\Wii\title\00010002
+if %detected%==1 if %fix_detect%==0 >"%config%\path_to_install.txt" echo %userprofile%\Documents\Dolphin Emulator\Wii\title\00010002
 goto 1_detect_%detected%
 
 :1_detect_0
@@ -774,7 +776,8 @@ cls
 echo %header%
 echo -----------------------------------------------------------------------------------------------------------------------------
 echo.
-::If a previos file exists, delete it
+::If a previous file exists, delete it
+taskkill /im VFF-Downloader-for-Dolphin.exe /f
 if exist "%MainFolder%/VFF-Downloader-for-Dolphin.exe" del /q "%MainFolder%/VFF-Downloader-for-Dolphin.exe"
 echo Downloading the script... please wait.
 curl -s -S --insecure "https://kcrpl.github.io/Patchers_Auto_Update/VFF-Downloader-for-Dolphin/UPDATE/VFF-Downloader-for-Dolphin.exe" --output "%MainFolder%/VFF-Downloader-for-Dolphin.exe"
@@ -816,11 +819,12 @@ cls
 echo %header%
 echo -----------------------------------------------------------------------------------------------------------------------------
 echo.
-::If a previos file exists, delete it
-if exist "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\VFF-Downloader-for-Dolphin.exe" del /q "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\VFF-Downloader-for-Dolphin.exe"
+::If a previous file exists, delete it
+taskkill /im VFF-Downloader-for-Dolphin.exe /f
+if exist "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\VFF-Downloader-for-Dolphin.exe" del /q "C:\Users\%user_name%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\VFF-Downloader-for-Dolphin.exe"
 echo Downloading the script... please wait.
 ::Download the new file into the startup dir
-curl -s -S --insecure "https://kcrpl.github.io/Patchers_Auto_Update/VFF-Downloader-for-Dolphin/UPDATE/VFF-Downloader-for-Dolphin.exe" --output "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\VFF-Downloader-for-Dolphin.exe"
+curl -s -S --insecure "https://kcrpl.github.io/Patchers_Auto_Update/VFF-Downloader-for-Dolphin/UPDATE/VFF-Downloader-for-Dolphin.exe" --output "C:\Users\%user_name%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\VFF-Downloader-for-Dolphin.exe"
 ::And if curl was needed (windows 8), also copy that
 if exist curl.exe copy /Y "curl.exe" "%MainFolder%"
  
@@ -833,5 +837,5 @@ echo.
 echo Done^^!
 echo Press any key to shut down this program and to start the background process. 
 echo You will get a notification after the successful first setup.
-start "" "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\VFF-Downloader-for-Dolphin.exe" -first_start
+start "" "C:\Users\%user_name%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\VFF-Downloader-for-Dolphin.exe" -first_start
 exit

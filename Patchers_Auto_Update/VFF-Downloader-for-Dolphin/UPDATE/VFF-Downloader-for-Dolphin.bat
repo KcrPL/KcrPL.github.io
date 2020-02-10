@@ -4,13 +4,13 @@ setlocal enableDelayedExpansion
 cd /d "%~dp0"
 :: ===========================================================================
 :: .VFF File Downloader for Dolphin - main script
-set version=1.0.1
+set version=1.0.2
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2020 KcrPL, RiiConnect24 and it's (Lead) Developers
 :: ===========================================================================
-set last_build=2020/02/08
-set at=23:34
+set last_build=2020/02/10
+set at=18:18
 :: Unattended mode
 :: This script is meant to be running in the background.
 
@@ -88,6 +88,11 @@ exit
 ::echo [%date%] [%time:~0,5%] ERROR: Updating failed with exit code: %temperrorlev%>>"%MainFolder%\log.txt"
 goto read_config
 
+:error_cannot_copy
+echo x=MsgBox("There was an error while copying files. This may happen due to incorrect configuration. Please run Install.bat and reconfigure the program. The program will now exit.",16,"RiiConnect24 .VFF Downloader for Dolphin")>"%appdata%\warning.vbs"
+start "" "%appdata%\warning.vbs"
+del "%config%\warning.vbs"
+exit
 
 :read_config
 echo --- Read config ---
@@ -103,6 +108,17 @@ set forecast_language=%templanguage:~9,1%
 set /p news_region=<"%config%\news_region.txt"
 
 set /p dolphin_installation=<"%config%\path_to_install.txt"
+goto download_files
+:waiting_for_internet
+echo No internet connection/could not connect to remote host.
+timeout 360 /nobreak >NUL
+goto download_files
+
+:error_curl_shutdown
+echo x=MsgBox("There was an error while downloading files. The program will now exit.",16,"RiiConnect24 .VFF Downloader for Dolphin")>"%appdata%\warning.vbs"
+start "" "%appdata%\warning.vbs"
+del "%config%\warning.vbs"
+exit
 
 
 :download_files
@@ -121,6 +137,7 @@ echo --- Download ---
 ::Forecast
 if %alternative_curl%==0 curl -s -S --insecure "http://weather.wii.rc24.xyz/%forecast_language%/%forecast_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_forecast.vff"
 if %alternative_curl%==1 %alternative_curl_path% -s -S --insecure "http://weather.wii.rc24.xyz/%forecast_language%/%forecast_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_forecast.vff"
+
 ::News
 if %alternative_curl%==0 curl -s -S --insecure "http://news.wii.rc24.xyz/v2/%news_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_news.vff"
 if %alternative_curl%==1 %alternative_curl_path% -s -S --insecure "http://news.wii.rc24.xyz/v2/%news_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_news.vff"
@@ -134,12 +151,18 @@ if not exist "%dolphin_installation%\48414750\data" md "%dolphin_installation%\4
 
 echo --- Copy ---
 copy "%dolphin_installation%\wc24dl_forecast.vff" "%dolphin_installation%\48414645\data\wc24dl.vff"
+if not %errorlevel%==0 goto error_cannot_copy
 copy "%dolphin_installation%\wc24dl_forecast.vff" "%dolphin_installation%\4841464a\data\wc24dl.vff"
+if not %errorlevel%==0 goto error_cannot_copy
 copy "%dolphin_installation%\wc24dl_forecast.vff" "%dolphin_installation%\48414650\data\wc24dl.vff"
+if not %errorlevel%==0 goto error_cannot_copy
 
 copy "%dolphin_installation%\wc24dl_news.vff" "%dolphin_installation%\48414745\data\wc24dl.vff"
+if not %errorlevel%==0 goto error_cannot_copy
 copy "%dolphin_installation%\wc24dl_news.vff" "%dolphin_installation%\4841474a\data\wc24dl.vff"
+if not %errorlevel%==0 goto error_cannot_copy
 copy "%dolphin_installation%\wc24dl_news.vff" "%dolphin_installation%\48414750\data\wc24dl.vff"
+if not %errorlevel%==0 goto error_cannot_copy
 echo --- Delete ---
 del /q "%dolphin_installation%\wc24dl_news.vff"
 del /q "%dolphin_installation%\wc24dl_forecast.vff"
