@@ -5,7 +5,7 @@ echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: .VFF File Downloader for Dolphin
-set version=1.0.3
+set version=1.0.4
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2020 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -28,8 +28,8 @@ set user_name=%userprofile:~9%
 :: Window Title
 title .VFF File Downloader for Dolphin v%version% Created by @KcrPL
 
-set last_build=2020/02/10
-set at=18:18
+set last_build=2020/02/15
+set at=17:10
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
@@ -294,14 +294,14 @@ if exist "%TempStorage%\annoucement.txt" del /q "%TempStorage%\annoucement.txt"
 if %offlinestorage%==0 (
 call curl -s -S --insecure "%FilesHostedOn%/UPDATE/whatsnew.txt" --output "%TempStorage%\whatsnew.txt"
 call curl -s -S --insecure "%FilesHostedOn%/UPDATE/version.txt" --output "%TempStorage%\version.txt"
-call curl -s -S --insecure "%FilesHostedOn%/UPDATE/annoucement.txt" --output %TempStorage%\annoucement.txt"
+call curl -s -S --insecure "%FilesHostedOn%/UPDATE/annoucement.txt" --output "%TempStorage%\annoucement.txt"
 )
 
 ::Bind exit codes to errors here
 ::If curl got a "CURLE_COULDNT_RESOLVE_HOST" error, 99% of the time the user doesn't have an active internet connection
 if "%errorlevel%"=="6" goto no_internet_connection
 ::If any other error happened while downloading, echo that (TODO: Needs to be improved, only temporary. Probably (hopefully) will never run though)
-if not %errorlevel%==0 echo Issue while downloading version.txt, check internet connection and retry
+if not "%errorlevel%"=="0" echo Issue while downloading version.txt, check internet connection and retry
 
 ::In case a random ` appeared at the end of the file name, rename the file to the proper name
 if exist "%TempStorage%\version.txt`" ren "%TempStorage%\version.txt`" "version.txt"
@@ -703,8 +703,8 @@ goto 2_show_languages
 
 :2_forecast_save_config
 ::Save config
->%config%\forecast_region.txt echo %region%
->%config%\forecast_language.txt echo language_%language%
+>"%config%\forecast_region.txt" echo %region%
+>"%config%\forecast_language.txt" echo language_%language%
 
 goto 3_news
 :3_news
@@ -736,14 +736,14 @@ if %region_news% geq 0 if %region_news% leq 7 goto 3_news_save_config
 goto 3_news
 
 :3_news_save_config
-if %region_news%==0 echo 0_Japan>%config%\news_region.txt
-if %region_news%==1 echo 1_America>%config%\news_region.txt
-if %region_news%==2 echo 1_Europe>%config%\news_region.txt
-if %region_news%==3 echo 2_Europe>%config%\news_region.txt
-if %region_news%==4 echo 3_International>%config%\news_region.txt
-if %region_news%==5 echo 4_International>%config%\news_region.txt
-if %region_news%==6 echo 5_Europe>%config%\news_region.txt
-if %region_news%==7 echo 6_Europe>%config%\news_region.txt
+if %region_news%==0 echo 0_Japan>"%config%\news_region.txt"
+if %region_news%==1 echo 1_America>"%config%\news_region.txt"
+if %region_news%==2 echo 1_Europe>"%config%\news_region.txt"
+if %region_news%==3 echo 2_Europe>"%config%\news_region.txt"
+if %region_news%==4 echo 3_International>"%config%\news_region.txt"
+if %region_news%==5 echo 4_International>"%config%\news_region.txt"
+if %region_news%==6 echo 5_Europe>"%config%\news_region.txt"
+if %region_news%==7 echo 6_Europe>"%config%\news_region.txt"
 
 goto 4
 :4
