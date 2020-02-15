@@ -4,13 +4,13 @@ setlocal enableDelayedExpansion
 cd /d "%~dp0"
 :: ===========================================================================
 :: .VFF File Downloader for Dolphin - main script
-set version=1.0.2
+set version=1.0.3
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2020 KcrPL, RiiConnect24 and it's (Lead) Developers
 :: ===========================================================================
-set last_build=2020/02/10
-set at=18:18
+set last_build=2020/02/15
+set at=10:59
 :: Unattended mode
 :: This script is meant to be running in the background.
 
@@ -89,7 +89,7 @@ exit
 goto read_config
 
 :error_cannot_copy
-echo x=MsgBox("There was an error while copying files. This may happen due to incorrect configuration. Please run Install.bat and reconfigure the program. The program will now exit.",16,"RiiConnect24 .VFF Downloader for Dolphin")>"%appdata%\warning.vbs"
+echo x=MsgBox("There was an error while copying files. This may happen due to incorrect configuration. Please run Install.bat and reconfigure the program. The program will now exit. Error code - %temperrorlev%",16,"RiiConnect24 .VFF Downloader for Dolphin")>"%appdata%\warning.vbs"
 start "" "%appdata%\warning.vbs"
 del "%config%\warning.vbs"
 exit
@@ -115,7 +115,7 @@ timeout 360 /nobreak >NUL
 goto download_files
 
 :error_curl_shutdown
-echo x=MsgBox("There was an error while downloading files. The program will now exit.",16,"RiiConnect24 .VFF Downloader for Dolphin")>"%appdata%\warning.vbs"
+echo x=MsgBox("There was an error while downloading files. The program will now exit. Error code - %temperrorlev%",16,"RiiConnect24 .VFF Downloader for Dolphin")>"%appdata%\warning.vbs"
 start "" "%appdata%\warning.vbs"
 del "%config%\warning.vbs"
 exit
@@ -183,7 +183,8 @@ goto count_time
 :count_time
 if not "%last_hour_download%"=="%time:~0,2%" set /a already_checked_this_hour=0
 if %already_checked_this_hour%==0 if /i "%time:~3,2%" GEQ "10" goto download_files
-timeout 600 /nobreak >NUL
+
+call "%windir%\system32\timeout.exe" 600 /nobreak >NUL
 
 echo --- Checking for update ---
 ::Check for update
