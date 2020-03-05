@@ -4,20 +4,23 @@ setlocal enableDelayedExpansion
 cd /d "%~dp0"
 :: ===========================================================================
 :: .VFF File Downloader for Dolphin - main script
-set version=1.0.3
+set version=1.0.4
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2020 KcrPL, RiiConnect24 and it's (Lead) Developers
 :: ===========================================================================
-set last_build=2020/02/15
-set at=10:59
+set last_build=2020/02/16
+set at=13:51
 :: Unattended mode
 :: This script is meant to be running in the background.
+echo Running VFF File Downloader for Dolphin...
+
 
 if exist update_assistant.bat del /q update_assistant.bat
 set /a alternative_curl=0
 set /a first_start=0
 set /a run_once=0
+set /a retry=3
 :: Arguments
 if "%1"=="-first_start" set /a first_start=1
 if "%1"=="-run_once" set /a run_once=1
@@ -30,7 +33,7 @@ set FilesHostedOn=https://kcrpl.github.io/Patchers_Auto_Update/VFF-Downloader-fo
 set MainFolder=%appdata%\VFF-Downloader-for-Dolphin
 set TempStorage=%appdata%\VFF-Downloader-for-Dolphin\internet\temp
 set config=%appdata%\VFF-Downloader-for-Dolphin\config
-set %alternative_curl_path%=%MainFolder%\curl.exe
+set alternative_curl_path=%MainFolder%\curl.exe
 
 goto check_for_update
 :error_no_work_folder
@@ -40,8 +43,12 @@ del "%config%\warning.vbs"
 exit
 :check_for_update
 :: For whatever reason, it returns 2
+echo.
 curl
 if not %errorlevel%==2 set /a alternative_curl=1
+
+
+echo --- [%time:~0,8%] First update check ---
 
 :: Update script.
 set updateversion=0.0.0
@@ -89,13 +96,17 @@ exit
 goto read_config
 
 :error_cannot_copy
+
+if not %retry%==0 set /a retry=%retry%-1
+if /i %retry% GTR 0 goto download_files
+
 echo x=MsgBox("There was an error while copying files. This may happen due to incorrect configuration. Please run Install.bat and reconfigure the program. The program will now exit. Error code - %temperrorlev%",16,"RiiConnect24 .VFF Downloader for Dolphin")>"%appdata%\warning.vbs"
 start "" "%appdata%\warning.vbs"
 del "%config%\warning.vbs"
 exit
 
 :read_config
-echo --- Read config ---
+echo --- [%time:~0,8%] Reading configuration ---
 if not exist "%config%\forecast_region.txt" goto error_config
 if not exist "%config%\forecast_language.txt" goto error_config
 if not exist "%config%\news_region.txt" goto error_config
@@ -115,6 +126,10 @@ timeout 360 /nobreak >NUL
 goto download_files
 
 :error_curl_shutdown
+
+if not %retry%==0 set /a retry=%retry%-1
+if /i %retry% GTR 0 goto download_files
+
 echo x=MsgBox("There was an error while downloading files. The program will now exit. Error code - %temperrorlev%",16,"RiiConnect24 .VFF Downloader for Dolphin")>"%appdata%\warning.vbs"
 start "" "%appdata%\warning.vbs"
 del "%config%\warning.vbs"
@@ -122,25 +137,29 @@ exit
 
 
 :download_files
-echo --- Clean ---
+echo --- [%time:~0,8%] Cleaning old files [Forecast Channel] ---
+echo.
 ::Clean forecast channel data
 if exist "%dolphin_installation%\48414645\data\wc24dl.vff" del /q %dolphin_installation%\48414645\data\wc24dl.vff"
 if exist "%dolphin_installation%\4841464a\data\wc24dl.vff" del /q %dolphin_installation%\4841464a\data\wc24dl.vff"
 if exist "%dolphin_installation%\48414650\data\wc24dl.vff" del /q %dolphin_installation%\48414650\data\wc24dl.vff"
-echo --- Clean ---
+echo.
+echo --- [%time:~0,8%] Cleaning old files [News Channel] ---
+echo.
 ::Clean news channel data
 if exist "%dolphin_installation%\48414745\data\wc24dl.vff" del /q %dolphin_installation%\48414745\data\wc24dl.vff"
 if exist "%dolphin_installation%\4841474a\data\wc24dl.vff" del /q %dolphin_installation%\4841474a\data\wc24dl.vff"
 if exist "%dolphin_installation%\48414750\data\wc24dl.vff" del /q %dolphin_installation%\48414750\data\wc24dl.vff"
-
-echo --- Download ---
+echo.
+echo --- [%time:~0,8%] Downloading files ---
 ::Forecast
 if %alternative_curl%==0 curl -s -S --insecure "http://weather.wii.rc24.xyz/%forecast_language%/%forecast_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_forecast.vff"
 if %alternative_curl%==1 %alternative_curl_path% -s -S --insecure "http://weather.wii.rc24.xyz/%forecast_language%/%forecast_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_forecast.vff"
-
+echo Done: 1/2
 ::News
 if %alternative_curl%==0 curl -s -S --insecure "http://news.wii.rc24.xyz/v2/%news_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_news.vff"
 if %alternative_curl%==1 %alternative_curl_path% -s -S --insecure "http://news.wii.rc24.xyz/v2/%news_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_news.vff"
+echo Done: 2/2
 
 if not exist "%dolphin_installation%\48414645\data" md "%dolphin_installation%\48414645\data"
 if not exist "%dolphin_installation%\4841464a\data" md "%dolphin_installation%\4841464a\data"
@@ -149,21 +168,32 @@ if not exist "%dolphin_installation%\48414745\data" md "%dolphin_installation%\4
 if not exist "%dolphin_installation%\4841474a\data" md "%dolphin_installation%\4841474a\data"
 if not exist "%dolphin_installation%\48414750\data" md "%dolphin_installation%\48414750\data"
 
-echo --- Copy ---
+echo --- [%time:~0,8%] Copying files into directory ---
 copy "%dolphin_installation%\wc24dl_forecast.vff" "%dolphin_installation%\48414645\data\wc24dl.vff"
-if not %errorlevel%==0 goto error_cannot_copy
+set /a temperrorlev=%errorlevel%
+if not %temperrorlev%==0 goto error_cannot_copy
+
 copy "%dolphin_installation%\wc24dl_forecast.vff" "%dolphin_installation%\4841464a\data\wc24dl.vff"
-if not %errorlevel%==0 goto error_cannot_copy
+set /a temperrorlev=%errorlevel%
+if not %temperrorlev%==0 goto error_cannot_copy
+
 copy "%dolphin_installation%\wc24dl_forecast.vff" "%dolphin_installation%\48414650\data\wc24dl.vff"
-if not %errorlevel%==0 goto error_cannot_copy
+set /a temperrorlev=%errorlevel%
+if not %temperrorlev%==0 goto error_cannot_copy
 
 copy "%dolphin_installation%\wc24dl_news.vff" "%dolphin_installation%\48414745\data\wc24dl.vff"
-if not %errorlevel%==0 goto error_cannot_copy
+set /a temperrorlev=%errorlevel%
+if not %temperrorlev%==0 goto error_cannot_copy
+
 copy "%dolphin_installation%\wc24dl_news.vff" "%dolphin_installation%\4841474a\data\wc24dl.vff"
-if not %errorlevel%==0 goto error_cannot_copy
+set /a temperrorlev=%errorlevel%
+if not %temperrorlev%==0 goto error_cannot_copy
+
 copy "%dolphin_installation%\wc24dl_news.vff" "%dolphin_installation%\48414750\data\wc24dl.vff"
-if not %errorlevel%==0 goto error_cannot_copy
-echo --- Delete ---
+set /a temperrorlev=%errorlevel%
+if not %temperrorlev%==0 goto error_cannot_copy
+
+echo --- [%time:~0,8%] Delete temporary files ---
 del /q "%dolphin_installation%\wc24dl_news.vff"
 del /q "%dolphin_installation%\wc24dl_forecast.vff"
 
@@ -178,21 +208,26 @@ if %run_once%==1 echo x=MsgBox("Done successfully - the program will now exit.",
 if %run_once%==1 start "" "%appdata%\warning.vbs"
 if %run_once%==1 exit
 
+::Reset retry counter
+title %retry%
+set /a retry=3
+
 goto count_time
 
 :count_time
 if not "%last_hour_download%"=="%time:~0,2%" set /a already_checked_this_hour=0
 if %already_checked_this_hour%==0 if /i "%time:~3,2%" GEQ "10" goto download_files
 
+echo --- [%time:~0,8%] Waiting 600 seconds (10 minutes) ---
 call "%windir%\system32\timeout.exe" 600 /nobreak >NUL
 
-echo --- Checking for update ---
+echo --- [%time:~0,8%] Checking for update ---
 ::Check for update
 if %alternative_curl%==0 call curl -s -S --insecure "%FilesHostedOn%/UPDATE/version_vff_downloader.txt" --output "%TempStorage%\version.txt"
 if %alternative_curl%==1 call %alternative_curl_path% -s -S --insecure "%FilesHostedOn%/UPDATE/version_vff_downloader.txt" --output "%TempStorage%\version.txt"
 if exist "%TempStorage%\version.txt" set /p updateversion=<"%TempStorage%\version.txt"
 if not %updateversion%==%version% goto run_update
-echo Done.
+echo --- Done checking for update [%time:~0,8%] ---
 
 goto count_time
 
