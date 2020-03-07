@@ -1,0 +1,3 @@
+1.0.5
+- RiiConnect24 Patcher integration
+- Fixed an error that would happen if the remote file would be unavailable.

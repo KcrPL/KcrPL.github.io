@@ -5,7 +5,7 @@ echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: .VFF File Downloader for Dolphin
-set version=1.0.4
+set version=1.0.5
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2020 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -24,12 +24,16 @@ set /a incorrect_region=0
 set /a temp=0
 set user_name=%userprofile:~9%
 
+set /a rc24patcher=0
+if "%1"=="-RC24Patcher_assisted" set /a rc24patcher=1
+
+
 
 :: Window Title
 title .VFF File Downloader for Dolphin v%version% Created by @KcrPL
 
-set last_build=2020/02/15
-set at=17:10
+set last_build=2020/03/07
+set at=11:56
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
@@ -53,6 +57,8 @@ if not exist "%TempStorage%" md "%TempStorage%"
 if not exist "%config%" md "%config%"
 :: Load background color from file if it exists
 if exist "%appdata%\RiiConnect24Patcher\internet\temp\background_color.txt" for /f "usebackq" %%a in ("%appdata%\RiiConnect24Patcher\internet\temp\background_color.txt") do color %%a
+
+if %rc24patcher%==1 goto 1
 goto begin_main
 :begin_main
 cls
@@ -292,9 +298,9 @@ if exist "%TempStorage%\annoucement.txt" del /q "%TempStorage%\annoucement.txt"
 :: Commands to download files from server.
 ::If the downloader isn't supposed to get files from local storage (Offlinestorage=0, debug feature), download the newest version, changelog and announcement
 if %offlinestorage%==0 (
-call curl -s -S --insecure "%FilesHostedOn%/UPDATE/whatsnew.txt" --output "%TempStorage%\whatsnew.txt"
-call curl -s -S --insecure "%FilesHostedOn%/UPDATE/version.txt" --output "%TempStorage%\version.txt"
-call curl -s -S --insecure "%FilesHostedOn%/UPDATE/annoucement.txt" --output "%TempStorage%\annoucement.txt"
+call curl -f -L -s -S --insecure "%FilesHostedOn%/UPDATE/whatsnew.txt" --output "%TempStorage%\whatsnew.txt"
+call curl -f -L -s -S --insecure "%FilesHostedOn%/UPDATE/version.txt" --output "%TempStorage%\version.txt"
+call curl -f -L -s -S --insecure "%FilesHostedOn%/UPDATE/annoucement.txt" --output "%TempStorage%\annoucement.txt"
 )
 
 ::Bind exit codes to errors here
@@ -401,7 +407,7 @@ echo                                   -odhhhhyddmmmmmNNmhs/:`
 echo                                     :syhdyyyyso+/-`
 :update_1
 ::Download the update helper
-curl -s -S --insecure "https://KcrPL.github.io/Patchers_Auto_Update/RiiConnect24Patcher/UPDATE/update_assistant.bat" --output "update_assistant.bat"
+curl -f -L -s -S --insecure "https://KcrPL.github.io/Patchers_Auto_Update/RiiConnect24Patcher/UPDATE/update_assistant.bat" --output "update_assistant.bat"
 ::If there was an error downloading, notify user
 if not %errorlevel%==0 goto error_updating
 ::So if there wasn't an error, start it with a flag so it knows what to update
@@ -474,10 +480,12 @@ echo.
 echo First, we need to detect your Dolphin user files.
 echo.
 echo 1. Continue
-echo 2. Exit
+if %rc24patcher%==0 echo 2. Exit
+if %rc24patcher%==1 echo 2. Return to RiiConnect24 Patcher.
 set /p s=Choose: 
 if %s%==1 goto 1_detect
-if %s%==2 goto begin_main
+if %s%==2 if %rc24patcher%==0 goto begin_main
+if %s%==2 if %rc24patcher%==1 goto:EOF
 goto 1
 :1_detect
 set /a detected=0
@@ -506,11 +514,13 @@ echo If it still won't work, choose "Set manually"
 echo.
 echo 1. Try again
 echo 2. Set manually
-echo 3. Exit
+if %rc24patcher%==0 echo 3. Exit
+if %rc24patcher%==1 echo 3. Return to RiiConnect24 Patcher.
 set /p s=Choose:
 if %s%==1 goto 1_detect
 if %s%==2 goto 1_detect_set
-if %s%==3 goto 1 
+if %s%==3 if %rc24patcher%==0 goto 1 
+if %s%==3 if %rc24patcher%==1 goto:EOF
 goto 1_detect_0
 :1_detect_set
 cls
@@ -762,7 +772,7 @@ echo 2. Startup
 echo   - The program will be put into startup and it will start with Windows.
 echo   - The program is lightweight. Even if you have an HDD, it won't slow down your PC.
 echo   - The program will run in background
-echo   - It uses 0% of your CPU and about 4-6MB of RAM.
+echo   - It uses 0%% of your CPU and about 4-6MB of RAM.
 echo   - The source code is on GitHub.
 echo   - It will show Message Boxes if it encounters an error.
 echo.
@@ -780,7 +790,7 @@ echo.
 taskkill /im VFF-Downloader-for-Dolphin.exe /f
 if exist "%MainFolder%/VFF-Downloader-for-Dolphin.exe" del /q "%MainFolder%/VFF-Downloader-for-Dolphin.exe"
 echo Downloading the script... please wait.
-curl -s -S --insecure "https://kcrpl.github.io/Patchers_Auto_Update/VFF-Downloader-for-Dolphin/UPDATE/VFF-Downloader-for-Dolphin.exe" --output "%MainFolder%/VFF-Downloader-for-Dolphin.exe"
+curl -f -L -s -S --insecure "https://kcrpl.github.io/Patchers_Auto_Update/VFF-Downloader-for-Dolphin/UPDATE/VFF-Downloader-for-Dolphin.exe" --output "%MainFolder%/VFF-Downloader-for-Dolphin.exe"
 goto 4_manual_2
 :4_manual_2
 cls
@@ -792,9 +802,11 @@ echo Now, if you want to download the files for Dolphin, there will be an option
 echo.
 echo Come back at 10th minute of every hour - that's when scripts generate on our servers! (For example, 8:10AM, 9:10AM, 4:10PM etc.)
 echo.
-echo Press any key to go back to main menu.
+if %rc24patcher%==0 echo Press any key to go back to main menu.
+if %rc24patcher%==1 echo Press any key to go back to RiiConnect24 Patcher.
 pause>NUL
-goto script_start
+if %rc24patcher%==0 goto script_start
+if %rc24patcher%==1 goto:EOF
 :4_startup
 cls
 echo %header%
@@ -824,7 +836,7 @@ taskkill /im VFF-Downloader-for-Dolphin.exe /f
 if exist "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\VFF-Downloader-for-Dolphin.exe" del /q "C:\Users\%user_name%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\VFF-Downloader-for-Dolphin.exe"
 echo Downloading the script... please wait.
 ::Download the new file into the startup dir
-curl -s -S --insecure "https://kcrpl.github.io/Patchers_Auto_Update/VFF-Downloader-for-Dolphin/UPDATE/VFF-Downloader-for-Dolphin.exe" --output "C:\Users\%user_name%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\VFF-Downloader-for-Dolphin.exe"
+curl -f -L -s -S --insecure "https://kcrpl.github.io/Patchers_Auto_Update/VFF-Downloader-for-Dolphin/UPDATE/VFF-Downloader-for-Dolphin.exe" --output "C:\Users\%user_name%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\VFF-Downloader-for-Dolphin.exe"
 ::And if curl was needed (windows 8), also copy that
 if exist curl.exe copy /Y "curl.exe" "%MainFolder%"
  
@@ -835,7 +847,10 @@ echo %header%
 echo -----------------------------------------------------------------------------------------------------------------------------
 echo.
 echo Done^^!
-echo Press any key to shut down this program and to start the background process. 
+if %rc24patcher%==0 echo The background process has been started. Press any key to exit from this program.
+if %rc24patcher%==1 echo Press any key to return to RiiConnect24 Patcher. The program has been started.
 echo You will get a notification after the successful first setup.
 start "" "C:\Users\%user_name%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\VFF-Downloader-for-Dolphin.exe" -first_start
-exit
+pause>NUL
+if %rc24patcher%==0 exit
+if %rc24patcher%==1 GOTO:EOF
