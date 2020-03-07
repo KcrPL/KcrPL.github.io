@@ -38,7 +38,7 @@ echo :---------------------------------------------:
 echo.
 echo -RC24_Patcher                  Will download latest RiiConnect24 Patcher to current dir
 echo -VFF_Downloader_Main_Exec      Will download executable for VFF Downloader for Dolphin
-echo -VFF_Downloader_Main_Installer Will download installer for VFF Downloader for Dolphin
+echo -VFF_Downloader_Installer      Will download installer for VFF Downloader for Dolphin
 echo -no_start                      Won't start the patcher after the download is complete
 GOTO:EOF
 :start_download_vff_downloader_install
@@ -59,7 +59,7 @@ ren "InstallTEMP.bat" "Install.bat"
 
 if %no_start%==0 start "" Install.bat
 del /q "%~n0~x0"
-exit
+GOTO:EOF
 
 :start_download_vff_downloader_main_exec
 set mode=128,37
