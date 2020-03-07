@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<app version="1">
+    <name>ConnectMii</name>
+    <coder>JoostinOnline, twosecslater</coder>
+    <version>v2.0</version>
+    <release_date>20191106000000</release_date>
+    <short_description>Enables WC24 flags</short_description>
+    <long_description>This app enables WiiConnect24 and standby connection flags so you can run titles that require these flags on vWii.  After patches are applied, you can launch these titles from sysmenu. You will need to run this application every time you would like these two flags enabled after every reboot of the vWii, since after rebooting, these flags are disabled.</long_description>
+	<ahb_access/>
+</app>
