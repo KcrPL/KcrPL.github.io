@@ -1,3 +1,14 @@
+1.2.0
+Went trough BETA testing from our community on Discord!
+- You can now patch RiiConnect24 Wii U and Dolphin.
+- A lot of bug fixes with curl and more.
+- The patcher will now delete WAD folder before it starts patching. It's a brick prevention for our users.
+- Files created by the patcher will now have more details in their file name (for example, for Wii only, region etc.)
+- Fixed crashes
+
+When patching the file for Wii U, it will make a backup of it and will pack it to a .ZIP, don't delete that file until you're sure that everything works.
+It's a really big update! I hope nothing will break... but if it does - contact me!
+
 1.1.3
 - Changed our update system to be more flexible.
 - Once and for all, fixed all updating problems.

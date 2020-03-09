@@ -26,6 +26,7 @@ set /a beta=1
 ::This variable controls if the current version of the patcher is in the stable or beta branch. It will change updating path.
 :: 0 = stable  1 = beta
 
+set user_name=%userprofile:~9%
 set /a dolphin=0
 set /a exitmessage=1
 set /a errorcopying=0
@@ -46,8 +47,8 @@ set hh=0
 :: Window Title
 if %beta%==0 title RiiConnect24 Patcher v%version% Created by @KcrPL, @Larsenv, @Apfel
 if %beta%==1 title RiiConnect24 Patcher v%version% [BETA] Created by @KcrPL, @Larsenv, @Apfel
-set last_build=2020/02/05
-set at=13:13
+set last_build=2020/02/09
+set at=17:00
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
@@ -123,16 +124,18 @@ echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:
 echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.
 echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN   1. Start
 echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd   2. Credits
-echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy   3. Settings
+if not exist "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\VFF-Downloader-for-Dolphin.exe" echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy   3. Settings
+if exist "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\VFF-Downloader-for-Dolphin.exe" echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy   3. Settings (manage VFF Downloader for Dolphin here)
 echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+   4. Troubleshooting
-echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
-echo             mmmmms smMMMMMMMMMmddMMmmNmNMMMMMMMMMMMM:  Do you have problems or want to contact us?  
-echo            `mmmmmo hNMMMMMMMMMmddNMMMNNMMMMMMMMMMMMM.  Mail us at support@riiconnect24.net
-echo            -mmmmm/ dNMMMMMMMMMNmddMMMNdhdMMMMMMMMMMN
+if exist "%appdata%\VFF-Downloader-for-Dolphin\VFF-Downloader-for-Dolphin.exe" echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+   5. Run the VFF Downloader once.
+if not exist "%appdata%\VFF-Downloader-for-Dolphin\VFF-Downloader-for-Dolphin.exe" echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
+echo             mmmmms smMMMMMMMMMmddMMmmNmNMMMMMMMMMMMM:  
+echo            `mmmmmo hNMMMMMMMMMmddNMMMNNMMMMMMMMMMMMM.  Do you have problems or want to contact us?  
+echo            -mmmmm/ dNMMMMMMMMMNmddMMMNdhdMMMMMMMMMMN   Mail us at support@riiconnect24.net
+echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd   
 if not %sdcard%==NUL echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd   Detected Wii SD Card: %sdcard%:\
-if %sdcard%==NUL echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd   Could not detect your Wii SD Card.
-echo            +mmmmN.-mNMMMMMMMMMNmmmmMMMMMMMMMMMMMMMMy   R. Refresh ^| If incorrect, you can change later.
-echo            smmmmm`/mMMMMMMMMMNNmmmmNMMMMNMMNMMMMMNmy.
+if %sdcard%==NUL echo            +mmmmN.-mNMMMMMMMMMNmmmmMMMMMMMMMMMMMMMMy     Could not detect your Wii SD Card.
+echo            smmmmm`/mMMMMMMMMMNNmmmmNMMMMNMMNMMMMMNmy.    R. Refresh ^| If incorrect, you can change later.
 echo            hmmmmd`omMMMMMMMMMNNmmmNmMNNMmNNNNMNdhyhh.
 echo            mmmmmh ymMMMMMMMMMNNmmmNmNNNMNNMMMMNyyhhh`
 if %beta%==0 echo           `mmmmmy hmMMNMNNMMMNNmmmmmdNMMNmmMMMMhyhhy
@@ -169,6 +172,7 @@ if %s%==1 goto begin_main1
 if %s%==2 goto credits
 if %s%==3 goto settings_menu
 if %s%==4 goto troubleshooting_menu
+if %s%==5 if exist "%appdata%\VFF-Downloader-for-Dolphin\VFF-Downloader-for-Dolphin.exe" start "" "%appdata%\VFF-Downloader-for-Dolphin\VFF-Downloader-for-Dolphin.exe" -run_once
 if %s%==r goto begin_main_refresh_sdcard
 if %s%==R goto begin_main_refresh_sdcard
 if %s%==restart goto script_start
@@ -374,6 +378,10 @@ echo --- Testing completed ---
 pause
 goto troubleshooting_menu
 :settings_menu
+set /a vff_settings=0
+if exist "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\VFF-Downloader-for-Dolphin.exe" set /a vff_settings=1
+if exist "%appdata%\VFF-Downloader-for-Dolphin\VFF-Downloader-for-Dolphin.exe" set /a vff_settings=1
+::
 cls
 echo %header%
 echo -----------------------------------------------------------------------------------------------------------------------------
@@ -387,14 +395,56 @@ if %Update_Activate%==0 echo 3. Turn off/on updating. [Currently: OFF]
 if %beta%==0 echo 4. Change updating branch to Beta. [Currently: Stable]
 if %beta%==1 echo 4. Change updating branch to Stable. [Currently: Beta]
 echo 5. Repair patcher file (Redownload)
+if "%vff_settings%"=="1" echo -----------------------------------------------------------------------------------------------------------------------------
 echo.
+if "%vff_settings%"=="1" echo VFF Downloader for Dolphin Settings. 
+if "%vff_settings%"=="1" echo.
+if "%vff_settings%"=="1" echo 6. Completely delete VFF Downloader for Dolphin from your computer.
+if "%vff_settings%"=="1" echo 7. Delete VFF Downloader from startup
+if "%vff_settings%"=="1" echo 8. If VFF Downloader is running, shut it down.
+if %vff_settings%==1 echo.
 set /p s=Choose:
 if %s%==1 goto begin_main
 if %s%==2 goto change_color
 if %s%==3 goto change_updating
 if %s%==4 goto change_updating_branch
 if %s%==5 goto update_files
+if %s%==6 if %vff_settings%==1 goto settings_del_config_VFF
+if %s%==7 if %vff_settings%==1 goto settings_del_vff_downloader
+if %s%==8 if %vff_settings%==1 goto settings_taskkill_vff
+
 goto settings_menu
+:settings_del_config_VFF
+::Stop the downloader
+taskkill /im VFF-Downloader-for-Dolphin.exe /f
+::Delete it's direcory
+rmdir /s /q "%appdata%\VFF-Downloader-for-Dolphin"
+::And delete it out of the autostart dir
+del /q "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup\VFF-Downloader-for-Dolphin.exe"
+del /q "%appdata%\VFF-Downloader-for-Dolphin\VFF-Downloader-for-Dolphin.exe"
+echo Done^^!
+pause
+goto settings_menu
+
+:settings_del_vff_downloader
+::Stop the downloader
+taskkill /im VFF-Downloader-for-Dolphin.exe /f
+::And delete it out of the autostart dir
+del /q "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup\VFF-Downloader-for-Dolphin.exe"
+
+echo Done^^!
+pause
+goto settings_menu
+
+:settings_taskkill_vff
+::Stop the downloader
+taskkill /im VFF-Downloader-for-Dolphin.exe /f
+
+echo Done^^!
+pause
+goto settings_menu
+
+
 :change_updating_branch
 cls
 echo %header%
@@ -456,9 +506,10 @@ echo 2. No, go back to main menu.
 set /p s=Choose: 
 if %s%==1 (
 	if %stable_available_check%==0 goto switch_to_stable
-	set FilesHostedOn=%FilesHostedOn_Stable%
-	goto update_files
-	)
+	curl -f -L -s -S --insecure "%FilesHostedOn_Stable%/UPDATE/update_assistant.bat" --output "update_assistant.bat"
+	start update_assistant.bat -RC24_Patcher
+	exit
+)
 if %s%==2 goto begin_main
 goto switch_to_stable
 :switch_to_beta
@@ -481,9 +532,10 @@ echo 2. No, go back to main menu.
 set /p s=Choose: 
 if %s%==1 (
 	if not %beta_available_check%==1 goto switch_to_beta
-	
-	set FilesHostedOn=%FilesHostedOn_Beta%
-	goto update_files
+
+	curl -f -L -s -S --insecure "%FilesHostedOn_Stable%/UPDATE/update_assistant.bat" --output "update_assistant.bat"
+	start update_assistant.bat -RC24_Patcher -beta
+	exit
 	)
 if %s%==2 goto begin_main
 goto switch_to_beta
@@ -563,14 +615,14 @@ echo.
 echo - Brawl345
 echo   Help with resolving ticket issues.
 echo.
+echo - unowe
+echo   Wii U patching help, providing instructions and all the files.
+echo.
 echo  For the entire RiiConnect24 Community.
 echo  Want to contact us? Mail us at support@riiconnect24.net
 echo.
 echo  Press any button to go back to main menu.
 echo ---------------------------------------------------------------------------------------------------------------------------
-echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys
-echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-
-echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm
 echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+
 echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm
 echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+
@@ -823,7 +875,8 @@ echo                                     :syhdyyyyso+/-`
 curl -f -L -s -S --insecure "%FilesHostedOn%/UPDATE/update_assistant.bat" --output "update_assistant.bat"
 	set temperrorlev=%errorlevel%
 	if not %temperrorlev%==0 goto error_updating
-start update_assistant.bat -RC24_Patcher
+if %beta%==0 start update_assistant.bat -RC24_Patcher
+if %beta%==1 start update_assistant.bat -RC24_Patcher -beta
 exit
 :error_updating
 cls
@@ -894,10 +947,13 @@ if exist "%TempStorage%\annoucement.txt" echo.
 if exist "%TempStorage%\annoucement.txt" echo -------------------
 echo.
 echo Welcome to the RiiConnect24 Patcher^^!
-echo What device are we patching today?
+echo With this program, you can patch your Wii or Wii U for use with RiiConnect24.
+echo You can also use such tools as Wiimmfi Patcher for all Wii games to play them online again.
+echo.
+echo So, what device are we patching today?
 echo.
 echo 1. Wii
-echo 2. Wii U (vWii)
+echo 2. Wii U (vWii, Wii Mode)
 echo 3. Dolphin Emulator
 echo.
 set /p s=Choose wisely: 
@@ -974,6 +1030,7 @@ echo What now?
 echo 1. Continue with the installation process.
 echo 2. Try installing VFF Downloader again.
 echo 3. Exit
+set /p s=Choose: 
 if %s%==1 goto 2_install_dolphin_1
 if %s%==2 goto 2_prepare_dolphin
 if %s%==3 goto begin_main
@@ -990,10 +1047,10 @@ echo.
 echo 1. Europe
 echo 2. USA
 set /p evcregion=Choose: 
-if not "%evcregion%"=="1" goto 2_install_dolphin_1
-if not "%evcregion%"=="2" goto 2_install_dolphin_1
+if "%evcregion%"=="1" goto 2_install_dolphin_2
+if "%evcregion%"=="2" goto 2_install_dolphin_2
 
-goto 2_install_dolphin_2
+goto 2_install_dolphin_1
 :2_install_dolphin_2
 set /a custominstall_ios=0
 set /a custominstall_evc=0
@@ -1203,10 +1260,28 @@ if %sdcardstatus%==1 if %sdcard%==NUL echo 1. Start Patching 2. Exit 3. Change d
 if %sdcardstatus%==1 if not %sdcard%==NUL echo 1. Start Patching 2. Exit 3. Change drive letter
 
 set /p s=Choose: 
-if %s%==1 goto 2_2_wiiu
+if %s%==1 goto check_for_wad_folder
 if %s%==2 goto begin_main
 if %s%==3 goto 2_change_drive_letter_wiiu
 goto 2_1_summary_wiiu
+:check_for_wad_folder
+if not exist "WAD" goto 2_2_wiiu
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo One more thing^^! I've detected WAD folder.
+echo I need to delete it.
+echo.
+echo Can I?
+echo 1. Yes
+echo 2. No
+set /p s=Choose: 
+if %s%==1 rmdir /s /q "WAD"
+if %s%==1 goto 2_2_wiiu
+if %s%==2 goto 2_1_summary_wiiu
+goto check_for_wad_folder
+
 :2_2_wiiu
 cls
 set /a troubleshoot_auto_tool_notification=0
@@ -1311,7 +1386,7 @@ goto wiiu_patching_fast_travel_100
 ::Download files
 :wiiu_patching_fast_travel_1
 if exist NewsChannelPatcher rmdir /s /q NewsChannelPatcher
-if %percent%==1 if exist unpacked-temp rmdir /s /q unpacked-temp
+if exist unpacked-temp rmdir /s /q unpacked-temp
 if %percent%==1 if exist 0001000148415045v512 rmdir /s /q 0001000148415045v512
 if %percent%==1 if exist 0001000148415050v512 rmdir /s /q 0001000148415050v512
 if %percent%==1 if exist 0001000148414A45v512 rmdir /s /q 0001000148414A45v512
@@ -2002,9 +2077,11 @@ if %sdcardstatus%==0 echo Please connect your Wii U's SD Card to the computer an
 echo.
 echo We're nearly done!
 echo.
+echo We're now about to patch a file that's responsible for the 4:3 black bars bug that appears on Wii mode.
+echo.
 echo Now, both this computer and your Wii U needs to be connected to the same network.
 echo I installed an FTP server on your Wii U's SD Card. In the Wii U menu (not Wii Mode), start the custom firmware on your Wii U
-echo (for example Haxchi or Mocha CFW), please start Homebrew Launcher and start FTPiiU.
+echo (for example Haxchi or Mocha CFW), please start Homebrew Launcher and start FTPiiU Everywhere.
 echo.
 echo On your screen, there should be your Wii U's IP Address. Enter it below or type in "stop" if you're unable to do that.
 echo.
@@ -2743,12 +2820,12 @@ if %percent%==48 if %uninstall_2_1%==1 set modul=Downloading WiiXplorer
 if %percent%==48 if %uninstall_2_1%==1 if not %temperrorlev%==0 goto error_patching
 
 if %percent%==50 if not exist "WAD" md "WAD"
-if %percent%==50 call IOSPatcher\Sharpii.exe NUSD -IOS 31 -v latest -o wad\IOS31.wad -wad >NUL
+if %percent%==50 call IOSPatcher\Sharpii.exe NUSD -IOS 31 -v latest -o "wad\IOS31 Wii Only (IOS) (Original).wad" -wad >NUL
 if %percent%==50 set /a temperrorlev=%errorlevel%
 if %percent%==50 set modul=Sharpii.exe
 if %percent%==50 if not %temperrorlev%==0 goto error_patching
 
-if %percent%==80 call IOSPatcher\Sharpii.exe NUSD -IOS 80 -v latest -o wad\IOS80.wad -wad >NUL
+if %percent%==80 call IOSPatcher\Sharpii.exe NUSD -IOS 80 -v latest -o "wad\IOS80 Wii Only (IOS) (Original).wad" -wad >NUL
 if %percent%==80 set /a temperrorlev=%errorlevel%
 if %percent%==80 set modul=Sharpii.exe
 if %percent%==80 if not %temperrorlev%==0 goto error_patching
@@ -3147,10 +3224,28 @@ if %sdcardstatus%==1 if %sdcard%==NUL echo 1. Start Patching 2. Exit 3. Change d
 if %sdcardstatus%==1 if not %sdcard%==NUL echo 1. Start Patching 2. Exit 3. Change drive letter
 
 set /p s=Choose: 
-if %s%==1 goto 2_2
+if %s%==1 goto check_for_wad_folder_wii
 if %s%==2 goto begin_main
 if %s%==3 goto 2_change_drive_letter
 goto 2_1_summary
+:check_for_wad_folder_wii
+if not exist "WAD" goto 2_2
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo One more thing^^! I've detected WAD folder.
+echo I need to delete it.
+echo.
+echo Can I?
+echo 1. Yes
+echo 2. No
+set /p s=Choose: 
+if %s%==1 rmdir /s /q "WAD"
+if %s%==1 goto 2_2
+if %s%==2 goto 2_1_summary
+goto check_for_wad_folder_wii
+
 :2_change_drive_letter
 cls
 echo %header%
@@ -3665,13 +3760,13 @@ if %custominstall_ios%==1 if %percent%==38 set modul=mkdir.exe
 if %custominstall_ios%==1 if %percent%==38 if not %temperrorlev%==0 goto error_patching
 goto patching_fast_travel_100
 :patching_fast_travel_39
-if %custominstall_ios%==1 if %percent%==39 call IOSPatcher\Sharpii.exe WAD -p IOSPatcher\IOS31\ IOSPatcher\WAD\IOS31.wad -fs >NUL
+if %custominstall_ios%==1 if %percent%==39 call IOSPatcher\Sharpii.exe WAD -p IOSPatcher\IOS31\ "IOSPatcher\WAD\IOS31 Wii Only (IOS) (RiiConnect24).wad" -fs >NUL
 if %custominstall_ios%==1 if %percent%==39 set /a temperrorlev=%errorlevel%
 if %custominstall_ios%==1 if %percent%==39 set modul=Sharpii.exe
 if %custominstall_ios%==1 if %percent%==39 if not %temperrorlev%==0 goto error_patching
 goto patching_fast_travel_100
 :patching_fast_travel_40
-if %custominstall_ios%==1 if %percent%==40 call IOSPatcher\Sharpii.exe WAD -p IOSPatcher\IOS80\ IOSPatcher\WAD\IOS80.wad -fs >NUL
+if %custominstall_ios%==1 if %percent%==40 call IOSPatcher\Sharpii.exe WAD -p IOSPatcher\IOS80\ "IOSPatcher\WAD\IOS80 Wii Only (IOS) (RiiConnect24).wad" -fs >NUL
 if %custominstall_ios%==1 if %percent%==40 set /a temperrorlev=%errorlevel%
 if %custominstall_ios%==1 if %percent%==40 set modul=Sharpii.exe
 if %custominstall_ios%==1 if %percent%==40 if not %temperrorlev%==0 goto error_patching
@@ -3707,21 +3802,21 @@ if %custominstall_ios%==1 if %percent%==44 set modul=rmdir.exe
 if %custominstall_ios%==1 if %percent%==44 if not %temperrorlev%==0 goto error_patching
 goto patching_fast_travel_100
 :patching_fast_travel_45
-if %custominstall_ios%==1 if %percent%==45 call IOSPatcher\Sharpii.exe IOS IOSPatcher\WAD\IOS31.wad -fs -es -np -vp>NUL
+if %custominstall_ios%==1 if %percent%==45 call IOSPatcher\Sharpii.exe IOS "IOSPatcher\WAD\IOS31 Wii Only (IOS) (RiiConnect24).wad" -fs -es -np -vp>NUL
 if %custominstall_ios%==1 if %percent%==45 set /a temperrorlev=%errorlevel%
 if %custominstall_ios%==1 if %percent%==45 set modul=Sharpii.exe
 if %custominstall_ios%==1 if %percent%==45 if not %temperrorlev%==0 goto error_patching
 goto patching_fast_travel_100
 :patching_fast_travel_46
-if %custominstall_ios%==1 if %percent%==46 call IOSPatcher\Sharpii.exe IOS IOSPatcher\WAD\IOS80.wad -fs -es -np -vp>NUL
+if %custominstall_ios%==1 if %percent%==46 call IOSPatcher\Sharpii.exe IOS IOSPatcher\WAD\IOS80 Wii Only (IOS) (RiiConnect24).wad" -fs -es -np -vp>NUL
 if %custominstall_ios%==1 if %percent%==46 set /a temperrorlev=%errorlevel%
 if %custominstall_ios%==1 if %percent%==46 set modul=Sharpii.exe
 if %custominstall_ios%==1 if %percent%==46 if not %temperrorlev%==0 goto error_patching
 goto patching_fast_travel_100
 :patching_fast_travel_47
 if %custominstall_ios%==1 if %percent%==47 if not exist WAD md WAD
-if %custominstall_ios%==1 if %percent%==47 move "IOSPatcher\WAD\IOS31.wad" "WAD"
-if %custominstall_ios%==1 if %percent%==47 move "IOSPatcher\WAD\IOS80.wad" "WAD"
+if %custominstall_ios%==1 if %percent%==47 move "IOSPatcher\WAD\IOS31 Wii Only (IOS) (RiiConnect24).wad" "WAD"
+if %custominstall_ios%==1 if %percent%==47 move "IOSPatcher\WAD\IOS80 Wii Only (IOS) (RiiConnect24).wad" "WAD"
 goto patching_fast_travel_100
 :patching_fast_travel_48
 if %custominstall_ios%==1 if %percent%==48 if exist IOSPatcher rmdir /s /q IOSPatcher
