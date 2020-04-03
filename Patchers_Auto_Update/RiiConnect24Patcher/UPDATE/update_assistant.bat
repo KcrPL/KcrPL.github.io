@@ -60,6 +60,7 @@ ren "InstallTEMP.bat" "Install.bat"
 if %no_start%==0 start "" Install.bat
 del /q "%~n0~x0"
 GOTO:EOF
+exit
 
 :start_download_vff_downloader_main_exec
 set mode=128,37
