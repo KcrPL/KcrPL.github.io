@@ -1,3 +1,6 @@
+1.0.6
+- Fix for selecting Argentina not working.
+
 1.0.5
 - RiiConnect24 Patcher integration
 - Fixed an error that would happen if the remote file would be unavailable.
