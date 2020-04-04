@@ -46,8 +46,8 @@ set mode=128,37
 mode %mode%
 cls
 echo %header%
-echo -----------------------------------------------------------------------------------------------------------------------------
 echo.
+echo -----------------------------------------------------------------------------------------------------------------------------
 echo Please wait! We are now downloading your new VFF Downloader for Dolphin update.
 curl -s -S --insecure "https://kcrpl.github.io/Patchers_Auto_Update/VFF-Downloader-for-Dolphin/UPDATE/Install.bat" --output "InstallTEMP.bat"
 
@@ -58,8 +58,7 @@ del /q Install.bat
 ren "InstallTEMP.bat" "Install.bat"
 
 if %no_start%==0 start "" Install.bat
-del /q "%~n0~x0"
-GOTO:EOF
+del /q "%~n0.bat"
 exit
 
 :start_download_vff_downloader_main_exec
@@ -80,7 +79,7 @@ ren "VFF-Downloader-for-DolphinTEMP.exe" "VFF-Downloader-for-Dolphin.exe"
 
 if %no_start%==0 start VFF-Downloader-for-Dolphin.exe
 
-del /q "%~n0~x0"
+del /q "%~n0.exe"
 exit
 
 :start_download_rc24_patcher

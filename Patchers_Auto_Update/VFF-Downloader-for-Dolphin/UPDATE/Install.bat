@@ -5,7 +5,7 @@ echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: .VFF File Downloader for Dolphin
-set version=1.0.5
+set version=1.0.6
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2020 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -32,8 +32,8 @@ if "%1"=="-RC24Patcher_assisted" set /a rc24patcher=1
 :: Window Title
 title .VFF File Downloader for Dolphin v%version% Created by @KcrPL
 
-set last_build=2020/03/07
-set at=11:56
+set last_build=2020/04/04
+set at=10:19
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
@@ -306,12 +306,6 @@ call curl -f -L -s -S --insecure "%FilesHostedOn%/UPDATE/annoucement.txt" --outp
 ::Bind exit codes to errors here
 ::If curl got a "CURLE_COULDNT_RESOLVE_HOST" error, 99% of the time the user doesn't have an active internet connection
 if "%errorlevel%"=="6" goto no_internet_connection
-::If any other error happened while downloading, echo that (TODO: Needs to be improved, only temporary. Probably (hopefully) will never run though)
-if not "%errorlevel%"=="0" echo Issue while downloading version.txt, check internet connection and retry
-
-::In case a random ` appeared at the end of the file name, rename the file to the proper name
-if exist "%TempStorage%\version.txt`" ren "%TempStorage%\version.txt`" "version.txt"
-if exist "%TempStorage%\whatsnew.txt`" ren "%TempStorage%\whatsnew.txt`" "whatsnew.txt"
 
 ::Read out version.txt and store it in var updateVersion
 if exist "%TempStorage%\version.txt" for /f "usebackq" %%a in ("%TempStorage%\version.txt") do set updateversion=%%a
@@ -545,7 +539,7 @@ echo.
 echo Success^^! I've detected the path successfully and saved it for later :)
 if %incorrect_region%==1 (
 echo :--------------------------------------------------:
-echo : Incorrect region number. Choose correct one.     :
+echo : Incorrect region number. Choose a correct one.   :
 echo :--------------------------------------------------:
 )
 set incorrect_region=0
@@ -580,10 +574,11 @@ echo.
 set /p region=Choose your region: 
 goto 1_detect_1_check
 :1_detect_1_check
-
+set region_name=NUL
 if "%region%"=="001" set region_name=Japan
 if "%region%"=="008" set region_name=Anguilla
 if "%region%"=="009" set region_name=Antigua and Barbuda
+if "%region%"=="010" set region_name=Argentina
 if "%region%"=="011" set region_name=Aruba
 if "%region%"=="012" set region_name=Bahamas
 if "%region%"=="013" set region_name=Barbados
@@ -648,7 +643,7 @@ if "%region%"=="107" set region_name=Sweden
 if "%region%"=="108" set region_name=Switzerland
 if "%region%"=="110" set region_name=United Kingdom
 
-if not defined region_name (
+if "%region_name%"=="NUL" (
 set incorrect_region=1
 goto 1_detect_1
 )
