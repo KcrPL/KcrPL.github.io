@@ -4,7 +4,7 @@ setlocal enableDelayedExpansion
 cd /d "%~dp0"
 :: ===========================================================================
 :: .VFF File Downloader for Dolphin - main script
-set version=1.0.4
+set version=1.0.5
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2020 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -35,6 +35,20 @@ set TempStorage=%appdata%\VFF-Downloader-for-Dolphin\internet\temp
 set config=%appdata%\VFF-Downloader-for-Dolphin\config
 set alternative_curl_path=%MainFolder%\curl.exe
 
+goto check_for_internet
+
+:no_internet_wait
+echo --- [%time:~0,8%] Error while checking for internet connection - waiting 3 minutes and trying again ---
+call "%windir%\system32\timeout.exe" 180>NUL
+
+goto check_for_internet
+:check_for_internet
+echo --- [%time:~0,8%] Checking for Internet connection... ---
+curl -s http://www.msftncsi.com/ncsi.txt>NUL
+if not %errorlevel%==0 goto no_internet_wait
+echo                .
+echo                .
+echo                .: OK^^!
 goto check_for_update
 :error_no_work_folder
 echo x=MsgBox("There was an error while reading configuration files. Please run Install.bat and reconfigure the program. The program will now exit.",16,"RiiConnect24 .VFF Downloader for Dolphin")>"%appdata%\warning.vbs"
@@ -153,12 +167,13 @@ if exist "%dolphin_installation%\48414750\data\wc24dl.vff" del /q %dolphin_insta
 echo.
 echo --- [%time:~0,8%] Downloading files ---
 ::Forecast
-if %alternative_curl%==0 curl -s -S --insecure "http://weather.wii.rc24.xyz/%forecast_language%/%forecast_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_forecast.vff"
-if %alternative_curl%==1 %alternative_curl_path% -s -S --insecure "http://weather.wii.rc24.xyz/%forecast_language%/%forecast_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_forecast.vff"
+:: Sending debug info from now on
+if %alternative_curl%==0 curl -s -S --user-agent "VFF-Downloader-for-Dolphin v%version% / %forecast_region% / %forecast_language%" --insecure "http://weather.wii.rc24.xyz/%forecast_language%/%forecast_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_forecast.vff"
+if %alternative_curl%==1 %alternative_curl_path% -s -S --user-agent "VFF-Downloader-for-Dolphin v%version% / %forecast_region% / %forecast_language%" --insecure "http://weather.wii.rc24.xyz/%forecast_language%/%forecast_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_forecast.vff"
 echo Done: 1/2
 ::News
-if %alternative_curl%==0 curl -s -S --insecure "http://news.wii.rc24.xyz/v2/%news_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_news.vff"
-if %alternative_curl%==1 %alternative_curl_path% -s -S --insecure "http://news.wii.rc24.xyz/v2/%news_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_news.vff"
+if %alternative_curl%==0 curl -s -S --user-agent "VFF-Downloader-for-Dolphin v%version% / %news_region%" --insecure "http://news.wii.rc24.xyz/v2/%news_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_news.vff"
+if %alternative_curl%==1 %alternative_curl_path% -s -S --user-agent "VFF-Downloader-for-Dolphin v%version% / %news_region%" --insecure "http://news.wii.rc24.xyz/v2/%news_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_news.vff"
 echo Done: 2/2
 
 if not exist "%dolphin_installation%\48414645\data" md "%dolphin_installation%\48414645\data"
@@ -168,30 +183,30 @@ if not exist "%dolphin_installation%\48414745\data" md "%dolphin_installation%\4
 if not exist "%dolphin_installation%\4841474a\data" md "%dolphin_installation%\4841474a\data"
 if not exist "%dolphin_installation%\48414750\data" md "%dolphin_installation%\48414750\data"
 
-echo --- [%time:~0,8%] Copying files into directory ---
+echo --- [%time:~0,8%] Copying files into directory --- 
 copy "%dolphin_installation%\wc24dl_forecast.vff" "%dolphin_installation%\48414645\data\wc24dl.vff"
 set /a temperrorlev=%errorlevel%
-if not %temperrorlev%==0 goto error_cannot_copy
+if not %temperrorlev%==0 echo --- [%time:~0,8%] DEBUG: First file copy fail - waiting and trying later ---&goto count_time
 
 copy "%dolphin_installation%\wc24dl_forecast.vff" "%dolphin_installation%\4841464a\data\wc24dl.vff"
 set /a temperrorlev=%errorlevel%
-if not %temperrorlev%==0 goto error_cannot_copy
+if not %temperrorlev%==0 echo --- [%time:~0,8%] DEBUG: Second file copy fail - waiting and trying later ---&goto count_time
 
 copy "%dolphin_installation%\wc24dl_forecast.vff" "%dolphin_installation%\48414650\data\wc24dl.vff"
 set /a temperrorlev=%errorlevel%
-if not %temperrorlev%==0 goto error_cannot_copy
+if not %temperrorlev%==0 echo --- [%time:~0,8%] DEBUG: Third file copy fail - waiting and trying later ---&goto count_time
 
 copy "%dolphin_installation%\wc24dl_news.vff" "%dolphin_installation%\48414745\data\wc24dl.vff"
 set /a temperrorlev=%errorlevel%
-if not %temperrorlev%==0 goto error_cannot_copy
+if not %temperrorlev%==0 echo --- [%time:~0,8%] DEBUG: Fourth file copy fail - waiting and trying later ---&goto count_time
 
 copy "%dolphin_installation%\wc24dl_news.vff" "%dolphin_installation%\4841474a\data\wc24dl.vff"
 set /a temperrorlev=%errorlevel%
-if not %temperrorlev%==0 goto error_cannot_copy
+if not %temperrorlev%==0 echo --- [%time:~0,8%] DEBUG: Fifth file copy fail - waiting and trying later ---&goto count_time
 
 copy "%dolphin_installation%\wc24dl_news.vff" "%dolphin_installation%\48414750\data\wc24dl.vff"
 set /a temperrorlev=%errorlevel%
-if not %temperrorlev%==0 goto error_cannot_copy
+if not %temperrorlev%==0 echo --- [%time:~0,8%] DEBUG: Sixth file copy fail - waiting and trying later ---&goto count_time
 
 echo --- [%time:~0,8%] Delete temporary files ---
 del /q "%dolphin_installation%\wc24dl_news.vff"
@@ -227,7 +242,7 @@ if %alternative_curl%==0 call curl -s -S --insecure "%FilesHostedOn%/UPDATE/vers
 if %alternative_curl%==1 call %alternative_curl_path% -s -S --insecure "%FilesHostedOn%/UPDATE/version_vff_downloader.txt" --output "%TempStorage%\version.txt"
 if exist "%TempStorage%\version.txt" set /p updateversion=<"%TempStorage%\version.txt"
 if not %updateversion%==%version% goto run_update
-echo --- Done checking for update [%time:~0,8%] ---
+echo --- [%time:~0,8%] Done checking for update ---
 
 goto count_time
 
