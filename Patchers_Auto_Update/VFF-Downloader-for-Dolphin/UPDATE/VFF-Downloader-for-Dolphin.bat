@@ -4,7 +4,7 @@ setlocal enableDelayedExpansion
 cd /d "%~dp0"
 :: ===========================================================================
 :: .VFF File Downloader for Dolphin - main script
-set version=1.0.5.2
+set version=1.0.5.3
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2020 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -137,7 +137,7 @@ set /p templanguage=<"%config%\forecast_language.txt"
 set forecast_language=%templanguage:~9,1%
 set /p news_region=<"%config%\news_region.txt"
 
-set /p dolphin_installation=<"%config%\path_to_install.txt"
+set /p dolphin_installation=<"%config%\path_to_install.txt".
 goto download_files
 :waiting_for_internet
 echo No internet connection/could not connect to remote host.
@@ -174,7 +174,6 @@ echo --- [%time:~0,8%] Downloading files ---
 ::Forecast
 :: Sending debug info from now on
 if %alternative_curl%==0 curl -s -S -L --user-agent "VFF-Downloader-for-Dolphin v%version% / %forecast_region% / %forecast_language%" --insecure "http://weather.wii.rc24.xyz/%forecast_language%/%forecast_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_forecast.vff"
-pause
 if %alternative_curl%==1 %alternative_curl_path% -s -S -L --user-agent "VFF-Downloader-for-Dolphin v%version% / %forecast_region% / %forecast_language%" --insecure "http://weather.wii.rc24.xyz/%forecast_language%/%forecast_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_forecast.vff"
 echo Done: 1/2
 ::News
