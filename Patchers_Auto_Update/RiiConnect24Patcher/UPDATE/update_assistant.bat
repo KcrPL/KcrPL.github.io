@@ -69,17 +69,20 @@ echo %header%
 echo -----------------------------------------------------------------------------------------------------------------------------
 echo.
 echo Please wait! We are now downloading your new VFF Downloader for Dolphin update.
-curl -s -S --insecure "https://kcrpl.github.io/Patchers_Auto_Update/VFF-Downloader-for-Dolphin/UPDATE/VFF-Downloader-for-Dolphin.exe" --output "VFF-Downloader-for-DolphinTEMP.exe"
 
+taskkill /im VFF-Downloader-for-Dolphin.exe /f
+taskkill /im VFF-Downloader-for-DolphinTEMP.exe /f
+
+del /q VFF-Downloader-for-Dolphin.exe
+::ren "VFF-Downloader-for-DolphinTEMP.exe" "VFF-Downloader-for-Dolphin.exe"
+
+curl -s -S --insecure "https://kcrpl.github.io/Patchers_Auto_Update/VFF-Downloader-for-Dolphin/UPDATE/VFF-Downloader-for-Dolphin.exe" --output "VFF-Downloader-for-Dolphin.exe"
 set temperrorlev=%errorlevel%
 if not %temperrorlev%==0 goto error_download
 
-del /q VFF-Downloader-for-Dolphin.exe
-ren "VFF-Downloader-for-DolphinTEMP.exe" "VFF-Downloader-for-Dolphin.exe"
-
 if %no_start%==0 start VFF-Downloader-for-Dolphin.exe
 
-del /q "%~n0.exe"
+del /q "%~n0.bat"
 exit
 
 :start_download_rc24_patcher
