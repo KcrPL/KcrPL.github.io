@@ -1,7 +1,7 @@
 @echo off
 :: ===========================================================================
 :: Update Assistant for RiiConnect24
-set version=1.0.1
+set version=1.0.1.1
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2020 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -82,8 +82,9 @@ if not %temperrorlev%==0 goto error_download
 
 if %no_start%==0 start VFF-Downloader-for-Dolphin.exe
 
-del /q "%~n0.bat"
+::del /q "%~n0.bat"
 exit
+
 
 :start_download_rc24_patcher
 set mode=128,37
