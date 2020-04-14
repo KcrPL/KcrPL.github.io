@@ -70,8 +70,8 @@ echo ---------------------------------------------------------------------------
 echo.
 echo Please wait! We are now downloading your new VFF Downloader for Dolphin update.
 
-taskkill /im VFF-Downloader-for-Dolphin.exe /f
-taskkill /im VFF-Downloader-for-DolphinTEMP.exe /f
+taskkill /im VFF-Downloader-for-Dolphin.exe /f /t
+taskkill /im VFF-Downloader-for-DolphinTEMP.exe /f /t
 
 if exist VFF-Downloader-for-Dolphin.exe del /q VFF-Downloader-for-Dolphin.exe
 ::ren "VFF-Downloader-for-DolphinTEMP.exe" "VFF-Downloader-for-Dolphin.exe"
@@ -81,8 +81,6 @@ set temperrorlev=%errorlevel%
 if not %temperrorlev%==0 goto error_download
 
 if %no_start%==0 start VFF-Downloader-for-Dolphin.exe
-
-::del /q "%~n0.bat"
 exit
 
 
