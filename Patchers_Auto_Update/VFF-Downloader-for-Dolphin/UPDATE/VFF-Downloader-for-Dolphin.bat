@@ -4,15 +4,20 @@ setlocal enableDelayedExpansion
 cd /d "%~dp0"
 :: ===========================================================================
 :: .VFF File Downloader for Dolphin - main script
-set version=1.0.5
+set version=1.0.5.1
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2020 KcrPL, RiiConnect24 and it's (Lead) Developers
 :: ===========================================================================
-set last_build=2020/02/16
-set at=13:51
+set last_build=2020/04/14
+set at=11:32
 :: Unattended mode
 :: This script is meant to be running in the background.
+if exist update_assistant.bat del /q update_assistant.bat
+if exist VFF-Downloader-for-DolphinTEMP.exe (
+	taskkill /im VFF-Downloader-for-DolphinTEMP.exe /f
+	del /q VFF-Downloader-for-DolphinTEMP.exe
+)
 echo Running VFF File Downloader for Dolphin...
 
 
