@@ -4,13 +4,13 @@ setlocal enableDelayedExpansion
 cd /d "%~dp0"
 :: ===========================================================================
 :: .VFF File Downloader for Dolphin - main script
-set version=1.0.5.1
+set version=1.0.5.2
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2020 KcrPL, RiiConnect24 and it's (Lead) Developers
 :: ===========================================================================
 set last_build=2020/04/14
-set at=11:32
+set at=11:55
 :: Unattended mode
 :: This script is meant to be running in the background.
 if exist update_assistant.bat del /q update_assistant.bat
@@ -159,26 +159,27 @@ exit
 echo --- [%time:~0,8%] Cleaning old files [Forecast Channel] ---
 echo.
 ::Clean forecast channel data
-if exist "%dolphin_installation%\48414645\data\wc24dl.vff" del /q %dolphin_installation%\48414645\data\wc24dl.vff"
-if exist "%dolphin_installation%\4841464a\data\wc24dl.vff" del /q %dolphin_installation%\4841464a\data\wc24dl.vff"
-if exist "%dolphin_installation%\48414650\data\wc24dl.vff" del /q %dolphin_installation%\48414650\data\wc24dl.vff"
+if exist "%dolphin_installation%\48414645\data\wc24dl.vff" del /q "%dolphin_installation%\48414645\data\wc24dl.vff"
+if exist "%dolphin_installation%\4841464a\data\wc24dl.vff" del /q "%dolphin_installation%\4841464a\data\wc24dl.vff"
+if exist "%dolphin_installation%\48414650\data\wc24dl.vff" del /q "%dolphin_installation%\48414650\data\wc24dl.vff"
 echo.
 echo --- [%time:~0,8%] Cleaning old files [News Channel] ---
 echo.
 ::Clean news channel data
-if exist "%dolphin_installation%\48414745\data\wc24dl.vff" del /q %dolphin_installation%\48414745\data\wc24dl.vff"
-if exist "%dolphin_installation%\4841474a\data\wc24dl.vff" del /q %dolphin_installation%\4841474a\data\wc24dl.vff"
-if exist "%dolphin_installation%\48414750\data\wc24dl.vff" del /q %dolphin_installation%\48414750\data\wc24dl.vff"
+if exist "%dolphin_installation%\48414745\data\wc24dl.vff" del /q "%dolphin_installation%\48414745\data\wc24dl.vff"
+if exist "%dolphin_installation%\4841474a\data\wc24dl.vff" del /q "%dolphin_installation%\4841474a\data\wc24dl.vff"
+if exist "%dolphin_installation%\48414750\data\wc24dl.vff" del /q "%dolphin_installation%\48414750\data\wc24dl.vff"
 echo.
 echo --- [%time:~0,8%] Downloading files ---
 ::Forecast
 :: Sending debug info from now on
-if %alternative_curl%==0 curl -s -S --user-agent "VFF-Downloader-for-Dolphin v%version% / %forecast_region% / %forecast_language%" --insecure "http://weather.wii.rc24.xyz/%forecast_language%/%forecast_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_forecast.vff"
-if %alternative_curl%==1 %alternative_curl_path% -s -S --user-agent "VFF-Downloader-for-Dolphin v%version% / %forecast_region% / %forecast_language%" --insecure "http://weather.wii.rc24.xyz/%forecast_language%/%forecast_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_forecast.vff"
+if %alternative_curl%==0 curl -s -S -L --user-agent "VFF-Downloader-for-Dolphin v%version% / %forecast_region% / %forecast_language%" --insecure "http://weather.wii.rc24.xyz/%forecast_language%/%forecast_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_forecast.vff"
+pause
+if %alternative_curl%==1 %alternative_curl_path% -s -S -L --user-agent "VFF-Downloader-for-Dolphin v%version% / %forecast_region% / %forecast_language%" --insecure "http://weather.wii.rc24.xyz/%forecast_language%/%forecast_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_forecast.vff"
 echo Done: 1/2
 ::News
-if %alternative_curl%==0 curl -s -S --user-agent "VFF-Downloader-for-Dolphin v%version% / %news_region%" --insecure "http://news.wii.rc24.xyz/v2/%news_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_news.vff"
-if %alternative_curl%==1 %alternative_curl_path% -s -S --user-agent "VFF-Downloader-for-Dolphin v%version% / %news_region%" --insecure "http://news.wii.rc24.xyz/v2/%news_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_news.vff"
+if %alternative_curl%==0 curl -s -S -L --user-agent "VFF-Downloader-for-Dolphin v%version% / %news_region%" --insecure "http://news.wii.rc24.xyz/v2/%news_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_news.vff"
+if %alternative_curl%==1 %alternative_curl_path% -s -S -L --user-agent "VFF-Downloader-for-Dolphin v%version% / %news_region%" --insecure "http://news.wii.rc24.xyz/v2/%news_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_news.vff"
 echo Done: 2/2
 
 if not exist "%dolphin_installation%\48414645\data" md "%dolphin_installation%\48414645\data"
@@ -191,27 +192,33 @@ if not exist "%dolphin_installation%\48414750\data" md "%dolphin_installation%\4
 echo --- [%time:~0,8%] Copying files into directory --- 
 copy "%dolphin_installation%\wc24dl_forecast.vff" "%dolphin_installation%\48414645\data\wc24dl.vff"
 set /a temperrorlev=%errorlevel%
-if not %temperrorlev%==0 echo --- [%time:~0,8%] DEBUG: First file copy fail - waiting and trying later ---&goto count_time
+if not %temperrorlev%==0 echo --- [%time:~0,8%] DEBUG: First file copy fail - waiting and trying later ---
+if not %temperrorlev%==0 goto error_wait
 
 copy "%dolphin_installation%\wc24dl_forecast.vff" "%dolphin_installation%\4841464a\data\wc24dl.vff"
 set /a temperrorlev=%errorlevel%
-if not %temperrorlev%==0 echo --- [%time:~0,8%] DEBUG: Second file copy fail - waiting and trying later ---&goto count_time
+if not %temperrorlev%==0 echo --- [%time:~0,8%] DEBUG: Second file copy fail - waiting and trying later ---
+if not %temperrorlev%==0 goto error_wait
 
 copy "%dolphin_installation%\wc24dl_forecast.vff" "%dolphin_installation%\48414650\data\wc24dl.vff"
 set /a temperrorlev=%errorlevel%
-if not %temperrorlev%==0 echo --- [%time:~0,8%] DEBUG: Third file copy fail - waiting and trying later ---&goto count_time
+if not %temperrorlev%==0 echo --- [%time:~0,8%] DEBUG: Third file copy fail - waiting and trying later ---
+if not %temperrorlev%==0 goto error_wait
 
 copy "%dolphin_installation%\wc24dl_news.vff" "%dolphin_installation%\48414745\data\wc24dl.vff"
 set /a temperrorlev=%errorlevel%
-if not %temperrorlev%==0 echo --- [%time:~0,8%] DEBUG: Fourth file copy fail - waiting and trying later ---&goto count_time
+if not %temperrorlev%==0 echo --- [%time:~0,8%] DEBUG: Fourth file copy fail - waiting and trying later ---
+if not %temperrorlev%==0 goto error_wait
 
 copy "%dolphin_installation%\wc24dl_news.vff" "%dolphin_installation%\4841474a\data\wc24dl.vff"
 set /a temperrorlev=%errorlevel%
-if not %temperrorlev%==0 echo --- [%time:~0,8%] DEBUG: Fifth file copy fail - waiting and trying later ---&goto count_time
+if not %temperrorlev%==0 echo --- [%time:~0,8%] DEBUG: Fifth file copy fail - waiting and trying later ---
+if not %temperrorlev%==0 goto error_wait
 
 copy "%dolphin_installation%\wc24dl_news.vff" "%dolphin_installation%\48414750\data\wc24dl.vff"
 set /a temperrorlev=%errorlevel%
-if not %temperrorlev%==0 echo --- [%time:~0,8%] DEBUG: Sixth file copy fail - waiting and trying later ---&goto count_time
+if not %temperrorlev%==0 echo --- [%time:~0,8%] DEBUG: Sixth file copy fail - waiting and trying later ---
+if not %temperrorlev%==0 goto error_wait
 
 echo --- [%time:~0,8%] Delete temporary files ---
 del /q "%dolphin_installation%\wc24dl_news.vff"
@@ -250,4 +257,7 @@ if not %updateversion%==%version% goto run_update
 echo --- [%time:~0,8%] Done checking for update ---
 
 goto count_time
-
+:error_wait
+echo --- [%time:~0,8%] Waiting 180 seconds (3 minutes) ---
+call "%windir%\system32\timeout.exe" 180 /nobreak >NUL
+goto download_files
