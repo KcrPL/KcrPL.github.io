@@ -1,7 +1,7 @@
 @echo off
 :: ===========================================================================
 :: Update Assistant for RiiConnect24
-set version=1.0.1.1
+set version=1.0.2
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2020 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -11,8 +11,8 @@ setlocal EnableDelayedExpansion
 
 if exist temp.bat del /q temp.bat
 
-set last_build=2020/02/05
-set at=12:00
+set last_build=2020/04/16
+set at=23:07
 set header=Update Assistant - (C) KcrPL v%version% (Compiled on %last_build% at %at%)
 ::
 set /a no_start=0
@@ -26,6 +26,8 @@ if "%1"=="-RC24_Patcher" goto start_download_rc24_patcher
 if "%2"=="-RC24_Patcher" goto start_download_rc24_patcher
 if "%1"=="-VFF_Downloader_Main_Exec" goto start_download_vff_downloader_main_exec
 if "%1"=="-VFF_Downloader_Installer" goto start_download_vff_downloader_install
+if "%1"=="-RC24_DNS_Checker" goto start_download_dns_checker
+if "%2"=="-RC24_DNS_Checker" goto start_download_dns_checker
 
 goto no_parameters
 
@@ -39,8 +41,29 @@ echo.
 echo -RC24_Patcher                  Will download latest RiiConnect24 Patcher to current dir
 echo -VFF_Downloader_Main_Exec      Will download executable for VFF Downloader for Dolphin
 echo -VFF_Downloader_Installer      Will download installer for VFF Downloader for Dolphin
+echo -RC24_DNS_Checker              Will download latest version of RiiConnect24 DNS Checker to current dir
 echo -no_start                      Won't start the patcher after the download is complete
 GOTO:EOF
+:start_download_dns_checker
+set mode=128,37
+mode %mode%
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Please wait! We are now downloading your new RiiConnect24 DNS Checker update.
+curl -s -S --insecure "https://kcrpl.github.io/Patchers_Auto_Update/RiiConnect24_DNS_Checker/UPDATE/RiiConnect24_DNS_Checker.bat" --output "RiiConnect24_DNS_CheckerTEMP.bat"
+
+set temperrorlev=%errorlevel%
+if not %temperrorlev%==0 goto error_download
+
+del RiiConnect24_DNS_CheckerTEMP.bat
+ren "RiiConnect24_DNS_CheckerTEMP.bat" "RiiConnect24_DNS_Checker.bat"
+
+if %no_start%==0 start RiiConnect24_DNS_Checker.bat
+del /q "%~n0~x0"
+exit
+
 :start_download_vff_downloader_install
 set mode=128,37
 mode %mode%

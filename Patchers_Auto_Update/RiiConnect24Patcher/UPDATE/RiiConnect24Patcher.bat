@@ -832,7 +832,7 @@ echo                                   -odhhhhyddmmmmmNNmhs/:`
 echo                                     :syhdyyyyso+/-`
 set /p s=
 if %s%==1 goto update_files
-if %s%==2 goto select_devicey
+if %s%==2 goto select_device
 if %s%==3 goto whatsnew
 goto update_notice
 :update_files
