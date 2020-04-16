@@ -1,0 +1,18 @@
+1.2.0
+- Added new patching methods
+- Now there's a support for Wii U and Dolphin patching!
+- Many bug fixes
+
+1.1.3
+- Changed our update system to be more flexible.
+- Once and for all, fixed all updating problems.
+NOTE: All previous versions of patchers should migrate to new style of updating without any issues. If not, download manually from GitHub.
+- Added a check so the patcher can tell if NUS is up or down.
+- Got rid of the announcement network.
+
+1.1.2.3
+- Europe patching fixed
+- Now when using Custom Install, progress bar will only show you progress of the components that you've chosen.
+
+1.1.2.2
+- LF -> CR LF Fix.
