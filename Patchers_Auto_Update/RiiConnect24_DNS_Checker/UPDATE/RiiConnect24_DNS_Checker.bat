@@ -13,7 +13,7 @@ set version=1.0.0
 :: Copyright (c) 2020 KcrPL, RiiConnect24 and it's (Lead) Developers
 :: ===========================================================================
 set last_build=2020/04/16
-set at=18:23
+set at=23:23
 
 :script_start
 :: ### Auto Update ###	
