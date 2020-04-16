@@ -350,8 +350,9 @@ echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`
 echo                   `.              yddyo++:    `-/oymNNNNNdy+:`
 echo                                   -odhhhhyddmmmmmNNmhs/:`
 echo                                     :syhdyyyyso+/-`
-if not exist dig_temp md dig_temp
-cd dig_temp
+if not exist dig md dig
+cd dig
+if exist dig.exe if exist libbind9.dll if exist libcrypto-1_1-x64.dll if exist libdns.dll if exist libirs.dll if exist libisc.dll if exist libisccfg.dll if exist libuv.dll if exist libxml2.dll cd..&goto begin_main3
 curl -f -L -s -S "%FilesHostedOn%/dig/{dig.exe,libbind9.dll,libcrypto-1_1-x64.dll,libdns.dll,libirs.dll,libisc.dll,libisccfg.dll,libuv.dll,libxml2.dll}" --remote-name-all -O
 cd..
 goto begin_main3
