@@ -52,11 +52,13 @@ echo %header%
 echo -----------------------------------------------------------------------------------------------------------------------------
 echo.
 echo Please wait! We are now downloading your new RiiConnect24 DNS Checker update.
-if exist "RiiConnect24_DNS_CheckerTEMP.bat" del /q RiiConnect24_DNS_CheckerTEMP.bat
-curl -s -S --insecure "https://kcrpl.github.io/Patchers_Auto_Update/RiiConnect24_DNS_Checker/UPDATE/RiiConnect24_DNS_Checker.bat" --output "RiiConnect24_DNS_Checker.bat"
+curl -s -S --insecure "https://kcrpl.github.io/Patchers_Auto_Update/RiiConnect24_DNS_Checker/UPDATE/RiiConnect24_DNS_Checker.bat" --output "RiiConnect24_DNS_CheckerTEMP.bat"
 
 set temperrorlev=%errorlevel%
 if not %temperrorlev%==0 goto error_download
+
+del RiiConnect24_DNS_CheckerTEMP.bat
+ren "RiiConnect24_DNS_CheckerTEMP.bat" "RiiConnect24_DNS_Checker.bat"
 
 if %no_start%==0 start RiiConnect24_DNS_Checker.bat
 del /q "%~n0~x0"
