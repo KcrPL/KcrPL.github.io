@@ -354,8 +354,51 @@ if not exist dig md dig
 cd dig
 if exist dig.exe if exist libbind9.dll if exist libcrypto-1_1-x64.dll if exist libdns.dll if exist libirs.dll if exist libisc.dll if exist libisccfg.dll if exist libuv.dll if exist libxml2.dll cd..&goto begin_main3
 curl -f -L -s -S "%FilesHostedOn%/dig/{dig.exe,libbind9.dll,libcrypto-1_1-x64.dll,libdns.dll,libirs.dll,libisc.dll,libisccfg.dll,libuv.dll,libxml2.dll}" --remote-name-all -O
+set /a temperrorlev=%errorlevel%
+
+if not %temperrorlev%==0 goto error_download
 cd..
 goto begin_main3
+:error_download
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo              `..````                                     :-------------------------:
+echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`    Attention please^^!
+echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd    
+echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs    Something did not work when downloading the tools.
+echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+    Please restart the program.
+echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:    
+echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.    Error code: %temperrorlev%
+echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN    
+echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd     Press any button to exit.
+echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy    :-------------------------: 
+echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+     
+echo             mmmmms smMMMMMMMMMmddMMmmNmNMMMMMMMMMMMM:     
+echo            `mmmmmo hNMMMMMMMMMmddNMMMNNMMMMMMMMMMMMM.    
+echo            -mmmmm/ dNMMMMMMMMMNmddMMMNdhdMMMMMMMMMMN
+echo            :mmmmm-`mNMMMMMMMMNNmmmNMMNmmmMMMMMMMMMMd
+echo            +mmmmN.-mNMMMMMMMMMNmmmmMMMMMMMMMMMMMMMMy
+echo            smmmmm`/mMMMMMMMMMNNmmmmNMMMMNMMNMMMMMNmy.
+echo            hmmmmd`omMMMMMMMMMNNmmmNmMNNMmNNNNMNdhyhh.
+echo            mmmmmh ymMMMMMMMMMNNmmmNmNNNMNNMMMMNyyhhh`
+echo           `mmmmmy hmMMNMNNMMMNNmmmmmdNMMNmmMMMMhyhhy
+echo           -mddmmo`mNMNNNNMMMNNNmdyoo+mMMMNmNMMMNyyys
+echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-
+echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm
+echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+
+echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm 
+echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+
+echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm
+echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/
+echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy
+echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`
+echo                   `.              yddyo++:    `-/oymNNNNNdy+:`
+echo                                   -odhhhhyddmmmmmNNmhs/:`
+echo                                     :syhdyyyyso+/-`
+pause>NUL
+exit
 :begin_main3
 cls
 echo %header%
@@ -396,7 +439,7 @@ echo                                   -odhhhhyddmmmmmNNmhs/:`
 echo                                     :syhdyyyyso+/-`
 set /a temperrorlev=0
 
-call "dig_temp\dig.exe" +noall +answer @%current_rc24_server% weather.wapp.wii.com >"%MainFolder%\DNS_Test.txt"
+call "dig\dig.exe" +noall +answer @%current_rc24_server% weather.wapp.wii.com >"%MainFolder%\DNS_Test.txt"
 call findstr /c:"164.132.44.106" "%MainFolder%\DNS_Test.txt"
 set /a temperrorlev=%errorlevel%
 
@@ -432,7 +475,7 @@ echo 	If you can't or don't know how to, please contact your ISP ^(Internet Serv
 echo.
 echo -----------------------------------------------------------------------------------------------------------------------------
 echo More info:
-call "dig_temp\dig.exe" @%current_rc24_server% weather.wapp.wii.com
+call "dig\dig.exe" @%current_rc24_server% weather.wapp.wii.com
 echo -----------------------------------------------------------------------------------------------------------------------------
 echo.
 rmdir dig_temp /s /q
