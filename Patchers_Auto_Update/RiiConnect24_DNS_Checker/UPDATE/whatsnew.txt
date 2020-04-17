@@ -1,0 +1,2 @@
+1.0.1
+- Fixed an issue where the checker wouldn't delete the `dig` folder after finishing the test.
