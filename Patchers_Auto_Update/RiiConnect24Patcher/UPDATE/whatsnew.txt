@@ -1,3 +1,8 @@
+1.2.1
+- Added a note that you can't have any themes applied to your vWii if you want to apply the 4:3 black bars patch.
+- Integrated Open Shop Channel (https://oscwii.org/) to RiiConnect24 Patcher. You can visit it under the "Visit Homebrew Shop" option. It can also automatically install homebrew to your Wii's SD Card!
+- Improvements to Wiimmfi Patchers.
+
 1.2.0
 Went trough BETA testing from our community on Discord!
 - You can now patch RiiConnect24 Wii U and Dolphin.

@@ -6,7 +6,7 @@ echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: RiiConnect24 Patcher for Windows
-set version=1.2.0
+set version=1.2.1
 :: AUTHORS: KcrPL, Larsenv, Apfel
 :: ***************************************************************************
 :: Copyright (c) 2018-2020 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -35,6 +35,7 @@ set /a tempiospatcher=0
 set /a tempevcpatcher=0
 set /a tempsdcardapps=0
 set /a wiiu_return=0
+set /a sdcardstatus=0
 set /a troubleshoot_auto_tool_notification=0
 set sdcard=NUL
 set tempgotonext=begin_main
@@ -47,8 +48,8 @@ set hh=0
 :: Window Title
 if %beta%==0 title RiiConnect24 Patcher v%version% Created by @KcrPL, @Larsenv, @Apfel
 if %beta%==1 title RiiConnect24 Patcher v%version% [BETA] Created by @KcrPL, @Larsenv, @Apfel
-set last_build=2020/02/09
-set at=17:00
+set last_build=2020/05/09
+set at=17:08
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
@@ -937,6 +938,272 @@ echo.
 echo Press any button to go back.
 pause>NUL
 goto update_notice
+
+:open_shop_sdcarddetect
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Welcome to the Homebrew Shop.
+echo Before downloading any homebrew, do you want to enable automatic installation on your SD Card?
+echo.
+echo 1. Yes, detect the SD Card.
+echo 2. No, I'll install them manually.
+echo.
+set /p s=Choose: 
+if %s%==1 set /a sdcardstatus=1& set tempgotonext=open_shop_summarysdcard& goto detect_sd_card
+if %s%==2 set /a sdcardstatus=0& goto open_shop_getexecutable
+goto open_shop_sdcarddetect
+:open_shop_summarysdcard
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+if %sdcardstatus%==1 if %sdcard%==NUL echo Hmm... looks like an SD Card wasn't found in your system. Please choose the `Change drive letter` option
+if %sdcardstatus%==1 if %sdcard%==NUL echo to set your SD Card drive letter manually.
+if %sdcardstatus%==1 if %sdcard%==NUL echo.
+if %sdcardstatus%==1 if %sdcard%==NUL echo Otherwise, you will have to copy the homebrew manually to the SD Card.
+if %sdcardstatus%==1 if not %sdcard%==NUL echo Congrats^^! I've successfully detected your SD Card^^! Drive letter: %sdcard%
+if %sdcardstatus%==1 if not %sdcard%==NUL echo I will be able to automatically download and install everything on your SD Card^^!	
+echo.
+echo What's next?
+if %sdcardstatus%==1 if %sdcard%==NUL echo 1. Continue 2. Exit 3. Change drive letter
+if %sdcardstatus%==1 if not %sdcard%==NUL echo 1. Continue 2. Exit 3. Change drive letter
+echo.
+set /p s=Choose: 
+if %s%==1 goto open_shop_getexecutable
+if %s%==2 goto begin_main
+if %s%==3 goto open_shop_change_drive_letter
+goto open_shop_summarysdcard
+:open_shop_change_drive_letter
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo [*] SD Card
+echo.
+echo Current SD Card Letter: %sdcard%
+echo.
+echo Type in the new drive letter (e.g H)
+set /p sdcard=
+goto open_shop_summarysdcard
+:open_shop_getexecutable
+cls
+if exist osc-dl.exe del /q osc-dl.exe
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Preparing for use with Open Shop Channel downloader...
+echo Please wait...
+echo.	
+curl -f -L -s -S --insecure "%FilesHostedOn%/osc-dl.exe" --output "osc-dl.exe"
+set /a temperrorlev=%errorlevel%
+if not %temperrorlev%==0 goto open_shop_getexecutable_fail
+goto open_shop_mainmenu
+:open_shop_getexecutable_fail
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo There was an error while downloading the Open Shop Channel downloader.
+echo CURL Exit Code: %temperrorlev%
+echo.
+echo Press any key to go back.
+pause>NUL
+goto begin_main
+:open_shop_mainmenu
+cls
+set /a homebrew_online_var=0
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Welcome to the Homebrew Shop.
+echo Open Shop Channel Downloader is ready^^! What next?
+echo.
+echo 1. Show list of homebrew available.
+echo 2. Download homebrew.
+echo.
+echo R. Return to main menu
+echo.
+set /p s=Choose: 
+if %s%==1 goto open_shop_list
+if %s%==2 goto open_shop_homebrew
+if %s%==r goto begin_main
+if %s%==R goto begin_main
+goto open_shop_mainmenu
+:open_shop_list
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo One second please...
+echo %header%>"Open Shop Channel Homebrew List.txt"
+echo.>>"Open Shop Channel Homebrew List.txt"
+echo TIP: Remember the name of the homebrew that you're interrested in, return to the program, select "Download homebrew" and type it in.>>"Open Shop Channel Homebrew List.txt"
+echo      It will show you a description and some other useful info about homebrew that you've chosen.>>"Open Shop Channel Homebrew List.txt"
+echo.>>"Open Shop Channel Homebrew List.txt"
+echo List of homebrew available:>>"Open Shop Channel Homebrew List.txt"
+echo.>>"Open Shop Channel Homebrew List.txt"
+osc-dl.exe list>>"Open Shop Channel Homebrew List.txt"
+
+start "" "Open Shop Channel Homebrew List.txt"
+goto open_shop_mainmenu
+
+:open_shop_homebrew
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Type the name of your homebrew.
+echo.
+if %homebrew_online_var%==1 echo :-----------------------------------------------------------------------------------------------------------------------:
+if %homebrew_online_var%==1 echo  "%homebrew_name%" is not available on the server.
+if %homebrew_online_var%==1 echo  For the list of homebrew that's on the server, please go back and choose "Show list of homebrew available".
+if %homebrew_online_var%==1 echo :-----------------------------------------------------------------------------------------------------------------------:
+if %homebrew_online_var%==1 echo.
+set /a homebrew_online_var=0
+echo R. Go back.
+echo.
+set /p homebrew_name=Type here: 
+if %homebrew_name%==r goto open_shop_mainmenu
+if %homebrew_name%==R goto open_shop_mainmenu
+goto open_shop_homebrew_download
+
+:open_shop_homebrew_download
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Fetching data...
+
+::Check if on server
+For /F "Delims=" %%A In ('osc-dl.exe query -n "%homebrew_name%" --verify') do set "homebrew_online=%%A"
+if "%homebrew_online%"=="False" set /a homebrew_online_var=1&goto open_shop_homebrew
+
+For /F "Delims=" %%A In ('osc-dl.exe meta -n "%homebrew_name%" -t display_name') do set "homebrew_app_name=%%A"
+For /F "Delims=" %%A In ('osc-dl.exe meta -n "%homebrew_name%" -t version') do set "homebrew_version=%%A"
+For /F "Delims=" %%A In ('osc-dl.exe meta -n "%homebrew_name%" -t coder') do set "homebrew_creator=%%A"
+For /F "Delims=" %%A In ('osc-dl.exe meta -n "%homebrew_name%" -t short_description') do set "homebrew_short_description=%%A"
+
+goto open_shop_homebrew_show_info
+:open_shop_homebrew_show_info
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo You requested...
+osc-dl.exe meta -n "%homebrew_name%" -t name
+echo.
+echo Long description:
+echo.
+osc-dl.exe meta -n "%homebrew_name%" -t long_description
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Would you like to download this app?
+echo (If enabled, it will be automatically installed to the SD Card.)
+echo.
+echo 1. Yes.
+echo 2. No, return.
+set /p s=Choose: 
+if %s%==1 goto open_shop_homebrew_download
+if %s%==2 goto open_shop_mainmenu
+goto open_shop_homebrew_show_info
+:open_shop_homebrew_finishnosdcard
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo Downloading %homebrew_app_name%...
+echo.
+echo [OK] Downloading .ZIP
+echo.
+echo Done^^!
+echo The .ZIP file is in the directory where RiiConnect24 Patcher is.
+echo Press any key to go back.
+pause>NUL
+goto open_shop_mainmenu
+
+:open_shop_homebrew_download
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo Downloading %homebrew_app_name%...
+echo.
+echo [..] Downloading .ZIP
+osc-dl.exe get -n "%homebrew_name%" --noconfirm --output "%homebrew_name%.zip"
+set /a temperrorlev=%errorlevel%
+if not %temperrorlev%==0 set /a reason=1&goto open_shop_homebrew_download_error
+if %sdcardstatus%==0 goto open_shop_homebrew_finishnosdcard
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo Downloading %homebrew_app_name%...
+echo.
+echo [OK] Downloading .ZIP
+echo [..] Downloading 7zip CLI
+curl -f -L -s -S --insecure "%FilesHostedOn%/7z.exe" --output "7z.exe"
+set /a temperrorlev=%errorlevel%
+if not %temperrorlev%==0 set /a reason=2&goto open_shop_homebrew_download_error
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo Downloading %homebrew_app_name%...
+echo.
+echo [OK] Downloading .ZIP
+echo [OK] Downloading 7zip CLI
+echo [..] Extracting the homebrew app to your SD Card...
+7z x "%homebrew_name%.zip" -aoa -o%sdcard%:
+set /a temperrorlev=%errorlevel%
+if not %temperrorlev%==0 set /a reason=3&goto open_shop_homebrew_download_error
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo Downloading %homebrew_app_name%...
+echo.
+echo [OK] Downloading .ZIP
+echo [OK] Downloading 7zip CLI
+echo [OK] Extracting the homebrew app to your SD Card...
+echo.
+echo Done^^!
+echo Press any key to go back.
+del /q "%homebrew_name%.zip"
+pause>NUL
+goto open_shop_mainmenu
+:open_shop_homebrew_download_error
+cls
+echo %header%                                                                
+echo              `..````                                                  
+echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`                
+echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd                
+echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs                
+echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+        
+echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:                
+echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.                
+echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN            
+echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd                 
+echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy                 
+echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+                 
+echo ---------------------------------------------------------------------------------------------------------------------------
+echo    /---\   ERROR.              
+echo   /     \  There was an error while downloading your homebrew.
+echo  /   ^^!   \ 
+echo  --------- 
+echo.
+if %reason%==1 echo There was an error while downloading the homebrew from Open Shop Channel servers.
+if %reason%==2 echo There was an error while downloading 7zip.
+if %reason%==3 echo There was an error while copying the files to your SD Card.
+echo.
+echo ---------------------------------------------------------------------------------------------------------------------------
+echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-                  
+echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm                     
+echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+                    
+echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm                    
+echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+                   
+echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm                   
+echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/    
+echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy   
+echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`   
+echo                   `.              yddyo++:    `-/oymNNNNNdy+:`        
+echo                                   -odhhhhyddmmmmmNNmhs/:`             
+echo                                     :syhdyyyyso+/-`                   
+pause>NUL
 :select_device
 cls
 echo %header%
@@ -986,11 +1253,14 @@ echo.
 echo 4. Patch other Wii Games to work with Wiimmfi.
 echo   - This will patch any other game than Mario Kart Wii to work with Wiimmfi. 
 echo.	
+echo 5. Visit Homebrew Shop
+echo   - Download and install homebrew on your SD Card using Open Shop Channel.
 set /p s=Choose: 
 if %s%==1 goto 2_prepare_dolphin
 if %s%==2 goto wadgames_patch_info
 if %s%==3 goto mariokartwii_patch
 if %s%==4 goto wiigames_patch
+if %s%==5 goto open_shop_sdcarddetect
 goto 1_dolphin
 :2_prepare_dolphin
 cls
@@ -1106,11 +1376,14 @@ echo.
 echo 4. Patch other Wii Games to work with Wiimmfi.
 echo   - This will patch any other game than Mario Kart Wii to work with Wiimmfi. 
 echo.	
+echo 5. Visit Homebrew Shop
+echo   - Download and install homebrew on your SD Card using Open Shop Channel.
 set /p s=Choose: 
 if %s%==1 goto 2_prepare_wiiu
 if %s%==2 goto wadgames_patch_info
 if %s%==3 goto mariokartwii_patch
 if %s%==4 goto wiigames_patch
+if %s%==5 goto open_shop_sdcarddetect
 goto 1_wiiu
 :2_prepare_wiiu
 cls
@@ -2075,7 +2348,7 @@ if %sdcardstatus%==1 if not %sdcard%==NUL if %errorcopying%==1 echo Wha- Somethi
 
 if %sdcardstatus%==0 echo Please connect your Wii U's SD Card to the computer and copy "WAD", "apps" and "wiiu" folder to it.
 echo.
-echo We're nearly done!
+echo We're nearly done^^!
 echo.
 echo We're now about to patch a file that's responsible for the 4:3 black bars bug that appears on Wii mode.
 echo.
@@ -2084,6 +2357,11 @@ echo I installed an FTP server on your Wii U's SD Card. In the Wii U menu (not W
 echo (for example Haxchi or Mocha CFW), please start Homebrew Launcher and start FTPiiU Everywhere.
 echo.
 echo On your screen, there should be your Wii U's IP Address. Enter it below or type in "stop" if you're unable to do that.
+echo.
+echo :-----------------------------------------------------------------------------------------:
+echo : NOTE: If you installed a theme on your vWii, this will not work.                        :
+echo :       If you have a theme installed, restore the original one and then run this utility :
+echo :-----------------------------------------------------------------------------------------:
 echo.
 set /p ip=Wii U's IP: 
 if "%ip%"=="stop" goto 2_5_stop
@@ -2332,13 +2610,16 @@ echo   - This will patch your copy of Mario Kart Wii to work with Wiimmfi which 
 echo.
 echo 5. Patch other Wii Games to work with Wiimmfi.
 echo   - This will patch any other game than Mario Kart Wii to work with Wiimmfi. 
-echo.	
+echo.
+echo 6. Visit Homebrew Shop
+echo   - Download and install homebrew on your SD Card using Open Shop Channel.
 set /p s=Choose: 
 if %s%==1 goto 2_prepare
 if %s%==2 goto 2_prepare_uninstall
 if %s%==3 goto wadgames_patch_info
 if %s%==4 goto mariokartwii_patch
 if %s%==5 goto wiigames_patch
+if %s%==6 goto open_shop_sdcarddetect
 goto 1
 
 :wiigames_patch
@@ -2393,8 +2674,8 @@ echo %header%
 echo -----------------------------------------------------------------------------------------------------------------------------
 echo.
 
-if exist "*.WBFS" move "*.WBFS" "Wiimmfi-Patcher\wiimmfi-patcher-v4\Windows"
-if exist "*.ISO" move "*.ISO" "Wiimmfi-Patcher\wiimmfi-patcher-v4\Windows"
+if exist "*.WBFS" copy "*.WBFS" "Wiimmfi-Patcher\wiimmfi-patcher-v4\Windows"
+if exist "*.ISO" copy "*.ISO" "Wiimmfi-Patcher\wiimmfi-patcher-v4\Windows"
 
 cd "Wiimmfi-Patcher\wiimmfi-patcher-v4\Windows"
 
@@ -2416,7 +2697,7 @@ echo %header%
 echo -----------------------------------------------------------------------------------------------------------------------------
 echo.
 echo The Wiimmfi Patcher is done^^! 
-echo The game image file has been moved to the wiimmfi-images folder next to RiiConnect24 Patcher.
+echo The patched game image file(s) has been moved to the wiimmfi-images folder next to RiiConnect24 Patcher.
 echo.
 echo Press any button to go back to main menu.
 pause>NUL
@@ -2471,8 +2752,8 @@ echo %header%
 echo -----------------------------------------------------------------------------------------------------------------------------
 echo.
 set tempCD=%cd%
-if exist "*.WBFS" move "*.WBFS" "MKWii-Patcher\mkw-wiimmfi-patcher-v6\"
-if exist "*.ISO" move "*.ISO" "MKWii-Patcher\mkw-wiimmfi-patcher-v6\"
+if exist "*.WBFS" copy "*.WBFS" "MKWii-Patcher\mkw-wiimmfi-patcher-v6\"
+if exist "*.ISO" copy "*.ISO" "MKWii-Patcher\mkw-wiimmfi-patcher-v6\"
 
 cd MKWii-Patcher\mkw-wiimmfi-patcher-v6
 
@@ -2495,7 +2776,7 @@ echo %header%
 echo -----------------------------------------------------------------------------------------------------------------------------
 echo.
 echo The Wiimmfi Patcher is done^^! 
-echo Mario Kart Wii image file has been moved to the wiimmfi-images folder next to RiiConnect24 Patcher.
+echo The patched Mario Kart Wii image file has been copied to the wiimmfi-images folder next to RiiConnect24 Patcher.
 echo.
 echo %tempCD%
 echo Press any button to go back to main menu.
@@ -3257,6 +3538,17 @@ echo.
 echo Type in the new drive letter (e.g H)
 set /p sdcard=
 goto 2_1_summary
+:2_change_drive_letter_wiiu
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo [*] SD Card
+echo.
+echo Current SD Card Letter: %sdcard%
+echo.
+echo Type in the new drive letter (e.g H)
+set /p sdcard=
+goto 2_1_summary_wiiu
 :2_2
 cls
 set /a troubleshoot_auto_tool_notification=0
@@ -3304,7 +3596,7 @@ if %funfact_number%==17 set funfact=The Everybody Votes Channel was originally c
 if %funfact_number%==18 set funfact=The Forecast Channel had a "laundry index" (to show how appropriate it is to dry your clothes outside) and a "pollen count" in the Japanese version.
 if %funfact_number%==19 set funfact=During the Forecast Channel development, Nintendo's America department got hit by a thunderstorm, and the developers of the Channel in Japan lost contact with them.
 if %funfact_number%==20 set funfact=During the News Channel development, Nintendo's Europe department got hit by a big rainstorm, and the developers of the Channel in Japan lost contact with them.
-if %funfact_number%==21 set funfact=The News Channel has an alternate slide show song that plays as might.
+if %funfact_number%==21 set funfact=The News Channel has an alternate slide show song that plays as night.
 if %funfact_number%==22 set funfact=During E3 2006, Satoru Iwata said WiiConnect24 uses as much power as a miniature lightbulb while the console is in standby.
 if %funfact_number%==23 set funfact=The effect used when rapidly zooming in and out of photos on the Photo Channel was implemented into the News Channel to zoom in and out of text.
 if %funfact_number%==24 set funfact=The help cats in the News Channel and the Photo Channel are brothers and sisters (the one in the News Channel being male, and the Photo Channel being a younger female).
