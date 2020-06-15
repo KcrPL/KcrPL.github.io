@@ -1,3 +1,8 @@
-We've just released RiiTag! RiiTag is your customizable gamertag for the Wii. By sharing your gamertag (a dynamic image), you can show what you've been playing to your friends! (For example, on forums etc.)
+We're currently working on a feature that will let you install WAD files on your SD Card directly.
+You will no longer need to install WAD's on your Wii and then manually move them from your console to the SD Card.
 
-More info: https://tag.rc24.xyz/
+It will save a lot of your precious time :)
+All thanks to DarkMatterCore.
+
+Join our Discord server for more info. 
+https://discord.gg/b4Y7jfD
