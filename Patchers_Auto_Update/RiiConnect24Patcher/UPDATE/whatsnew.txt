@@ -3,6 +3,7 @@
 - You can now install WAD channels directly to the SD Card itself! You can now install 150 channels in few minutes. The patcher will guide you through the entire process!
 	> All thanks to DarkMatterCore!
 - The "Homebrew Shop" will now check if the specified app is on the server faster.
+- Deleted the "Close patcher and delete all temporary files" option. It would delete the keys needed by the new feature.
 
 1.2.1
 - Added a note that you can't have any themes applied to your vWii if you want to apply the 4:3 black bars patch.
