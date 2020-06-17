@@ -1,4 +1,4 @@
-After so many years, we're finally able to directly install games to the SD Card on your Wii.
+We've identified and fixed an issue with error -6 while trying to install WAD's directly on your SD Card.
 
-Thanks to DarkMatterCore - we're finally able to do this!
+If you were using it for a vWii, please select an option to generate new keys in the menu and please follow ths instructions.
 If you need help or want to report bugs - join our Discord server: https://discord.gg/b4Y7jfD
