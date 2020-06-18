@@ -1,4 +1,3 @@
-We've identified and fixed an issue with error -6 while trying to install WAD's directly on your SD Card.
+At this time you're unable to install any DLC WAD's on your SD Card using wad2bin.
 
-If you were using it for a vWii, please select an option to generate new keys in the menu and please follow ths instructions.
-If you need help or want to report bugs - join our Discord server: https://discord.gg/b4Y7jfD
+When this issue is fixed, you'll be notified about this here.

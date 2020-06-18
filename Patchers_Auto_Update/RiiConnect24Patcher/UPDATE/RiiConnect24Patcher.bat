@@ -6,7 +6,7 @@ echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: RiiConnect24 Patcher for Windows
-set version=1.2.2
+set version=1.2.3
 :: AUTHORS: KcrPL, Larsenv, Apfel
 :: ***************************************************************************
 :: Copyright (c) 2018-2020 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -50,8 +50,8 @@ set hh=0
 :: Window Title
 if %beta%==0 title RiiConnect24 Patcher v%version% Created by @KcrPL, @Larsenv, @Apfel
 if %beta%==1 title RiiConnect24 Patcher v%version% [BETA] Created by @KcrPL, @Larsenv, @Apfel
-set last_build=2020/06/17
-set at=01:52
+set last_build=2020/06/18
+set at=20:11
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
@@ -1387,7 +1387,7 @@ echo 6. Visit Homebrew Shop
 echo   - Download and install homebrew on your SD Card using Open Shop Channel.
 set /p s=Choose: 
 if %s%==1 goto 2_prepare_wiiu
-if %s%==2 goto direct_install_sdcard
+if %s%==2 goto direct_install_download_binary
 if %s%==3 goto wadgames_patch_info
 if %s%==4 goto mariokartwii_patch
 if %s%==5 goto wiigames_patch
@@ -2627,7 +2627,7 @@ echo   - Download and install homebrew on your SD Card using Open Shop Channel.
 set /p s=Choose: 
 if %s%==1 goto 2_prepare
 if %s%==2 goto 2_prepare_uninstall
-if %s%==3 goto direct_install_sdcard
+if %s%==3 goto direct_install_download_binary
 if %s%==4 goto wadgames_patch_info
 if %s%==5 goto mariokartwii_patch
 if %s%==6 goto wiigames_patch
@@ -2812,7 +2812,7 @@ echo There was an error while detecting the files.
 echo Are you sure you followed the instructions correctly?
 echo.
 echo 1. Try copying the files again.
-echo 2. Come back.
+echo 2. Go back.
 echo.
 set /p s=Choose: 
 if %s%==1 goto direct_install_sdcard_configuration_xazzy_find
@@ -2853,6 +2853,19 @@ if %s%==2 goto direct_install_sdcard_set
 if %s%==3 goto begin_main
 goto direct_install_sdcard_auto_not_found
 
+:direct_install_sdcard_set
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo [*] Install WAD files directly to the SD Card - wad2bin.
+echo   ^> Created by DarkMatterCore.
+echo.
+echo Current SD Card Letter: %sdcard%
+echo.
+echo Type in the new drive letter (e.g H)
+set /p sdcard=
+goto direct_install_sdcard_main_menu
 :direct_install_download_binary
 cls
 echo %header%
@@ -2905,20 +2918,20 @@ if %direct_install_del_done%==1 echo :------------------------------------------
 set /a direct_install_del_done=0
 
 echo.
-echo 1. Install a single WAD file to your SD Card.
-echo 2. Install many WAD files at once.
-echo 3. Reconfigure keys (use this when changing a Wii etc.)
+echo 1. Install WAD files on your SD Card.
+echo 2. Reconfigure keys (use this when changing a Wii etc.)
 echo.
-echo 4. Delete all bogus WAD files from your SD Card.
-echo 5. Main Menu.
+echo 3. Delete all bogus WAD files from your SD Card.
+echo 4. Main Menu.
 echo.
 set /p s=Choose: 
-if %s%==1 goto direct_install_single
-if %s%==2 goto direct_install_bulk
-if %s%==3 goto direct_install_sdcard_configuration
-if %s%==4 goto direct_install_delete_bogus
-if %s%==5 goto begin_main
+if %s%==1 goto direct_install_bulk
+if %s%==2 goto direct_install_sdcard_configuration
+if %s%==3 goto direct_install_delete_bogus
+if %s%==4 goto begin_main
 goto direct_install_sdcard_main_menu
+
+
 :direct_install_bulk
 cls
 echo %header%
@@ -2934,7 +2947,7 @@ if %direct_install_bulk_files_error%==1 echo :----------------------------------
 if %direct_install_bulk_files_error%==1 echo.
 set /a direct_install_bulk_files_error=0
 
-echo We're now going to install a lot of WAD files to your SD Card.
+echo We're now going to install WAD files to your SD Card.
 echo I created a folder called wad2bin next to the RiiConnect24 Patcher.bat. Please put all of the files that you want to
 echo install in that folder.
 echo.
@@ -2958,6 +2971,14 @@ set /a file_counter=0
 for %%f in ("wad2bin\*.wad") do set /a file_counter+=1
 set /a patching_file=1
 
+
+setlocal disableDelayedExpansion
+cd wad2bin
+powershell -c "get-childitem *.WAD | foreach { rename-item $_ $_.Name.Replace('!', '') }"
+powershell -c "get-childitem *.WAD | foreach { rename-item $_ $_.Name.Replace('&', '') }"
+cd..
+setlocal enableDelayedExpansion
+
 for %%f in ("wad2bin\*.wad") do (
 
 cls
@@ -2969,7 +2990,7 @@ echo   ^> Created by DarkMatterCore.
 echo.
 echo Instaling file [!patching_file!] out of [%file_counter%]
 echo File name: %%~nf
-call wad2bin.exe "%MainFolder%\WiiKeys\keys.txt" "%MainFolder%\WiiKeys\device.cert" "%%f" %sdcard%:\>NUL
+call wad2bin.exe "%MainFolder%\WiiKeys\keys.txt" "%MainFolder%\WiiKeys\device.cert" "%%f" %sdcard%:\>wad2bin_output.txt
 	set /a temperrorlev=!errorlevel!
 	if not !temperrorlev!==0 goto direct_install_single_fail
 
@@ -2977,6 +2998,7 @@ move /Y "%sdcard%:\*_bogus.wad" "%sdcard%:\WAD\">NUL
 
 set /a patching_file=!patching_file!+1
 )
+del /q wad2bin_output.txt
 echo.
 echo Installation complete^^! 
 echo  Now, please start your WAD Manager (Wii Mod Lite, if you installed RiiConnect24) and please install the WAD file called
@@ -3009,63 +3031,6 @@ set /p s=Choose:
 if %s%==1 del /q "%sdcard%:\WAD\*_bogus.wad"&set /a direct_install_del_done=1&goto direct_install_sdcard_main_menu
 if %s%==2 goto direct_install_sdcard_main_menu
 goto direct_install_delete_bogus
-:direct_install_single
-cls
-echo %header%
-echo -----------------------------------------------------------------------------------------------------------------------------
-echo.
-echo [*] Install WAD files directly to the SD Card - wad2bin.
-echo   ^> Created by DarkMatterCore.
-echo.
-if %file_not_exist%==1 echo :---------------------------------------------:
-if %file_not_exist%==1 echo : The file specified does not exist.          :
-if %file_not_exist%==1 echo :---------------------------------------------:
-if %file_not_exist%==1 echo.
-set /a file_not_exist=0
-
-echo We're now going to install a single WAD file to your SD Card.
-echo If you're trying to install many WAD files at once, please type in stop and select the second option.
-echo.
-echo Please drag^&drop the file here and press ENTER.
-echo NOTE: If you're manually typing in the path and it has spaces in it - please put it in quotes " "
-echo.
-set /p wad_path=Path: 
-if %wad_path%==stop goto direct_install_sdcard_main_menu
-
-if not exist %wad_path% set /a file_not_exist=1&goto direct_install_single
-
-goto direct_install_single-install
-
-:direct_install_single-install
-cls
-echo %header%
-echo -----------------------------------------------------------------------------------------------------------------------------
-echo.
-echo [*] Install WAD files directly to the SD Card - wad2bin.
-echo   ^> Created by DarkMatterCore.
-echo.
-echo Please wait... installing the WAD to your SD Card.
-
-call wad2bin.exe "%MainFolder%\WiiKeys\keys.txt" "%MainFolder%\WiiKeys\device.cert" %wad_path% %sdcard%:\ >NUL
-echo .. Done!
-	set /a temperrorlev=%errorlevel%
-	if not %temperrorlev%==0 goto direct_install_single_fail
-	
-move /Y "%sdcard%:\*_bogus.wad" "%sdcard%:\WAD\">NUL
-
-echo.
-echo Installation complete^^! 
-echo  Now, please start your WAD Manager (Wii Mod Lite, if you installed RiiConnect24) and please install the WAD file called
-echo  (numbers)_bogus.wad on your Wii.
-echo.
-echo  NOTE: You will get a -1022 error - don't worry! The WAD is empty but all we need is the TMD and ticket.
-echo  After you're done installing the WAD, you can later plug the SD Card in and choose the option to delete bogus WAD's
-echo  in the main menu.
-echo.
-echo Press any key to go back.
-
-pause>NUL
-goto direct_install_sdcard_main_menu
 
 :direct_install_single_fail
 cls
@@ -3087,12 +3052,31 @@ echo    /---\   ERROR
 echo   /     \  Installing WAD file(s) has failed.
 echo  /   ^^!   \ 
 echo  --------- wad2bin returned error code: %temperrorlev%
+if %temperrorlev%==-1 echo            ERROR: Invalid arguments. Probably invalid DLC title ID.
+if %temperrorlev%==-2 echo            ERROR: Memory allocation for internal path buffers failed
+if %temperrorlev%==-3 echo            ERROR: (Windows only) UTF-8 to UTF-16 conversion failed
+if %temperrorlev%==-4 echo            ERROR: Failed to parse parent title ID (if provided)
+if %temperrorlev%==-5 echo            ERROR: Invalid parent title ID
+if %temperrorlev%==-6 echo            ERROR: Failed to load console-specific keydata
+if %temperrorlev%==-7 echo            ERROR: Failed to unpack input WAD. Your WAD file is corrupted.
+if %temperrorlev%==-8 echo            ERROR: Failed to realign loaded certificate chain buffer
+if %temperrorlev%==-9 echo            ERROR: Failed to realign loaded ticket buffer
+if %temperrorlev%==-10 echo            ERROR: Failed to realign loaded TMD buffer
+if %temperrorlev%==-11 echo            ERROR: Input WAD is a DLC and a parent title ID wasn't provided. Please use the Install DLC WAD option in the main menu.
+if %temperrorlev%==-12 echo            ERROR: Failed to generate indexed bin files from unpacked DLC WAD
+if %temperrorlev%==-13 echo            ERROR: Failed to generate content.bin file from unpacked non-DLC WAD. Perhaps lost connection to your SD Card?
+if %temperrorlev%==-14 echo            ERROR: Failed to generate bogus WAD
+echo.
 echo            Please contact KcrPL#4625 on Discord or mail us at support@riiconnect24.net
 echo.
-echo       Press any key to return to main menu.
+echo       1. Go back to wad2bin menu.
+echo       2. Show error info.
 echo ---------------------------------------------------------------------------------------------------------------------------
-pause>NUL
-goto direct_install_sdcard_main_menu
+echo.
+set /p s=Choose: 
+if %s%==1 goto direct_install_sdcard_main_menu
+if %s%==2 call "wad2bin_output.txt"
+goto direct_install_single_fail
 :wiigames_patch
 cls
 echo %header%

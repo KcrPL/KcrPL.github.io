@@ -1,3 +1,11 @@
+1.2.3
+- Fixed an issue that made you unable to set the drive letter manually.
+- Fixed many issues relating installing WAD's to the SD Card.
+- The script will now delete any "!" and "&" characters from your file names that would cause -1 error.
+- You can now see the output of wad2bin if it fails.
+- Got rid of "Install a single WAD file" option.
+- Added error info when wad2bin crashes.
+
 1.2.2
 - Made patching process a little quicker.
 - You can now install WAD channels directly to the SD Card itself! You can now install 150 channels in few minutes. The patcher will guide you through the entire process!
@@ -9,14 +17,3 @@
 - Added a note that you can't have any themes applied to your vWii if you want to apply the 4:3 black bars patch.
 - Integrated Open Shop Channel (https://oscwii.org/) to RiiConnect24 Patcher. You can visit it under the "Visit Homebrew Shop" option. It can also automatically install homebrew to your Wii's SD Card!
 - Improvements to Wiimmfi Patchers.
-
-1.2.0
-Went trough BETA testing from our community on Discord!
-- You can now patch RiiConnect24 Wii U and Dolphin.
-- A lot of bug fixes with curl and more.
-- The patcher will now delete WAD folder before it starts patching. It's a brick prevention for our users.
-- Files created by the patcher will now have more details in their file name (for example, for Wii only, region etc.)
-- Fixed crashes
-
-When patching the file for Wii U, it will make a backup of it and will pack it to a .ZIP, don't delete that file until you're sure that everything works.
-It's a really big update! I hope nothing will break... but if it does - contact me!
