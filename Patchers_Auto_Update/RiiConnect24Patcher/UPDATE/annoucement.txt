@@ -1,3 +1,2 @@
-At this time you're unable to install any DLC WAD's on your SD Card using wad2bin.
-
-When this issue is fixed, you'll be notified about this here.
+DarkMatterCore fixed installing DLC's in the "Install WAD files directly to the SD Card" menu HOWEVER some DLC files are unsupported.
+In most cases, they can't be loaded from SD Card by your Wii anyway.

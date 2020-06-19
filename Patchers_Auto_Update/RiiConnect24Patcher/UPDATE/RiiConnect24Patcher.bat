@@ -6,7 +6,7 @@ echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: RiiConnect24 Patcher for Windows
-set version=1.2.3
+set version=1.2.3.1
 :: AUTHORS: KcrPL, Larsenv, Apfel
 :: ***************************************************************************
 :: Copyright (c) 2018-2020 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -50,8 +50,8 @@ set hh=0
 :: Window Title
 if %beta%==0 title RiiConnect24 Patcher v%version% Created by @KcrPL, @Larsenv, @Apfel
 if %beta%==1 title RiiConnect24 Patcher v%version% [BETA] Created by @KcrPL, @Larsenv, @Apfel
-set last_build=2020/06/18
-set at=20:11
+set last_build=2020/06/19
+set at=12:23
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
@@ -2951,6 +2951,10 @@ echo We're now going to install WAD files to your SD Card.
 echo I created a folder called wad2bin next to the RiiConnect24 Patcher.bat. Please put all of the files that you want to
 echo install in that folder.
 echo.
+echo :-----------------------------------------------------:
+echo : NOTE: Some DLC files might result in an error.      :
+echo :-----------------------------------------------------:
+echo.
 echo Are the files all in place?
 echo.
 echo 1. Yes, start installing.
@@ -3052,20 +3056,18 @@ echo    /---\   ERROR
 echo   /     \  Installing WAD file(s) has failed.
 echo  /   ^^!   \ 
 echo  --------- wad2bin returned error code: %temperrorlev%
-if %temperrorlev%==-1 echo            ERROR: Invalid arguments. Probably invalid DLC title ID.
+if %temperrorlev%==-1 echo            ERROR: Invalid arguments
 if %temperrorlev%==-2 echo            ERROR: Memory allocation for internal path buffers failed
 if %temperrorlev%==-3 echo            ERROR: (Windows only) UTF-8 to UTF-16 conversion failed
-if %temperrorlev%==-4 echo            ERROR: Failed to parse parent title ID (if provided)
-if %temperrorlev%==-5 echo            ERROR: Invalid parent title ID
-if %temperrorlev%==-6 echo            ERROR: Failed to load console-specific keydata
-if %temperrorlev%==-7 echo            ERROR: Failed to unpack input WAD. Your WAD file is corrupted.
-if %temperrorlev%==-8 echo            ERROR: Failed to realign loaded certificate chain buffer
-if %temperrorlev%==-9 echo            ERROR: Failed to realign loaded ticket buffer
-if %temperrorlev%==-10 echo            ERROR: Failed to realign loaded TMD buffer
-if %temperrorlev%==-11 echo            ERROR: Input WAD is a DLC and a parent title ID wasn't provided. Please use the Install DLC WAD option in the main menu.
-if %temperrorlev%==-12 echo            ERROR: Failed to generate indexed bin files from unpacked DLC WAD
-if %temperrorlev%==-13 echo            ERROR: Failed to generate content.bin file from unpacked non-DLC WAD. Perhaps lost connection to your SD Card?
-if %temperrorlev%==-14 echo            ERROR: Failed to generate bogus WAD
+if %temperrorlev%==-4 echo            ERROR: Failed to load console-specific keydata
+if %temperrorlev%==-5 echo            ERROR: Failed to unpack input WAD
+if %temperrorlev%==-6 echo            ERROR: Failed to realign loaded certificate chain buffer
+if %temperrorlev%==-7 echo            ERROR: Failed to realign loaded ticket buffer
+if %temperrorlev%==-8 echo            ERROR: Failed to realign loaded TMD buffer
+if %temperrorlev%==-9 echo            ERROR: Input WAD is a DLC WAD from a game that doesn't support loading data from a SD card
+if %temperrorlev%==-10 echo            ERROR: Failed to generate indexed bin files from unpacked DLC WAD
+if %temperrorlev%==-11 echo            ERROR: Failed to generate content.bin file from unpacked non-DLC WAD
+if %temperrorlev%==-12 echo            ERROR: Failed to generate bogus WAD
 echo.
 echo            Please contact KcrPL#4625 on Discord or mail us at support@riiconnect24.net
 echo.

@@ -1,3 +1,7 @@
+1.2.3.1
+- Updated error codes on wad2bin.
+- Added info that some DLC's can't be installed.
+
 1.2.3
 - Fixed an issue that made you unable to set the drive letter manually.
 - Fixed many issues relating installing WAD's to the SD Card.
@@ -12,8 +16,3 @@
 	> All thanks to DarkMatterCore!
 - The "Homebrew Shop" will now check if the specified app is on the server faster.
 - Deleted the "Close patcher and delete all temporary files" option. It would delete the keys needed by the new feature.
-
-1.2.1
-- Added a note that you can't have any themes applied to your vWii if you want to apply the 4:3 black bars patch.
-- Integrated Open Shop Channel (https://oscwii.org/) to RiiConnect24 Patcher. You can visit it under the "Visit Homebrew Shop" option. It can also automatically install homebrew to your Wii's SD Card!
-- Improvements to Wiimmfi Patchers.
