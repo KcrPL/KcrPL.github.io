@@ -1,3 +1,6 @@
+1.2.3.2
+- Fixed an error that occurs if you're running wad2bin menu for the first time.
+
 1.2.3.1
 - Updated error codes on wad2bin.
 - Added info that some DLC's can't be installed.

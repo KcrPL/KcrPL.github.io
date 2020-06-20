@@ -6,7 +6,7 @@ echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: RiiConnect24 Patcher for Windows
-set version=1.2.3.1
+set version=1.2.3.2
 :: AUTHORS: KcrPL, Larsenv, Apfel
 :: ***************************************************************************
 :: Copyright (c) 2018-2020 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -50,8 +50,8 @@ set hh=0
 :: Window Title
 if %beta%==0 title RiiConnect24 Patcher v%version% Created by @KcrPL, @Larsenv, @Apfel
 if %beta%==1 title RiiConnect24 Patcher v%version% [BETA] Created by @KcrPL, @Larsenv, @Apfel
-set last_build=2020/06/19
-set at=12:23
+set last_build=2020/06/20
+set at=23:15
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
@@ -2635,7 +2635,8 @@ if %s%==7 goto open_shop_sdcarddetect
 goto 1
 
 :direct_install_sdcard
-if not exist "%MainFolder%\WiiKeys\device.cert" if not exist "%MainFolder%\WiiKeys\keys.txt" goto direct_install_sdcard_configuration
+if not exist "%MainFolder%\WiiKeys\device.cert" goto direct_install_sdcard_configuration
+if not exist "%MainFolder%\WiiKeys\keys.txt" goto direct_install_sdcard_configuration
 
 goto direct_install_sdcard_main_menu
 
@@ -2895,6 +2896,10 @@ goto begin_main
 
 
 :direct_install_sdcard_main_menu
+
+if not exist "%MainFolder%\WiiKeys\device.cert" goto direct_install_sdcard_configuration
+if not exist "%MainFolder%\WiiKeys\keys.txt" goto direct_install_sdcard_configuration
+
 if %sdcard%==NUL set tempgotonext=direct_install_sdcard_main_menu2&call :detect_sd_card
 :direct_install_sdcard_main_menu2
 if %sdcard%==NUL goto direct_install_sdcard_auto_not_found
