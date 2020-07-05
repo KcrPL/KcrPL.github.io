@@ -4,13 +4,13 @@ setlocal enableDelayedExpansion
 cd /d "%~dp0"
 :: ===========================================================================
 :: .VFF File Downloader for Dolphin - main script
-set version=1.0.5.3
+set version=1.0.6
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2020 KcrPL, RiiConnect24 and it's (Lead) Developers
 :: ===========================================================================
-set last_build=2020/04/14
-set at=11:55
+set last_build=2020/07/05
+set at=21:02
 :: Unattended mode
 :: This script is meant to be running in the background.
 if exist update_assistant.bat del /q update_assistant.bat
@@ -26,6 +26,10 @@ set /a alternative_curl=0
 set /a first_start=0
 set /a run_once=0
 set /a retry=3
+
+set header=.VFF File Downloader for Dolphin - (C) KcrPL v%version% (Compiled on %last_build% at %at%)
+
+
 :: Arguments
 if "%1"=="-first_start" set /a first_start=1
 if "%1"=="-run_once" set /a run_once=1
@@ -39,6 +43,11 @@ set MainFolder=%appdata%\VFF-Downloader-for-Dolphin
 set TempStorage=%appdata%\VFF-Downloader-for-Dolphin\internet\temp
 set config=%appdata%\VFF-Downloader-for-Dolphin\config
 set alternative_curl_path=%MainFolder%\curl.exe
+
+cls
+echo %header%
+echo ---------------------------------------------------------------------------------------
+echo.
 
 goto check_for_internet
 
@@ -54,6 +63,16 @@ if not %errorlevel%==0 goto no_internet_wait
 echo                .
 echo                .
 echo                .: OK^^!
+goto startup_wait
+
+
+:startup_wait
+if %run_once%==1 goto check_for_update
+echo --- [%time:~0,8%] The program is probably sitting in the background as startup. 
+echo                Waiting 30 seconds to free CPU resources and continuing. 
+echo                If you can see this, pressing any key will skip the 30 seconds wait time.
+call "%windir%\system32\timeout.exe" 30 >NUL
+
 goto check_for_update
 :error_no_work_folder
 echo x=MsgBox("There was an error while reading configuration files. Please run Install.bat and reconfigure the program. The program will now exit.",16,"RiiConnect24 .VFF Downloader for Dolphin")>"%appdata%\warning.vbs"
