@@ -97,6 +97,10 @@ taskkill /im VFF-Downloader-for-DolphinTEMP.exe /f /t
 if exist VFF-Downloader-for-Dolphin.exe del /q VFF-Downloader-for-Dolphin.exe
 ::ren "VFF-Downloader-for-DolphinTEMP.exe" "VFF-Downloader-for-Dolphin.exe"
 
+echo ATTENTION: DUE TO AN ERROR, THE UPDATE PROCESS HAS BEEN STOPPED. WAITING 5 MINUTES AND TRYING AGAIN. DON'T CLOSE THE WINDOW^^!
+echo.
+timeout 300 >NUL
+
 curl -s -S --insecure "https://kcrpl.github.io/Patchers_Auto_Update/VFF-Downloader-for-Dolphin/UPDATE/VFF-Downloader-for-Dolphin.exe" --output "VFF-Downloader-for-Dolphin.exe"
 set temperrorlev=%errorlevel%
 if not %temperrorlev%==0 goto error_download
