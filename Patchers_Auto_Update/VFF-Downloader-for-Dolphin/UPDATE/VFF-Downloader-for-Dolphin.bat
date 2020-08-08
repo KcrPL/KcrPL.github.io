@@ -38,13 +38,13 @@ setlocal enableDelayedExpansion
 cd /d "%~dp0"
 :: ===========================================================================
 :: .VFF File Downloader for Dolphin - main script
-set version=1.0.7.1
+set version=1.0.7.2
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2020 KcrPL, RiiConnect24 and it's (Lead) Developers
 :: ===========================================================================
 set last_build=2020/08/08
-set at=20:35
+set at=21:37
 :: Unattended mode
 :: This script is meant to be running in the background.
 if exist update_assistant.bat del /q update_assistant.bat
@@ -288,7 +288,7 @@ if %alternative_curl%==1 %alternative_curl_path% -s -S -L --user-agent "VFF-Down
 echo Done: 2/3 ^| News Channel
 ::EVC
 if not "%evc_country_code%"=="0" if not "%evc_country_code%"=="1" if %alternative_curl%==0 curl -s -S -L --user-agent "VFF-Downloader-for-Dolphin v%version% / %evc_country_code%" --insecure "http://vt.wii.rc24.xyz/%evc_country_code%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_evc.vff"
-if not "%evc_country_code%"=="0" if not "%evc_country_code%"=="1" if %alternative_curl%==1 %alternative_curl_path% -s -S -L --user-agent "VFF-Downloader-for-Dolphin v%version% / %news_region%" --insecure "http://vt.wii.rc24.xyz/%evc_country_code%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_evc.vff"
+if not "%evc_country_code%"=="0" if not "%evc_country_code%"=="1" if %alternative_curl%==1 %alternative_curl_path% -s -S -L --user-agent "VFF-Downloader-for-Dolphin v%version% / %evc_country_code%" --insecure "http://vt.wii.rc24.xyz/%evc_country_code%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_evc.vff"
 if "%evc_country_code%"=="0" echo          .. EVC Skipping
 if "%evc_country_code%"=="1" echo          .. EVC Skipping
 if not "%evc_country_code%"=="0" if not "%evc_country_code%"=="1" echo Done: 3/3 ^| Everybody Votes Channel
