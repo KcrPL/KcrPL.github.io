@@ -5,7 +5,7 @@ echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: .VFF File Downloader for Dolphin
-set version=1.0.6
+set version=1.0.7
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2020 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -32,8 +32,8 @@ if "%1"=="-RC24Patcher_assisted" set /a rc24patcher=1
 :: Window Title
 title .VFF File Downloader for Dolphin v%version% Created by @KcrPL
 
-set last_build=2020/04/04
-set at=10:19
+set last_build=2020/08/08
+set at=20:01
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
@@ -59,7 +59,147 @@ if not exist "%config%" md "%config%"
 if exist "%appdata%\RiiConnect24Patcher\internet\temp\background_color.txt" for /f "usebackq" %%a in ("%appdata%\RiiConnect24Patcher\internet\temp\background_color.txt") do color %%a
 
 if %rc24patcher%==1 goto 1
+
+if exist "%config%\evc_country_code.txt" set /p evc_country_code=<"%config%\evc_country_code.txt"
+if exist "%config%\evc_country_code.txt" if %evc_country_code%==1 goto begin_main_evc_update_notify
+
 goto begin_main
+:begin_main_evc_update_notify
+cls
+echo %header%
+echo              `..````                                                  
+echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`                
+echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd                
+echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs                
+echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+        
+echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:                
+echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.                
+echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN            
+echo             ommmmN.:mMMMMMMMMMMMMmNMMMMMMMMMMMMMMMMMd                 
+echo             smmmmm`+mMMMMMMMMMNhMNNMNNMMMMMMMMMMMMMMy                 
+echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+                 
+echo ---------------------------------------------------------------------------------------------------------------------------
+echo    /---\   Notification.              
+echo   /     \  
+echo  /   ^^!   \ Welcome back^^! We've updated the app since you last visited us here. 
+echo  --------- We now support Everybody Votes Channel.
+echo.
+echo            We will now help you configure the program. 
+echo.
+echo       Do you wish to continue?
+echo       1. Continue   2. Go back to Main Menu    3. Exit
+echo ---------------------------------------------------------------------------------------------------------------------------
+echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+                    
+echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm                    
+echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+                   
+echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm                   
+echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/    
+echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy   
+echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`   
+echo                   `.              yddyo++:    `-/oymNNNNNdy+:`        
+echo                                   -odhhhhyddmmmmmNNmhs/:`             
+echo                                     :syhdyyyyso+/-`                   
+set /p s=Choose: 
+if %s%==1 goto begin_main_evc_update_1
+if %s%==2 goto begin_main
+if %s%==3 exit
+goto begin_main_evc_update_notify
+
+:begin_main_evc_update_1
+cls
+echo %header%
+echo ----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Again, we're glad to see you again.
+echo.
+echo --- Everybody Votes Channel Configuration ---
+if %incorrect_region%==1 (
+echo.
+echo :--------------------------------------------------:
+echo : Incorrect region number. Choose a correct one.   :
+echo :--------------------------------------------------:
+)
+set incorrect_region=0
+echo.
+echo Please choose a region to use with Everybody Votes Channel.
+echo.
+echo 016: Brazil         018: Canada         020: Chile
+echo 021: Colombia       022: Costa Rica     025: Ecuador
+echo 030: Guatemala      036: Mexico         040: Panama
+echo 042: Peru           049: United States  052: Venezuela
+echo 065: Australia      066: Austria        067: Belgium
+echo 074: Denmark        076: Finland        077: France
+echo 078: Germany        079: Greece         082: Ireland
+echo 083: Italy          088: Luxembourg     094: Netherlands
+echo 095: New Zealand    096: Norway         097: Poland
+echo 098: Portugal       105: Spain          107: Sweden
+echo 108: Switzerland    110: United Kingdom
+echo.
+set /p region=Choose your region: 
+:1_detect_1_check
+set region_name=NUL
+if "%region%"=="016" set region_name=Brazil
+if "%region%"=="018" set region_name=Canad
+if "%region%"=="020" set region_name=Chile
+if "%region%"=="021" set region_name=Colombia
+if "%region%"=="022" set region_name=Costa Rica
+if "%region%"=="025" set region_name=Ecuador
+if "%region%"=="030" set region_name=Guatemala
+if "%region%"=="036" set region_name=Mexico
+if "%region%"=="040" set region_name=Panama
+if "%region%"=="042" set region_name=Peru
+if "%region%"=="049" set region_name=United States
+if "%region%"=="052" set region_name=Venezuela
+if "%region%"=="065" set region_name=Australia
+if "%region%"=="066" set region_name=Austria
+if "%region%"=="067" set region_name=Belgium 
+if "%region%"=="074" set region_name=Denmark
+if "%region%"=="076" set region_name=Finland
+if "%region%"=="077" set region_name=France
+if "%region%"=="078" set region_name=Germany
+if "%region%"=="079" set region_name=Greece
+if "%region%"=="082" set region_name=Ireland
+if "%region%"=="083" set region_name=Italy
+if "%region%"=="088" set region_name=Luxembourg
+if "%region%"=="094" set region_name=Netherlands
+if "%region%"=="095" set region_name=New Zealand
+if "%region%"=="096" set region_name=Norway
+if "%region%"=="097" set region_name=Poland
+if "%region%"=="098" set region_name=Portugal
+if "%region%"=="105" set region_name=Spain
+if "%region%"=="107" set region_name=Sweden
+if "%region%"=="108" set region_name=Switzerland
+if "%region%"=="110" set region_name=United Kingdom
+
+if "%region_name%"=="NUL" (
+set incorrect_region=1
+goto begin_main_evc_update_1
+)
+>"%config%\evc_country_code.txt" echo %region%
+goto begin_main_evc_update_2
+
+:begin_main_evc_update_2
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Alright, that's all I needed to know.
+echo.
+echo Sorry for taking your time, you can now come back to your work.
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Few things to note:
+echo 	1) The changes will apply the next time .VFF Downloader is started. (After you restart your computer etc.)
+echo.
+echo 	2) Everybody Votes Channel will not work if you won't use the save file from your Wii.
+echo    	If you don't have a Wii, I'm sorry but there's nothing you can do unless you find a save file.
+echo.
+echo 	3) If you need to get Everybody Votes Channel .WAD file, please run RiiConnect24 Patcher.
+echo.
+echo That's it, press anything to close the program.
+pause>NUL
+exit
+
 :begin_main
 cls
 mode %mode%
@@ -543,7 +683,9 @@ echo : Incorrect region number. Choose a correct one.   :
 echo :--------------------------------------------------:
 )
 set incorrect_region=0
+echo.
 echo Now, you need to choose your region to use with Forecast Channel from the list below.
+echo.
 echo 001: Japan                    033: Honduras                       078: Germany
 echo 008: Anguilla                 034: Jamaica                        079: Greece
 echo 009: Antigua and Barbuda      035: Martinique                     082: Ireland
@@ -682,7 +824,9 @@ echo --- Forecast Channel Configuration ---
 echo.
 echo Languages available for %region_name%.
 echo.
-echo Here is a list of languages available. Choose one:
+echo Here is a list of languages available. Cities name will appear in the language that you will select. 
+echo.
+echo Choose one:
 echo (If you can see more, choose a language that you understand)
 echo.
 echo R. Return.
@@ -750,7 +894,96 @@ if %region_news%==5 echo 4_International>"%config%\news_region.txt"
 if %region_news%==6 echo 5_Europe>"%config%\news_region.txt"
 if %region_news%==7 echo 6_Europe>"%config%\news_region.txt"
 
+goto 3_evc
+:3_evc
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo --- Everybody Votes Channel Configuration ---
+if %incorrect_region%==1 (
+echo.
+echo :--------------------------------------------------:
+echo : Incorrect region number. Choose a correct one.   :
+echo :--------------------------------------------------:
+)
+set incorrect_region=0
+echo.
+echo We're nearing to an end. Please choose a region to use with Everybody Votes Channel.
+echo.
+echo 016: Brazil         018: Canada         020: Chile
+echo 021: Colombia       022: Costa Rica     025: Ecuador
+echo 030: Guatemala      036: Mexico         040: Panama
+echo 042: Peru           049: United States  052: Venezuela
+echo 065: Australia      066: Austria        067: Belgium
+echo 074: Denmark        076: Finland        077: France
+echo 078: Germany        079: Greece         082: Ireland
+echo 083: Italy          088: Luxembourg     094: Netherlands
+echo 095: New Zealand    096: Norway         097: Poland
+echo 098: Portugal       105: Spain          107: Sweden
+echo 108: Switzerland    110: United Kingdom
+echo.
+set /p region=Choose your region: 
+:1_detect_1_check
+set region_name=NUL
+if "%region%"=="016" set region_name=Brazil
+if "%region%"=="018" set region_name=Canad
+if "%region%"=="020" set region_name=Chile
+if "%region%"=="021" set region_name=Colombia
+if "%region%"=="022" set region_name=Costa Rica
+if "%region%"=="025" set region_name=Ecuador
+if "%region%"=="030" set region_name=Guatemala
+if "%region%"=="036" set region_name=Mexico
+if "%region%"=="040" set region_name=Panama
+if "%region%"=="042" set region_name=Peru
+if "%region%"=="049" set region_name=United States
+if "%region%"=="052" set region_name=Venezuela
+if "%region%"=="065" set region_name=Australia
+if "%region%"=="066" set region_name=Austria
+if "%region%"=="067" set region_name=Belgium 
+if "%region%"=="074" set region_name=Denmark
+if "%region%"=="076" set region_name=Finland
+if "%region%"=="077" set region_name=France
+if "%region%"=="078" set region_name=Germany
+if "%region%"=="079" set region_name=Greece
+if "%region%"=="082" set region_name=Ireland
+if "%region%"=="083" set region_name=Italy
+if "%region%"=="088" set region_name=Luxembourg
+if "%region%"=="094" set region_name=Netherlands
+if "%region%"=="095" set region_name=New Zealand
+if "%region%"=="096" set region_name=Norway
+if "%region%"=="097" set region_name=Poland
+if "%region%"=="098" set region_name=Portugal
+if "%region%"=="105" set region_name=Spain
+if "%region%"=="107" set region_name=Sweden
+if "%region%"=="108" set region_name=Switzerland
+if "%region%"=="110" set region_name=United Kingdom
+
+if "%region_name%"=="NUL" (
+set incorrect_region=1
+goto 3_evc
+)
+>"%config%\evc_country_code.txt" echo %region%
+goto 3_evc_note
+
+:3_evc_note
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Note for Everybody Votes Channel:
+echo.
+echo 1) Everybody Votes Channel will not work if you won't use the save file from your Wii.
+echo    If you don't have a Wii, I'm sorry but there's nothing you can do unless you find a save file.
+echo.
+echo 2) If you need to get Everybody Votes Channel .WAD file, please run RiiConnect24 Patcher.
+echo.
+echo Press any key to continue.
+pause>NUL
 goto 4
+
+
+
 :4
 cls
 echo %header%

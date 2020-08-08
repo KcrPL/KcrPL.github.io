@@ -1,3 +1,7 @@
+1.0.7
+- We now support Everybody Votes Channel. Install.bat will guide you trough the configuration process.
+- Few bug fixes.
+
 1.0.6
 - Fix for selecting Argentina not working.
 

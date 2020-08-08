@@ -1,3 +1,8 @@
+1.2.4
+- Preparing for the next wad2bin update.
+- We now support Everybody Votes Channel for Dolphin. You can get the WAD using this patcher.
+- You can now use the homebrew app to automatically patch 4:3 bars on Wii U.
+
 1.2.3.2
 - Fixed an error that occurs if you're running wad2bin menu for the first time.
 

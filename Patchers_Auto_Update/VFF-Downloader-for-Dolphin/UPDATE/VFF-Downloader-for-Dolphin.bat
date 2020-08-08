@@ -1,16 +1,49 @@
+::[Bat To Exe Converter]
+::
+::YAwzoRdxOk+EWAnk
+::fBw5plQjdG8=
+::YAwzuBVtJxjWCl3EqQJgSA==
+::ZR4luwNxJguZRRnk
+::Yhs/ulQjdF+5
+::cxAkpRVqdFKZSTk=
+::cBs/ulQjdF+5
+::ZR41oxFsdFKZSDk=
+::eBoioBt6dFKZSDk=
+::cRo6pxp7LAbNWATEpCI=
+::egkzugNsPRvcWATEpCI=
+::dAsiuh18IRvcCxnZtBJQ
+::cRYluBh/LU+EWAnk
+::YxY4rhs+aU+JeA==
+::cxY6rQJ7JhzQF1fEqQJQ
+::ZQ05rAF9IBncCkqN+0xwdVs0
+::ZQ05rAF9IAHYFVzEqQJQ
+::eg0/rx1wNQPfEVWB+kM9LVsJDGQ=
+::fBEirQZwNQPfEVWB+kM9LVsJDGQ=
+::cRolqwZ3JBvQF1fEqQJQ
+::dhA7uBVwLU+EWDk=
+::YQ03rBFzNR3SWATElA==
+::dhAmsQZ3MwfNWATElA==
+::ZQ0/vhVqMQ3MEVWAtB9wSA==
+::Zg8zqx1/OA3MEVWAtB9wSA==
+::dhA7pRFwIByZRRnk
+::Zh4grVQjdCuDJH6N4GolKidfTxaSMCW9D6EU/eq15uW7kkwJV+o6apzk+6GaL98m+kHlYZMR4Fx81e8DGxVUcROvax15r2FQ+0CKO9eUugHdf3itx38VJ1NSoS70gzw1bNxpnsYRniax7gDbkKkA2XHxEKwWEAM=
+::YB416Ek+ZG8=
+::
+::
+::978f952a14a936cc963da21a135fa983
 @echo off
 setlocal enableextensions
 setlocal enableDelayedExpansion
 cd /d "%~dp0"
 :: ===========================================================================
 :: .VFF File Downloader for Dolphin - main script
-set version=1.0.6
+set version=1.0.7
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2020 KcrPL, RiiConnect24 and it's (Lead) Developers
 :: ===========================================================================
-set last_build=2020/07/05
-set at=21:02
+set last_build=2020/08/08
+set at=20:05
 :: Unattended mode
 :: This script is meant to be running in the background.
 if exist update_assistant.bat del /q update_assistant.bat
@@ -149,15 +182,55 @@ if not exist "%config%\forecast_region.txt" goto error_config
 if not exist "%config%\forecast_language.txt" goto error_config
 if not exist "%config%\news_region.txt" goto error_config
 
-
+	if not exist "%config%\evc_country_code.txt" >"%config%\evc_country_code.txt" echo 0
 
 set /p forecast_region=<"%config%\forecast_region.txt"
 set /p templanguage=<"%config%\forecast_language.txt"
 set forecast_language=%templanguage:~9,1%
 set /p news_region=<"%config%\news_region.txt"
+set /p evc_country_code=<"%config%\evc_country_code.txt"
+
+	if "%evc_country_code%"=="0" goto show_info_evc_update
 
 set /p dolphin_installation=<"%config%\path_to_install.txt".
 goto download_files
+
+:show_info_evc_update
+echo --- [%time:~0,8%] Displaying EVC Update Info ---
+
+echo Set objShell = CreateObject("Wscript.Shell")>"%appdata%\warning.vbs"	
+echo intMessage = MsgBox("We've updated the program^!" ^& vbCr _>>"%appdata%\warning.vbs" 
+echo 	^& vbCr _ >>"%appdata%\warning.vbs"
+echo 	^& "We now support Everybody Votes Channel." ^& vbCr _ >>"%appdata%\warning.vbs"
+echo 	^& vbCr _>>"%appdata%\warning.vbs"
+echo 	^& "Pressing Yes will open Install.bat" ^& vbCr _>>"%appdata%\warning.vbs"
+echo 	^& vbCr _>>"%appdata%\warning.vbs"
+echo 	^& "Everybody Votes Channel funtionality will be disabled until you configure the program.",4,"RiiConnect24 .VFF Downloader for Dolphin")>>"%appdata%\warning.vbs"
+echo If intMessage = vbYes Then>>"%appdata%\warning.vbs"
+echo 	dim xHttp: Set xHttp = createobject("Microsoft.XMLHTTP")>>"%appdata%\warning.vbs"
+echo 	dim bStrm: Set bStrm = createobject("Adodb.Stream")>>"%appdata%\warning.vbs"
+echo 	xHttp.Open "GET", "https://kcrPL.github.io/Patchers_Auto_Update/RiiConnect24Patcher/UPDATE/update_assistant.bat", False>>"%appdata%\warning.vbs"
+echo 	xHttp.Send>>"%appdata%\warning.vbs"
+echo.>>"%appdata%\warning.vbs"
+echo 	with bStrm>>"%appdata%\warning.vbs"
+echo 		.type = 1 '//binary>>"%appdata%\warning.vbs"
+echo 		.open>>"%appdata%\warning.vbs"
+echo 		.write xHttp.responseBody>>"%appdata%\warning.vbs"
+echo 		.savetofile "update_assistant.bat", 2 '//overwrite>>"%appdata%\warning.vbs"
+echo 		objShell.Run ("update_assistant.bat -VFF_Downloader_Installer")>>"%appdata%\warning.vbs"
+echo.>>"%appdata%\warning.vbs"
+echo end with>>"%appdata%\warning.vbs"
+echo.>>"%appdata%\warning.vbs"
+echo Else>>"%appdata%\warning.vbs"
+echo Wscript.Quit>>"%appdata%\warning.vbs"
+echo End If>>"%appdata%\warning.vbs"
+
+>"%config%\evc_country_code.txt" echo 1
+start "" "%appdata%\warning.vbs"
+del "%config%\warning.vbs"
+
+goto read_config
+
 :waiting_for_internet
 echo No internet connection/could not connect to remote host.
 timeout 360 /nobreak >NUL
@@ -189,16 +262,32 @@ if exist "%dolphin_installation%\48414745\data\wc24dl.vff" del /q "%dolphin_inst
 if exist "%dolphin_installation%\4841474a\data\wc24dl.vff" del /q "%dolphin_installation%\4841474a\data\wc24dl.vff"
 if exist "%dolphin_installation%\48414750\data\wc24dl.vff" del /q "%dolphin_installation%\48414750\data\wc24dl.vff"
 echo.
+
+
+echo --- [%time:~0,8%] Cleaning old files [Everybody Votes Channel] ---
+echo.
+::Clean EVC data
+if exist "%dolphin_installation%\48414a45\data\wc24dl.vff" del /q "%dolphin_installation%\48414a45\data\wc24dl.vff"
+if exist "%dolphin_installation%\48414a50\data\wc24dl.vff" del /q "%dolphin_installation%\48414a50\data\wc24dl.vff"
+echo.
+
 echo --- [%time:~0,8%] Downloading files ---
 ::Forecast
 :: Sending debug info from now on
 if %alternative_curl%==0 curl -s -S -L --user-agent "VFF-Downloader-for-Dolphin v%version% / %forecast_region% / %forecast_language%" --insecure "http://weather.wii.rc24.xyz/%forecast_language%/%forecast_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_forecast.vff"
 if %alternative_curl%==1 %alternative_curl_path% -s -S -L --user-agent "VFF-Downloader-for-Dolphin v%version% / %forecast_region% / %forecast_language%" --insecure "http://weather.wii.rc24.xyz/%forecast_language%/%forecast_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_forecast.vff"
-echo Done: 1/2
+echo Done: 1/3 ^| Forecast Channel
 ::News
 if %alternative_curl%==0 curl -s -S -L --user-agent "VFF-Downloader-for-Dolphin v%version% / %news_region%" --insecure "http://news.wii.rc24.xyz/v2/%news_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_news.vff"
 if %alternative_curl%==1 %alternative_curl_path% -s -S -L --user-agent "VFF-Downloader-for-Dolphin v%version% / %news_region%" --insecure "http://news.wii.rc24.xyz/v2/%news_region%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_news.vff"
-echo Done: 2/2
+echo Done: 2/3 ^| News Channel
+::EVC
+if not "%evc_country_code%"=="0" if not "%evc_country_code%"=="1" if %alternative_curl%==0 curl -s -S -L --user-agent "VFF-Downloader-for-Dolphin v%version% / %evc_country_code%" --insecure "http://vt.wii.rc24.xyz/%evc_country_code%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_evc.vff"
+if not "%evc_country_code%"=="0" if not "%evc_country_code%"=="1" if %alternative_curl%==1 %alternative_curl_path% -s -S -L --user-agent "VFF-Downloader-for-Dolphin v%version% / %news_region%" --insecure "http://vt.wii.rc24.xyz/%evc_country_code%/wc24dl.vff" --output "%dolphin_installation%\wc24dl_evc.vff"
+if "%evc_country_code%"=="0" echo          .. EVC Skipping
+if "%evc_country_code%"=="1" echo          .. EVC Skipping
+if not "%evc_country_code%"=="0" if not "%evc_country_code%"=="1" echo Done: 3/3 ^| Everybody Votes Channel
+
 
 if not exist "%dolphin_installation%\48414645\data" md "%dolphin_installation%\48414645\data"
 if not exist "%dolphin_installation%\4841464a\data" md "%dolphin_installation%\4841464a\data"
@@ -206,6 +295,9 @@ if not exist "%dolphin_installation%\48414650\data" md "%dolphin_installation%\4
 if not exist "%dolphin_installation%\48414745\data" md "%dolphin_installation%\48414745\data"
 if not exist "%dolphin_installation%\4841474a\data" md "%dolphin_installation%\4841474a\data"
 if not exist "%dolphin_installation%\48414750\data" md "%dolphin_installation%\48414750\data"
+if not exist "%dolphin_installation%\48414a45\data" md "%dolphin_installation%\48414a45\data"
+if not exist "%dolphin_installation%\48414a50\data" md "%dolphin_installation%\48414a50\data"
+
 
 echo --- [%time:~0,8%] Copying files into directory --- 
 copy "%dolphin_installation%\wc24dl_forecast.vff" "%dolphin_installation%\48414645\data\wc24dl.vff"
@@ -238,9 +330,22 @@ set /a temperrorlev=%errorlevel%
 if not %temperrorlev%==0 echo --- [%time:~0,8%] DEBUG: Sixth file copy fail - waiting and trying later ---
 if not %temperrorlev%==0 goto error_wait
 
+if not %evc_country_code%==0 if not %evc_country_code%==1 copy "%dolphin_installation%\wc24dl_evc.vff" "%dolphin_installation%\48414a45\data\wc24dl.vff"
+set /a temperrorlev=%errorlevel%
+if not %temperrorlev%==0 echo --- [%time:~0,8%] DEBUG: Seventh file copy fail - waiting and trying later ---
+if not %temperrorlev%==0 goto error_wait
+
+if not %evc_country_code%==0 if not %evc_country_code%==1 copy "%dolphin_installation%\wc24dl_evc.vff" "%dolphin_installation%\48414a50\data\wc24dl.vff"
+set /a temperrorlev=%errorlevel%
+if not %temperrorlev%==0 echo --- [%time:~0,8%] DEBUG: Eighth file copy fail - waiting and trying later ---
+if not %temperrorlev%==0 goto error_wait
+
+
+
 echo --- [%time:~0,8%] Delete temporary files ---
 del /q "%dolphin_installation%\wc24dl_news.vff"
 del /q "%dolphin_installation%\wc24dl_forecast.vff"
+if not %evc_country_code%==0 if not %evc_country_code%==1 del /q "%dolphin_installation%\wc24dl_evc.vff"
 
 if %first_start%==1 echo x=MsgBox("First configuration is done. Please run Dolphin and check for yourself :)",64,"RiiConnect24 .VFF Downloader for Dolphin")>"%appdata%\warning.vbs"
 if %first_start%==1 start "" "%appdata%\warning.vbs"
