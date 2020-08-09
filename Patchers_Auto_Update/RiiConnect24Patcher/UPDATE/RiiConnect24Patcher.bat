@@ -6,7 +6,7 @@ echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: RiiConnect24 Patcher for Windows
-set version=1.2.4
+set version=1.2.4.1
 :: AUTHORS: KcrPL, Larsenv, Apfel
 :: ***************************************************************************
 :: Copyright (c) 2018-2020 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -50,8 +50,8 @@ set hh=0
 :: Window Title
 if %beta%==0 title RiiConnect24 Patcher v%version% Created by @KcrPL, @Larsenv, @Apfel
 if %beta%==1 title RiiConnect24 Patcher v%version% [BETA] Created by @KcrPL, @Larsenv, @Apfel
-set last_build=2020/08/08
-set at=20:19
+set last_build=2020/08/10
+set at=00:19
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
@@ -1916,6 +1916,7 @@ if %percent%==27 if not %temperrorlev%==0 goto error_patching
 goto wiiu_patching_fast_travel_100
 
 :wiiu_patching_fast_travel_28
+if %percent%==28 if not exist apps/ww-43db-patcher md apps\ww-43db-patcher
 if %percent%==28 if not exist "apps/WiiModLite/meta.xml" curl -f -L -s -S --insecure "%FilesHostedOn%/apps/WiiModLite/meta.xml" --output apps/WiiModLite/meta.xml
 if %percent%==28 set /a temperrorlev=%errorlevel%
 if %percent%==28 set modul=Downloading Wii Mod Lite
@@ -2374,7 +2375,7 @@ cls
 echo %header%
 echo -----------------------------------------------------------------------------------------------------------------------------
 echo.
-echo Patching done!
+echo Patching done^^!
 echo.
 echo You can now continue with the guide.
 echo.
