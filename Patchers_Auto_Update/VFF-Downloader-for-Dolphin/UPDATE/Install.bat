@@ -5,7 +5,7 @@ echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: .VFF File Downloader for Dolphin
-set version=1.0.7
+set version=1.0.7.1
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2020 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -22,6 +22,7 @@ set s=NUL
 set /a detected=0
 set /a incorrect_region=0
 set /a temp=0
+set /a evc_country_code=0
 set user_name=%userprofile:~9%
 
 set /a rc24patcher=0
@@ -32,8 +33,8 @@ if "%1"=="-RC24Patcher_assisted" set /a rc24patcher=1
 :: Window Title
 title .VFF File Downloader for Dolphin v%version% Created by @KcrPL
 
-set last_build=2020/08/08
-set at=20:01
+set last_build=2020/08/09
+set at=23:44
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
