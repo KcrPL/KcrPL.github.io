@@ -1,3 +1,6 @@
+1.0.7.1
+- Fix the crash that occurs on start.
+
 1.0.7
 - We now support Everybody Votes Channel. Install.bat will guide you trough the configuration process.
 - Few bug fixes.
