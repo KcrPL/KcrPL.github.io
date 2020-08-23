@@ -1,3 +1,9 @@
+1.2.5
+- We now include News and Forecast Channel patches. They will help anyone with 107304 error.
+
+This is the last feature update in a while. Will resume them in few months. However, for now - only bug fixes will be released.
+
+
 1.2.4.1
 - Fix for Wii U patching not working.
 
@@ -20,10 +26,3 @@
 - You can now see the output of wad2bin if it fails.
 - Got rid of "Install a single WAD file" option.
 - Added error info when wad2bin crashes.
-
-1.2.2
-- Made patching process a little quicker.
-- You can now install WAD channels directly to the SD Card itself! You can now install 150 channels in few minutes. The patcher will guide you through the entire process!
-	> All thanks to DarkMatterCore!
-- The "Homebrew Shop" will now check if the specified app is on the server faster.
-- Deleted the "Close patcher and delete all temporary files" option. It would delete the keys needed by the new feature.

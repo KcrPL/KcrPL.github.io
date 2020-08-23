@@ -1,2 +1,4 @@
-DarkMatterCore fixed installing DLC's in the "Install WAD files directly to the SD Card" menu HOWEVER some DLC files are unsupported.
-In most cases, they can't be loaded from SD Card by your Wii anyway.
+We're now including patches for News and Forecast Channel.
+If you were getting 107304 on these channels, this update will help you.
+
+Please report any issues to KcrPL#4625 on Discord or on GitHub.

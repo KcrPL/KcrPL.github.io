@@ -6,7 +6,7 @@ echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: RiiConnect24 Patcher for Windows
-set version=1.2.4.1
+set version=1.2.5
 :: AUTHORS: KcrPL, Larsenv, Apfel
 :: ***************************************************************************
 :: Copyright (c) 2018-2020 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -50,8 +50,8 @@ set hh=0
 :: Window Title
 if %beta%==0 title RiiConnect24 Patcher v%version% Created by @KcrPL, @Larsenv, @Apfel
 if %beta%==1 title RiiConnect24 Patcher v%version% [BETA] Created by @KcrPL, @Larsenv, @Apfel
-set last_build=2020/08/10
-set at=00:19
+set last_build=2020/08/24
+set at=00:05
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
@@ -3756,6 +3756,7 @@ set /a custominstall_ios=1
 set /a custominstall_evc=1
 set /a custominstall_nc=1
 set /a custominstall_cmoc=1
+set /a custominstall_news_fore=1
 set /a sdcardstatus=0
 set /a errorcopying=0
 set sdcard=NUL
@@ -3774,27 +3775,33 @@ echo.
 if %evcregion%==1 echo 1. Switch region. Current region: Europe
 if %evcregion%==2 echo 1. Switch region. Current region: USA
 echo.
-if %custominstall_ios%==1 echo 2. [X] Forecast/News Channel and Wii Mail (IOS 31 and IOS 80)
-if %custominstall_ios%==0 echo 2. [ ] Forecast/News Channel and Wii Mail (IOS 31 and IOS 80)
-if %custominstall_evc%==1 echo 3. [X] Everybody Votes Channel
-if %custominstall_evc%==0 echo 3. [ ] Everybody Votes Channel
-if %custominstall_nc%==1 echo 4. [X] Nintendo Channel
-if %custominstall_nc%==0 echo 4. [ ] Nintendo Channel
-if %custominstall_cmoc%==1 echo 5. [X] Check Mii Out Channel / Mii Contest Channel
-if %custominstall_cmoc%==0 echo 5. [ ] Check Mii Out Channel / Mii Contest Channel
+if %custominstall_ios%==1 echo 2. [X] IOS Patches [required for other channels to work]
+if %custominstall_ios%==0 echo 2. [ ] IOS Patches [required for other channels to work]
+if %custominstall_news_fore%==1 echo 3. [X] Forecast/News Channel
+if %custominstall_news_fore%==0 echo 3. [ ] Forecast/News Channel
+if %custominstall_evc%==1 echo 4. [X] Everybody Votes Channel
+if %custominstall_evc%==0 echo 4. [ ] Everybody Votes Channel
+if %custominstall_nc%==1 echo 5. [X] Nintendo Channel
+if %custominstall_nc%==0 echo 5. [ ] Nintendo Channel
+if %custominstall_cmoc%==1 echo 6. [X] Check Mii Out Channel / Mii Contest Channel
+if %custominstall_cmoc%==0 echo 6. [ ] Check Mii Out Channel / Mii Contest Channel
 echo.
-echo 6. Begin patching^^!
+echo 7. Begin patching^^!
 echo R. Go back.
 set /p s=
 if %s%==1 goto 2_switch_region
 if %s%==2 goto 2_switch_fore-news-wiimail
-if %s%==3 goto 2_switch_evc
-if %s%==4 goto 2_switch_nc
-if %s%==5 goto 2_switch_cmoc
-if %s%==6 goto 2_2
+if %s%==3 goto 2_switch_fore_news
+if %s%==4 goto 2_switch_evc
+if %s%==5 goto 2_switch_nc
+if %s%==6 goto 2_switch_cmoc
+if %s%==7 goto 2_2
 if %s%==r goto begin_main
 if %s%==R goto begin_main
 goto 2_choose_custom_install_type2
+:2_switch_fore_news
+if %custominstall_news_fore%==1 set /a custominstall_news_fore=0&goto 2_choose_custom_install_type2
+if %custominstall_news_fore%==0 set /a custominstall_news_fore=1&goto 2_choose_custom_install_type2
 :2_switch_region
 if %evcregion%==1 set /a evcregion=2&goto 2_choose_custom_install_type2
 if %evcregion%==2 set /a evcregion=1&goto 2_choose_custom_install_type2
@@ -3859,7 +3866,8 @@ goto 2_auto
 set /a custominstall_ios=1
 set /a custominstall_evc=1
 set /a custominstall_nc=1
-set /a custominstall_cmoc=1	
+set /a custominstall_cmoc=1
+set /a custominstall_news_fore=1	
 cls
 echo %header%
 echo -----------------------------------------------------------------------------------------------------------------------------
@@ -3978,6 +3986,7 @@ set /a temperrorlev=0
 ::
 set /a progress_downloading=0
 set /a progress_ios=0
+set /a progress_news_fore=0
 set /a progress_evc=0
 set /a progress_nc=0
 set /a progress_cmoc=0
@@ -4095,6 +4104,8 @@ if %progress_downloading%==0 echo [ ] Downloading files
 if %progress_downloading%==1 echo [X] Downloading files
 if %custominstall_ios%==1 if %progress_ios%==0 echo [ ] Patching IOS's
 if %custominstall_ios%==1 if %progress_ios%==1 echo [X] Patching IOS's
+if %custominstall_news_fore%==1 if %progress_news_fore%==0 echo [ ] Patching News/Forecast Channel
+if %custominstall_news_fore%==1 if %progress_news_fore%==1 echo [X] Patching News/Forecast Channel
 if %custominstall_evc%==1 if %progress_evc%==0 echo [ ] Everybody Votes Channel
 if %custominstall_evc%==1 if %progress_evc%==1 echo [X] Everybody Votes Channel
 if %custominstall_cmoc%==1 if %evcregion%==1 if %progress_cmoc%==0 echo [ ] Mii Contest Channel
@@ -4111,7 +4122,31 @@ goto patching_fast_travel_100
 
 ::Download files
 :patching_fast_travel_1
+if exist 0001000148415045v512 rmdir /s /q 0001000148415045v512
+if exist 0001000148415050v512 rmdir /s /q 0001000148415050v512
+
+if exist 0001000148414A45v512 rmdir /s /q 0001000148414A45v512
+if exist 0001000148414A50v512 rmdir /s /q 0001000148414A50v512
+if exist 0001000148415450v1792 rmdir /s /q 0001000148415450v1792
+if exist 0001000148415445v1792 rmdir /s /q 0001000148415445v1792 
+if exist unpacked-temp rmdir /s /q unpacked-temp
+if exist IOSPatcher rmdir /s /q IOSPatcher
+if exist EVCPatcher rmdir /s /q EVCPatcher
+if exist NCPatcher rmdir /s /q NCPatcher
+if exist CMOCPatcher rmdir /s /q CMOCPatcher
+if exist NewsChannelPatcher rmdir /s /q NewsChannelPatcher
+if exist 00000001.app del /q 00000001.app
+if exist 0001000248414650v7.wad del /q 0001000248414650v7.wad
+if exist 0001000248414645v7.wad del /q 0001000248414645v7.wad
+if exist 0001000248414750v7.wad del /q 0001000248414750v7.wad
+if exist 0001000248414745v7.wad del /q 0001000248414745v7.wad
+if exist 00000004.app del /q 00000004.app
+if exist 00000001_NC.app del /q 00000001_NC.app
+
+
 md WAD
+if exist NewsChannelPatcher rmdir /s /q NewsChannelPatcher
+if not exist NewsChannelPatcher md NewsChannelPatcher
 if not exist IOSPatcher md IOSPatcher
 if not exist "IOSPatcher/00000006-31.delta" curl -f -L -s -S --insecure "%FilesHostedOn%/IOSPatcher/00000006-31.delta" --output IOSPatcher/00000006-31.delta
 set /a temperrorlev=%errorlevel%
@@ -4242,31 +4277,72 @@ if not exist "CMOCPatcher/patch/xdelta3.exe" curl -f -L -s -S --insecure "%Files
 set /a temperrorlev=%errorlevel%
 set modul=Downloading xdelta3.exe
 if not %temperrorlev%==0 goto error_patching
-goto patching_fast_travel_100
-:patching_fast_travel_14
 if not exist "CMOCPatcher/pack/libWiiSharp.dll" curl -f -L -s -S --insecure "%FilesHostedOn%/CMOCPatcher/pack/libWiiSharp.dll" --output "CMOCPatcher/pack/libWiiSharp.dll"
 set /a temperrorlev=%errorlevel%
 set modul=Downloading libWiiSharp.dll
 if not %temperrorlev%==0 goto error_patching
-goto patching_fast_travel_100
-:patching_fast_travel_15
 if not exist "CMOCPatcher/pack/Sharpii.exe" curl -f -L -s -S --insecure "%FilesHostedOn%/CMOCPatcher/pack/Sharpii.exe" --output CMOCPatcher/pack/Sharpii.exe
 set /a temperrorlev=%errorlevel%
 set modul=Downloading Sharpii.exe
 if not %temperrorlev%==0 goto error_patching
-goto patching_fast_travel_100
-:patching_fast_travel_16
 if not exist "CMOCPatcher/dwn/Sharpii.exe" curl -f -L -s -S --insecure "%FilesHostedOn%/CMOCPatcher/dwn/Sharpii.exe" --output CMOCPatcher/dwn/Sharpii.exe
 set /a temperrorlev=%errorlevel%
 set modul=Downloading Sharpii.exe
 if not %temperrorlev%==0 goto error_patching
-goto patching_fast_travel_100
-:patching_fast_travel_17
 if not exist "CMOCPatcher/dwn/libWiiSharp.dll" curl -f -L -s -S --insecure "%FilesHostedOn%/CMOCPatcher/dwn/libWiiSharp.dll" --output CMOCPatcher/dwn/libWiiSharp.dll
 set /a temperrorlev=%errorlevel%
 set modul=Downloading libWiiSharp.dll
 if not %temperrorlev%==0 goto error_patching
 goto patching_fast_travel_100
+
+:patching_fast_travel_14
+if not exist NewsChannelPatcher md NewsChannelPatcher
+
+if not exist "NewsChannelPatcher/00000001_Forecast_Europe.delta" curl -f -L -s -S --insecure "%FilesHostedOn%/NewsChannelPatcher/URL_Patches/Europe/00000001_Forecast.delta" --output "NewsChannelPatcher/00000001_Forecast_Europe.delta"
+set /a temperrorlev=%errorlevel%
+set modul=Downloading Forecast Channel files
+
+if not exist "NewsChannelPatcher/00000001_Forecast_USA.delta" curl -f -L -s -S --insecure "%FilesHostedOn%/NewsChannelPatcher/URL_Patches/USA/00000001_Forecast.delta" --output "NewsChannelPatcher/00000001_Forecast_USA.delta"
+set /a temperrorlev=%errorlevel%
+set modul=Downloading Forecast Channel files
+
+if not exist "NewsChannelPatcher/00000001_News_Europe.delta" curl -f -L -s -S --insecure "%FilesHostedOn%/NewsChannelPatcher/URL_Patches/Europe/00000001_News.delta" --output "NewsChannelPatcher/00000001_News_Europe.delta"
+set /a temperrorlev=%errorlevel%
+set modul=Downloading News Channel files
+
+if not exist "NewsChannelPatcher/00000001_News_USA.delta" curl -f -L -s -S --insecure "%FilesHostedOn%/NewsChannelPatcher/URL_Patches/USA/00000001_Forecast.delta" --output "NewsChannelPatcher/00000001_News_USA.delta"
+set /a temperrorlev=%errorlevel%
+set modul=Downloading News Channel files
+
+if not %temperrorlev%==0 goto error_patching
+goto patching_fast_travel_100
+
+:patching_fast_travel_15
+if not exist "NewsChannelPatcher\libWiiSharp.dll" curl -f -L -s -S --insecure "%FilesHostedOn%/NewsChannelPatcher/libWiiSharp.dll" --output "NewsChannelPatcher/libWiiSharp.dll"
+set /a temperrorlev=%errorlevel%
+set modul=Downloading News Channel files
+if not %temperrorlev%==0 goto error_patching
+goto patching_fast_travel_100
+
+:patching_fast_travel_16
+if not exist "NewsChannelPatcher\Sharpii.exe" curl -f -L -s -S --insecure "%FilesHostedOn%/NewsChannelPatcher/Sharpii.exe" --output "NewsChannelPatcher/Sharpii.exe"
+set /a temperrorlev=%errorlevel%
+set modul=Downloading News Channel files
+if not %temperrorlev%==0 goto error_patching
+goto patching_fast_travel_100
+
+:patching_fast_travel_17
+if not exist "NewsChannelPatcher\WadInstaller.dll" curl -f -L -s -S --insecure "%FilesHostedOn%/NewsChannelPatcher/WadInstaller.dll" --output "NewsChannelPatcher/WadInstaller.dll"
+set /a temperrorlev=%errorlevel%
+set modul=Downloading News Channel files
+if not %temperrorlev%==0 goto error_patching
+
+if not exist "NewsChannelPatcher\xdelta3.exe" curl -f -L -s -S --insecure "%FilesHostedOn%/NewsChannelPatcher/xdelta3.exe" --output "NewsChannelPatcher/xdelta3.exe"
+set /a temperrorlev=%errorlevel%
+set modul=Downloading News Channel files
+if not %temperrorlev%==0 goto error_patching
+goto patching_fast_travel_100
+
 :patching_fast_travel_18
 if not exist "CMOCPatcher/dwn/0001000148415045v512/cetk" curl -f -L -s -S --insecure "%FilesHostedOn%/CMOCPatcher/dwn/0001000148415045v512/cetk" --output CMOCPatcher/dwn/0001000148415045v512/cetk
 if not exist "CMOCPatcher/dwn/0001000148415045v512/cert" curl -f -L -s -S --insecure "%FilesHostedOn%/CMOCPatcher/dwn/0001000148415045v512/cert" --output CMOCPatcher/dwn/0001000148415045v512/cert
@@ -4426,112 +4502,185 @@ if %custominstall_ios%==1 call IOSPatcher\Sharpii.exe NUSD -IOS 80 -v latest -o 
 if %custominstall_ios%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_ios%==1 set modul=Sharpii.exe
 if %custominstall_ios%==1 if not %temperrorlev%==0 goto error_patching
-goto patching_fast_travel_100
-:patching_fast_travel_32
 if %custominstall_ios%==1 call IOSPatcher\Sharpii.exe WAD -u IOSPatcher\IOS31-old.wad IOSPatcher/IOS31/ >NUL
 if %custominstall_ios%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_ios%==1 set modul=Sharpii.exe
 if %custominstall_ios%==1 if not %temperrorlev%==0 goto error_patching
-goto patching_fast_travel_100
-:patching_fast_travel_33
 if %custominstall_ios%==1 call IOSPatcher\Sharpii.exe WAD -u IOSPatcher\IOS80-old.wad IOSPatcher\IOS80/ >NUL
 if %custominstall_ios%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_ios%==1 set modul=Sharpii.exe
 if %custominstall_ios%==1 if not %temperrorlev%==0 goto error_patching
-goto patching_fast_travel_100
-:patching_fast_travel_34
 if %custominstall_ios%==1 move /y IOSPatcher\IOS31\00000006.app IOSPatcher\00000006.app >NUL
 if %custominstall_ios%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_ios%==1 set modul=move.exe
 if %custominstall_ios%==1 if not %temperrorlev%==0 goto error_patching
 goto patching_fast_travel_100
-:patching_fast_travel_35
+:patching_fast_travel_32
 if %custominstall_ios%==1 call IOSPatcher\xdelta3.exe -f -d -s IOSPatcher\00000006.app IOSPatcher\00000006-31.delta IOSPatcher\IOS31\00000006.app >NUL
 if %custominstall_ios%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_ios%==1 set modul=xdelta.exe
 if %custominstall_ios%==1 if not %temperrorlev%==0 goto error_patching
 goto patching_fast_travel_100
-:patching_fast_travel_36
+:patching_fast_travel_33
 if %custominstall_ios%==1 move /y IOSPatcher\IOS80\00000006.app IOSPatcher\00000006.app >NUL
 if %custominstall_ios%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_ios%==1 set modul=move.exe
 if %custominstall_ios%==1 if not %temperrorlev%==0 goto error_patching
-goto patching_fast_travel_100
-:patching_fast_travel_37
 if %custominstall_ios%==1 call IOSPatcher\xdelta3.exe -f -d -s IOSPatcher\00000006.app IOSPatcher\00000006-80.delta IOSPatcher\IOS80\00000006.app >NUL
 if %custominstall_ios%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_ios%==1 set modul=xdelta3.exe
 if %custominstall_ios%==1 if not %temperrorlev%==0 goto error_patching
-goto patching_fast_travel_100
-:patching_fast_travel_38
 if %custominstall_ios%==1 if not exist IOSPatcher\WAD mkdir IOSPatcher\WAD
 if %custominstall_ios%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_ios%==1 set modul=mkdir.exe
 if %custominstall_ios%==1 if not %temperrorlev%==0 goto error_patching
 goto patching_fast_travel_100
-:patching_fast_travel_39
+:patching_fast_travel_34
 if %custominstall_ios%==1 call IOSPatcher\Sharpii.exe WAD -p IOSPatcher\IOS31\ "IOSPatcher\WAD\IOS31 Wii Only (IOS) (RiiConnect24).wad" -fs >NUL
 if %custominstall_ios%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_ios%==1 set modul=Sharpii.exe
 if %custominstall_ios%==1 if not %temperrorlev%==0 goto error_patching
-goto patching_fast_travel_100
-:patching_fast_travel_40
 if %custominstall_ios%==1 call IOSPatcher\Sharpii.exe WAD -p IOSPatcher\IOS80\ "IOSPatcher\WAD\IOS80 Wii Only (IOS) (RiiConnect24).wad" -fs >NUL
 if %custominstall_ios%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_ios%==1 set modul=Sharpii.exe
 if %custominstall_ios%==1 if not %temperrorlev%==0 goto error_patching
-goto patching_fast_travel_100
-:patching_fast_travel_40
+:patching_fast_travel_35
 if %custominstall_ios%==1 del IOSPatcher\00000006.app /q >NUL
 if %custominstall_ios%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_ios%==1 set modul=del.exe
 if %custominstall_ios%==1 if not %temperrorlev%==0 goto error_patching
-goto patching_fast_travel_100
-:patching_fast_travel_41
 if %custominstall_ios%==1 del IOSPatcher\IOS31-old.wad /q >NUL
 if %custominstall_ios%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_ios%==1 set modul=del.exe
 if %custominstall_ios%==1 if not %temperrorlev%==0 goto error_patching
-goto patching_fast_travel_100
-:patching_fast_travel_42
 if %custominstall_ios%==1 del IOSPatcher\IOS80-old.wad /q >NUL
 if %custominstall_ios%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_ios%==1 set modul=del.exe
 if %custominstall_ios%==1 if not %temperrorlev%==0 goto error_patching
-goto patching_fast_travel_100
-:patching_fast_travel_43
 if %custominstall_ios%==1 if exist IOSPatcher\IOS31 rmdir /s /q IOSPatcher\IOS31 >NUL
 if %custominstall_ios%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_ios%==1 set modul=rmdir.exe
 if %custominstall_ios%==1 if not %temperrorlev%==0 goto error_patching
-goto patching_fast_travel_100
-:patching_fast_travel_44
 if %custominstall_ios%==1 if exist IOSPatcher\IOS80 rmdir /s /q IOSPatcher\IOS80 >NUL
 if %custominstall_ios%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_ios%==1 set modul=rmdir.exe
 if %custominstall_ios%==1 if not %temperrorlev%==0 goto error_patching
 goto patching_fast_travel_100
-:patching_fast_travel_45
+:patching_fast_travel_36
 if %custominstall_ios%==1 call IOSPatcher\Sharpii.exe IOS "IOSPatcher\WAD\IOS31 Wii Only (IOS) (RiiConnect24).wad" -fs -es -np -vp>NUL
 if %custominstall_ios%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_ios%==1 set modul=Sharpii.exe
 if %custominstall_ios%==1 if not %temperrorlev%==0 goto error_patching
 goto patching_fast_travel_100
-:patching_fast_travel_46
+:patching_fast_travel_37
 if %custominstall_ios%==1 call IOSPatcher\Sharpii.exe IOS IOSPatcher\WAD\IOS80 Wii Only (IOS) (RiiConnect24).wad" -fs -es -np -vp>NUL
 if %custominstall_ios%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_ios%==1 set modul=Sharpii.exe
 if %custominstall_ios%==1 if not %temperrorlev%==0 goto error_patching
 goto patching_fast_travel_100
-:patching_fast_travel_47
+:patching_fast_travel_38
 if %custominstall_ios%==1 if not exist WAD md WAD
 if %custominstall_ios%==1 move "IOSPatcher\WAD\IOS31 Wii Only (IOS) (RiiConnect24).wad" "WAD"
 if %custominstall_ios%==1 move "IOSPatcher\WAD\IOS80 Wii Only (IOS) (RiiConnect24).wad" "WAD"
 goto patching_fast_travel_100
-:patching_fast_travel_48
+:patching_fast_travel_39
 if %custominstall_ios%==1 if exist IOSPatcher rmdir /s /q IOSPatcher
 if %custominstall_ios%==1 set /a progress_ios=1
 goto patching_fast_travel_100
+
+::News/Forecast Channel
+::News
+:patching_fast_travel_40
+md NewsChannelPatcher
+if %evcregion%==1 call NewsChannelPatcher\sharpii.exe nusd -id 0001000248414750 -v 7 -wad>NUL
+	if %evcregion%==1 set /a temperrorlev=%errorlevel%
+	if %evcregion%==1 set modul=Downloading News Channel
+	if %evcregion%==1 if not %temperrorlev%==0 goto error_patching
+if %evcregion%==2 call NewsChannelPatcher\sharpii.exe nusd -id 0001000248414745 -v 7 -wad>NUL
+	if %evcregion%==2 set /a temperrorlev=%errorlevel%
+	if %evcregion%==2 set modul=Downloading News Channel
+	if %evcregion%==2 if not %temperrorlev%==0 goto error_patching
+goto patching_fast_travel_100
+:patching_fast_travel_42
+
+if %evcregion%==1 call NewsChannelPatcher\sharpii.exe wad -u 0001000248414750v7.wad unpacked-temp/
+	if %evcregion%==1 set /a temperrorlev=%errorlevel%
+	if %evcregion%==1 set modul=Unpacking News Channel
+	if %evcregion%==1 if not %temperrorlev%==0 goto error_patching
+if %evcregion%==2 call NewsChannelPatcher\sharpii.exe wad -u 0001000248414745v7.wad unpacked-temp/
+	if %evcregion%==2 set /a temperrorlev=%errorlevel%
+	if %evcregion%==2 set modul=Unpacking News Channel
+	if %evcregion%==2 if not %temperrorlev%==0 goto error_patching
+goto patching_fast_travel_100
+:patching_fast_travel_43
+ren unpacked-temp\00000001.app source.app
+	set /a temperrorlev=%errorlevel%
+	set modul=Moving News Channel 0000001.app
+	if not %temperrorlev%==0 goto error_patching
+if %evcregion%==1 call NewsChannelPatcher\xdelta3 -d -f -s unpacked-temp\source.app NewsChannelPatcher\00000001_News_Europe.delta unpacked-temp\00000001.app
+if %evcregion%==2 call NewsChannelPatcher\xdelta3 -d -f -s unpacked-temp\source.app NewsChannelPatcher\00000001_News_USA.delta unpacked-temp\00000001.app
+
+	set /a temperrorlev=%errorlevel%
+	set modul=Patching News Channel delta
+	if not %temperrorlev%==0 goto error_patching
+goto patching_fast_travel_100
+:patching_fast_travel_44
+if %evcregion%==1 NewsChannelPatcher\sharpii.exe wad -p unpacked-temp/ "WAD\News Channel (Europe) (Channel) (RiiConnect24).wad"
+	if %evcregion%==1 set /a temperrorlev=%errorlevel%
+	if %evcregion%==1 set modul=Packing News Channel
+	if %evcregion%==1 if not %temperrorlev%==0 goto error_patching
+if %evcregion%==2 NewsChannelPatcher\sharpii.exe wad -p unpacked-temp/ "WAD\News Channel (USA) (Channel) (RiiConnect24).wad"
+	if %evcregion%==2 set /a temperrorlev=%errorlevel%
+	if %evcregion%==2 set modul=Packing News Channel
+	if %evcregion%==2 if not %temperrorlev%==0 goto error_patching
+	rmdir /s /q unpacked-temp
+goto patching_fast_travel_100
+
+::Forecast
+:patching_fast_travel_45
+if %evcregion%==1 call NewsChannelPatcher\sharpii.exe nusd -id 0001000248414650 -v 7 -wad>NUL
+	if %evcregion%==1 set /a temperrorlev=%errorlevel%
+	if %evcregion%==1 set modul=Downloading Forecast Channel
+	if %evcregion%==1 if not %temperrorlev%==0 goto error_patching
+if %evcregion%==2 call NewsChannelPatcher\sharpii.exe nusd -id 0001000248414645 -v 7 -wad>NUL
+	if %evcregion%==2 set /a temperrorlev=%errorlevel%
+	if %evcregion%==2 set modul=Downloading Forecast Channel
+	if %evcregion%==2 if not %temperrorlev%==0 goto error_patching
+goto patching_fast_travel_100
+:patching_fast_travel_46
+
+if %evcregion%==1 call NewsChannelPatcher\sharpii.exe wad -u 0001000248414650v7.wad unpacked-temp/
+	if %evcregion%==1 set /a temperrorlev=%errorlevel%
+	if %evcregion%==1 set modul=Unpacking Forecast Channel
+	if %evcregion%==1 if not %temperrorlev%==0 goto error_patching
+if %evcregion%==2 call NewsChannelPatcher\sharpii.exe wad -u 0001000248414645v7.wad unpacked-temp/
+	if %evcregion%==2 set /a temperrorlev=%errorlevel%
+	if %evcregion%==2 set modul=Unpacking Forecast Channel
+	if %evcregion%==2 if not %temperrorlev%==0 goto error_patching
+goto patching_fast_travel_100
+:patching_fast_travel_47
+ren unpacked-temp\00000001.app source.app
+	set /a temperrorlev=%errorlevel%
+	set modul=Moving Forecast Channel 0000001.app
+	if not %temperrorlev%==0 goto error_patching
+if %evcregion%==1 call NewsChannelPatcher\xdelta3 -d -f -s unpacked-temp\source.app NewsChannelPatcher\00000001_Forecast_Europe.delta unpacked-temp\00000001.app
+if %evcregion%==2 call NewsChannelPatcher\xdelta3 -d -f -s unpacked-temp\source.app NewsChannelPatcher\00000001_Forecast_USA.delta unpacked-temp\00000001.app
+	set /a temperrorlev=%errorlevel%
+	set modul=Patching Forecast Channel delta
+	if not %temperrorlev%==0 goto error_patching
+goto patching_fast_travel_100
+:patching_fast_travel_49
+if %evcregion%==1 NewsChannelPatcher\sharpii.exe wad -p unpacked-temp/ "WAD\Forecast Channel (Europe) (Channel) (RiiConnect24).wad"
+	if %evcregion%==1 set /a temperrorlev=%errorlevel%
+	if %evcregion%==1 set modul=Packing Forecast Channel
+	if %evcregion%==1 if not %temperrorlev%==0 goto error_patching
+if %evcregion%==2 NewsChannelPatcher\sharpii.exe wad -p unpacked-temp/ "WAD\Forecast Channel (USA) (Channel) (RiiConnect24).wad"
+	if %evcregion%==2 set /a temperrorlev=%errorlevel%
+	if %evcregion%==2 set modul=Packing Forecast Channel
+	if %evcregion%==2 if not %temperrorlev%==0 goto error_patching
+set /a progress_news_fore=1
+goto patching_fast_travel_100
+
 ::EVC Patcher
 :patching_fast_travel_50
 if %custominstall_evc%==1 if not exist 0001000148414A50v512 md 0001000148414A50v512
@@ -4778,11 +4927,17 @@ if exist 0001000148414A45v512 rmdir /s /q 0001000148414A45v512
 if exist 0001000148414A50v512 rmdir /s /q 0001000148414A50v512
 if exist 0001000148415450v1792 rmdir /s /q 0001000148415450v1792
 if exist 0001000148415445v1792 rmdir /s /q 0001000148415445v1792 
+if exist unpacked-temp rmdir /s /q unpacked-temp
 if exist IOSPatcher rmdir /s /q IOSPatcher
 if exist EVCPatcher rmdir /s /q EVCPatcher
 if exist NCPatcher rmdir /s /q NCPatcher
 if exist CMOCPatcher rmdir /s /q CMOCPatcher
+if exist NewsChannelPatcher rmdir /s /q NewsChannelPatcher
 del /q 00000001.app
+del /q 0001000248414650v7.wad
+del /q 0001000248414645v7.wad
+del /q 0001000248414750v7.wad
+del /q 0001000248414745v7.wad
 del /q 00000004.app
 del /q 00000001_NC.app
 set /a progress_finishing=1
