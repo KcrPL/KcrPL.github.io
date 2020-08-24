@@ -6,7 +6,7 @@ echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: RiiConnect24 Patcher for Windows
-set version=1.2.5
+set version=1.2.5.1
 :: AUTHORS: KcrPL, Larsenv, Apfel
 :: ***************************************************************************
 :: Copyright (c) 2018-2020 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -51,7 +51,7 @@ set hh=0
 if %beta%==0 title RiiConnect24 Patcher v%version% Created by @KcrPL, @Larsenv, @Apfel
 if %beta%==1 title RiiConnect24 Patcher v%version% [BETA] Created by @KcrPL, @Larsenv, @Apfel
 set last_build=2020/08/24
-set at=00:05
+set at=12:56
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
@@ -4310,7 +4310,7 @@ if not exist "NewsChannelPatcher/00000001_News_Europe.delta" curl -f -L -s -S --
 set /a temperrorlev=%errorlevel%
 set modul=Downloading News Channel files
 
-if not exist "NewsChannelPatcher/00000001_News_USA.delta" curl -f -L -s -S --insecure "%FilesHostedOn%/NewsChannelPatcher/URL_Patches/USA/00000001_Forecast.delta" --output "NewsChannelPatcher/00000001_News_USA.delta"
+if not exist "NewsChannelPatcher/00000001_News_USA.delta" curl -f -L -s -S --insecure "%FilesHostedOn%/NewsChannelPatcher/URL_Patches/USA/00000001_News.delta" --output "NewsChannelPatcher/00000001_News_USA.delta"
 set /a temperrorlev=%errorlevel%
 set modul=Downloading News Channel files
 

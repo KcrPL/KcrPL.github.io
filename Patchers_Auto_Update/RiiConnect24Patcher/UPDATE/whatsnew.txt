@@ -1,3 +1,6 @@
+1.2.5.1
+- Patching using USA Region fixed.
+
 1.2.5
 - We now include News and Forecast Channel patches. They will help anyone with 107304 error.
 
@@ -18,11 +21,3 @@ This is the last feature update in a while. Will resume them in few months. Howe
 1.2.3.1
 - Updated error codes on wad2bin.
 - Added info that some DLC's can't be installed.
-
-1.2.3
-- Fixed an issue that made you unable to set the drive letter manually.
-- Fixed many issues relating installing WAD's to the SD Card.
-- The script will now delete any "!" and "&" characters from your file names that would cause -1 error.
-- You can now see the output of wad2bin if it fails.
-- Got rid of "Install a single WAD file" option.
-- Added error info when wad2bin crashes.
