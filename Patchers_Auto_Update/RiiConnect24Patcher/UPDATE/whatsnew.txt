@@ -1,3 +1,6 @@
+1.2.5.2
+- Fixed crashing that occured when selecting a region when patching for Dolphin.
+
 1.2.5.1
 - Patching using USA Region fixed.
 
@@ -17,7 +20,3 @@ This is the last feature update in a while. Will resume them in few months. Howe
 
 1.2.3.2
 - Fixed an error that occurs if you're running wad2bin menu for the first time.
-
-1.2.3.1
-- Updated error codes on wad2bin.
-- Added info that some DLC's can't be installed.
