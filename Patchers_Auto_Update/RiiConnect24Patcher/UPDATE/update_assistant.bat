@@ -78,8 +78,8 @@ if not %temperrorlev%==0 goto error_download
 del /q Install.bat
 ren "InstallTEMP.bat" "Install.bat"
 
-if %no_start%==0 start "" Install.bat
-del /q "%~n0.bat"
+if %no_start%==0 start Install.bat
+del /q "%~n0~x0"
 exit
 
 :start_download_vff_downloader_main_exec
