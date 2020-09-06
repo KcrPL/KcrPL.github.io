@@ -1,3 +1,7 @@
+1.2.5.3
+- Enabling or disabling News/Forecast Channel in Custom installation would do nothing. This is fixed now.
+- Curl download incase it's missing will less likely fail now and the instructions are more clear.
+
 1.2.5.2
 - Fixed crashing that occured when selecting a region when patching for Dolphin.
 
