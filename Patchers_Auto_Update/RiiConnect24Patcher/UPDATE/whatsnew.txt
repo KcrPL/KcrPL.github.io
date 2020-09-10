@@ -1,3 +1,6 @@
+1.2.5.4
+- Patching on a Windows computer with Turkish language would result in an error when applying patches to News Channel. This is fixed now.
+
 1.2.5.3
 - Enabling or disabling News/Forecast Channel in Custom installation would do nothing. This is fixed now.
 - Curl download incase it's missing will less likely fail now and the instructions are more clear.
@@ -21,6 +24,3 @@ This is the last feature update in a while. Will resume them in few months. Howe
 - Preparing for the next wad2bin update.
 - We now support Everybody Votes Channel for Dolphin. You can get the WAD using this patcher.
 - You can now use the homebrew app to automatically patch 4:3 bars on Wii U.
-
-1.2.3.2
-- Fixed an error that occurs if you're running wad2bin menu for the first time.
