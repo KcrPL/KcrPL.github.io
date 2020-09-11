@@ -1,6 +1,6 @@
+setlocal disableDelayedExpansion
 :: Should be available locally
 
-setlocal disableDelayedExpansion
 
 set string1=RiiConnect your Wii.
 set string2=Start
@@ -424,7 +424,7 @@ set string407=Please launch WiiXplorer from the Homebrew Channel.
 set string408=In WiiXplorer, press Start -^> Settings -^> Boot Settings -^> NAND Write Access (turn on)
 set string409=Remember to turn it on because it's important^^!
 set string410=Change your device to NAND (on the bar on top)
-set string411=Go to shared2 -^ wc24
+set string411=Go to shared2 -^> wc24
 set string412=Hover your cursor over nwc24msg.cfg, press + on your Wii Remote and delete it.
 set string413=Go to Wii Menu (the nwc24msg.cfg file should regenerate with the same Friend Code)
 set string414=Previous page
@@ -509,7 +509,3 @@ set string486=ERROR DETAILS: Curl write error. Try moving the patcher to desktop
 set string487=SOLUTION: Please install latest .NET Framework, then try again.
 
 
-echo %string149%
-pause
-
-setlocal enableDelayedExpansion
