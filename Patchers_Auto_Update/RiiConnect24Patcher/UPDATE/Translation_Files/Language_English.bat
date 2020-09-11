@@ -1,4 +1,7 @@
 :: Should be available locally
+
+setlocal disableDelayedExpansion
+
 set string1=RiiConnect your Wii.
 set string2=Start
 set string3=Credits
@@ -156,7 +159,7 @@ set string147=There was an error while copying the files to your SD Card.
 
 ::
 set string148=Announcement
-set string149=Welcome to the RiiConnect24 Patcher!
+set string149=Welcome to the RiiConnect24 Patcher^^!
 set string150=With this program, you can patch your Wii or Wii U for use with RiiConnect24.
 set string151=You can also use such tools as Wiimmfi Patcher for all Wii games to play them online again.
 set string152=So, what device are we patching today?
@@ -504,3 +507,5 @@ set string484=TIP: Consider turning off your antivirus temporarily.
 set string485=SOLUTION: Please check your internet connection.
 set string486=ERROR DETAILS: Curl write error. Try moving the patcher to desktop and try again.
 set string487=SOLUTION: Please install latest .NET Framework, then try again.
+
+setlocal enableDelayedExpansion
