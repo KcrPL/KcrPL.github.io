@@ -2,10 +2,10 @@ setlocal disableDelayedExpansion
 :: Should be available locally
 
 
-set string1=RiiConnect your Wii.
-set string2=Start
-set string3=Credits
-set string4=Settings
+set string1=RiiConecta a tua Wii.
+set string2=Iniciar
+set string3=Créditos
+set string4=Definições
 set string5=manage VFF Downloader for Dolphin here
 set string6=Run the VFF Downloader once.
 set string7=Do you have problems or want to contact us?
@@ -15,8 +15,8 @@ set string10=Could not detect your Wii SD Card.
 set string11=Refresh
 set string12=If incorrect, you can change later.
 
-set string13=Warning
-set string14=You are using an experimental version of this program.
+set string13=Aviso
+set string14=Você está usando uma versão experimental deste programa.
 set string15=That means that this version might contain experimental features
 set string16=and bugs that might break your Wii/Wii U console or your computer.
 set string17=If you don't know what you're doing, please go to settings and go back to
@@ -62,23 +62,23 @@ set string53=Sorry, there's currently no public beta version available.
 set string54=Yes, switch to Beta branch.
 set string55=[UNABLE TO SWITCH TO BETA VERSION]
 
-set string56=WAIT
+set string56=ESPERA
 set string57=Are you trying to disable updating?
 set string58=Please do remember that updates will keep you safe and updated about the patcher.
 set string59=Only use this option for debugging and troubleshooting.
 set string60=Are you sure that you want to disable autoupdating?
 
-set string61=Yes
-set string62=No, go back.
+set string61=Sim
+set string62=Não, volta para trás.
 
 set string63=Change color:
 set string64=Dark theme
 set string65=Light theme *please don't hurt my eyes edition*
 set string66=Light theme *please hurt my eyes edition*
-set string67=Yellow
-set string68=Green
-set string69=Red
-set string70=Blue
+set string67=Amarelo
+set string68=Verde
+set string69=Vermelho
+set string70=Azul
 
 set string71=Downloading curl... Please wait.
 set string72=This can take some time...
@@ -132,7 +132,7 @@ set string120=Open Shop Channel Downloader is ready^^! What next?
 set string121=Show list of homebrew available.
 set string122=Download homebrew.
 set string123=Return to main menu
-set string124=One second please...
+set string124=Um segundo por favor...
 set string125=TIP: Remember the name of the homebrew that you're interrested in, return to the program, select "Download homebrew" and type it in.
 set string126=It will show you a description and some other useful info about homebrew that you've chosen.
 set string127=List of homebrew available
@@ -212,7 +212,7 @@ set string188=What to do next?
 set string189=Return to main menu
 set string190=Close the patcher
 
-set string200=Install RiiConnect24 on your Wii U.
+set string200=Instala o RiiConnect24 na tua Wii U.
 set string201=Choose instalation type:
 set string202=Express (Recommended)
 set string203=This will patch every channel for later use on your Wii U. This includes:
