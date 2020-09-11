@@ -2,10 +2,10 @@ setlocal disableDelayedExpansion
 :: Should be available locally
 
 
-set string1=RiiConnect your Wii.
+set string1=RiiConnecte deine Wii.
 set string2=Start
-set string3=Credits
-set string4=Settings
+set string3=Danksagungen
+set string4=Einstellungen
 set string5=manage VFF Downloader for Dolphin here
 set string6=Run the VFF Downloader once.
 set string7=Do you have problems or want to contact us?
@@ -497,9 +497,9 @@ set string475=Thank you very much for using this patcher^^! :)
 set string476=Have fun using RiiConnect24^^!
 set string477=Closing the patcher in:
 
-set string478=There is no internet connection.
-set string479=Could not connect to remote server.
-set string480=Check your internet connection or check if your firewall isn't blocking curl.
+set string478=Es besteht keine Internetverbindung.
+set string479=Verbindung mit dem Remoteserver fehlgeschlagen.
+set string480=Überprüfe deine Internetverbindung oder überprüfe ob deine Firewall curl nicht blockiert.
 set string481=There was an error while patching.
 set string482=Error Code
 set string483=Failing module
