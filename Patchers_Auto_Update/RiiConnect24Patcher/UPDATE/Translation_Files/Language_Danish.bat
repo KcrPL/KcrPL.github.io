@@ -55,24 +55,24 @@ vil du skifte filial?
 opdateringsprocessen starter.
 ja, skift til stabil gren.
 [UDBYDT AT SKIFTE TIL STABIL VERSION]
-set string50=No, go back to main menu.
-set string51=Do you want to switch to BETA version of the patcher?
-set string52=Beta version
-set string53=Sorry, there's currently no public beta version available.
-set string54=Yes, switch to Beta branch.
-set string55=[UNABLE TO SWITCH TO BETA VERSION]
+nej, gå tilbage til hovedmenuen.
+vil du skifte til BETA-versionen af ​​lappen?
+beta-version
+beklager, der er i øjeblikket ingen offentlig betaversion tilgængelig.
+ja, skift til Betafil.
+[UDBYDT AT SKIFTE TIL BETA-VERSION]
 
-set string56=WAIT
-set string57=Are you trying to disable updating?
-set string58=Please do remember that updates will keep you safe and updated about the patcher.
-set string59=Only use this option for debugging and troubleshooting.
-set string60=Are you sure that you want to disable autoupdating?
+VENTE
+forsøger du at deaktivere opdatering?
+Husk, at opdateringer holder dig sikker og opdateret om lapperen.
+brug kun denne mulighed til fejlfinding og fejlfinding.
+er du sikker på, at du vil deaktivere autoupdating?
 
-set string61=Yes
-set string62=No, go back.
+ja
+nej, gå tilbage.
 
-set string63=Change color:
-set string64=Dark theme
+skift farve:
+Mørkt tema
 set string65=Light theme *please don't hurt my eyes edition*
 set string66=Light theme *please hurt my eyes edition*
 set string67=Yellow
