@@ -15,106 +15,106 @@ Yenile
 Yanlışsa, daha sonra değiştirebilirsin.
 
 Uyarı
-set string14=You are using an experimental version of this program.
-set string15=That means that this version might contain experimental features
-set string16=and bugs that might break your Wii/Wii U console or your computer.
-set string17=If you don't know what you're doing, please go to settings and go back to
-set string18=stable branch of the patcher.
+bu programın deneysel bir sürümünü kullanıyorsunuz.
+Bu programın deneysel bir sürümünü kullanıyorsunuz
+ve bug belki sizin Wii / Wii U konsolunuzu veya bilgisayarınızı bozabilir.
+eher senin ne yaptiğin Farkinda değilsen lütfen Ayarlara veya geri dön
+patcher şuan Sabit Versionda.
 
-set string19=Type a number that you can see above next to the command and hit ENTER
+komutun yanına yukarıda görebileceğiniz bir sayı yazın ve ENTER tuşuna basın
 
-set string20=Troubleshooting tools
-set string21=These tools should help you diagnose some problems with the patcher and try to repair them automatically.
+sorun Giderme Programmlar
+bu araçlar, yamalayıcıyla ilgili bazı sorunları teşhis etmenize ve bunları otomatik olarak onarmaya çalışmanıza yardımcı olacaktır.
 set string22=Could not detect SD Card.
-set string23=Could not copy files to the SD Card.
-set string24=Renaming files error
-set string25=Return to main menu
-set string26=Choose
+dosyalar SD Karta kopyalanamadı.
+dosyalarin Ismi değisiminde Hata oluştu
+ana Sayfaya gerı dön
+seç
 
-set string27=RiiConnect24 Patcher Settings
-set string28=Go back
-set string29=Set background/text color
-set string30=Turn off/on updating
-set string31=Currently
-set string32=Change updating branch to
-set string33=Beta
-set string34=Stable
-set string35=Repair patcher file
-set string36=Redownload
-set string37=VFF Downloader for Dolphin Settings
-set string38=Completely delete VFF Downloader for Dolphin from your computer
-set string39=Delete VFF Downloader from startup
-set string40=If VFF Downloader is running, shut it down.
-set string41=Please wait... fetching data.
-set string42=Do you want to go back to stable version of the patcher?
-set string43=Current version
-set string44=Stable version
-set string45=Sorry, there was an error while fetching data.
-set string46=Do you want to switch branches?
-set string47=Updating process will start.
-set string48=Yes, switch to Stable branch.
-set string49=[UNABLE TO SWITCH TO STABLE VERSION]
-set string50=No, go back to main menu.
-set string51=Do you want to switch to BETA version of the patcher?
-set string52=Beta version
-set string53=Sorry, there's currently no public beta version available.
-set string54=Yes, switch to Beta branch.
-set string55=[UNABLE TO SWITCH TO BETA VERSION]
+riiconnect24 Patcher Ayarları
+geri dön
+arka plan veya metin rengini ayarla
+güncellemeyi kapat / aç
+şuanda
+şubeyi güncellemek için değiştir
+beta
+sabit
+patcher dosyasını Tamir et
+yeniden Patcheri indir
+vFF Downloader Dolphin için Ayarlar
+vFF Downloader Dolphin için Bilgisayardan tam sil
+vFF Downloader'ı başlangıçtan sil
+vFF Downloader çalışıyorsa, kapatın.
+lütfen Bekleyin... veri işleniyor.
+düzelticinin kararlı sürümüne geri dönmek istiyor musunuz?
+şimdiki versiyon
+kararlı version
+afedersin Veri işleminde Hata oluştu.
+dalları değiştirmek istiyor musunuz?
+güncelleme işlemi başlayacaktır.
+evet, Ahır şubesine geç.
+[STABİL SÜRÜME GEÇİRİLEMİYOR]
+hayır, ana menüye dön.
+yamanın BETA sürümüne geçmek istiyor musunuz?
+kararlı versiyonu
+üzgünüz, şu anda herkese açık beta sürümü mevcut değil.
+evet, Beta şubesine geç.
+[BETA SÜRÜME GEÇİRİLEMİYOR]
 
-set string56=WAIT
-set string57=Are you trying to disable updating?
-set string58=Please do remember that updates will keep you safe and updated about the patcher.
-set string59=Only use this option for debugging and troubleshooting.
-set string60=Are you sure that you want to disable autoupdating?
+bEKLE
+güncellemeyi devre dışı bırakmaya mı çalışıyorsunuz?
+lütfen güncellemelerin sizi güvende tutacağını ve yamalı hakkında güncel bilgileri sağlayacağını unutmayın.
+bu seçeneği yalnızca hata ayıklama ve sorun giderme için kullanın.
+otomatik güncellemeyi devre dışı bırakmak istediğinizden emin misiniz?
 
-set string61=Yes
-set string62=No, go back.
+evet
+hayir geri dön.
 
-set string63=Change color:
-set string64=Dark theme
-set string65=Light theme *please don't hurt my eyes edition*
-set string66=Light theme *please hurt my eyes edition*
-set string67=Yellow
-set string68=Green
-set string69=Red
-set string70=Blue
+rengi değisitir:
+karanlık Tema
+açık tema * lütfen gözlerimi incitme baskısı *
+açık tema * lütfen gözlerimi incitme baskısı *
+sarı
+yeşil
+kırmızı
+mavi
 
-set string71=Downloading curl... Please wait.
-set string72=This can take some time...
+curl indiriliyor... Lütfen bekleyin.
+bu cok Zaman alabilir...
 
-set string73=ERROR.
-set string74=There was an error while downloading curl.
-set string75=We will now open a website that will download curl.exe.
-set string76=Please move curl.exe to the folder where RiiConnect24 Patcher is and restart the patcher.
-set string77=Press any key to open download page in browser and to return to menu.
+hATA.
+curl yüklerken bir Hata oluştu.
+şimdi curl.exe dosyasını indirecek bir web sitesi açacağız.
+lütfen curl.exe'yi RiiConnect24 Patcher'ın bulunduğu klasöre taşıyın ve yamayı yeniden başlatın.
+tarayıcıda indirme sayfasını açmak ve menüye dönmek için herhangi bir tuşa basın.
 
-set string78=Checking for updates...
-set string79=An Update is available.
-set string80=An Update for this program is available. We suggest updating the RiiConnect24 Patcher to the latest version.
-set string81=Current version
-set string82=New version
-set string83=Update
-set string84=Dismiss
-set string85=What's new in this update?
-set string86=Updating.
-set string87=Please wait...
-set string88=RiiConnect24 Patcher will restart shortly...
-set string89=There was an error while downloading the update assistant.
-set string90=Press any key to return to main menu.
-set string91=What's new in update
-set string92=Error. What's new file is not available.
-set string93=Press any button to go back.
+güncellemeler kontrol ediliyor...
+bir güncelleme var.
+bu program için bir Güncelleme var. RiiConnect24 Patcher'ı en son sürüme güncellemenizi öneririz.
+şimdiki versiyon
+yeni version
+güncelleme
+reddet
+bu güncellemedeki yenilikler?
+güncelleniyor.
+lütfen Bekleyin...
+riiConnect24 Patcher kısa süre sonra yeniden başlayacak...
+güncelleme yardımcısını indirirken bir hata oluştu.
+ana menüye dönmek için herhangi bir tuşa basın.
+bu güncellemedeki yenilikler
+hata. Yenilikler dosyası mevcut değil.
+geri dönmek için herhangi bir düğmeye basın.
 :: Local end
 
 :: Must be available online
-set string100=Welcome to the Homebrew Shop.
-set string101=Before downloading any homebrew, do you want to enable automatic installation on your SD Card?
-set string102=Yes, detect the SD Card.
-set string103=No, I'll install them manually.
-set string104=Hmm... looks like an SD Card wasn't found in your system. Please choose the `Change drive letter` option
-set string105=to set your SD Card drive letter manually.
-set string106=Otherwise, you will have to copy the homebrew manually to the SD Card.
-set string107=Congrats^^! I've successfully detected your SD Card^^! Drive letter:
+homebrew Shopa Hoş Geldiniz.
+herhangi bir homebrew indirmeden önce, SD Kartınıza otomatik kurulumu etkinleştirmek istiyor musunuz?
+evet, SD Kartı algılandı.
+hayır, onları manuel olarak kuracağım.
+hmm... sisteminizde bir SD Kart bulunamadı gibi görünüyor. Lütfen "Sürücü harfini değiştir" seçeneğini seçin
+sD Kart sürücü harfinizi manuel olarak ayarlamak için.
+aksi takdirde, homebrew'i manuel olarak SD Karta kopyalamanız gerekecektir.
+tebrikler ^^! SD Kartınızı başarıyla tespit ettim ^^! Sürücü harfi:
 set string108=I will be able to automatically download and install everything on your SD Card^^!
 set string109=What's next?
 set string110=Continue
