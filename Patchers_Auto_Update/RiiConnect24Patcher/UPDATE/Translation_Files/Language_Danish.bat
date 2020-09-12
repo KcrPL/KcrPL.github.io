@@ -2,77 +2,77 @@ setlocal disableDelayedExpansion
 :: Should be available locally
 
 
-set string1=RiiConnect your Wii.
-set string2=Start
-set string3=Credits
-set string4=Settings
-set string5=manage VFF Downloader for Dolphin here
-set string6=Run the VFF Downloader once.
-set string7=Do you have problems or want to contact us?
-set string8=Mail us at support@riiconnect24.net
-set string9=Detected Wii SD Card:
-set string10=Could not detect your Wii SD Card.
-set string11=Refresh
-set string12=If incorrect, you can change later.
+riiconnect din Wii.
+start
+kreditters
+indstillinger
+administrer VFF Downloader til Dolphin her
+kør VFF Downloader en gang.
+har du problemer eller vil du kontakte os?
+mail os på support@riiconnect24.net
+registreret Wii SD-kort:
+kunne ikke registrere dit Wii SD-kort.
+opdater
+hvis det er forkert, kan du ændre det senere.
 
-set string13=Warning
-set string14=You are using an experimental version of this program.
-set string15=That means that this version might contain experimental features
-set string16=and bugs that might break your Wii/Wii U console or your computer.
-set string17=If you don't know what you're doing, please go to settings and go back to
-set string18=stable branch of the patcher.
+advarsel
+du bruger en eksperimentel version af dette program.
+det betyder, at denne version muligvis indeholder eksperimentelle funktioner
+og fejl, der muligvis ødelægger din Wii / Wii U-konsol eller din computer.
+hvis du ikke ved, hvad du laver, skal du gå til indstillingerne og gå tilbage til
+stabil gren af ​​lapperen.
 
-set string19=Type a number that you can see above next to the command and hit ENTER
+skriv et nummer, som du kan se ovenfor ved siden af ​​kommandoen, og tryk på ENTER
 
-set string20=Troubleshooting tools
-set string21=These tools should help you diagnose some problems with the patcher and try to repair them automatically.
-set string22=Could not detect SD Card.
-set string23=Could not copy files to the SD Card.
-set string24=Renaming files error
-set string25=Return to main menu
-set string26=Choose
+fejlfindingsværktøjer
+disse værktøjer skal hjælpe dig med at diagnosticere nogle problemer med patcheren og forsøge at reparere dem automatisk.
+kunne ikke registrere dit Wii SD-kort.
+"Kunne ikke kopiere filer til SD-kortet".
+fejl ved omdøbning af filer
+gå tilbage til hovedmenuen
+vælge
 
-set string27=RiiConnect24 Patcher Settings
-set string28=Go back
-set string29=Set background/text color
-set string30=Turn off/on updating
-set string31=Currently
-set string32=Change updating branch to
-set string33=Beta
-set string34=Stable
-set string35=Repair patcher file
-set string36=Redownload
-set string37=VFF Downloader for Dolphin Settings
-set string38=Completely delete VFF Downloader for Dolphin from your computer
-set string39=Delete VFF Downloader from startup
-set string40=If VFF Downloader is running, shut it down.
-set string41=Please wait... fetching data.
-set string42=Do you want to go back to stable version of the patcher?
-set string43=Current version
-set string44=Stable version
-set string45=Sorry, there was an error while fetching data.
-set string46=Do you want to switch branches?
-set string47=Updating process will start.
-set string48=Yes, switch to Stable branch.
-set string49=[UNABLE TO SWITCH TO STABLE VERSION]
-set string50=No, go back to main menu.
-set string51=Do you want to switch to BETA version of the patcher?
-set string52=Beta version
-set string53=Sorry, there's currently no public beta version available.
-set string54=Yes, switch to Beta branch.
-set string55=[UNABLE TO SWITCH TO BETA VERSION]
+riiConnect24 Patcher-indstillinger
+gå tilbage
+indstil baggrunds- / tekstfarve
+slå opdatering fra / til
+i øjeblikket
+skift opdateringsfilial til
+beta
+stabil
+reparer patcher-fil
+genindlæs
+vFF Downloader til Dolphin Settings
+slet VFF Downloader til Dolphin helt fra din computer
+slet VFF Downloader fra opstart
+hvis VFF Downloader kører, skal du lukke den ned.
+vent venligst... hentning af data.
+ønsker du at gå tilbage til en stabil version af lappen?
+nuværende version
+nuværende version
+beklager, der opstod en fejl under hentning af data.
+vil du skifte filial?
+opdateringsprocessen starter.
+ja, skift til stabil gren.
+[UDBYDT AT SKIFTE TIL STABIL VERSION]
+nej, gå tilbage til hovedmenuen.
+vil du skifte til BETA-versionen af ​​lappen?
+beta-version
+beklager, der er i øjeblikket ingen offentlig betaversion tilgængelig.
+ja, skift til Betafil.
+[UDBYDT AT SKIFTE TIL BETA-VERSION]
 
-set string56=WAIT
-set string57=Are you trying to disable updating?
-set string58=Please do remember that updates will keep you safe and updated about the patcher.
-set string59=Only use this option for debugging and troubleshooting.
-set string60=Are you sure that you want to disable autoupdating?
+VENTE
+forsøger du at deaktivere opdatering?
+Husk, at opdateringer holder dig sikker og opdateret om lapperen.
+brug kun denne mulighed til fejlfinding og fejlfinding.
+er du sikker på, at du vil deaktivere autoupdating?
 
-set string61=Yes
-set string62=No, go back.
+ja
+nej, gå tilbage.
 
-set string63=Change color:
-set string64=Dark theme
+skift farve:
+Mørkt tema
 set string65=Light theme *please don't hurt my eyes edition*
 set string66=Light theme *please hurt my eyes edition*
 set string67=Yellow
@@ -109,8 +109,8 @@ set string93=Press any button to go back.
 
 :: Must be available online
 set string100=Welcome to the Homebrew Shop.
-set string101=Before downloading any homebrew, do you want to enable automatic installation on your SD Card?
-set string102=Yes, detect the SD Card.
+inden du downloader hjemmebrygging, vil du aktivere automatisk installation på dit SD-kort?
+ja, registrer SD-kortet.
 set string103=No, I'll install them manually.
 set string104=Hmm... looks like an SD Card wasn't found in your system. Please choose the `Change drive letter` option
 set string105=to set your SD Card drive letter manually.
