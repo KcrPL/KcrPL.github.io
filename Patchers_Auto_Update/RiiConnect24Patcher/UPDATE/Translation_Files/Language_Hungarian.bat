@@ -167,8 +167,8 @@ set string153=Dolphin Emulátor
 set string154=Jól gondold meg
 
 set string155=Milyen módban fusson a program
-set string156=RiiConnect24 telepítése a Dolphin Emulátorra
-set string191=Install RiiConnect24 on your Wii U
+set string156=RiiConnect24 telepítése Dolphin Emulátorra
+set string191=RiiConnect24 telepítése Wii U konzolra
 set string273=Install RiiConnect24 on your Wii.
 set string274=Uninstall RiiConnect24 from your Wii.
 set string275=This will help you uninstall RiiConnect24 from your Wii.
