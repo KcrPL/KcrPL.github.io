@@ -80,8 +80,8 @@ set string68=Grön
 set string69=Röd
 set string70=Blå
 
-set string71=Downloading curl... Please wait.
-set string72=This can take some time...
+set string71=Laddar ner lock... Vänligen vänta.
+set string72=Det här kan ta lite tid...
 
 set string73=ERROR.
 set string74=There was an error while downloading curl.
