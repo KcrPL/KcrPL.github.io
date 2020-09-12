@@ -1,4 +1,4 @@
 files:
-  - source: /Patchers_Auto_Update/RiiConnect24Patcher/UPDATE/Translation_Files/
+  - source: /Patchers_Auto_Update/RiiConnect24Patcher/UPDATE/Translation_Files/Language_English.bat
     translation: >-
-      /Patchers_Auto_Update/RiiConnect24Patcher/UPDATE/Translation_Files/Language_%language%.bat
+      /Patchers_Auto_Update/RiiConnect24Patcher/UPDATE/Translation_Files/Language_%locale%.bat
