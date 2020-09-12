@@ -108,9 +108,9 @@ set string93=Drücke eine beliebige Taste um zurück zu gehen.
 
 :: Must be available online
 set string100=Wilkommen im Homebrew-Shop.
-set string101=Before downloading any homebrew, do you want to enable automatic installation on your SD Card?
-set string102=Yes, detect the SD Card.
-set string103=No, I'll install them manually.
+set string101=Bevor du irgendwelche Homebrew herunterlädst, möchtest du gerne die automatische Installation auf deine SD-Karte aktivieren?
+set string102=Ja, erkenne die SD-Karte.
+set string103=Nein, ich installiere sie manuell.
 set string104=Hmm... looks like an SD Card wasn't found in your system. Please choose the `Change drive letter` option
 set string105=to set your SD Card drive letter manually.
 set string106=Otherwise, you will have to copy the homebrew manually to the SD Card.
@@ -202,14 +202,14 @@ set string179=Try installing VFF Downloader again.
 set string180=Exit
 set string181=We will now need to run the patcher to get Check Mii Out Channel and Everybody Votes Channel.
 set string182=What region should I download?
-set string183=Europe
+set string183=Europa
 set string184=USA
 set string185=We're done^^! Now please open Dolphin, press on Tools and install the WAD file that has been downloaded to the WAD folder 
 set string186=next to the RiiConnect24 Patcher.
 set string187=That's it^^!
 set string188=What to do next?
 set string189=Return to main menu
-set string190=Close the patcher
+set string190=Schließe den Patcher
 
 set string200=Installiere RiiConnect24 auf deiner Wii U.
 set string201=Installationsart auswählen:
