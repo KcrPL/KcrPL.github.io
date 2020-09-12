@@ -497,7 +497,7 @@ set string475=Thank you very much for using this patcher^^! :)
 set string476=Have fun using RiiConnect24^^!
 set string477=Closing the patcher in:
 
-set string478=There is no internet connection.
+set string478 = Não há conexão com a Internet.
 set string479=Não foi possível conectar ao servidor.
 set string480=Verifique a sua conexão de Internet ou verifique que o seu firewall não está a bloquear o curl.
 set string481=There was an error while patching.
