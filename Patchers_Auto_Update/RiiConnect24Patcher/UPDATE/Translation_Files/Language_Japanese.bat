@@ -28,7 +28,7 @@ set string20=Troubleshooting tools
 set string21=These tools should help you diagnose some problems with the patcher and try to repair them automatically.
 set string22=Could not detect SD Card.
 set string23=Could not copy files to the SD Card.
-set string24=Renaming files error
+set string24=ファイルを名前変更するエラーが発生しました
 set string25=メインメニューへ
 set string26=決定
 
@@ -57,19 +57,19 @@ set string48=Yes, switch to Stable branch.
 set string49=[UNABLE TO SWITCH TO STABLE VERSION]
 set string50=No, go back to main menu.
 set string51=Do you want to switch to BETA version of the patcher?
-set string52=Beta version
+set string52=ベータ版
 set string53=Sorry, there's currently no public beta version available.
 set string54=Yes, switch to Beta branch.
 set string55=[UNABLE TO SWITCH TO BETA VERSION]
 
-set string56=ちょっと待って！
+set string56=待って！
 set string57=Are you trying to disable updating?
 set string58=Please do remember that updates will keep you safe and updated about the patcher.
 set string59=Only use this option for debugging and troubleshooting.
 set string60=Are you sure that you want to disable autoupdating?
 
 set string61=はい
-set string62=No, go back.
+set string62=いいえ、戻れ。
 
 set string63=Change color:
 set string64=Dark theme
@@ -80,10 +80,10 @@ set string68=緑
 set string69=赤
 set string70=青
 
-set string71=Downloading curl... Please wait.
+set string71=curlをダウンロード中です。 待って下さい。
 set string72=This can take some time...
 
-set string73=ERROR.
+set string73=エラーが発生しました。
 set string74=There was an error while downloading curl.
 set string75=We will now open a website that will download curl.exe.
 set string76=Please move curl.exe to the folder where RiiConnect24 Patcher is and restart the patcher.
@@ -131,8 +131,8 @@ set string119=Press any key to go back.
 set string120=Open Shop Channel Downloader is ready^^! What next?
 set string121=Show list of homebrew available.
 set string122=Download homebrew.
-set string123=Return to main menu
-set string124=One second please...
+set string123=メインメニューへ
+set string124=ちょっと待って下さい・・・
 set string125=TIP: Remember the name of the homebrew that you're interrested in, return to the program, select "Download homebrew" and type it in.
 set string126=It will show you a description and some other useful info about homebrew that you've chosen.
 set string127=List of homebrew available
@@ -158,8 +158,8 @@ set string146=There was an error while downloading 7zip.
 set string147=There was an error while copying the files to your SD Card.
 
 ::
-set string148=Announcement
-set string149=Welcome to the RiiConnect24 Patcher^^!
+set string148=発表
+set string149=RiiConnect24 Patcherへようこそ^ ^！
 set string150=With this program, you can patch your Wii or Wii U for use with RiiConnect24.
 set string151=You can also use such tools as Wiimmfi Patcher for all Wii games to play them online again.
 set string152=So, what device are we patching today?
