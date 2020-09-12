@@ -1,5 +1,5 @@
-setlocal disableDelayedExpansion
-:: Should be available locally
+chcp 65001>NULO
+:: Deberia ser disponible localmente
 
 
 set string1=RiiConecta tu Wii (Eso no funcionó en español).
@@ -249,8 +249,8 @@ set string228=Por favor, conecta tu tarjeta SD de tu Wii U a tu equipo.
 set string229=¡Conectado ^^!
 set string230=No puedo conectar una tarjeta SD al equipo.
 set string231=Aww, no te preocupes. Podrás copiar los archivos a después de parchear más tarde.
-set string232=Hmm... parece que no se encontró una tarjeta SD en su sistema. Elija la opción `Cambiar letra de unidad`
-set string105=para poner la letra de su Tarjeta SD manualmente.
+set string232=Hmm... looks like an SD Card wasn't found in your system. Please choose the `Change drive letter` option
+set string233=para poner la letra de su Tarjeta SD manualmente.
 set string234=De los contrario, empezar a parchear se configurará al copiado manual para que puedas copiarlo más tarde.
 set string235=¡Felicitaciones ^^! ¡He detectado su tarjeta SD ^^! Letra de unidad:
 set string236=¡Podré descargar e instalar todo automáticamente en tu tarjeta SD ^^!
