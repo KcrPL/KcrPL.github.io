@@ -115,33 +115,33 @@ hmm... sisteminizde bir SD Kart bulunamadı gibi görünüyor. Lütfen "Sürüc�
 sD Kart sürücü harfinizi manuel olarak ayarlamak için.
 aksi takdirde, homebrew'i manuel olarak SD Karta kopyalamanız gerekecektir.
 tebrikler ^^! SD Kartınızı başarıyla tespit ettim ^^! Sürücü harfi:
-set string108=I will be able to automatically download and install everything on your SD Card^^!
-set string109=What's next?
-set string110=Continue
-set string111=Exit
-set string112=Change drive letter
-set string113=Current SD Card Letter
-set string114=Type in the new drive letter (e.g H)
-set string115=Preparing for use with Open Shop Channel downloader...
-set string116=Please wait...
-set string117=There was an error while downloading the Open Shop Channel downloader.
-set string118=CURL Exit Code
-set string119=Press any key to go back.
-set string120=Open Shop Channel Downloader is ready^^! What next?
-set string121=Show list of homebrew available.
-set string122=Download homebrew.
-set string123=Return to main menu
-set string124=One second please...
-set string125=TIP: Remember the name of the homebrew that you're interrested in, return to the program, select "Download homebrew" and type it in.
-set string126=It will show you a description and some other useful info about homebrew that you've chosen.
-set string127=List of homebrew available
-set string128=Type the name of your homebrew.
-set string129=is not available on the server.
-set string130=For the list of homebrew that's on the server, please go back and choose "Show list of homebrew available".
-set string131=Fetching data...
-set string132=You requested...
-set string133=Long description:
-set string134=Would you like to download this app?
+her şeyi otomatik olarak indirip SD Kartınıza yükleyebilirim ^^!
+sıradaki ne?
+devam et
+cikiş
+sürücü harfini değiştir
+mevcut SD Kart Mektubu
+yeni sürücü harfini yazın (örnek e.g H)
+open Shop Channel downloader ile kullanıma hazırlanıyor...
+lütfen Bekleyin...
+open Shop Channel indiricisini indirirken bir hata oluştu.
+cURL Çıkış Kodu
+geri dönmek için herhangi bir düğmeye basın.
+open Shop Channel Downloader hazır ^^! Sıradaki ne?
+mevcut homebrew listesini göster.
+download homebrew.
+ana Menüye gerı dön
+bir saniye lütfen...
+iPUCU: İlgilendiğiniz homebrew adını hatırlayın, programa geri dönün, "homebrew indir" i seçin ve yazın.
+size bir tanım ve seçtiğiniz homebrew hakkında bazı yararlı bilgiler gösterecektir.
+mevcut homebrew listesi
+homebrew'unuzun adını yazın.
+is not available on the server.
+sunucudaki homebrew listesi için lütfen geri dönün ve "Mevcut homebrew listesini göster" i seçin.
+veri işleniyor...
+sen istedin...
+uzun Açıklama:
+bu uygulamayı indirmek ister misiniz?
 set string135=If enabled, it will be automatically installed to the SD Card.
 set string136=No, return.
 set string137=Downloading
