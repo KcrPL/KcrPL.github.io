@@ -165,7 +165,7 @@ set string152=A więc, jakie urządzenie dzisiaj patchujemy?
 set string153=Emulator Dolphin
 set string154=Wybierz mądrze
 
-set string155=Który tryb wybierasz?
+set string155=Który tryb wybierasz
 set string156=Zainstaluj RiiConnect24 na Emulatorze Dolphin
 set string191=Zainstaluj RiiConnect24 na Wii U
 set string273=Zainstaluj RiiConnect24 na Twoim Wii.
