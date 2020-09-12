@@ -167,7 +167,7 @@ set string154=Escolha com cuidado
 
 set string155=Qual ação você quer que eu tome
 set string156=Instalar o RiiConnect24 no Emulador Dolphin
-set string191=Instalar o RiiConnect24 no teu WiiU
+set string191=Instalar o RiiConnect24 no teu Wii U
 set string273=Instalar o RiiConnect24 no teu Wii.
 set string274=Desinstalar o RiiConnect24 no teu Wii.
 set string275=Isso vai te ajudar a desinstalar o RiiConnect24 do teu Wii.
