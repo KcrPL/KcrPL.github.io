@@ -3,26 +3,26 @@ setlocal disableDelayedExpansion
 
 
 set string1=RiiConnect your Wii.
-set string2=Начать
-set string3=Создатели
-set string4=Настройки
-set string5=Управлять загрузчиком VFF для Dolphin можно тут
-set string6=Запустить загрузчик VFF один раз.
-set string7=У вас есть проблемы или хотите с нами связаться?
-set string8=Пришлите нам письмо на адрес support@riiconnect24.net
-set string9=SD-карта Wii обнаружена:
-set string10=SD-карта Wii не обнаружена.
-set string11=Обновить
-set string12=Если неверно, можно поменять позже.
+set string2=Start
+set string3=Credits
+set string4=Settings
+set string5=manage VFF Downloader for Dolphin here
+set string6=Run the VFF Downloader once.
+set string7=Do you have problems or want to contact us?
+set string8=Mail us at support@riiconnect24.net
+set string9=Detected Wii SD Card:
+set string10=Could not detect your Wii SD Card.
+set string11=Refresh
+set string12=If incorrect, you can change later.
 
-set string13=Внимание
-set string14=Вы используете экспериментальную версию этой программы.
-set string15=Это означает что эта версия может содержать экспериметальные функции
-set string16= и баги которые могут привести вашу Wii/Wii U консоль или компьютер к нерабочему состоянию.
-set string17=Если вы не знаете что вы делаете, пожалуйста зайдите в настройки и вернитесь к
-set string18 стабильной ветке патчера.
+set string13=Warning
+set string14=You are using an experimental version of this program.
+set string15=That means that this version might contain experimental features
+set string16=and bugs that might break your Wii/Wii U console or your computer.
+set string17=If you don't know what you're doing, please go to settings and go back to
+set string18=stable branch of the patcher.
 
-set string19=Введите цифру которую вы можете увидеть сверху возле команды и нажмите ENTER
+set string19=Type a number that you can see above next to the command and hit ENTER
 
 set string20=Troubleshooting tools
 set string21=These tools should help you diagnose some problems with the patcher and try to repair them automatically.
@@ -454,11 +454,11 @@ set string435=Forecast/News Channel
 set string436=Please connect your Wii SD Card to the computer.
 set string437=The following process will download about 170MB of data.
 
-set string438=Вы знали что Wii была самой продаваемой игровой консолью 2006го?
-set string439=Вы знали что KcrPL делает эти замечательные патчеры?
-set string440=RiiConnect24 изначально был назван "CustomConnect24"!
-set string441=Вы знали что логотип RiiConnect24 был сделан NeoRame, который также сделал логотип Wiimmfi?
-set string442=У Wii было прозвище "Revolution" в стадии его разработки.
+set string438=Did you know the wii was the best selling game-console of 2006?
+set string439=Did you know KcrPL makes these amazing patchers?
+set string440=RiiConnect24 originally started out as "CustomConnect24"!
+set string441=Did you the RiiConnect24 logo was made by NeoRame, the same person who made the Wiimmfi logo?
+set string442=The Wii was nicknamed "Revolution" during its development stage.
 set string443=Did you know the letters in the Wii model number RVL stand for the Wii's codename, Revolution?
 set string444=The music used in many of the Wii's channels (including the Wii Shop, Mii, Check Mii Out, and Forecast Channel) was composed by Kazumi Totaka.
 set string445=The Internet Channel once costed 500 Wii Points.
