@@ -1,20 +1,20 @@
 if "%1"=="-chcp" chcp 65001
 :: Should be available locally
 
-set string1=RiiConnect your Wii.
-set string2=Start
-set string3=Credits
-set string4=Settings
-set string5=manage VFF Downloader for Dolphin here
-set string6=Run the VFF Downloader once.
-set string7=Do you have problems or want to contact us?
-set string8=Mail us at support@riiconnect24.net
-set string9=Detected Wii SD Card:
-set string10=Could not detect your Wii SD Card.
-set string11=Refresh
-set string12=If incorrect, you can change later.
+Wii Konsolu Riiconnectle.
+Başla
+Itibar
+Ayarlar
+VFF Downloader Dolphin için RiiConnect24 tarafından yönetilebilen ayrı bir programdır
+Ilk önce VFF Downloaderi başlat.
+Sorunlarınız mı var veya bizimle iletişime geçmek mi istiyorsunuz?
+support@riiconnect24.net adresinden bize e-posta gönderin
+Wii SD Kartı Algılandı:
+Malesef senin Wii SD Kartın algılanmadı.
+Yenile
+Yanlışsa, daha sonra değiştirebilirsin.
 
-set string13=Warning
+Uyarı
 set string14=You are using an experimental version of this program.
 set string15=That means that this version might contain experimental features
 set string16=and bugs that might break your Wii/Wii U console or your computer.
