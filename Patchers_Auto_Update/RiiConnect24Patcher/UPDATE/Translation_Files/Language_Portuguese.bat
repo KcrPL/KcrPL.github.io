@@ -499,7 +499,7 @@ set string477=Closing the patcher in:
 
 set string478=There is no internet connection.
 set string479=Não foi possível conectar ao servidor.
-set string480=Check your internet connection or check if your firewall isn't blocking curl.
+set string480=Verifique a sua conexão de Internet ou verifique que o seu firewall não está a bloquear o curl.
 set string481=There was an error while patching.
 set string482=Código de Erro
 set string483=Failing module
