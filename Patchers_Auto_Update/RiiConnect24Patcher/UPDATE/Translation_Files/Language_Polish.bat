@@ -1,4 +1,3 @@
-setlocal disableDelayedExpansion
 chcp 65001
 :: Should be available locally
 
