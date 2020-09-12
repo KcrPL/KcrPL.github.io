@@ -2,23 +2,23 @@ setlocal disableDelayedExpansion
 :: Should be available locally
 
 
-set string1=RiiConnect your Wii.
-set string2=Start
-set string3=Credits
-set string4=Settings
-set string5=manage VFF Downloader for Dolphin here
-set string6=Run the VFF Downloader once.
-set string7=Do you have problems or want to contact us?
-set string8=Mail us at support@riiconnect24.net
-set string9=Detected Wii SD Card:
-set string10=Could not detect your Wii SD Card.
-set string11=Refresh
-set string12=If incorrect, you can change later.
+set string1=חיבור ה Wii לשירות RiiConnect24.
+set string2=התחל
+set string3=קרדיטים
+set string4=הגדרות
+set string5=ניהול VFF Downloader עבור Dolphin
+set string6=הרצת VFF Downloader פעם אחת.
+set string7=יש לך תקלות או שאתה רוצה ליצור קשר איתנו?
+set string8=צור קשר עמנו ב support@riiconnect24.net
+set string9=זוהה כרטיס SD:
+set string10=לא מצאנו את כרטיס ה SD שלך.
+set string11=רענן
+set string12=במקרה וזה לא נכון, ניתן לשנות אחר כך.
 
-set string13=Warning
-set string14=You are using an experimental version of this program.
-set string15=That means that this version might contain experimental features
-set string16=and bugs that might break your Wii/Wii U console or your computer.
+set string13=אזהרה
+set string14=הינכם משתמשים בגרסה נסיונית של התוכנה.
+set string15=זה אומר שהתוכנה עלולה לכלול תכונות נסיוניות
+set string16=ובעיות שעלולות לפגוע בקונסולת ה Wii / Wii U או במחשבכם.
 set string17=If you don't know what you're doing, please go to settings and go back to
 set string18=stable branch of the patcher.
 

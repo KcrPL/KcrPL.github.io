@@ -3,26 +3,26 @@ setlocal disableDelayedExpansion
 
 
 set string1=RiiConnecte deine Wii.
-set string2=Start
+set string2=Anfang
 set string3=Danksagungen
 set string4=Einstellungen
-set string5=manage VFF Downloader for Dolphin here
-set string6=Run the VFF Downloader once.
-set string7=Do you have problems or want to contact us?
-set string8=Mail us at support@riiconnect24.net
-set string9=Detected Wii SD Card:
-set string10=Could not detect your Wii SD Card.
-set string11=Refresh
-set string12=If incorrect, you can change later.
+set string5=Verwalten Sie hier den VFF Downloader für Dolphin
+set string6=Führen Sie den VFF Downloader einmal aus.
+Haben Sie Probleme oder möchten Sie uns kontaktieren?
+Mailen Sie uns an support@riiconnect24.net oder treten Sie unserem Discord Server bei: https://discord.gg/mZPFec3
+set string9=Erkannte Wii-SD-Karte:
+set string10=Ihre Wii SD-Karte konnte nicht erkannt werden.
+set string11=Aktualisierung
+set string12=Wenn dies nicht der Fall ist, können Sie es später ändern.
 
-set string13=Warning
-set string14=You are using an experimental version of this program.
-set string15=That means that this version might contain experimental features
-set string16=and bugs that might break your Wii/Wii U console or your computer.
-set string17=If you don't know what you're doing, please go to settings and go back to
-set string18=stable branch of the patcher.
+set string13=Warnung
+set string14=Sie verwenden eine experimentelle Version dieses Programms.
+set string16=Das bedeutet, dass diese Version möglicherweise experimentelle Funktionen enthält
+set string16=und Fehler, die Ihre Wii / Wii U-Konsole oder Ihren Computer beschädigen könnten.
+set string17=Wenn Sie nicht wissen, was Sie tun, gehen Sie zu den Einstellungen und kehren Sie zu zurück
+setze string18=stabiler Zweig des Patchers.
 
-set string19=Type a number that you can see above next to the command and hit ENTER
+set string19=Geben Sie eine Zahl ein, die Sie oben neben dem Befehl sehen können, und drücken Sie die EINGABETASTE
 
 set string20=Troubleshooting tools
 set string21=These tools should help you diagnose some problems with the patcher and try to repair them automatically.

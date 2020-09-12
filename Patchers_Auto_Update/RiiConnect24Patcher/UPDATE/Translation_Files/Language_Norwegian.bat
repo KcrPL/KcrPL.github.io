@@ -3,20 +3,20 @@ setlocal disableDelayedExpansion
 
 
 set string1=RiiConnect your Wii.
-set string2=Start
+begynn
 set string3=Credits
-set string4=Settings
+innstilinger
 set string5=manage VFF Downloader for Dolphin here
 set string6=Run the VFF Downloader once.
 set string7=Do you have problems or want to contact us?
 set string8=Mail us at support@riiconnect24.net
-set string9=Detected Wii SD Card:
-set string10=Could not detect your Wii SD Card.
+fant Wii SD Minnekort:
+kunne ikke oppdage din wii sd minnekort.
 set string11=Refresh
-set string12=If incorrect, you can change later.
+hvis feil, du kan forandre senere.
 
-set string13=Warning
-set string14=You are using an experimental version of this program.
+advarsel
+du bruker en exsperimentell versjon av dette programmet.
 set string15=That means that this version might contain experimental features
 set string16=and bugs that might break your Wii/Wii U console or your computer.
 set string17=If you don't know what you're doing, please go to settings and go back to
@@ -27,7 +27,7 @@ set string19=Type a number that you can see above next to the command and hit EN
 set string20=Troubleshooting tools
 set string21=These tools should help you diagnose some problems with the patcher and try to repair them automatically.
 set string22=Could not detect SD Card.
-set string23=Could not copy files to the SD Card.
+kunne ikke kopiere filene til SD minnekort.
 set string24=Renaming files error
 set string25=Return to main menu
 set string26=Choose
@@ -52,7 +52,7 @@ set string43=Current version
 set string44=Stable version
 set string45=Sorry, there was an error while fetching data.
 set string46=Do you want to switch branches?
-set string47=Updating process will start.
+"Vi skal nå starte opptatering prossesen.
 set string48=Yes, switch to Stable branch.
 set string49=[UNABLE TO SWITCH TO STABLE VERSION]
 set string50=No, go back to main menu.

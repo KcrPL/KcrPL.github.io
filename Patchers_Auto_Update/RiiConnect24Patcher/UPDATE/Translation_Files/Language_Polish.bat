@@ -9,9 +9,9 @@ set string4=Ustawienia
 set string5=zarządzaj VFF Downloaderem dla Dolphin'a tutaj
 set string6=Uruchom VFF Downloader raz.
 set string7=Masz z czymś problem już chcesz się z nami skontaktować?
-set string8=Napisz maila na support@riiconnect24.net
+set string8=Napisz maila na support@riiconnect24.net. Dołącz także do Discord Riiconnect24: https://discord.gg/YEzWSF5
 set string9=Wykryto kartę SD:
-set string10=Nie udało się wykryć karty SD Wii.
+set string10=Nie wykryto karty SD Wii.
 set string11=Odśwież
 set string12=Jeżeli niepoprawne, można zmienić później.
 

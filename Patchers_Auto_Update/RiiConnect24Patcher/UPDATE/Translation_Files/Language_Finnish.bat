@@ -2,41 +2,41 @@ setlocal disableDelayedExpansion
 :: Should be available locally
 
 
-set string1=RiiConnect your Wii.
-set string2=Start
-set string3=Credits
-set string4=Settings
-set string5=manage VFF Downloader for Dolphin here
-set string6=Run the VFF Downloader once.
-set string7=Do you have problems or want to contact us?
-set string8=Mail us at support@riiconnect24.net
-set string9=Detected Wii SD Card:
-set string10=Could not detect your Wii SD Card.
-set string11=Refresh
-set string12=If incorrect, you can change later.
+set string1=RiiConnectaa sinun Wii.
+set string2=Aloita
+set string3=Tekijät
+set string4=Asetukset
+set string5=hallitse VFF Lataaja Dolphinille
+set string6=Suorita VFF Lataaja kerran.
+set string7=Onko ongelmia vai haluatko ottaa yhteyttä meihin?
+set string8=Sähköpostita osoitteeseen support@riiconnect24.net
+set string9=Tunnistettu Wii SD Kortti:
+set string10= Wii SD Korttia ei tunnistettu.
+set string11=Päivitä
+set string12=Jos jokin on väärin, voit muuttaa sen myöhemmin.
 
-set string13=Warning
-set string14=You are using an experimental version of this program.
-set string15=That means that this version might contain experimental features
-set string16=and bugs that might break your Wii/Wii U console or your computer.
-set string17=If you don't know what you're doing, please go to settings and go back to
-set string18=stable branch of the patcher.
+set string13=Varoitus
+set string14=Käytät kokeellistaversiota tästä ohjelmasta.
+set string15=Tarkoittaa sitä, että tämä versio sisältää kokeellisiatoimintoja
+set string16=ja bugeja, jotka voivat rikkoa sinun Wii/Wii U konsolin tai tietokoneesi.
+set string17=Jos et tiedä mitä teet, mene asetuksiin ja siirry takaisin
+set string18=vakaampaan versioon patcherista.
 
-set string19=Type a number that you can see above next to the command and hit ENTER
+set string19=Kirjoita numero jonka näet yllä seuraavan komennon ja paina ENTER
 
-set string20=Troubleshooting tools
-set string21=These tools should help you diagnose some problems with the patcher and try to repair them automatically.
-set string22=Could not detect SD Card.
-set string23=Could not copy files to the SD Card.
-set string24=Renaming files error
-set string25=Return to main menu
-set string26=Choose
+set string20=Vianetsintä työkalut
+set string21=Nämä työkalut pitäisi auttaa sinua diagnisoimaan ongelmia patcherin kanssa ja korjaamaan ne automaattisesti.
+set string10=SD Korttia ei tunnistettu.
+set string23=Tiedostoja ei voitu kopioida SD Kortille.
+set string24=Tiedostojen uudelleennimeäminen virhe
+set string25=Palaa takaisin päävalikkoon
+set string26=Valitse
 
-set string27=RiiConnect24 Patcher Settings
-set string28=Go back
-set string29=Set background/text color
-set string30=Turn off/on updating
-set string31=Currently
+set string27=RiiConnect24 Patcher Asetukset
+set string28=Takaisin
+set string29=Aseta taustan/tekstin väri
+set string30=Aseta päivittäminen pois/päälle
+set string31=Tällä hetkellä
 set string32=Change updating branch to
 set string33=Beta
 set string34=Stable
