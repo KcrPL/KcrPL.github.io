@@ -1,17 +1,17 @@
 if "%1"=="-chcp" chcp 65001
 :: Should be available locally
 
-set string1=RiiConnect your Wii.
+RiiConnect din Wii.
 begynn
-set string3=Credits
+Bidragsytere
 innstilinger
-set string5=manage VFF Downloader for Dolphin here
-set string6=Run the VFF Downloader once.
+administrere VFF Nedlasting til Dolphin her
+Henrette de VFF Nedlasting en gang.
 set string7=Do you have problems or want to contact us?
-set string8=Mail us at support@riiconnect24.net
+Send oss en e-post på support@riiconnect24.net
 fant Wii SD Minnekort:
 kunne ikke oppdage din wii sd minnekort.
-set string11=Refresh
+Last inn på nytt
 hvis feil, du kan forandre senere.
 
 advarsel
