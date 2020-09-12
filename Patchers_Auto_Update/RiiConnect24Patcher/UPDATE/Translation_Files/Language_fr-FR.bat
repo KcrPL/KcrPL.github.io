@@ -25,7 +25,7 @@ set string19=Entrez un numéro affiché ci-dessus à côté de la commande, et a
 
 set string20=Outils de dépannage
 set string21=Ces outils vous aideront à diagnostiquer certains problèmes avec le programme, et essayera de remédier ces derniers.
-set string10=Impossible de détecter la carte SD.
+set string22=Impossible de détecter la carte SD.
 set string23=Impossible de copier les fichiers à la carte SD.
 set string24=Erreur en renommant les fichiers
 set string25=Retourner au menu principal
@@ -55,7 +55,7 @@ set string47=La mise a jour va commencer.
 set string48=Oui, changer vers la branche stable.
 set string49=[IMPOSSIBLE DE PASSER À LA VERSION STABLE]
 set string50=Non, Retourner au menu principal.
-set string42=Voulez-vous changer vers la version BETA du patcher?
+set string51=Voulez-vous changer vers la version BETA du patcher?
 set string52=Version Bêta
 set string53=Désolé, il n'y a pas de version bêta publique disponible.
 set string54=Oui, changer vers la branche bêta.
@@ -88,22 +88,22 @@ set string75=Nous allons ouvrir un site qui téléchargera curl.exe.
 set string76=Veuillez déplacer curl.exe dans le dossier RiiConnect24 Patcher est redémarrer le patcher.
 set string77=Pressez une touche pour ouvrir la page de téléchargement dans votre navigateur et pour retourner au menu.
 
-set string78=Checking for updates...
-set string79=An Update is available.
-set string80=An Update for this program is available. We suggest updating the RiiConnect24 Patcher to the latest version.
-set string81=Current version
-set string82=New version
-set string83=Update
-set string84=Dismiss
-set string85=What's new in this update?
-set string86=Updating.
-set string87=Please wait...
-set string88=RiiConnect24 Patcher will restart shortly...
-set string89=There was an error while downloading the update assistant.
-set string90=Press any key to return to main menu.
-set string91=What's new in update
-set string92=Error. What's new file is not available.
-set string93=Press any button to go back.
+set string78=Recherche de mises à jour...
+set string79=Une mise à jour est disponible.
+set string80=Une mise à jour pour ce programme est disponible. Nous vous suggérons de mettre le Patcher à la dernière version.
+set string81=Version actuelle
+set string82=Nouvelle version
+set string83=Mise à jour
+set string84=Refuser
+set string85=Quoi de neuf dans cette mise à jour?
+set string86=Mise à jour en cours.
+set string87=Veuillez patienter...
+set string88=RiiConnect24 Patcher va redémarrer sous peu...
+set string89=Il y a eu une erreur pendant le téléchargement de l'assistant de mise à jour.
+set string90=Appuyez sur une touche pour retourner au menu principal.
+set string91=Quoi de neuf dans cette mise à jour
+set string92=Erreur. Le fichier "Quoi de neuf" n'est pas disponible.
+set string93=Appuyez sur une touche pour retourner en arrière.
 :: Local end
 
 :: Must be available online
