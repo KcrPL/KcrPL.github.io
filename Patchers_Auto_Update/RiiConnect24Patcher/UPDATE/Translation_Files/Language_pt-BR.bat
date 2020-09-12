@@ -2,33 +2,33 @@ if "%1"=="-chcp" chcp 65001
 :: Should be available locally
 
 set string1=RiiConecte seu Wii.
-set string2=Começar
+set string2=Iniciar
 set string3=Créditos
 set string4=Configurações
-set string5=Gerencie o VFF Downloader aqui
+set string5=gerencie o VFF Downloader pra Dolphin aqui
 set string6=Executar o VFF Downloader uma vez.
-set string7=Quer suporte técnico ou gostaria de falar conosco?
-set string8=Envie um e-mail a support@riiconnect24.net (suporte em inglês)
+set string7=Está com problemas ou quer falar conosco?
+set string8=Contate-nos em support@riiconnect24.net (suporte em inglês)
 set string9=Cartão SD do Wii detectado:
-set string10=Não foi possível detectar o Cartão SD do Wii.
+set string10=Seu Cartão SD do Wi não pôde ser detectado.
 set string11=Recarregar
 set string12=Caso esteja errado, você pode mudá-lo depois.
 
 set string13=Aviso
 set string14=Você está usando uma versão experimental desse programa.
 set string15=Isso significa que esta versão pode ter funções experimentais
-set string16=E bugs que podem quebrar seu Wii/Wii U ou seu computador.
-set string17=Se você não sabe o que está fazendo, por favor vá as configurações e volte
-set string18=á versão estável do programa.
+set string16=e bugs que podem quebrar seu console Wii/Wii U ou seu computador.
+set string17=Se você não souber o que está fazendo, por favor vá as configurações e volte
+set string18=á versão estável do patcher.
 
-set string19= Escreva um número que você pode ver acima ao lado da arte e aperte ENTER
+set string19= Escreva um número que você pode ver acima ao lado do comando e aperte ENTER
 
 set string20= Ferramentas de solução de problemas
-set string21=Estas ferramentas podem te ajudar a procurar problemas com o programa e tentar consertá-las automaticamente.
-set string22=Não foi possível detectar o Cartão SD do Wii.
-set string23=Não foi possível copiar arquivos ao Cartão SD do Wii.
-set string24=Erro para renomear arquivos
-set string25=Voltar ao menu
+set string21=Estas ferramentas devem te ajudar a diagnosticar alguns problemas com o programa e tentar consertá-los automaticamente.
+set string22=Não foi possível detectar o Cartão SD.
+set string23=Não foi possível copiar arquivos para o Cartão SD.
+set string24=Erro ao renomear arquivos
+set string25=Voltar ao menu principal
 set string26=Escolha
 
 set string27=Configurações do RiiConnect24 Patcher
@@ -36,35 +36,35 @@ set string 28=Voltar
 set string29=Mudar a cor do fundo/texto
 set string30=Desligar ou ligar as atualizações
 set string31=Atualmente
-set string32=Mudar a branch para
+set string32=Mudar ramo de atualização para
 set string33=Beta
 set string34=Estável
-set string35=Consertar o arquivo do patcheador
-set string36=Baixar de novo
+set string35=Consertar arquivo do patcher
+set string36=Baixar novamente
 set string37=Configurações do VFF Downloader para Dolphin
 set string38=Deletar o VFF Downloader completamente do computador
-set string39=Não deixar o VFF Downloader abrir quando o computador é ligado
+set string39=Remover o VFF Downloader do processo de inicialização
 set string40=Se o VFF Downloader está aberto, feche-o.
-set string41=Aguarde... buscando dados.
-set string42=Gostaria voltar a versão estável do programa?
+set string41=Favor aguarde... buscando dados.
+set string42=Gostaria de voltar á versão estável do patcher?
 set string43=Versão atual
 set string44=Versão estável
-set string45=Desculpe, ocorreu um erro buscando dados.
+set string45=Desculpe, ocorreu um erro na busca de dados.
 set string46=Gostaria mudar de branch?
 set string47=O processo de atualização vai começar.
 set string48=Sim, mudar para a branch Estável.
 set string49=[NÃO FOI POSSÍVEL MUDAR PARA A VERSÃO ESTÁVEL]
 set string50=Não, voltar para o menu principal.
-set string51=Gostaria mudar para a versão BETA do programa?
-set string52=Versão beta
-set string53=Desculpe, não há uma versão beta pública disponível.
+set string51=Gostaria de mudar para a versão BETA do patcher?
+set string52=Versão Beta
+set string53=Desculpe, não há uma versão beta pública disponível no momento.
 set string54=Sim, mudar para a branch Beta.
 set string55=[NÃO FOI POSSÍVEL MUDAR PARA A VERSÃO BETA]
 
 set string56=AGUARDE
 set string57=Você está tentando desativar as atualizações?
 set string58=Por favor lembre-se que as atualizações vão te deixar seguro e atualizado sobre o programa.
-set string59=Somente use esta opção para debugging e solução de problemas.
+set string59=Somente use esta opção para depuração e resolução de problemas.
 set string60=Tem certeza que gostaria de desativar as atualizações automáticas?
 
 set string61=Sim
@@ -72,37 +72,37 @@ set string62=Não, voltar.
 
 set string63=Mudar cor:
 set string64=Tema escuro
-set string65=Tema claro *edição por favor não me deixe cego*
-set string66=Tema claro *edição por favor me deixe cego*
+set string65=Tema claro *edição por favor não machuque meus olhos*
+set string66=Tema claro *edição por favor machuque meus olhos*
 set string67=Amarelo
 set string68=Verde
 set string69=Vermelho
 set string70=Azul
 
-set string71=Baixando o curl... Aguarde.
+set string71=Baixando curl... Favor aguarde.
 set string72=Isto pode demorar um pouco...
 
 set string73=ERRO.
-set string74=Teve um erro enquanto baixavamos o curl.
-set string75=Nós vamos abrir um website que vai baixar o curl.exe.
-set string76=Por favor, mova o curl.exe para a pasta onde o patcher do RiiConnect24 está e reinicie este aplicativo.
+set string74=Teve um erro enquanto baixávamos o curl.
+set string75=Agora iremos abrir um website que vai baixar o curl.exe.
+set string76=Por favor, mova o curl.exe para a pasta onde instalou o RiiConnect24 Patcher e reinicie o programa.
 set string77=Pressione qualquer tecla para abrir a página de download no navegador e retornar ao menu.
 
 set string78=Procurando por atualizações...
 set string79=Uma atualização está disponível.
-set string80=Uma atualização para o patcher está disponível. Nós recomendamos que você atualize o patcher para a versão mais recente.
+set string80=Uma atualização para este programa está disponível. Nós sugerimos atualizar o RiiConnect24 Patcher para a versão mais recente.
 set string81=Versão atual
 set string82=Nova versão
 set string83=Atualizar
 set string84=Dispensar
 set string85=O que tem de novo nesta atualização?
 set string86=Atualizando.
-set string87=Aguarde...
-set string88=O Patcheador do RiiConnect24 vai reiniciar em breve...
-set string89=Ocorreu um erro baixando o assistente de atualizações.
+set string87=Favor aguarde...
+set string88=O RiiConnect24 Patcher vai reiniciar em breve...
+set string89=Ocorreu um erro ao baixar o assistente de atualizações.
 set string90=Pressione qualquer tecla para voltar ao menu principal.
 set string91=O que tem de novo na atualização
-set string92=Erro. Não foi encontrado os arquivos de novidades.
+set string92=Erro. Não foi encontrado o arquivo listando as melhorias.
 set string93=Pressione qualquer botão para voltar.
 :: Final local
 
@@ -469,8 +469,8 @@ set string450=Obrigado ao Spotlight por fazer o sistema de mensagens seguro.
 set string451=Sabia que temos um servidor de Discord legal onde você pode ficar atualizado sobre o status do projeto?
 set string452=O Everybody Votes Channel foi originalmente uma idea sobre mandar quizzes e responder questões diariamente no Wii.
 set string453=Os desenvolvedores do Canal de Notícias tinha uma ideia em algum ponto de fazer o pai de um Mii o apresentador no canal, mas provavelmente não conseguiu aparecer porque algumas manchetes não eram apropriadas para crianças.
-set string454=O canal Everybody Votes foi originalmente chamado de o Canal de Questões, e depois o canal Citizens Vote.
-set string455=O canal de previsão do tempo tinha um "índice de lavagem de roupa" (para mostar quãoa apropriado era para secar suas roupas lá fora) e também uma contagem de pólen na versão japonesa.
+set string454=O canal Everybody Votes foi originalmente chamado de the Questionnaire Channel, e depois de Citizens Vote.
+set string455=O canal de previsão do tempo tinha um "índice de lavagem de roupa" (para mostrar quão apropriado estava para secar suas roupas lá fora) e também uma contagem de pólen na versão japonesa.
 set string456=No desenvolvimento do Forecast Channel, o departamento da Nintendo da America foi atingido por um trovão, e eles perderam contato com os desenvolvedores do canal do Japão.
 set string456=No desenvolvimento do Canal de Previsão de Tempo, o departamento da Nintendo da America foi atingido por um trovão, e eles perderam contato com os desenvolvedores do canal do Japão.
 set string458=O canal de notícias tem uma música alternativa de slideshow que toca na noite.
@@ -479,8 +479,8 @@ set string460=O efeito usado quando está rapidamente fazendo zoom nas fotos no 
 set string461=Os gatos de ajuda no Canal de Notícias e Canal de Fotos são irmãos de irmãs (Os no Canal de Notícias sendo machos, e no Canal de Fotos fêmeas).
 set string462=A versão japonesa do Forecast Channel não mostra a previsão atual.
 set string463=O Forecast Channel, News Channel e o Photo Channel foram feitas por quase a mesma equipe.
-set string464=A primeiro questão mundial do canal Everybody Votes sobre se você gosta de gatos ou cães mais ganham mais de 500 mil votos.
-set string465=A música de noite que toca vendo a previsão de tempo local no canal de previsão de tempo era feita antes da música de dia, que foi pedida para fazer as pessoas não querer dormir durante o dia.
+set string464=A primeira questão mundial do Everybody Votes Channel era sobre se você gostava mais de cães ou gatos, e recebeu mais de 500 mil votos.
+set string465=A música de noite que toca no Forecast Channel foi feita antes da música de dia, ela foi solicitada para que as pessoas não ficassem sonolentas durante o dia.
 set string466=O globo no canal de Notícias e Previsão de Tempo é baseado sobre imagens da NASA, e o mesmo globo foi usado no Mario Kart Wii.
 set string467=Você pode pressionar o botão RESET no Wii enquanto está desligado para desligar a luz azul.
 
