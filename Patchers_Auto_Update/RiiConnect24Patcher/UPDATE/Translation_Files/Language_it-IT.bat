@@ -1,6 +1,5 @@
-setlocal disableDelayedExpansion
+if "%1"=="-chcp" chcp 65001
 :: Should be available locally
-
 
 set string1=RiiConnetti la tua Wii.
 set string2=Avvia la procedura
@@ -401,7 +400,7 @@ set string384= è consigliabile farlo)
 set string385=Sì, mostrami le istruzioni su come farlo.
 set string386=Ti preghiamo di inviare una mail a support@riiconnect24.net con una richiesta per cancellarti dal nostro database.
 set string387=Assieme a quella email, allega una foto che mostra il tuo Codice Wii nella Rubrica.
-set string388=Per farlo, apri la Bacheca Wii -ì> Crea messaggio -ì> Rubrica -ì> Scatta una foto del tuo Codice Wii e
+set string388=To do that, please open Wii Message Board - New Message - Address Book - Make a picture of your Friend Code and
 set string389=inviacela per assicurarci che tu sia in possesso quel Codice Wii.
 set string390=In questo modo, perderai l'accesso al sistema di mail di RiiConnect24. Riuscirai comunque a riavere il funzionamento totale usando
 l'app homebrew RiiConnect 24 Mail Patcher sulla tua Wii.
@@ -421,10 +420,10 @@ set string404=Cosa vuoi fare?
 set string405=Pagina successiva
 set string406=Part II - Ripristino di nwc24msg.cfg alle configurazioni di fabbrica.
 set string407=Avvia WiiXplorer dal Canale Homebrew.
-set string408=Su WiiXplorer, premi Start -^> Settings -^> Boot Settings -^> NAND Write Access (attivalo)
+set string408=In WiiXplorer, press Start - Settings - Boot Settings - NAND Write Access (turn on)
 set string409=Ricordati di attivarlo siccome è importante^^!
 set string410=Cambia il tuo dispositivo in NAND (dalla barra in alto)
-set string411=Naviga verso shared2 -^> wc24
+set string411=Go to shared2 - wc24
 set string412=Sposta il cursore sopra nwc24msg.cfg, premi il pulsante + sul tuo Telecomando Wii e cancellalo.
 set string413=Vai al Menu Wii (un nuovo file nwc24msg.cfg verrà create con lo stesso Codice Wii)
 set string414=Pagina precendete
