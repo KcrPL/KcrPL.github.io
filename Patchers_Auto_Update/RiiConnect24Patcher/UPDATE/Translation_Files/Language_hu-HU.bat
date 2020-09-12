@@ -186,12 +186,12 @@ set string193=Ez a mód közvetlenül az SD kártyára telepít egy csatornát, 
 
 
 set string167=Üdv
-set string168=welcome to RiiConnect24 installation process for Dolphin Emulator.
-set string169=First, I need to download the VFF-Downloader. This will make Forecast and News Channel work.
-set string170=Press any key to download and start the VFF Downloader for Dolphin.
+set string168=Isten hozott a RiiConnect24-telepítő Dolphin Emulátoros módja.
+set string169=Először is le kell tölteni a VFF-letöltőt. Ez fogja szóra bírni az Időjárás csatornát (Forecast Channel) és a Hírcsatornát (News Channel).
+set string170=Nyomj meg egy billentyűt a VFF-letöltő letöltéséhez és indításához.
 
-set string171=Alright! I see that you've exited VFF Downloader Installer.
-set string172=If you installed it correctly and choose:
+set string171=Rendben! Látom, kiléptél a VFF-letöltő telepítőjéből.
+set string172=Ha a telepítés sikeresen befejeződött, válassz egy működési módot:
 set string173=Manual - there will be an option in the main menu of RiiConnect24 Patcher to start it. Start it every time you want to
 set string174=access Forecast and News Channel. There will be an option in the main menu to manage VFF Downloader.
 set string175=Startup - the program will run in background and will download the files automatically every hour.
