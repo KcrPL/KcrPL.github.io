@@ -1,39 +1,39 @@
 if "%1"=="-chcp" chcp 65001
 :: Should be available locally
 
-set string1=RiiConnect your Wii.
-set string2=Start
-set string3=Credits
-set string4=Settings
-set string5=manage VFF Downloader for Dolphin here
-set string6=Run the VFF Downloader once.
-set string7=Do you have problems or want to contact us?
-set string8=Mail us at support@riiconnect24.net
-set string9=Detected Wii SD Card:
-set string10=Could not detect your Wii SD Card.
-set string11=Refresh
-set string12=If incorrect, you can change later.
+set string1=Riiconecteaza-ți consola ta Wii.
+set string2=Începe
+set string3=Credite
+set string4=Setări
+set string5=administrează VFF Downloader pentru Dolphin aici
+set string6=Rulează VFF Downloader odată.
+set string7=Tu ai probleme sau vrei să ne contactezi?
+set string8=Trimite-ne un mail la adresa support@riiconnect24.net
+set string9=Wii Card SD Detectat:
+set string10=Nu am putut detecta Wii Card SDul tău.
+set string11=Reîmprospătează
+set string12=Dacă incorect, îl poți schimba mai târziu.
 
-set string13=Warning
-set string14=You are using an experimental version of this program.
-set string15=That means that this version might contain experimental features
-set string16=and bugs that might break your Wii/Wii U console or your computer.
-set string17=If you don't know what you're doing, please go to settings and go back to
-set string18=stable branch of the patcher.
+set string13=Avertizare
+set string14= Tu folosești o versiune experimentală al acestui program.
+set string15=Asta înseamnă ca această versiune s-ar putea să conțină funcții experimentale
+set string16=și erori care pot sa-ți strice consola Wii/Wii U sau calculatorul tău.
+set string17=Dacă nu știi ce faci, te rugăm să te duci în setări și înapoi la
+set string18=ramură stabilă a patcherului.
 
-set string19=Type a number that you can see above next to the command and hit ENTER
+set string19=Tastează un număr pe care îl poți vedea deasupra lângă comandă și apasă pe ENTER
 
-set string20=Troubleshooting tools
-set string21=These tools should help you diagnose some problems with the patcher and try to repair them automatically.
-set string22=Could not detect SD Card.
-set string23=Could not copy files to the SD Card.
-set string24=Renaming files error
-set string25=Return to main menu
-set string26=Choose
+set string20=Unelte de depanare
+set string21=Aceste unelte ar trebui să te ajute la diagnosticarea a câteva probleme cu patcherul și să încerce să le repare automat.
+set string22=Nu am putut detecta un Card SD.
+set string23=Nu am putut copia fișierele către Cardul SD.
+set string24=Eroare în redenumirea fișierelor
+set string25=Întoarce-te în meniul principal
+set string26=Alege
 
-set string27=RiiConnect24 Patcher Settings
-set string28=Go back
-set string29=Set background/text color
+set string27=Setările patcherului RiiConnect24
+set string28=Întoarce-te
+set string29=Setează culoarea fundalului/textului
 set string30=Turn off/on updating
 set string31=Currently
 set string32=Change updating branch to
