@@ -1,4 +1,4 @@
-setlocal disableDelayedExpansion
+chcp 65001>NUL
 :: Should be available locally
 
 
