@@ -10,7 +10,7 @@ set string6=Запустить загрузчик VFF один раз.
 set string7=У вас есть проблемы или хотите с нами связаться?
 set string8=Пришлите нам письмо на адрес support@riiconnect24.net
 set string9=SD-карта Wii обнаружена:
-set string10=SD-карта Wii не обнаружена.
+set string10=Не удалось обнаружить SD-карту Wii.
 set string11=Обновить
 set string12=Если неверно, можно поменять позже.
 
@@ -23,16 +23,16 @@ set string18 стабильной ветке патчера.
 
 set string19=Введите цифру которую вы можете увидеть сверху возле команды и нажмите ENTER
 
-set string20=Troubleshooting tools
-set string21=These tools should help you diagnose some problems with the patcher and try to repair them automatically.
-set string22=Could not detect SD Card.
-set string23=Could not copy files to the SD Card.
-set string24=Renaming files error
-set string25=Return to main menu
-set string26=Choose
+set string20=Инструменты исправления проблем
+set string21=Эти инструменты должны вам помочь диагностировать проблемы с патчером и исправить их автоматически.
+set string10=Не удалось обнаружить SD-карту Wii.
+set string23=Не удалось скопировать файлы на SD-карту.
+set string24=Ошибка переименования файлов
+set string25=Вернуться в главное меню
+set string26=Выберите
 
-set string27=RiiConnect24 Patcher Settings
-set string28=Go back
+set string27=Настройки патчера RiiConnect24
+set string28=Вернуться
 set string29=Set background/text color
 set string30=Turn off/on updating
 set string31=Currently
@@ -61,23 +61,23 @@ set string53=Sorry, there's currently no public beta version available.
 set string54=Yes, switch to Beta branch.
 set string55=[UNABLE TO SWITCH TO BETA VERSION]
 
-set string56=WAIT
-set string57=Are you trying to disable updating?
-set string58=Please do remember that updates will keep you safe and updated about the patcher.
-set string59=Only use this option for debugging and troubleshooting.
+set string56=СТОП
+set string57=Вы пытаетесь отключить обновления?
+set string58=Пожалуйста помните что обновления буду вас держать в безопасности и осведомлённым про патчер.
+set string59=Используйте эту опцию только для отладки и исправления ошибок.
 set string60=Are you sure that you want to disable autoupdating?
 
-set string61=Yes
-set string62=No, go back.
+set string61=Да
+set string62=Нет, вернуться.
 
-set string63=Change color:
-set string64=Dark theme
-set string65=Light theme *please don't hurt my eyes edition*
-set string66=Light theme *please hurt my eyes edition*
-set string67=Yellow
-set string68=Green
-set string69=Red
-set string70=Blue
+set string63=Изменить цвет:
+set string64=Тёмная тема
+set string65=Светлая тема *Пожалуйста не калечь мои глаза*
+set string66=Светлая тема *Пожалуйста покалечь мои глаза*
+set string67=Жёлтый
+set string68=Зелёный
+set string69=Красный
+set string70=Синий
 
 set string71=Downloading curl... Please wait.
 set string72=This can take some time...
@@ -484,13 +484,14 @@ set string465=Ночная песня которая играет во врем�
 set string466=Глобус в Forecast и News Channel' были основаны на образах от NASA. Он также был использован в Mario Kart Wii.
 set string467=Вы можете нажать на кнопку Reset пока Wii находится в режиме сна чтобы отключить синий свет дисковода который светится когда вы получаете сообщение.
 
-set string468=Patching IOS's
-set string469=Patching News/Forecast Channel
+set string468=Патчим IOS'ы
+set string469=Патчим News/Forecast Channel
 set string470=Не беспокойтесь^^! Это может занять некоторое время... Копируем файлы на вашу SD-карту...
 set string471=Пожалуйста подсоедините вашу Wii SD-карту и скопируйте папки apps и WAD на корневую папку вашей SD-карты. Вы можете найти эти папки рядом с RiiConnect24Patcher.bat
-set string472=Every file is in it's place on your SD Card^^!
-set string473=You can find these folders next to RiiConnect24Patcher.bat.
-set string474=Please proceed with the tutorial that you can find on https://wii.guide/riiconnect24
+set string472=Каждый файл на вашей SD-карте на месте^^!
+set string473=Вы можете найти эти папки рядом с RiiConnect24Patcher.bat.
+set string474=Пожалуйста продолжите с руководством которое вы можете найти по ссылке:
+https://wii.guide/riiconnect24
 
 set string475=Спасибо огромное за использование этого патчера^^! :)
 set string476=Наслаждайтесь RiiConnect24^^!
@@ -501,7 +502,7 @@ set string479=Не удалось подключиться к удалённом
 set string480=Проверьте ваше подключение к интернету или проверьте блокирует ли ваш Брандмауэр curl.
 set string481=Произошла ошибка во время патчинга.
 set string482= Код ошибки
-set string483=Failing module
+set string483=Ошибка модуля
 set string484=СОВЕТ: Попробуйте временно отключить ваш антивирус.
 set string485=РЕШЕНИЕ: Пожалуйста проверьте ваше подключение к интернету.
 set string486=ДЕТАЛИ О ОШИБКЕ: Ошибка записи curl. Попробуйте передвинуть патчер на рабочий стол и попробуйте ещё раз.
