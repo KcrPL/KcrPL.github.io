@@ -1,30 +1,30 @@
 if "%1"=="-chcp" chcp 65001
 :: Should be available locally
 
-set string1=Riiconecteaza-ți consola ta Wii.
+set string1=Riiconecteaza-ți consola Wii.
 set string2=Începe
 set string3=Credite
 set string4=Setări
-set string5=administrează VFF Downloader pentru Dolphin aici
-set string6=Rulează VFF Downloader odată.
-set string7=Tu ai probleme sau vrei să ne contactezi?
+set string5=Administrează VFF Downloader pentru Dolphin aici
+set string6=Rulează VFF Downloader o dată.
+set string7=Ai probleme sau vrei să ne contactezi?
 set string8=Trimite-ne un mail la adresa support@riiconnect24.net
-set string9=Wii Card SD Detectat:
-set string10=Nu am putut detecta Wii Card SDul tău.
+set string9=Card SD Wii Detectat:
+set string10=Nu am putut detecta Cardul SD Wii al tău.
 set string11=Reîmprospătează
-set string12=Dacă incorect, îl poți schimba mai târziu.
+set string12=Dacă este incorect, îl poți schimba mai târziu.
 
-set string13=Avertizare
-set string14= Tu folosești o versiune experimentală al acestui program.
+set string13=Atenție
+set string14=Folosești o versiune experimentală al acestui program.
 set string15=Asta înseamnă ca această versiune s-ar putea să conțină funcții experimentale
-set string16=și erori care pot sa-ți strice consola Wii/Wii U sau calculatorul tău.
+set string16=și erori care pot să-ți strice consola Wii/Wii U sau calculatorul tău.
 set string17=Dacă nu știi ce faci, te rugăm să te duci în setări și înapoi la
-set string18=ramură stabilă a patcherului.
+set string18=ramura stabilă a patcherului.
 
 set string19=Tastează un număr pe care îl poți vedea deasupra lângă comandă și apasă pe ENTER
 
 set string20=Unelte de depanare
-set string21=Aceste unelte ar trebui să te ajute la diagnosticarea a câteva probleme cu patcherul și să încerce să le repare automat.
+set string21=Aceste unelte ar trebui să te ajute la diagnosticarea a câtorva probleme ale patcherului și să încerce să le repare automat.
 set string22=Nu am putut detecta un Card SD.
 set string23=Nu am putut copia fișierele către Cardul SD.
 set string24=Eroare în redenumirea fișierelor
@@ -36,20 +36,20 @@ set string28=Întoarce-te
 set string29=Setează culoarea fundalului/textului
 set string30=Oprește/pornește actualizarea
 set string31=Acum
-set string32=Change updating branch to
+set string32=Schimbă ramura de actualizare către
 set string33=Beta
-set string34=Stable
-set string35=Repair patcher file
-set string36=Redownload
-set string37=VFF Downloader for Dolphin Settings
-set string38=Completely delete VFF Downloader for Dolphin from your computer
-set string39=Delete VFF Downloader from startup
-set string40=If VFF Downloader is running, shut it down.
-set string41=Please wait... fetching data.
-set string42=Do you want to go back to stable version of the patcher?
-set string43=Current version
-set string44=Stable version
-set string45=Sorry, there was an error while fetching data.
+set string34=Stabil
+set string35=Repară fișierul patcherului
+set string36=Redescarcă
+set string37=VFF Downloader pentru Dolphin Setări
+set string38=Șterge complet VFF Downloader pentru Dolphin din computerul tău
+set string39=Șterge VFF Downloader la pornire
+set string40=Dacă VFF Downloader rulează, oprește-l.
+set string41=Te rog așteaptă... adunarea datelor.
+set string42=Vrei să te întorci la o versiune stabilă a patcherului?
+set string43=Versiune curentă
+et string44=Versiune stabilă
+set string45=Scuze, a fost o eroare in timp ce adunam date.
 set string46=Do you want to switch branches?
 set string47=Updating process will start.
 set string48=Yes, switch to Stable branch.
