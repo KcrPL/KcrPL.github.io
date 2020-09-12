@@ -71,7 +71,7 @@ set string60=Are you sure that you want to disable autoupdating?
 set string61=Sim
 set string62=Não, volta para trás.
 
-set string63=Change color:
+set string63=Mudar a cor:
 set string64=Tema Escuro
 set string65=Tema Claro *Edição: Por favor não me magoes os olhos*
 set string66=Tema Claro *Edição: aniquila os meus olhos*
@@ -80,12 +80,12 @@ set string68=Verde
 set string69=Vermelho
 set string70=Azul
 
-set string71=Downloading curl... Please wait.
-set string72=This can take some time...
+set string71=A transferir o curl... Por favor aguarde.
+set string72=Isto pode demorar algum tempo...
 
-set string73=ERROR.
-set string74=There was an error while downloading curl.
-set string75=We will now open a website that will download curl.exe.
+set string73=ERRO.
+set string74=Ocorreu um erro durante a transferência do curl.
+set string75=Vamos abrir um website para transferir o curl.exe.
 set string76=Please move curl.exe to the folder where RiiConnect24 Patcher is and restart the patcher.
 set string77=Press any key to open download page in browser and to return to menu.
 
@@ -456,17 +456,17 @@ set string437=The following process will download about 170MB of data.
 
 set string438=Sabias que a Wii foi a consola de videojogos mais vendida em 2006?
 set string439=Sabias que o KcrPL cria estes patchers espetaculares?
-set string440=RiiConnect24 originally started out as "CustomConnect24"!
-set string441=Did you the RiiConnect24 logo was made by NeoRame, the same person who made the Wiimmfi logo?
-set string442=The Wii was nicknamed "Revolution" during its development stage.
-set string443=Did you know the letters in the Wii model number RVL stand for the Wii's codename, Revolution?
+set string440=O RiiConnect24 originalmente chamava-se "CustomConnect24"!
+set string441=Sabias que o logotipo do RiiConnect24 foi criado pelo NeoRame, a mesma pessoa que criou o logotipo do Wiimmfi?
+set string442=A Wii era referido pelo apelido de "Revolution" durante a sua fase de desenvolvimento.
+set string443=Sabias que as letras no número do modelo do Wii [RVL] representam o nome de código da Wii, Revolution?
 set string444=The music used in many of the Wii's channels (including the Wii Shop, Mii, Check Mii Out, and Forecast Channel) was composed by Kazumi Totaka.
 set string445=The Internet Channel once costed 500 Wii Points.
 set string446=It's possible to use candles as a Wii Sensor Bar.
 set string447=The blinking blue light that indicates a system message has been received is actually synced to the bird call of the Japanese bush warbler. More info about it on RiiConnect24 YouTube Channel^^!
 set string448=Wii Sports is the most sold game on the Wii. It sold 82.85 million. Overall it is the 3rd most sold game in the world.
 set string449=Sabias que a grande maioria dos scripts usados para o funcionamento do RiiConnect24 são escritos em Python?
-set string450=Thank you Spotlight for making our mail system secure.
+set string450=Um grande obrigado ao Spotlight por manter o nosso sistema de mail seguro.
 set string451=Did you know that we have an awesome Discord server where you can always stay updated about the project status?
 set string452=The Everybody Votes Channel was originally an idea about sending quizzes and questions daily to Wiis.
 set string453=The News Channel developers had an idea at some point about making a dad's Mii being the news caster in the Channel, but it probably didn't make it because some stories on there probably aren't appropriate for kids.
