@@ -486,25 +486,25 @@ set string467=Вы можете нажать на кнопку Reset пока Wi
 
 set string468=Patching IOS's
 set string469=Patching News/Forecast Channel
-set string470=Don't worry^^! It might take some time... Now copying files to your SD Card...
-set string471=Please connect your Wii SD Card and copy apps and WAD folder to the root (main folder) of your SD Card. You can find these folders next to RiiConnect24Patcher.bat
+set string470=Не беспокойтесь^^! Это может занять некоторое время... Копируем файлы на вашу SD-карту...
+set string471=Пожалуйста подсоедините вашу Wii SD-карту и скопируйте папки apps и WAD на корневую папку вашей SD-карты. Вы можете найти эти папки рядом с RiiConnect24Patcher.bat
 set string472=Every file is in it's place on your SD Card^^!
 set string473=You can find these folders next to RiiConnect24Patcher.bat.
 set string474=Please proceed with the tutorial that you can find on https://wii.guide/riiconnect24
 
-set string475=Thank you very much for using this patcher^^! :)
-set string476=Have fun using RiiConnect24^^!
-set string477=Closing the patcher in:
+set string475=Спасибо огромное за использование этого патчера^^! :)
+set string476=Наслаждайтесь RiiConnect24^^!
+set string477= Патчер закроется через:
 
-set string478=There is no internet connection.
-set string479=Could not connect to remote server.
-set string480=Check your internet connection or check if your firewall isn't blocking curl.
-set string481=There was an error while patching.
-set string482=Error Code
+set string478=Нет подключения к интернету.
+set string479=Не удалось подключиться к удалённому серверу.
+set string480=Проверьте ваше подключение к интернету или проверьте блокирует ли ваш Брандмауэр curl.
+set string481=Произошла ошибка во время патчинга.
+set string482= Код ошибки
 set string483=Failing module
-set string484=TIP: Consider turning off your antivirus temporarily.
-set string485=SOLUTION: Please check your internet connection.
-set string486=ERROR DETAILS: Curl write error. Try moving the patcher to desktop and try again.
-set string487=SOLUTION: Please install latest .NET Framework, then try again.
+set string484=СОВЕТ: Попробуйте временно отключить ваш антивирус.
+set string485=РЕШЕНИЕ: Пожалуйста проверьте ваше подключение к интернету.
+set string486=ДЕТАЛИ О ОШИБКЕ: Ошибка записи curl. Попробуйте передвинуть патчер на рабочий стол и попробуйте ещё раз.
+set string487=РЕШЕНИЕ: Пожалуйста установите последний .NET Framework и попробуйте ещё раз.
 
 
