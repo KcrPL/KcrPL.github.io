@@ -502,10 +502,10 @@ set string479=Nie można się połączyć ze zdalnym serwerem.
 set string480=Sprawdź Twoje połączanie z Internetem lub sprawdź czy twoja zapora sieciowa nie blokuje curl.
 set string481=Wystąpił błąd podczas patchowania.
 set string482=Kod błędu
-set string483=Failing module
-set string484=TIP: Consider turning off your antivirus temporarily.
-set string485=SOLUTION: Please check your internet connection.
-set string486=ERROR DETAILS: Curl write error. Try moving the patcher to desktop and try again.
-set string487=SOLUTION: Please install latest .NET Framework, then try again.
+set string483=Błąd spowodował moduł
+set string484=PORADA: Spróbuj chwilowo wyłączyć Twojego antywirusa.
+set string485=ROZWIĄZANIE: Sprawdź połączenie z Internetem.
+set string486=INFORMACJE O BŁĘDZIE: Błąd zapisu curl. Spróbuj skopiować patcher na pulpit i spróbuj ponownie.
+set string487=ROZWIĄZANIE: Zainstaluj najnowszy .NET Framework oraz spróbuj ponownie.
 
 
