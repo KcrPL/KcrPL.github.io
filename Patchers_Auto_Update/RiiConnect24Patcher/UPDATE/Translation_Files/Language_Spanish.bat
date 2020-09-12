@@ -25,7 +25,7 @@ set string18=la versión estable del parcheador.
 set string19=Escribe un número que puedes ver arriba seguido del comando y pulsa ENTER
 
 set string20=Herramientras de solución de problemas
-set string21=Estás herramientas deben ayudarte a diagnosticar algunos problemas con el parcheador e intentar repararlos automáticamente.
+set string21=Estas herramientas deben ayudarte a diagnosticar algunos problemas con el parcheador e intentar repararlos automáticamente.
 set string22=No se pudo detectar la tarjeta SD.
 set string23=No se han podido copiar archivos hacia la Tarjeta SD.
 set string24=Error al renombrar archivos
@@ -40,7 +40,7 @@ set string31=Actual
 set string32=Cambiando branch de actualización a
 set string33=Beta
 set string34=Estable
-set string35=Reparar archivo del parcheador
+set string35=Reparar archivo del patcher
 set string36=Redescargar
 set string37=Ajustes del VFF Downloader para Dolphin
 set string38=Eliminar VFF Downloader para Dolphin por completo de tu equipo
@@ -463,7 +463,7 @@ set string443=¿Sabías que las letras RVL en el número de modelo de Wii son po
 set string444=La música utilizada en muchos de los canales de Wii (incluídos el Wii Shop, Mii, Check Mii Out y el Canal del Clima) fue compuesta por Kazumi Totaka.
 set string445=En algún punto, el Canal Internet costaba 500 Wii Points.
 set string446=Es posible usar velas en lugar de la barra de sensores de Wii.
-set string447=La luz azul que parpadea e indica que se ha recibido un mensaje del sistema, está sincronizada al canto del pájaro cetia japonés. ¡Más información sobre esto en el canal de YouTube de RiiConnect24 ^^!
+set string447=La luz azul parpadeante que indica que se ha recibido un mensaje del sistema, está sincronizada al canto del pájaro cetia japonés. ¡Más información sobre esto en el canal de YouTube de RiiConnect24^^!
 set string448=Wii Sports es el juego más vendido de la Wii. Vendió 82,85 millones. En términos generales es el tercer juego más vendido del mundo.
 set string449=¿Sabías que la mayoría de los scripts utilizados para realizar el trabajo de RiiConnect24 están escritos en Python?
 set string450=Gracias Spotlight por asegurar nuestro sistema de mensajería.
@@ -499,13 +499,13 @@ set string477=Cerrando el parcheador en:
 
 set string478=No hay conexión a internet.
 set string479=No se pudo conectar al servidor remoto.
-set string480=Revisa tu conexión a internet o revisa si tu firewall (cortafuegos) está bloqueando curl.
+set string480=Revisa tu conexión a internet o revisa si tu firewall (cortafuegos) está bloqueando a curl.
 set string481=Hubo un error en el parcheo.
 set string482=Código de error
 set string483=Módulo fallando
 set string484=CONSEJO: Considera desactivar temporalmente tu antivirus.
 set string485=SOLUCIÓN: Por favor revisa tu conexión a internet.
-set string486=DETALLES DEL ERROR: Error escribiendo curl. Prueba moviendo el parcheador al escritorio y vuelve a intentar.
+set string486=DETALLES DEL ERROR: Error con la escritura de Curl. Prueba moviendo el patcher al escritorio y vuelve a intentar.
 set string487=SOLUCIÓN: Por favor instala el último .NET Framework y vuelve a intentarlo.
 
 
