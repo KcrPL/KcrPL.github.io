@@ -1,6 +1,5 @@
-setlocal disableDelayedExpansion
+if "%1"=="-chcp" chcp 65001
 :: Should be available locally
-
 
 set string1=RiiConnectez votre Wii.
 set string2=Démarrer
@@ -11,45 +10,45 @@ set string6=Exécuter le Téléchargeur de VFF une fois.
 set string7=Avez-vous des problèmes ou désirez-vous nous contacter?
 set string8=Envoyez-nous un courriel à support@riiconnect24.net
 set string9=Carte SD Wii Détectée:
-set string10=Nous sommes incapable de détecter la carte SD de votre Wii.
+set string10=impossible de détecter la carte SD de votre Wii.
 set string11=Rafraîchir
 set string12=Si incorrect, vous pourrez les modifier plus tard.
 
 set string13=Attention
-set string14=Vous utilisez présentement une version expérimentale de ce programme.
-set string15=Cela veux dire que cette version pourrait contenir des fonctions expérimentales
-set string16=et des bogues qui pourraient briser votre console Wii/Wii U ou votre ordinateur.
-set string17=Si vous n'êtes pas certain, veuillez retourner à la section paramètres, et retournez à
+set string14=Vous utilisez une version expérimentale de ce programme.
+set string15=Cela veut dire que cette version pourrait contenir des fonctions expérimentales
+set string16=et des bugs qui pourraient casser votre console Wii/Wii U ou votre ordinateur.
+set string17=Si vous n'êtes pas certain de ce que vous faites, veuillez retourner à la section paramètres, et retournez à
 set string18=la branche stable du programme.
 
-set string19=Entrez un numéro affiché ci-dessus à côté de la commande désirée, et appuyez sur la touche ENTER
+set string19=Entrez un numéro affiché ci-dessus à côté de la commande, et appuyez sur la touche ENTREE
 
 set string20=Outils de dépannage
 set string21=Ces outils vous aideront à diagnostiquer certains problèmes avec le programme, et essayera de remédier ces derniers.
-set string10=Incapable de détecter la carte SD.
-set string23=Incapable de copier les fichiers à la carte SD.
-set string24=Erreur en renommant les fichers
+set string10=Impossible de détecter la carte SD.
+set string23=Impossible de copier les fichiers à la carte SD.
+set string24=Erreur en renommant les fichiers
 set string25=Retourner au menu principal
-set string26=Choisissez
+set string26=Sélectionnez
 
 set string27=Paramètres du Patcher RiiConnect24
 set string28=Retourner
 set string29=Définir la couleur de l’arrière-plan/du texte
 set string30=Désactiver/Activer les mises à jour
-set string31=Présentement
+set string31=Actuellement
 set string32=Changer la branche du programme à
 set string33=Bêta
 set string34=Stable
 set string35=Réparer le fichier du patch
 set string36=Télécharger à nouveau
-set string37=VFF Downloader for Dolphin Settings
-set string38=Completely delete VFF Downloader for Dolphin from your computer
-set string39=Delete VFF Downloader from startup
-set string40=If VFF Downloader is running, shut it down.
-set string41=Please wait... fetching data.
-set string42=Do you want to go back to stable version of the patcher?
-set string43=Current version
-set string44=Stable version
+set string37=Téléchargeur VFF pour les paramètres de Dolphin
+set string38=Désinstaller complètement le Téléchargeur VFF pour Dolphin de votre ordinateur
+set string39=Retirer le Téléchargeur VFF au démarrage
+set string40=Si le Téléchargeur VFF est lancé, fermez le.
+set string41=Veuillez patienter... récupération des données.
+set string42=Voulez vous retourner à la version stable du patcher?
+set string43=Version actuelle
+set string44=Version stable
 set string45=Sorry, there was an error while fetching data.
 set string46=Do you want to switch branches?
 set string47=Updating process will start.
@@ -401,7 +400,7 @@ set string384= it is recommended to do that)
 set string385=Yes, show me the instructions how to do that.
 set string386=Please send a mail to support@riiconnect24.net with a request to delete you from our database.
 set string387=With that email, please include a picture showing your Friend Code in the Address Book.
-set string388=To do that, please open Wii Message Board -^> New Message -^> Address Book -^> Make a picture of your Friend Code and
+set string388=To do that, please open Wii Message Board - New Message - Address Book - Make a picture of your Friend Code and
 set string389=please send it to us to make sure that you are the owner of the Friend Code.
 set string390=By doing so, you will lose access to the RiiConnect24 Mailing system. You will be able to restore full functionality using
 set string391=the RiiConnect24 Mail Patcher homebrew app on your Wii.
@@ -421,10 +420,10 @@ set string404=What to do now?
 set string405=Next page
 set string406=Part II - Restoring the nwc24msg.cfg to it's factory default.
 set string407=Please launch WiiXplorer from the Homebrew Channel.
-set string408=In WiiXplorer, press Start -^> Settings -^> Boot Settings -^> NAND Write Access (turn on)
+set string408=In WiiXplorer, press Start - Settings - Boot Settings - NAND Write Access (turn on)
 set string409=Remember to turn it on because it's important^^!
 set string410=Change your device to NAND (on the bar on top)
-set string411=Go to shared2 -^> wc24
+set string411=Go to shared2 - wc24
 set string412=Hover your cursor over nwc24msg.cfg, press + on your Wii Remote and delete it.
 set string413=Go to Wii Menu (the nwc24msg.cfg file should regenerate with the same Friend Code)
 set string414=Previous page

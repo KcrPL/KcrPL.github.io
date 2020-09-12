@@ -1,6 +1,5 @@
-setlocal disableDelayedExpansion
+if "%1"=="-chcp" chcp 65001
 :: Should be available locally
-
 
 set string1=RiiConnect your Wii.
 set string2=Indítás
@@ -176,23 +175,23 @@ set string157=A Patcher végigvezet a RiiConnect24 telepítésének folyamatán.
 set string158=Egyéb eszközök
 set string159=WAD-formátumú Wii játékok módosítása a Wiimmfi támogatásához.
 set string160=Ez a mód a WAD-formátumú (WiiWare) játékokat újra online-képessé teszi a Wiimmfi segítségével.
-set string161=Patch Mario Kart Wii to work with Wiimmfi.
-set string162=This will patch your copy of Mario Kart Wii to work with Wiimmfi which will enable online multiplayer to work again.
-set string163=Patch other Wii Games to work with Wiimmfi.
-set string164=This will patch any other game than Mario Kart Wii to work with Wiimmfi.
-set string165=Visit Homebrew Shop
-set string166=Download and install homebrew on your SD Card using Open Shop Channel.
-set string192=Install WAD files directly to the SD Card.
-set string193=This will allow you to directly install a channel to your SD Card instead of you having to move it from NAND.
+set string161=Mario Kart Wii módosítása a Wiimmfi támogatásához.
+set string162=Ez a mód a Mario Kart Wii játékot újra online-képessé teszi a Wiimmfi segítségével.
+set string163=Egyéb Wii játékok módosítása a Wiimmfi támogatásához.
+set string164=Ez a mód bármely egyéb Wii játékot újra online-képessé tesz a Wiimmfi segítségével.
+set string165=Homebrew bolt megnyitása
+set string166=Homebrew programok telepítése az SD kártyára az Open Shop Channel segítségével.
+set string192=WAD fájlok telepítése az SD kártyára.
+set string193=Ez a mód közvetlenül az SD kártyára telepít egy csatornát, ezzel átugorva a Wii belső tárhelyét.
 
 
-set string167=Hey
-set string168=welcome to RiiConnect24 installation process for Dolphin Emulator.
-set string169=First, I need to download the VFF-Downloader. This will make Forecast and News Channel work.
-set string170=Press any key to download and start the VFF Downloader for Dolphin.
+set string167=Üdv
+set string168=Isten hozott a RiiConnect24-telepítő Dolphin Emulátoros módja.
+set string169=Először is le kell tölteni a VFF-letöltőt. Ez fogja szóra bírni az Időjárás csatornát (Forecast Channel) és a Hírcsatornát (News Channel).
+set string170=Nyomj meg egy billentyűt a VFF-letöltő letöltéséhez és indításához.
 
-set string171=Alright! I see that you've exited VFF Downloader Installer.
-set string172=If you installed it correctly and choose:
+set string171=Rendben! Látom, kiléptél a VFF-letöltő telepítőjéből.
+set string172=Ha a telepítés sikeresen befejeződött, válassz egy működési módot:
 set string173=Manual - there will be an option in the main menu of RiiConnect24 Patcher to start it. Start it every time you want to
 set string174=access Forecast and News Channel. There will be an option in the main menu to manage VFF Downloader.
 set string175=Startup - the program will run in background and will download the files automatically every hour.
@@ -401,7 +400,7 @@ set string384= it is recommended to do that)
 set string385=Yes, show me the instructions how to do that.
 set string386=Please send a mail to support@riiconnect24.net with a request to delete you from our database.
 set string387=With that email, please include a picture showing your Friend Code in the Address Book.
-set string388=To do that, please open Wii Message Board -^> New Message -^> Address Book -^> Make a picture of your Friend Code and
+set string388=To do that, please open Wii Message Board - New Message - Address Book - Make a picture of your Friend Code and
 set string389=please send it to us to make sure that you are the owner of the Friend Code.
 set string390=By doing so, you will lose access to the RiiConnect24 Mailing system. You will be able to restore full functionality using
 set string391=the RiiConnect24 Mail Patcher homebrew app on your Wii.
@@ -421,10 +420,10 @@ set string404=What to do now?
 set string405=Next page
 set string406=Part II - Restoring the nwc24msg.cfg to it's factory default.
 set string407=Please launch WiiXplorer from the Homebrew Channel.
-set string408=In WiiXplorer, press Start -^> Settings -^> Boot Settings -^> NAND Write Access (turn on)
+set string408=In WiiXplorer, press Start - Settings - Boot Settings - NAND Write Access (turn on)
 set string409=Remember to turn it on because it's important^^!
 set string410=Change your device to NAND (on the bar on top)
-set string411=Go to shared2 -^> wc24
+set string411=Go to shared2 - wc24
 set string412=Hover your cursor over nwc24msg.cfg, press + on your Wii Remote and delete it.
 set string413=Go to Wii Menu (the nwc24msg.cfg file should regenerate with the same Friend Code)
 set string414=Previous page

@@ -1,6 +1,5 @@
-setlocal disableDelayedExpansion
+if "%1"=="-chcp" chcp 65001
 :: Should be available locally
-
 
 set string1=Připoj svoje Wii k RiiConnect24.
 set string2=Start
@@ -401,7 +400,7 @@ set string384= it is recommended to do that)
 set string385=Yes, show me the instructions how to do that.
 set string386=Please send a mail to support@riiconnect24.net with a request to delete you from our database.
 set string387=With that email, please include a picture showing your Friend Code in the Address Book.
-set string388=To do that, please open Wii Message Board -^> New Message -^> Address Book -^> Make a picture of your Friend Code and
+set string388=To do that, please open Wii Message Board - New Message - Address Book - Make a picture of your Friend Code and
 set string389=please send it to us to make sure that you are the owner of the Friend Code.
 set string390=By doing so, you will lose access to the RiiConnect24 Mailing system. You will be able to restore full functionality using
 set string391=the RiiConnect24 Mail Patcher homebrew app on your Wii.
@@ -421,10 +420,10 @@ set string404=What to do now?
 set string405=Next page
 set string406=Part II - Restoring the nwc24msg.cfg to it's factory default.
 set string407=Please launch WiiXplorer from the Homebrew Channel.
-set string408=In WiiXplorer, press Start -^> Settings -^> Boot Settings -^> NAND Write Access (turn on)
+set string408=In WiiXplorer, press Start - Settings - Boot Settings - NAND Write Access (turn on)
 set string409=Remember to turn it on because it's important^^!
 set string410=Change your device to NAND (on the bar on top)
-set string411=Go to shared2 -^> wc24
+set string411=Go to shared2 - wc24
 set string412=Hover your cursor over nwc24msg.cfg, press + on your Wii Remote and delete it.
 set string413=Go to Wii Menu (the nwc24msg.cfg file should regenerate with the same Friend Code)
 set string414=Previous page
