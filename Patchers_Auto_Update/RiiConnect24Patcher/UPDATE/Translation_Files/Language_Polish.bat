@@ -250,7 +250,7 @@ set string228=Proszę podłączyć Twoją kartę SD Wii U do komputera.
 set string229=Podłączona^^!
 set string230=Nie mogę podłączyć karty SD do komputera.
 set string231=Ooo, bez obaw. Będziesz mógł później skopiować wszystkie pliki po zakończeniu procesu patchowania.
-set string232-Hmm... wygląda na to, że Twoja karta SD nie została wykryta w systemie. Proszę wybrać opcję "Zmień literę dysku"
+set string232=Hmm... wygląda na to, że Twoja karta SD nie została wykryta w systemie. Proszę wybrać opcję "Zmień literę dysku"
 set string233=aby wybrać literę dysku karty SD manualnie.
 set string234=Inaczej, rozpoczęcie patchowania spowoduje przełączenie trybu kopiowania na manualny. Będziesz musiał później skopiować wszystkie pliki.
 set string235=Gratuluję^^! Pomyślnie wykryłem Twoją kartę SD^^! Litera dysku:
@@ -270,7 +270,7 @@ set string248=Uwaga: wystąpił problem podczas patchowanie ale patcher automaty
 set string249=problem. Proces patchowania został zrestartowany.
 set string250=Ciekawostka
 set string251=Następna ciekawostka za
-sek
+set string252=sek
 set string253=Postęp
 set string254=Pobieranie plików
 set string258=Kończenie...
@@ -349,7 +349,7 @@ set string331=z
 set string332=Nazwa pliku
 set string333=Instalacja zakończona^^! 
 set string334=Teraz, uruchom Twój WAD Manager (Jeżeli instalowałeś RiiConnect24 - Wii Mod Lite) oraz zainstaluj pliki WAD
-set string335 o nazwie (numerki)_bogus.wad na Twojej konsoli Wii.
+set string335=o nazwie (numerki)_bogus.wad na Twojej konsoli Wii.
 set string336=UWAGA: Otrzymasz błąd -1022 - spokojnie! Plik WAD jest pusty ale jedyne czgo potrzebujemy to TMD oraz ticket.
 set string337=Po ukończeniu instalacji plików WAD, możesz później podłaczyć kartę SD oraz wybrać opcję aby skasować pliki "bogus"
 set string338=w głównym menu.
