@@ -163,7 +163,7 @@ set string150=With this program, you can patch your Wii or Wii U for use with Ri
 set string151=You can also use such tools as Wiimmfi Patcher for all Wii games to play them online again.
 set string152=So, what device are we patching today?
 set string153=Dolphin Emulator
-Choisissez judicieusement
+set string154=Choisissez judicieusement
 
 set string155=Which mode should I run
 set string156=Installez Riiconnect24 sur votre émulateur Dolphin
@@ -199,12 +199,12 @@ set string176=There will be an option in the main menu of RiiConnect24 Patcher t
 set string177=What now?
 set string178=Continue with the installation process.
 set string179=Try installing VFF Downloader again.
-set string180=Exit
+set string180=Quitter
 set string181=We will now need to run the patcher to get Check Mii Out Channel and Everybody Votes Channel.
 set string182=What region should I download?
 set string183=Europe
-set string184=USA
-set string185=We're done^^! Now please open Dolphin, press on Tools and install the WAD file that has been downloaded to the WAD folder 
+set string184=États-Unis
+set string185=C’est fini^^! Now please open Dolphin, press on Tools and install the WAD file that has been downloaded to the WAD folder 
 set string186=next to the RiiConnect24 Patcher.
 set string187=That's it^^!
 set string188=What to do next?
