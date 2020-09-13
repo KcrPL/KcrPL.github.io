@@ -12,13 +12,13 @@ set string8=Envia-nos mail em support@riiconnect24.net
 set string9=Wii SD Card detetado:
 set string10=Não foi possível detetar o teu cartão SD do Wii.
 set string11=Recarregar
-set string12=Se incorreto, pode mudar depois.
+set string12=Se estiver incorreto, podes mudar depois.
 
 set string13=Aviso
-set string14=Você está usando uma versão experimental deste programa.
+set string14=Estás a usar uma versão experimental deste programa.
 set string15=Isso significa que esta versão pode conter funções experimentais
 set string16=e bugs que podem danificar a consola Wii/Wii U ou o computador.
-set string17=Se não sabes o que está a fazer, por favor dirige te ás definições e volta a
+set string17=Se não sabes o que está a fazer, por favor dirige-te às definições e volta a
 set string18=uma versão estável do patcher.
 
 set string19=Digita um número que podes ver acima ao lado do comando e pressiona ENTER
