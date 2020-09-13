@@ -275,8 +275,8 @@ set string258=Finishing...
 
 set string259=Alright^^! We're done with that^^!
 set string260=Copying successful^^! Every file is on your SD Card.
-set string261=Wha- Something failed^^! Please copy "WAD", "apps" and "wiiu" folders to your SD Card. They're next to RiiConnect24Patcher.bat
-set string262=Please connect your Wii U's SD Card to the computer and copy "WAD", "apps" and "wiiu" folder to it.
+set string261=Wha- Something failed^^! Please copy "WAD" and "apps" folders to your SD Card. They're next to RiiConnect24Patcher.bat
+set string262=Please connect your Wii U's SD Card to the computer and copy "WAD" and "apps" folder to it.
 set string263=We're nearly done^^!
 set string264=We're now about to patch a file that's responsible for the 4:3 black bars bug that appears on Wii mode.
 set string265=Now, please connect the SD Card to your Wii U, enter vWii, open Homebrew Launcher.
