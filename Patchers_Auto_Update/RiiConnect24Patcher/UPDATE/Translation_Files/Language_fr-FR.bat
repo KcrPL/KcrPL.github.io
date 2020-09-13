@@ -134,7 +134,7 @@ Retourner au menu principal
 set string124=One second please...
 set string125=TIP: Remember the name of the homebrew that you're interrested in, return to the program, select "Download homebrew" and type it in.
 set string126=It will show you a description and some other useful info about homebrew that you've chosen.
-set string127=List of homebrew available
+set string127=Liste de homebrew disponible
 set string128=Type the name of your homebrew.
 set string129=is not available on the server.
 set string130=For the list of homebrew that's on the server, please go back and choose "Show list of homebrew available".
@@ -185,16 +185,16 @@ set string192=Install WAD files directly to the SD Card.
 set string193=This will allow you to directly install a channel to your SD Card instead of you having to move it from NAND.
 
 
-set string167=Bonjour
-set string168=welcome to RiiConnect24 installation process for Dolphin Emulator.
-set string169=First, I need to download the VFF-Downloader. This will make Forecast and News Channel work.
-set string170=Press any key to download and start the VFF Downloader for Dolphin.
+set string167=Salut
+set string168=Bienvenue sur le processus d'installation de RiiConnect24 sur l'émulateur Dolphin.
+set string169=Déjà, j'ai besoin de télécharger VFF-Downloader. Ceci vas faire fonctionner la Chaîne Météo et la Chaîne Infos.
+set string170=Appuyer sur n'importe quel touche pour télécharger et lancer VFF-Downloader pour Dolphin.
 
-set string171=Alright! I see that you've exited VFF Downloader Installer.
-set string172=If you installed it correctly and choose:
-set string173=Manual - there will be an option in the main menu of RiiConnect24 Patcher to start it. Start it every time you want to
-set string174=access Forecast and News Channel. There will be an option in the main menu to manage VFF Downloader.
-set string175=Startup - the program will run in background and will download the files automatically every hour.
+set string171=Et voilà! Je vois que vous êtes sortit de l'installateur de VFF-Downloader.
+set string172=Si vous l'avez installé correctement et choisis:
+set string173=Manuel - Ceci vas être une option dans le menu principal du patch de Riiconnect24. Lancer le à chaque fois que vous voulez
+set string174=accès Chaîne Météo et Infos. Il y aura une option dans le menu principal pour contrôler VFF Downloader.
+set string175=Démarrage - Le programme vas ce lancer et télécharger les fichiers toutes les heures.
 set string176=There will be an option in the main menu of RiiConnect24 Patcher to manage it.
 set string177=What now?
 set string178=Continue with the installation process.
