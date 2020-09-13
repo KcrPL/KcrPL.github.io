@@ -275,8 +275,8 @@ set string258=Kończenie...
 
 set string259=Dobra^^! Skończyliśmy z tym^^!
 set string260=Kopiowanie pomyślne^^! Każdy plik jest na swoim miejscu na karcie SD.
-set string261=Co- Coś nie zadziałało^^! Proszę skopiować folder "WAD", "apps" oraz "wiiu" na Twoją kartę SD. Są w tym samym folderze co RiiConnect24 Patcher.bat
-set string262=Proszę podłączyć Twoją kartę SD Wii U do komputery i skopiować folder "WAD", "apps" oraz "wiiu" na nią.
+set string261=Co- Coś nie zadziałało^^! Please copy "WAD" and "apps" folders to your SD Card. Są w tym samym folderze co RiiConnect24 Patcher.bat
+set string262=Please connect your Wii U's SD Card to the computer and copy "WAD" and "apps" folder to it.
 set string263=Już prawie gotowe^^!
 set string264=Spatchujemy teraz plik, który odpowiada za pojawianie się błędu czarnych pasków 4:3, który możesz zaobserwować w trybie Wii.
 set string265=Proszę podłączyć kartę SD do Twojego Wii U, wejść w tryb Wii oraz otwórz Homebrew Launcher.
