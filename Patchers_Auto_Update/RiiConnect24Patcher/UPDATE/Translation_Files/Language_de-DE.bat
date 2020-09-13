@@ -276,8 +276,8 @@ set string258=Fertig stellen...
 
 set string259=Okay^^! Damit sind wir fertig^^!
 set string260=Kopieren erfolgreich^^! Jede Datei befindet sich auf deiner SD-Karte.
-set string261=Wa- Etwas ist fehlgeschlagen^^! Bitte kopiere die Ordner "WAD", "apps" und "wiiu" auf deine SD-Karte. Sie befinden sich im selben Ordner wie RiiConnect24Patcher.bat
-set string262=Bitte lege die SD-Karte deiner Wii U in den Computer ein und kopiere die Ordner "WAD", "apps" und "wiiu" darauf.
+set string261=Wa- Etwas ist fehlgeschlagen^^! Please copy "WAD" and "apps" folders to your SD Card. Sie befinden sich im selben Ordner wie RiiConnect24Patcher.bat
+set string262=Please connect your Wii U's SD Card to the computer and copy "WAD" and "apps" folder to it.
 set string263=Wir sind fast fertig^^!
 set string264=Wir sind jetzt dabei, eine Datei zu patchen, die für den 4:3-Fehler mit schwarzen Balken verantwortlich ist, der im Wii-Modus auftritt.
 set string265=Schließe nun die SD-Karte an deine Wii U an, öffne vWii und öffne den Homebrew Launcher.
