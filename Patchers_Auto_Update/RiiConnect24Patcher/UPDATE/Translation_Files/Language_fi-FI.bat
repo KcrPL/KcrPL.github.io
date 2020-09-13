@@ -159,21 +159,21 @@ set string147=Esiintyi virhe kopioidessa tiedostoja SD Kortillesi.
 ::
 set string148=Ilmoitus
 set string149=Tervetuloa RiiConnect24 Patcheriin^^!
-set string150=With this program, you can patch your Wii or Wii U for use with RiiConnect24.
-set string151=You can also use such tools as Wiimmfi Patcher for all Wii games to play them online again.
-set string152=So, what device are we patching today?
-set string153=Dolphin Emulator
-set string154=Choose wisely
+set string150=Tällä ohjelmalla voit patchata sinun Wii tai Wii U konsolin käyttääksesi RiiConnect24 palvelua.
+set string151=Voit myös käyttää muita työkaluja kuten Wiimmfi Patcher pelataaksesi Wii pelejä taas netissä.
+set string152=Joten, mitä laitetta patchaamme tänään?
+set string153=Dolphin Emulaattori
+set string154=Valitse fiksusti
 
-set string155=Which mode should I run
-set string156=Install RiiConnect24 on your Dolphin Emulator
-set string191=Install RiiConnect24 on your Wii U
-set string273=Install RiiConnect24 on your Wii.
-set string274=Uninstall RiiConnect24 from your Wii.
-set string275=This will help you uninstall RiiConnect24 from your Wii.
-set string157=The patcher will guide you through process of installing RiiConnect24
-set string158=Other tools
-set string159=Patch Wii WAD Games to work with Wiimmfi.
+set string155=Mitä moodia minun pitäisi suorittaa
+set string156=Asenna RiiConnect24 sinun Dolphin Emulaattoriin
+set string191=Asenna RiiConnect24 sinun Wii U konsoliin
+set string273=Asenna RiiConnect24 sinun Wii konsoliin.
+set string274=Poista RiiConnect24 sinun Wii konsolista.
+set string275=Tämä auttaa sinua poistamaan RiiConnect24 sinun Wii konsolista.
+set string157=Tämä patcher opastaa sinut prosessin läpi asentamaan RiiConnect24
+set string158=Muut työkalut
+set string159=Patchaa Wiin WAD Pelit toimimaan Wiimmfi kanssa.
 set string160=This will patch WAD Games (WiiWare) for use with Wiimmfi which will allow you to play online with other people.
 set string161=Patch Mario Kart Wii to work with Wiimmfi.
 set string162=This will patch your copy of Mario Kart Wii to work with Wiimmfi which will enable online multiplayer to work again.
@@ -185,7 +185,7 @@ set string192=Install WAD files directly to the SD Card.
 set string193=This will allow you to directly install a channel to your SD Card instead of you having to move it from NAND.
 
 
-set string167=Hey
+set string167=Terve
 set string168=welcome to RiiConnect24 installation process for Dolphin Emulator.
 set string169=First, I need to download the VFF-Downloader. This will make Forecast and News Channel work.
 set string170=Press any key to download and start the VFF Downloader for Dolphin.
