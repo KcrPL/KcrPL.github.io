@@ -129,7 +129,7 @@ set string118=Código de salida de CURL
 set string93=Presiona cualquier botón para volver.
 set string120=¡Open Shop Channel Downloader está listo^^! ¿qué sigue?
 set string121=Mostrar lista del homebrew disponible.
-Descargar homebrew.
+set string122=Descargar homebrew.
 set string123=Volver al menú principal
 set string124=Un segundo por favor...
 set string125=TIP: Recuerda el nombre del homebrew del que estás interesado, vuelve al programa, selecciona "Descargar homebrew" y escríbelo.
