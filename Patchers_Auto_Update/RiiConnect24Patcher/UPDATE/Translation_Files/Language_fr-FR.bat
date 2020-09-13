@@ -107,14 +107,14 @@ set string93=Appuyez sur une touche pour retourner en arrière.
 :: Local end
 
 :: Must be available online
-set string100=Welcome to the Homebrew Shop.
+bienvenue dans l’Homebrew Shop.
 set string101=Before downloading any homebrew, do you want to enable automatic installation on your SD Card?
 set string102=Yes, detect the SD Card.
 set string103=No, I'll install them manually.
-set string104=Hmm... looks like an SD Card wasn't found in your system. Please choose the `Change drive letter` option
+set string104=Hmm... aucune carte SD n’a été trouvée dans votre système. Please choose the `Change drive letter` option
 set string105=to set your SD Card drive letter manually.
 set string106=Otherwise, you will have to copy the homebrew manually to the SD Card.
-set string107=Congrats^^! I've successfully detected your SD Card^^! Drive letter:
+set string107=Congrats^^! J’ai réussi à détecter ta carte SD ^^! Drive letter:
 set string108=I will be able to automatically download and install everything on your SD Card^^!
 set string109=What's next?
 set string110=Continuer
@@ -130,7 +130,7 @@ set string119=Press any key to go back.
 set string120=Open Shop Channel Downloader is ready^^! What next?
 set string121=Show list of homebrew available.
 set string122=Download homebrew.
-set string123=Return to main menu
+Retourner au menu principal
 set string124=One second please...
 set string125=TIP: Remember the name of the homebrew that you're interrested in, return to the program, select "Download homebrew" and type it in.
 set string126=It will show you a description and some other useful info about homebrew that you've chosen.
@@ -141,10 +141,10 @@ set string130=For the list of homebrew that's on the server, please go back and 
 set string131=Fetching data...
 set string132=You requested...
 set string133=Long description:
-set string134=Would you like to download this app?
+Voulez-vous télécharger cette application?
 set string135=If enabled, it will be automatically installed to the SD Card.
 set string136=No, return.
-set string137=Downloading
+Téléchargement en cours
 set string138=Downloading .ZIP
 set string139=Done^^!
 set string140=The .ZIP file is in the directory where RiiConnect24 Patcher is.
@@ -163,13 +163,13 @@ set string150=With this program, you can patch your Wii or Wii U for use with Ri
 set string151=You can also use such tools as Wiimmfi Patcher for all Wii games to play them online again.
 set string152=So, what device are we patching today?
 set string153=Dolphin Emulator
-set string154=Choose wisely
+Choisissez judicieusement
 
 set string155=Which mode should I run
-set string156=Install RiiConnect24 on your Dolphin Emulator
-set string191=Install RiiConnect24 on your Wii U
-set string273=Install RiiConnect24 on your Wii.
-set string274=Uninstall RiiConnect24 from your Wii.
+set string156=Installez Riiconnect24 sur votre émulateur Dolphin
+set string191=Installez Riiconnect24 sur votre Wii U
+set string273=Installez Riiconnect24 sur votre Wii.
+set string274=Désinstaller Riiconnect24 sur votre Wii.
 set string275=This will help you uninstall RiiConnect24 from your Wii.
 set string157=The patcher will guide you through process of installing RiiConnect24
 set string158=Other tools
@@ -179,7 +179,7 @@ set string161=Patch Mario Kart Wii to work with Wiimmfi.
 set string162=This will patch your copy of Mario Kart Wii to work with Wiimmfi which will enable online multiplayer to work again.
 set string163=Patch other Wii Games to work with Wiimmfi.
 set string164=This will patch any other game than Mario Kart Wii to work with Wiimmfi.
-set string165=Visit Homebrew Shop
+set string165=Visiter l’Homebrew Shop
 set string166=Download and install homebrew on your SD Card using Open Shop Channel.
 set string192=Install WAD files directly to the SD Card.
 set string193=This will allow you to directly install a channel to your SD Card instead of you having to move it from NAND.
