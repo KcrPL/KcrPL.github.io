@@ -159,7 +159,7 @@ set string147=Wystąpił błąd podczas kopiowania plików na Twoją kartę SD.
 ::
 set string148=Ogloszenie
 set string149=Witaj w RiiConnect24 Patcherze^^!
-set string150=Dzięki temu programu, możesz zpatchować Twoje Wii lub Wii U do użycia z RiiConnect24.
+set string150=Dzięki temu programowi, możesz spatchować Twoje Wii lub Wii U do użycia z RiiConnect24.
 set string151=Możesz również skorzystać z takich narzędzi jak Wiimmfi Patcher aby spatchować gry abyś mógł grać w trybie multiplayer.
 set string152=A więc, jakie urządzenie dzisiaj patchujemy?
 set string153=Emulator Dolphin
