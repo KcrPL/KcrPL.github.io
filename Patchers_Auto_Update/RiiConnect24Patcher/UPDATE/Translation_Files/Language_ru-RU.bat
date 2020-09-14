@@ -150,11 +150,11 @@ set string139=Готово^^!
 set string140=.ZIP файл находится в папке где находится RiiConnect24 Patcher.
 set string141=Нажмите на любую клавишу чтобы вернуться.
 set string142=Скачиваем 7zip CLI
-set string143=Extracting the homebrew app to your SD Card...
-set string144=There was an error while downloading your homebrew.
-set string145=There was an error while downloading the homebrew from Open Shop Channel servers.
-set string146=There was an error while downloading 7zip.
-set string147=There was an error while copying the files to your SD Card.
+set string143=Извлекаем homebrew приложение на вашу SD-карту...
+set string144=Произошла ошибка во время извлечения вашего homebrew.
+set string145=Произошла ошибка во время скачивания вашего homebrew с серверов Open Shop Channel.
+set string146=Произошла ошибка во время скачивания 7zip.
+set string147=Произошла ошибка во время копирования ваших файлов на SD-карту.
 
 ::
 set string148=Объявление
