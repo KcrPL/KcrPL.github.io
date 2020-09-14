@@ -7,7 +7,7 @@ Bidragsytere
 innstilinger
 administrere VFF Nedlasting til Dolphin her
 Henrette de VFF Nedlasting en gang.
-set string7=Do you have problems or want to contact us?
+har du problemer eller vil du kontakte oss?
 Send oss en e-post på support@riiconnect24.net
 fant Wii SD Minnekort:
 kunne ikke oppdage din wii sd minnekort.
@@ -18,7 +18,7 @@ advarsel
 du bruker en exsperimentell versjon av dette programmet.
 dette betyr at denne versjonen kan inneholde exsperimentell egenskaper
 og feil som kan gjøre din wii/wii u eller din datamaskin ustabil.
-set string17=If you don't know what you're doing, please go to settings and go back to
+hvis du ikke vet hva du gjør, vennligst gå til instillinger
 set string18=stable branch of the patcher.
 
 set string19=Type a number that you can see above next to the command and hit ENTER
@@ -65,15 +65,15 @@ set string56=WAIT
 set string57=Are you trying to disable updating?
 set string58=Please do remember that updates will keep you safe and updated about the patcher.
 set string59=Only use this option for debugging and troubleshooting.
-set string60=Are you sure that you want to disable autoupdating?
+er du sikker at du vil deaktivere auto opptatering?
 
-set string61=Yes
-set string62=No, go back.
+ja
+nei, gå tilbake.
 
-set string63=Change color:
-set string64=Dark theme
-set string65=Light theme *please don't hurt my eyes edition*
-set string66=Light theme *please hurt my eyes edition*
+bytt farge:
+mørk tema
+lys tema *ikke skadd øyene mine versjonen*
+lys tema *skad øyene mine versjonen*
 set string67=Yellow
 set string68=Green
 set string69=Red
@@ -84,11 +84,11 @@ set string72=This can take some time...
 
 set string73=ERROR.
 set string74=There was an error while downloading curl.
-set string75=We will now open a website that will download curl.exe.
-set string76=Please move curl.exe to the folder where RiiConnect24 Patcher is and restart the patcher.
+vi vill nå åpne en nettside som skal nedlaste curl.exe.
+vennligst flytt curl.exe til mappen der hvor Riiconnect24 Patcheren er og start på nytt patcheren.
 set string77=Press any key to open download page in browser and to return to menu.
 
-set string78=Checking for updates...
+ser etter oppdateringer...
 set string79=An Update is available.
 set string80=An Update for this program is available. We suggest updating the RiiConnect24 Patcher to the latest version.
 set string81=Current version
