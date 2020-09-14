@@ -275,8 +275,8 @@ set string258=Acabando...
 
 set string259=Ok^^! Acabamos^^!
 set string260=Copiei com sucesso! Todos os arquivos estão em seu Cartão SD.
-set string261=Opa! Alguma coisa falhou^^! Please copy "WAD" and "apps" folders to your SD Card. Estão pertos do arquivo RiiConnect24Patcher.bat
-set string262=Please connect your Wii U's SD Card to the computer and copy "WAD" and "apps" folder to it.
+set string261=Opa! Alguma coisa falhou^^! Por favor copie as pastas "WAD" e "apps" para o seu cartão SD. Estão pertos do arquivo RiiConnect24Patcher.bat
+por favor conecte o cartão SD do Wii U no seu computador e copie as pastas "WAD" e "apps" para ele.
 set string263=Estamos quase prontos^^!
 set string264=Agora vamos patchear um arquivo que está responsável pelo bug de barras pretas 4:3 que aparece no modo Wii.
 set string265=Agora, por favor conecte o Cartão SD ao seu Wii U, abra o modo Wii e abra o Homebrew Launcher.
