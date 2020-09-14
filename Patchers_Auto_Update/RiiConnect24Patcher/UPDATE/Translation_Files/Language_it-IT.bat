@@ -275,8 +275,8 @@ set string258=Sto terminando...
 
 set string259=Bene^^! Abbiamo finito con quello^^!
 set string260=Copia completata^^! Tutti i file sono nella tua scheda SD.
-set string261=Cos- Qualcosa è andato storto^^! Please copy "WAD" and "apps" folders to your SD Card. Si trovano accanto a RiiConnect24Patcher.bat
-set string262=Please connect your Wii U's SD Card to the computer and copy "WAD" and "apps" folder to it.
+set string261=Cos- Qualcosa è andato storto^^! Copia le cartelle "WAD" e "apps" nella tua scheda SD. Si trovano accanto a RiiConnect24Patcher.bat
+set string262=Inserisci la scheda SD della tua Wii U al computer e copiaci le cartelle "WAD" e "apps".
 set string263=Abbiamo quasi finito^^!
 set string264=Adesso dobbiamo patchare un file che è responsabile del bug delle bande nere 4:3 che appare in modalità Wii.
 set string265=Inserisci la scheda SD nella tua Wii U, entra in vWii, e apri l'Homebrew Launcher.
