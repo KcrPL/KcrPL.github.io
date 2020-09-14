@@ -17,7 +17,7 @@ set string12=Si es incorrecto, lo podrás cambiar luego.
 set string13=Aviso
 set string14=Estás utilizando una versión experimental de este programa.
 set string15=Eso significa que esta versión podría contener funciones experimentales
-set string16=y errores que podrán hacer que tu Wii/Wii U o pc no funcione.
+set string16=y errores que podrían dañar tu consola Wii/Wii U o tu equipo.
 set string17=Si no sabes lo que haces, por favor ve a la configuración y vuelve a
 set string18=la versión estable del parcheador.
 
