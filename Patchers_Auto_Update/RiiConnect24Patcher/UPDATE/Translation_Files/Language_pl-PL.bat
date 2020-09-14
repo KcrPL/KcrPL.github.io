@@ -7,7 +7,7 @@ set string3=Twórcy
 set string4=Ustawienia
 set string5=zarządzaj VFF Downloaderem dla Dolphin'a tutaj
 set string6=Uruchom VFF Downloader raz.
-set string7=Masz z czymś problem już chcesz się z nami skontaktować?
+set string7=Masz z czymś problem lub chcesz się z nami skontaktować?
 set string8=Napisz maila na support@riiconnect24.net. Dołącz także do Discord Riiconnect24: https://discord.gg/YEzWSF5
 set string9=Wykryto kartę SD:
 set string10=Nie wykryto karty SD Wii.
@@ -159,13 +159,13 @@ set string147=Wystąpił błąd podczas kopiowania plików na Twoją kartę SD.
 ::
 set string148=Ogloszenie
 set string149=Witaj w RiiConnect24 Patcherze^^!
-set string150=Dzięki temu programu, możesz zpatchować Twoje Wii lub Wii U do użycia z RiiConnect24.
+set string150=Dzięki temu programowi, możesz spatchować Twoje Wii lub Wii U do użycia z RiiConnect24.
 set string151=Możesz również skorzystać z takich narzędzi jak Wiimmfi Patcher aby spatchować gry abyś mógł grać w trybie multiplayer.
 set string152=A więc, jakie urządzenie dzisiaj patchujemy?
 set string153=Emulator Dolphin
 set string154=Wybierz mądrze
 
-set string155=Który tryb wybierasz?
+set string155=Który tryb wybierasz
 set string156=Zainstaluj RiiConnect24 na Emulatorze Dolphin
 set string191=Zainstaluj RiiConnect24 na Wii U
 set string273=Zainstaluj RiiConnect24 na Twoim Wii.
@@ -275,8 +275,8 @@ set string258=Kończenie...
 
 set string259=Dobra^^! Skończyliśmy z tym^^!
 set string260=Kopiowanie pomyślne^^! Każdy plik jest na swoim miejscu na karcie SD.
-set string261=Co- Coś nie zadziałało^^! Proszę skopiować folder "WAD", "apps" oraz "wiiu" na Twoją kartę SD. Są w tym samym folderze co RiiConnect24 Patcher.bat
-set string262=Proszę podłączyć Twoją kartę SD Wii U do komputery i skopiować folder "WAD", "apps" oraz "wiiu" na nią.
+set string261=Co- Coś nie zadziałało^^! Proszę skopiować folder "WAD" oraz "apps" na Twoją kartę SD. Są w tym samym folderze co RiiConnect24 Patcher.bat
+set string262=Proszę podłączyć Twoją kartę SD Wii U do komputery i skopiować folder "WAD" oraz "apps" na nią.
 set string263=Już prawie gotowe^^!
 set string264=Spatchujemy teraz plik, który odpowiada za pojawianie się błędu czarnych pasków 4:3, który możesz zaobserwować w trybie Wii.
 set string265=Proszę podłączyć kartę SD do Twojego Wii U, wejść w tryb Wii oraz otwórz Homebrew Launcher.

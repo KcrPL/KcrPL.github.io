@@ -1,24 +1,24 @@
 if "%1"=="-chcp" chcp 65001
 :: Should be available locally
 
-set string1=RiiConnect your Wii.
-begynn
-set string3=Credits
-innstilinger
-set string5=manage VFF Downloader for Dolphin here
-set string6=Run the VFF Downloader once.
-set string7=Do you have problems or want to contact us?
-set string8=Mail us at support@riiconnect24.net
-fant Wii SD Minnekort:
-kunne ikke oppdage din wii sd minnekort.
-set string11=Refresh
-hvis feil, du kan forandre senere.
+set string1=RiiConnect din Wii.
+set string2=begynn
+set string3=Bidragsytere
+set string4=Innstilinger
+set string5=Administrere VFF Nedlasting til Dolphin her
+set string6=Henrette de VFF Nedlasting en gang.
+set string7=Har du problemer eller vil du kontakte oss?
+set string8=Send oss en e-post på support@riiconnect24.net
+set string9=Fant Wii SD Minnekort:
+set string10=Kunne ikke oppdage din wii sd minnekort.
+set string11=Last inn på nytt
+set string12=Hvis feil, du kan forandre senere.
 
-advarsel
-du bruker en exsperimentell versjon av dette programmet.
-dette betyr at denne versjonen kan inneholde exsperimentell egenskaper
-og feil som kan gjøre din wii/wii u eller din datamaskin ustabil.
-set string17=If you don't know what you're doing, please go to settings and go back to
+set string13=advarsel
+set string14=Du bruker en exsperimentell versjon av dette programmet.
+set string15=Dette betyr at denne versjonen kan inneholde exsperimentell egenskaper
+set string16=Og feil som kan gjøre din wii/wii u eller din datamaskin ustabil.
+set string17=Hvis du ikke vet hva du gjør, vennligst gå til instillinger
 set string18=stable branch of the patcher.
 
 set string19=Type a number that you can see above next to the command and hit ENTER
@@ -26,7 +26,7 @@ set string19=Type a number that you can see above next to the command and hit EN
 set string20=Troubleshooting tools
 set string21=These tools should help you diagnose some problems with the patcher and try to repair them automatically.
 set string22=Could not detect SD Card.
-kunne ikke kopiere filene til SD minnekort.
+set string23=Kunne ikke kopiere filene til SD minnekort.
 set string24=Renaming files error
 set string25=Return to main menu
 set string26=Choose
@@ -65,15 +65,15 @@ set string56=WAIT
 set string57=Are you trying to disable updating?
 set string58=Please do remember that updates will keep you safe and updated about the patcher.
 set string59=Only use this option for debugging and troubleshooting.
-set string60=Are you sure that you want to disable autoupdating?
+set string60=Er du sikker at du vil deaktivere auto opptatering?
 
-set string61=Yes
-set string62=No, go back.
+set string61=Ja
+set string62=Nei, gå tilbake.
 
-set string63=Change color:
-set string64=Dark theme
-set string65=Light theme *please don't hurt my eyes edition*
-set string66=Light theme *please hurt my eyes edition*
+set string63=bytt farge:
+set string64=mørk tema
+set string65=Lys tema *ikke skadd øyene mine versjonen*
+set string66=Lys tema *skad øyene mine versjonen*
 set string67=Yellow
 set string68=Green
 set string69=Red
@@ -84,11 +84,11 @@ set string72=This can take some time...
 
 set string73=ERROR.
 set string74=There was an error while downloading curl.
-set string75=We will now open a website that will download curl.exe.
-set string76=Please move curl.exe to the folder where RiiConnect24 Patcher is and restart the patcher.
+set string75=Vi vill nå åpne en nettside som skal nedlaste curl.exe.
+set string76=Vennligst flytt curl.exe til mappen der hvor Riiconnect24 Patcheren er og start på nytt patcheren.
 set string77=Press any key to open download page in browser and to return to menu.
 
-set string78=Checking for updates...
+set string78=Ser etter oppdateringer...
 set string79=An Update is available.
 set string80=An Update for this program is available. We suggest updating the RiiConnect24 Patcher to the latest version.
 set string81=Current version
@@ -275,8 +275,8 @@ set string258=Finishing...
 
 set string259=Alright^^! We're done with that^^!
 set string260=Copying successful^^! Every file is on your SD Card.
-set string261=Wha- Something failed^^! Please copy "WAD", "apps" and "wiiu" folders to your SD Card. They're next to RiiConnect24Patcher.bat
-set string262=Please connect your Wii U's SD Card to the computer and copy "WAD", "apps" and "wiiu" folder to it.
+set string261=Wha- Something failed^^! Please copy "WAD" and "apps" folders to your SD Card. They're next to RiiConnect24Patcher.bat
+set string262=Please connect your Wii U's SD Card to the computer and copy "WAD" and "apps" folder to it.
 set string263=We're nearly done^^!
 set string264=We're now about to patch a file that's responsible for the 4:3 black bars bug that appears on Wii mode.
 set string265=Now, please connect the SD Card to your Wii U, enter vWii, open Homebrew Launcher.
