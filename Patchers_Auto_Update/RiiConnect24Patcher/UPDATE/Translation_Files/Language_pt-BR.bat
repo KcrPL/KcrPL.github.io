@@ -43,7 +43,7 @@ set string35=Consertar arquivo do patcher
 set string36=Baixar novamente
 set string37=Configurações do VFF Downloader para Dolphin
 set string38=Deletar o VFF Downloader completamente do computador
-set string39=Remover o VFF Downloader do processo de inicialização
+set string39=Remover o VFF Downloader da inicialização
 set string40=Se o VFF Downloader está aberto, feche-o.
 set string41=Por favor aguarde... buscando dados.
 set string42=Gostaria de voltar á versão estável do patcher?
@@ -387,7 +387,7 @@ set string370= Se os arquivos foram patcheados, você pode achar o arquivo WAD p
 set string371=Pressione qualquer botão para voltar ao menu principal.
 
 set string372=Caso está solucionando problemas, por favor se lembre que reinstalar o RiiConnect24 provavelmente não vai ajudar
-set string373=Por favor contate os desenvolvedores do RiiConnect24 em support@riiconect24.net para mais informações (suporte em inglês).
+set string373=Por favor contate os desenvolvedores do RiiConnect24 em support@riiconnect24.net para mais informações (suporte em inglês).
 set string374=Esta parte do patcheador vai te ajudar a desinstalar o RiiConnect24 do seu Wii.
 set string375=Completando esses passos, você vai perder acceso a:
 set string378=Se você tem outros canais instalado no seu Wii, você vai ter que desinstalá-los manualmente.
@@ -411,7 +411,7 @@ set string395=Todo o processo de patchear vai baixar 5MB de dados.
 set string396=Restaurando os IOSs padrões e baixando utilidades...
 set string397=Acabei de patchear^^! Agora por favor siga estas instruções:
 set string398=Por favor copie as pastas wad e apps perto do patcheador ao seu Cartão SD.
-set string399=Part 1 - Reinstalando o IOS 31 e IOS80 padrão
+set string399=Parte 1 - Reinstalando o IOS 31 e IOS80 padrão
 set string400=Por favor abra o Homebrew Channel e abra o Wii Mod Lite
 set string401=Usando o +Control Pad no controle do Wii, navegue para o WAD Manager e depois navegue para a pasta WAD.
 set string402=Quando o IOS31.wad ser selecionado, pressione + e faça o mesmo para IOS80.wad e pressione o botão A.
@@ -441,7 +441,7 @@ set string425=Pronto^^! O RiiConnect24 deve ter sido desinstalado do seu Wii^^!
 set string426=Nós aguardamos a sua volta :)
 set string427=Pressione qualquer tecla para sair do patcheador.
 
-set string428=O servidor de atualização da Nintendo (NUS) está fora do ar no momento. O patcheador precisa do servidor para funcionar.
+set string428=O servidor de atualização da Nintendo (NUS) está fora do ar no momento. O patcher precisa do servidor para funcionar.
 set string429=Isso provavelmente significa que está ocorrendo uma manuntenção no servidor.
 set string430=Volte depois^^!
 set string431=Preparando...
@@ -449,7 +449,7 @@ set string431=Preparando...
 set string432=Instalar o RiiConnect24.
 set string433=Isso vai patchear todos os canais para uso posterior no Wii. Isso inclui:
 set string434=Patches do IOS [Necessário para os outros canais funcionarem]
-set string435=Canal de Previsão do Tempo ou Notícias
+Forecast/News Channel
 set string436=Por favor conecte o Cartão SD do Wii para seu computador.
 set string437=O processo a seguir vai baixar 170MB de dados.
 
@@ -492,7 +492,7 @@ set string472=Cada arquivo está em seu lugar no Cartão SD^^!
 set string473=Você pode achar estas pastas perto do arquivo RiiConnect24Patcher.bat.
 set string474=Por favor continue com o tutorial que você pode achar em https://wii.guide/riiconnect24
 
-set string475=Muito obrigado por usar este patcheador^^! :)
+set string475=Muito obrigado por usar este patcher^^! :)
 set string476=Se diverta usando o RiiConnect24^^!
 set string477=Fechando o patcheador em:
 
