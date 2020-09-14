@@ -59,16 +59,16 @@ set string51=Wil je switchen naar de BETA versie van de patcher?
 set string52=Beta versie
 set string53=Sorry, there's currently no public beta version available.
 set string54=Yes, switch to Beta branch.
-set string55=[UNABLE TO SWITCH TO BETA VERSION]
+set string49=[KAN NIET WISSELEN NAAR BETA VERSIE]
 
-set string56=WAIT
+set string56=WACHT
 set string57=Are you trying to disable updating?
 set string58=Please do remember that updates will keep you safe and updated about the patcher.
 set string59=Only use this option for debugging and troubleshooting.
 set string60=Are you sure that you want to disable autoupdating?
 
-set string61=Yes
-set string62=No, go back.
+set string61=Ja
+set string62=Nee, ga terug.
 
 set string63=Change color:
 set string64=Dark theme
