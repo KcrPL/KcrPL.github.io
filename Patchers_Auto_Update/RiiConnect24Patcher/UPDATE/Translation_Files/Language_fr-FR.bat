@@ -108,8 +108,8 @@ set string93=Appuyez sur une touche pour retourner en arrière.
 
 :: Must be available online
 set string100=Bienvenue dans l’Homebrew Shop.
-set string101=Before downloading any homebrew, do you want to enable automatic installation on your SD Card?
-set string102=Yes, detect the SD Card.
+set string101=Avant de télécharger un logiciel homebrew, veux-tu activer les installations automatiques sur ta carte SD?
+set string102=Oui, Detecter la carte SD.
 set string103=No, I'll install them manually.
 set string104=Hmm... aucune carte SD n’a été trouvée dans votre système. Please choose the `Change drive letter` option
 set string105=to set your SD Card drive letter manually.
@@ -211,10 +211,10 @@ set string188=qu'est-ce que nous faisons après?
 set string189=Retourner au menu principal
 set string190=Fermer le patcher
 
-set string200=Installer Riiconnect24 sur votre WiiU.
+set string200=Installer Riiconnect24 sur votre Wii U.
 set string201=Choisir le type d'installation:
 set string202=Express (Recommandé)
-set string203=Ceci vas corriger toute les chaîne pour après l'utiliser sur votre WiiU. Ceci inclus:
+set string203=Ce patch va corriger toute les chaînes pour après les utiliser sur votre Wii U. Ceci inclus:
 set string204=Chaîne Infos
 set string376=Chaîne Météo
 set string377=Messagerie Wii
