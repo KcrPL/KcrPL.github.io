@@ -379,10 +379,10 @@ set string362=Pon el archivo de imagen de Mario Kart Wii (puede ser ISO o WBFS) 
 set string363=Listo. Iniciar Mario Kart Wii Patcher.
 set string364=La imagen parcheada de Mario Kart Wii ha sido copiada a la carpeta wiimmfi-images junto a RiiConnect24 Patcher.
 set string365=Preparando para el uso con Wiimmfi Patcher...
-set string366=Se ha creado una carpeta WiiWare-Patcher. Por favor, pon los archivos .WAD en esa carpeta y elige "Listo" cuando estés listo.
+set string366=Se ha creado la carpeta WiiWare-Patcher. Por favor, pon los archivos .WAD en esa carpeta y elige "Listo" cuando estés listo.
 set string367=Listo. Iniciar WiiWare Patcher.
 set string368=Moviendo archivos... por favor espere.
-set string369=Parcheador de WiiWare se ha cerrado...
+set string369=WiiWare Patcher se ha cerrado...
 set string370=Si los archivos fueron parcheados, puedes encontrar los archivos WAD parcheados en la capeta wiimmfi-wads junto a RiiConnect24 Patcher.
 set string371=Presiona cualquier botón para volver al menú principal.
 
