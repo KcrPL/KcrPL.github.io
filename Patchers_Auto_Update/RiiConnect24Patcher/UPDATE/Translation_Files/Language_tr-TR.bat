@@ -142,15 +142,15 @@ veri işleniyor...
 sen istedin...
 uzun Açıklama:
 bu uygulamayı indirmek ister misiniz?
-set string135=If enabled, it will be automatically installed to the SD Card.
-set string136=No, return.
-set string137=Downloading
-set string138=Downloading .ZIP
-set string139=Done^^!
-set string140=The .ZIP file is in the directory where RiiConnect24 Patcher is.
-set string141=Press any key to go back.
-set string142=Downloading 7zip CLI
-set string143=Extracting the homebrew app to your SD Card...
+etkinleştirilirse, otomatik olarak SD Karta yüklenecektir.
+hayir Geri Dön.
+indiriliyor
+.ZIP indiriliyor
+bitti^^!
+.ZIP dosyası, RiiConnect24 Patcher'ın bulunduğu dizindedir.
+geri dönmek için herhangi bir düğmeye basın.
+7zip CLI indiriliyor
+homebrew uygulaması SD Kartınıza çıkartılıyor...
 set string144=There was an error while downloading your homebrew.
 set string145=There was an error while downloading the homebrew from Open Shop Channel servers.
 set string146=There was an error while downloading 7zip.
