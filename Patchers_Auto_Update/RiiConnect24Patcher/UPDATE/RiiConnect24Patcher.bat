@@ -3666,8 +3666,8 @@ echo.
 echo Please wait...
 echo Preparing...
 :: Check if NUS is up
-curl -i -s http://nus.cdn.shop.wii.com/ccs/download/0001000248414741/tmd | findstr "HTTP/1.1" | findstr "500 Internal Server Error"
-if %errorlevel%==0 goto error_NUS_DOWN
+::curl -i -s http://nus.cdn.shop.wii.com/ccs/download/0001000248414741/tmd | findstr "HTTP/1.1" | findstr "500 Internal Server Error"
+::if %errorlevel%==0 goto error_NUS_DOWN
 :: If returns 0, 500 HTTP code it is
 goto 2_uninstall
 
@@ -3679,8 +3679,8 @@ echo.
 echo Please wait...
 echo Preparing...
 :: Check if NUS is up
-curl -i -s http://nus.cdn.shop.wii.com/ccs/download/0001000248414741/tmd | findstr "HTTP/1.1" | findstr "500 Internal Server Error"
-if %errorlevel%==0 goto error_NUS_DOWN
+::curl -i -s http://nus.cdn.shop.wii.com/ccs/download/0001000248414741/tmd | findstr "HTTP/1.1" | findstr "500 Internal Server Error"
+::if %errorlevel%==0 goto error_NUS_DOWN
 :: If returns 0, 500 HTTP code it is
 goto 2_auto_ask
 
