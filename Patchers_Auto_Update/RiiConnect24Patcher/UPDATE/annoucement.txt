@@ -1,4 +1,3 @@
-We're now including patches for News and Forecast Channel.
-If you were getting 107304 on these channels, this update will help you.
+We're currently testing some things in the patcher.
 
-Please report any issues to KcrPL#4625 on Discord or on GitHub.
+Things might be broken a little bit. Don't worry!
