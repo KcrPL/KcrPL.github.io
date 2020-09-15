@@ -16,11 +16,14 @@ set at=23:07
 set header=Update Assistant - (C) KcrPL v%version% (Compiled on %last_build% at %at%)
 ::
 set /a no_start=0
+set /a preboot=0
 set FilesHostedOn=https://kcrPL.github.io/Patchers_Auto_Update/RiiConnect24Patcher
 ::
 
 if "%1"=="-no_start" set /a no_start=1
 if "%2"=="-no_start" set /a no_start=1
+
+if "%2"=="-preboot" set /a preboot=1
 
 if "%1"=="-RC24_Patcher" goto start_download_rc24_patcher
 if "%2"=="-RC24_Patcher" goto start_download_rc24_patcher
@@ -123,6 +126,7 @@ ren "RiiConnect24PatcherTEMP.bat" "RiiConnect24Patcher.bat"
 
 if %no_start%==0 start RiiConnect24Patcher.bat
 del /q "%~n0~x0"
+if %preboot%==1 GOTO:EOL
 exit
 
 :error_download
