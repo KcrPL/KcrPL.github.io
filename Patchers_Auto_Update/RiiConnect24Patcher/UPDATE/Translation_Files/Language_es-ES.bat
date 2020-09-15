@@ -1,10 +1,10 @@
 if "%1"=="-chcp" chcp 65001
 :: Should be available locally
 
-set string1=RiiConecta tu Wii (Eso no funcionó en español).
-set string2=Iniciar
+set string1=RiiConecta tu Wii.
+set string2=Comenzar
 set string3=Créditos
-set string4=Configuración
+set string4=Ajustes
 set string5=Administra VFF Downloader para Dolphin aquí
 set string6=Iniciar el VFF Downloader una vez.
 set string7=¿Tienes problemas o quieres contactarnos?
