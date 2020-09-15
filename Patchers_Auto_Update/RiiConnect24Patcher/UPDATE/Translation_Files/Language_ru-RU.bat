@@ -158,7 +158,7 @@ set string147=Произошла ошибка во время копирован
 
 ::
 set string148=Объявление
-set string149=Welcome to the RiiConnect24 Patcher^^!
+set string149=Добро пожаловать в RiiConnect24 Patcher^^!
 set string150=With this program, you can patch your Wii or Wii U for use with RiiConnect24.
 set string151=You can also use such tools as Wiimmfi Patcher for all Wii games to play them online again.
 set string152=So, what device are we patching today?
