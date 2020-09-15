@@ -1,3 +1,4 @@
-We're currently testing some things in the patcher.
+Wanna help us with the patcher?
 
-Things might be broken a little bit. Don't worry!
+We're looking for translators that can translate the patcher to new languages!
+Interrested? https://crowdin.com/project/riiconnect24-patcher - check this out!
