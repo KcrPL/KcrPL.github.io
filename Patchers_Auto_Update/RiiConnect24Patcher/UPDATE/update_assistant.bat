@@ -117,15 +117,14 @@ echo ---------------------------------------------------------------------------
 echo.
 echo Please wait! We are now downloading your new RiiConnect24 Patcher update.
 curl -s -S --insecure "%FilesHostedOn%/UPDATE/RiiConnect24Patcher.bat" --output "RiiConnect24PatcherTEMP.bat"
-echo %preboot%
 set temperrorlev=%errorlevel%
 if not %temperrorlev%==0 goto error_download
 
 del RiiConnect24Patcher.bat
 ren "RiiConnect24PatcherTEMP.bat" "RiiConnect24Patcher.bat"
-pause
+
 if %no_start%==0 if %preboot%==0 start RiiConnect24Patcher.bat
-pause
+
 del /q "%~n0~x0"
 if %preboot%==1 GOTO:EOL
 exit
