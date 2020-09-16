@@ -23,10 +23,18 @@ set FilesHostedOn=https://kcrPL.github.io/Patchers_Auto_Update/RiiConnect24Patch
 if "%1"=="-no_start" set /a no_start=1
 if "%2"=="-no_start" set /a no_start=1
 
+if "%1"=="-beta" set /a beta=1
+if "%2"=="-beta" set /a beta=1
+if "%3"=="-beta" set /a beta=1
+
+
+if "%1"=="-preboot" set /a preboot=1
 if "%2"=="-preboot" set /a preboot=1
+if "%3"=="-preboot" set /a preboot=1
 
 if "%1"=="-RC24_Patcher" goto start_download_rc24_patcher
 if "%2"=="-RC24_Patcher" goto start_download_rc24_patcher
+if "%3"=="-RC24_Patcher" goto start_download_rc24_patcher
 if "%1"=="-VFF_Downloader_Main_Exec" goto start_download_vff_downloader_main_exec
 if "%1"=="-VFF_Downloader_Installer" goto start_download_vff_downloader_install
 if "%1"=="-RC24_DNS_Checker" goto start_download_dns_checker
@@ -116,7 +124,8 @@ echo %header%
 echo -----------------------------------------------------------------------------------------------------------------------------
 echo.
 echo Please wait! We are now downloading your new RiiConnect24 Patcher update.
-curl -s -S --insecure "%FilesHostedOn%/UPDATE/RiiConnect24Patcher.bat" --output "RiiConnect24PatcherTEMP.bat"
+if %beta%==0 curl -s -S --insecure "%FilesHostedOn%/UPDATE/RiiConnect24Patcher.bat" --output "RiiConnect24PatcherTEMP.bat"
+if %beta%==1 curl -s -S --insecure "%FilesHostedOn%_Beta/UPDATE/RiiConnect24Patcher.bat" --output "RiiConnect24PatcherTEMP.bat"
 set temperrorlev=%errorlevel%
 if not %temperrorlev%==0 goto error_download
 
