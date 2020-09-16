@@ -175,9 +175,9 @@ set string157=Патчер проведёт вас через процесс у�
 set string158=Прочие инструменты
 set string159=Запатчить Wii WAD игры для работы с Wiimmfi.
 set string160=Это запатчит WAD игры (WiiWare) для работы с Wiimmfi которые вам позволят вам играть онлайн с другими людьми.
-set string161=Patch Mario Kart Wii to work with Wiimmfi.
-set string162=This will patch your copy of Mario Kart Wii to work with Wiimmfi which will enable online multiplayer to work again.
-set string163=Patch other Wii Games to work with Wiimmfi.
+set string161=Запатчить Mario Kart Wi для работы с Wiimmfi.
+set string162=Это запатчит вашу копию Mario Kart Wi для работы с Wiimmfi который вернёт возможность играть онлайн с другими людьми.
+set string163=Запатчить другие Wii игры для работы с Wiimmfi.
 set string164=Это запатчит любую игру кроме Mario Kart Wiiдля работы с Wiimmfi.
 set string165=Навестить Homebrew Shop
 set string166=Скачать и установить homebrew на вашу SD-карту используя Open Shop Channel.
@@ -185,8 +185,8 @@ set string192=Установить WAD файлы на SD-карту напря�
 set string193=Это вам позволит напрямую установить канал на вашу SD-карту вместо того чтобы самостоятельно передвигать его с NAND.
 
 
-set string167=Hey
-set string168=welcome to RiiConnect24 installation process for Dolphin Emulator.
+set string167=Привет
+set string168=добро пожаловать в процесс установки RiiConnect24 для Dolphin Emulator.
 set string169=First, I need to download the VFF-Downloader. This will make Forecast and News Channel work.
 set string170=Press any key to download and start the VFF Downloader for Dolphin.
 
@@ -248,10 +248,10 @@ set string228=Please connect your Wii U SD Card to the computer.
 set string229=Connected^!
 set string230=I can't connect an SD Card to the computer.
 set string231=Aww, no worries. You will be able to copy files later after patching.
-set string232=Hmm... looks like an SD Card wasn't found in your system. Please choose the `Change drive letter` option
+set string232=Hmm... похоже SD-карта не была найдена в вашей системе. Пожалуйста выберите опцию `Изменить букву диска`
 set string233=to set your SD Card drive letter manually.
 set string234=Otherwise, starting patching will set copying to manual so you will have to copy them later.
-set string235=Congrats^! I've successfully detected your SD Card^! Drive letter:
+set string235=Congrats^! I've successfully detected your SD Card^! Буква диска:
 set string236=I will be able to automatically download and install everything on your SD Card^!
 set string237=Everything is ready^!
 set string238=What's next?
