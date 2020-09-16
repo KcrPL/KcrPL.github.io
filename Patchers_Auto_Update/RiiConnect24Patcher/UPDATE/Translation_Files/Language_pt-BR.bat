@@ -182,7 +182,7 @@ set string164=Isso vai patchear qualquer jogo que não seja Mario Kart Wii para 
 set string165=Visitar a Loja de Homebrew
 set string166=Baixe e instale homebrew no seu Cartão SD usando o Open Shop Channel.
 set string192=Instalar arquivos WAD diretamente para o Cartão SD.
-set string193=Isso vai deixar que você instale um canal diretamente para seu Cartão SD do que você ter que mové-lo para a NAND.
+set string193=Isso vai deixar que você instale um canal diretamente pro seu Cartão SD ao invés que você ter que mové-lo do NAND.
 
 
 set string167=Olá
