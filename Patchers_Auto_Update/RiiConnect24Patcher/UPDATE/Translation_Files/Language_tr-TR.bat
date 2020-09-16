@@ -18,12 +18,12 @@ set string13=Uyarı
 set string14=Bu programın deneysel bir sürümünü kullanıyorsunuz.
 set string15=Bu demek bu sürüm deneysel özellikler
 set string16=ve belki sizin Wii/Wii U konsolunuzu veya bilgisayarınızı bozabilecek yazılım hataları içerebilir.
-eher senin ne yaptiğin Farkinda değilsen lütfen Ayarlara veya geri dön
-patcher şuan Sabit Versionda.
+set string17=Eğer ne yaptığını bilmiyorsan, lütfen ayarlara git ve
+set string18=yamalayıcı'nın sabit versiyonuna dön.
 
-komutun yanına yukarıda görebileceğiniz bir sayı yazın ve ENTER tuşuna basın
+set string19=Yukarıdaki komutun yanında görebileceğiniz bir sayı yazın ve ENTER tuşuna basın
 
-sorun Giderme Programmlar
+set string20=Sorun Giderme Araçları
 bu araçlar, yamalayıcıyla ilgili bazı sorunları teşhis etmenize ve bunları otomatik olarak onarmaya çalışmanıza yardımcı olacaktır.
 set string22=Could not detect SD Card.
 dosyalar SD Karta kopyalanamadı.
