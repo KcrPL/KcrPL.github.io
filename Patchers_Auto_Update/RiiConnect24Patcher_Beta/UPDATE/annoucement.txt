@@ -1,3 +1,4 @@
-You're now beta testing the patcher!
+You're now testing the Beta version of RiiConnect24 Patcher with a lot of new features!
 
-Thank you :)
+Make sure to report *ANY* bugs to KcrPL#4625 on Discord or contact us at support@riiconnect24.net regarding all the bugs.
+Any help is appreciated!
