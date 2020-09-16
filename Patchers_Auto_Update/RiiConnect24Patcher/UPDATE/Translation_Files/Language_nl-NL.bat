@@ -57,15 +57,15 @@ set string49=[KAN NIET WISSELEN NAAR STABLE VERSIE]
 set string50=Nee, ga terug naar het hoofdmenu.
 set string51=Wil je switchen naar de BETA versie van de patcher?
 set string52=Beta versie
-set string53=Sorry, there's currently no public beta version available.
-set string54=Yes, switch to Beta branch.
-set string49=[KAN NIET WISSELEN NAAR BETA VERSIE]
+set string53=Sorry, er is geen publieke beta versie beschikbaar.
+set string54=Ja, wissel naar de Beta branch.
+set string55=[KAN NIET WISSELEN NAAR BETA VERSIE]
 
 set string56=WACHT
-set string57=Are you trying to disable updating?
+set string57=Probeer je updates uit te zetten?
 set string58=Please do remember that updates will keep you safe and updated about the patcher.
-set string59=Only use this option for debugging and troubleshooting.
-set string60=Are you sure that you want to disable autoupdating?
+set string59=Alleen deze optie gebruiken voor debuggen en troubleshooting.
+set string60=Weet je het zeker dat je automatische updates wilt uitzetten?
 
 set string61=Ja
 set string62=Nee, ga terug.
