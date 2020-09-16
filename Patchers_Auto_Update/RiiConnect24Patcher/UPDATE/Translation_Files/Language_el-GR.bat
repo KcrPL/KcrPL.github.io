@@ -8,28 +8,28 @@ set string4=Ρυθμίσεις
 set string5=Διαχειρίσου τον VFF Downloader για το Dolphin εδώ
 set string6=Τρέξε τον VFF Downloader μια φορά.
 set string7=Έχεις κανένα πρόβλημα ή θες να επικοινωνήσεις μαζί μας;
-set string8=Mail us at support@riiconnect24.net
-set string9=Detected Wii SD Card:
-set string10=Could not detect your Wii SD Card.
-set string11=Refresh
-set string12=If incorrect, you can change later.
+set string8=Στήλε μας mail στο support@riiconnect24.net
+set string9=Ανιχνεύτηκε κάρτα μνήμης SD του Wii:
+set string10=Δεν μπορούσε να ανιχνευτεί κάρτα μνήμης SD.
+set string12=Ανανέωσε
+set string12= Αν λάθος, μπορεί να γίνει αλλαγή αργότερα.
 
-set string13=Warning
-set string14=You are using an experimental version of this program.
-set string15=That means that this version might contain experimental features
-set string16=and bugs that might break your Wii/Wii U console or your computer.
-set string17=If you don't know what you're doing, please go to settings and go back to
-set string18=stable branch of the patcher.
+set string13=Προειδοποίηση
+set string15= Χρησιμοποιείς μια πειραματική έκδοση του προγράμματος αυτού.
+set string15=Αυτό σημαίνει πως αυτή η έκδοση μπορεί να περιέχει πειραματικά χαρακτηριστικά
+set string15=και σφάλματα που μπορεί να χαλάσουν το Wii/Wii U σου ή τον υπολογιστή σου.
+setstring17=Αν δεν ξέρεις τι κάνεις παρακαλώ πήγαινε στις ρυθμίσεις και πήγαινε πίσω στη
+set string18=σταθερή έκδοση του προγράμματος.
 
-set string19=Type a number that you can see above next to the command and hit ENTER
+set string19=Πληκτρολόγισε έναν αριθμό πού μπορείς να δεις παραπάνω, δίπλα από την εντολή και πάτα ENTER
 
-set string20=Troubleshooting tools
-set string21=These tools should help you diagnose some problems with the patcher and try to repair them automatically.
-set string22=Could not detect SD Card.
-set string23=Could not copy files to the SD Card.
-set string24=Renaming files error
-set string25=Return to main menu
-set string26=Choose
+set string20=Εργαλεία επίλυσης προβλημάτων
+set string21=Αυτά τα εργαλεία θα πρέπει να σε βοηθήσουν να εντοπίσεις κάποια σφάλματα με το πρόγραμμα και να προσπαθήσουν να επιλυθούν αυτόματα.
+set string22=Δεν μπορούσε να ανιχνευτεί κάρτα μνήμης SD.
+set string23=Δεν ήταν δυνατό να αντιγραφθούν αρχεία στη κάρτα μνήμης SD.
+set string24=Πρόβλημα με τη μετονόμαση των αρχείων
+set string25=Πήγαινε πίσω στο κυρίος μενού
+set string 26=Επίλεξε
 
 set string27=RiiConnect24 Patcher Settings
 set string28=Go back
