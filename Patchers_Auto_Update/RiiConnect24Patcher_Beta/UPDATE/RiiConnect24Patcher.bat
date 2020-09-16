@@ -6,7 +6,7 @@ echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: RiiConnect24 Patcher for Windows
-set version=1.3.0
+set version=1.3.0.1
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2018-2020 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -55,7 +55,7 @@ set hh=0
 if %beta%==0 title RiiConnect24 Patcher v%version% Created by @KcrPL
 if %beta%==1 title RiiConnect24 Patcher v%version% [BETA] Created by @KcrPL
 set last_build=2020/09/16
-set at=17:13
+set at=19:24
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
@@ -99,7 +99,7 @@ for /f "usebackq" %%a in ("%TempStorage%\background_color.txt") do color %%a
 set /a chcp_enable=0
 if %preboot_environment%==1 set /a chcp_enable=1
 
-if %preboot_environment%==0 ver | findstr "6.3">NUL && set /a chcp_enable=1
+::if %preboot_environment%==0 ver | findstr "6.3">NUL && set /a chcp_enable=1
 if %preboot_environment%==0 ver | findstr "10.0">NUL && set /a chcp_enable=1
 
 if %chcp_enable%==1 chcp 65001>NUL
