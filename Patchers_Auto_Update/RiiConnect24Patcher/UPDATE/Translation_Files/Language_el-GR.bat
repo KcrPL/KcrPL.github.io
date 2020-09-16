@@ -31,8 +31,8 @@ set string24=Πρόβλημα με τη μετονόμαση των αρχείω
 set string25=Πήγαινε πίσω στο κυρίος μενού
 set string 26=Επίλεξε
 
-set string27=RiiConnect24 Patcher Settings
-set string28=Go back
+set string27=Ρυθμίσεις προγράμματος RiiConnect24
+set string28=Πήγαινε πίσω
 set string29=Set background/text color
 set string30=Turn off/on updating
 set string31=Currently
