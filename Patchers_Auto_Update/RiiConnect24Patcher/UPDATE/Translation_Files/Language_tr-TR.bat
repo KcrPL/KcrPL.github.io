@@ -24,9 +24,9 @@ set string18=yamalayıcı'nın sabit versiyonuna dön.
 set string19=Yukarıdaki komutun yanında görebileceğiniz bir sayı yazın ve ENTER tuşuna basın
 
 set string20=Sorun Giderme Araçları
-bu araçlar, yamalayıcıyla ilgili bazı sorunları teşhis etmenize ve bunları otomatik olarak onarmaya çalışmanıza yardımcı olacaktır.
-set string22=Could not detect SD Card.
-dosyalar SD Karta kopyalanamadı.
+set string21=Bu araçlar, yamalayıcıyla ilgili bazı sorunları teşhis etmenize yardımcı olup onları otomatik olarak onarmaya çalışacaktır.
+set string22=Wii SD Kartı algılanamadı.
+set string23=Dosyalar SD Karta kopyalanamadı.
 dosyalarin Ismi değisiminde Hata oluştu
 ana Sayfaya gerı dön
 seç
