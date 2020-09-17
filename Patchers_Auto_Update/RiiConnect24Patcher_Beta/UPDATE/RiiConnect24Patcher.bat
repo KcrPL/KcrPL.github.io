@@ -6,7 +6,7 @@ echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: RiiConnect24 Patcher for Windows
-set version=1.3.0.1
+set version=1.3.0.2
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2018-2020 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -5650,7 +5650,8 @@ if %processor_architecture%==AMD64 if not exist "EVCPatcher/pack/Sharpii.exe" cu
 set /a temperrorlev=%errorlevel%
 set modul=Downloading Sharpii.exe
 if not %temperrorlev%==0 goto error_patching
-if not exist "EVCPatcher/dwn/Sharpii.exe" curl -f -L -s -S --insecure "%FilesHostedOn%/EVCPatcher/dwn/Sharpii.exe" --output EVCPatcher/dwn/Sharpii.exe
+if %processor_architecture%==x86 if not exist "EVCPatcher/dwn/Sharpii.exe" curl -f -L -s -S --insecure "%FilesHostedOn%/EVCPatcher/dwn/Sharpii.exe" --output EVCPatcher/dwn/Sharpii.exe
+if %processor_architecture%==AMD64 if not exist "EVCPatcher/dwn/Sharpii.exe" curl -f -L -s -S --insecure "%FilesHostedOn%/EVCPatcher/dwn/Sharpii_x64.exe" --output EVCPatcher/dwn/Sharpii.exe
 set /a temperrorlev=%errorlevel%
 set modul=Downloading Sharpii.exe
 if not %temperrorlev%==0 goto error_patching
