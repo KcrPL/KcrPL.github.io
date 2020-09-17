@@ -187,8 +187,8 @@ set string193=Isso vai deixar que você instale um canal diretamente pro seu Car
 
 set string167=Olá
 set string168=Bem-vindos ao processo de instalação do RiiConnect24 para o Emulador Dolphin.
-set string169=Primeiro, preciso baixar o VFF Downloader. Isso vai fazer os canais de notícias e de previsão de tempo funcionar.
-set string170=Pressione qualquer tecla para baixar e abrir o VFF Downloader para Emulador Dolphin.
+set string169=Primeiro, preciso baixar o VFF Downloader. Isso vai fazer os canais de notícias e de previsão de tempo funcionarem.
+set string170=Pressione qualquer tecla para baixar e iniciar o VFF Downloader para Dolphin.
 
 set string171=Ok! Vejo que você saiu do instalador do VFF Downloader.
 set string172=Se você instalou corretamente e escolheu:
