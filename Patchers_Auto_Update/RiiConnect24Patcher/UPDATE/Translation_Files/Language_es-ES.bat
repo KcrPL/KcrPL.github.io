@@ -505,6 +505,6 @@ set string483=Módulo fallando
 set string484=CONSEJO: Considera desactivar temporalmente tu antivirus.
 set string485=SOLUCIÓN: Por favor revisa tu conexión a internet.
 set string486=DETALLES DEL ERROR: Error con la escritura de Curl. Prueba moviendo el patcher al escritorio y vuelve a intentar.
-set string487=SOLUCIÓN: Por favor instala el último .NET Framework y vuelve a intentarlo.
+set string487=SOLUCIÓN: Por favor, instala la ultima versión de .NET Framework y vuelve a intentarlo.
 
 
