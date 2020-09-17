@@ -7,7 +7,7 @@ set string3=クレジット
 set string4=設定
 set string5=こちらにVFF Downloader for Dolphinを管理する
 set string6=VFF Downloaderを１回実行する
-set string7=Do you have problems or want to contact us?
+set string7=何か問題があったり、連絡したいことがありますか？
 set string8=メールはsupport@riiconnect24.netです。
 set string9=Wii SDカードが検出されました：
 set string10=貴方のWii SDカードを検出できません。
@@ -26,7 +26,7 @@ set string19=Type a number that you can see above next to the command and hit EN
 set string20=トラブルシューティング・ツール
 set string21=These tools should help you diagnose some problems with the patcher and try to repair them automatically.
 set string22=SDカードを検出できません。
-set string23=Could not copy files to the SD Card.
+set string23=SDカードにファイルをコピーできませんでした。
 set string24=ファイルを名前変更するエラーが発生しました
 set string25=メインメニューへ
 set string26=決定
@@ -39,7 +39,7 @@ set string31=Currently
 set string32=Change updating branch to
 set string33=ベータ版
 set string34=安定版
-set string35=Repair patcher file
+set string35=Patcherを修復
 set string36=Redownload
 set string37=VFF Downloader for Dolphin Settings
 set string38=Completely delete VFF Downloader for Dolphin from your computer
@@ -103,7 +103,7 @@ set string89=There was an error while downloading the update assistant.
 set string90=Press any key to return to main menu.
 set string91=What's new in update
 set string92=Error. What's new file is not available.
-set string93=Press any button to go back.
+set string93=何かキーを押して戻る
 :: Local end
 
 :: Must be available online
