@@ -1,8 +1,8 @@
 if "%1"=="-chcp" chcp 65001
 :: Should be available locally
 
-set string1=RiiConnect your Wii.
-set string2=Start
+https://crowdin. com/translate/riiconnect24-patcher/188/en-ko#8938
+https://crowdin. com/translate/riiconnect24-patcher/188/en-ko#8940
 set string3=Credits
 set string4=Settings
 set string5=manage VFF Downloader for Dolphin here
