@@ -2,47 +2,47 @@ if "%1"=="-chcp" chcp 65001
 :: Should be available locally
 
 set string1=RiiConnetti la tua Wii.
-set string2=Avvia la procedura
+set string2=Inizia
 set string3=Crediti
 set string4=Impostazioni
-set string5=Imposta il VFF downloader per Dolphin qui
-set string6=Avvia il Downloader per questa volta.
-set string7=Hai qualche problema o vuoi contattarci?
+set string5=gestisci VFF Downloader per Dolphin qui
+set string6=Avvia il VFF Downloader per questa volta.
+set string7=Hai problemi o vuoi contattarci?
 set string8=Invia una mail a support@riiconnect24.net
-set string9= Rilevata una scheda SD dedicata alla Wii:
-set string10=Impossibile rilevare la tua scheda SD.
+set string9=Rilevata Scheda SD Wii:
+set string10=Impossibile rilevare la tua Scheda SD Wii.
 set string11=Aggiorna
-set string12=Se non è corretto, puoi cambiarlo dopo.
+set string12=Se è incorretto, potrai cambiarlo più tardi.
 
 set string13=Attenzione
 set string14=Stai usando una versione sperimentale di questo programma.
-set string15=Vuol dire che questa versione ha delle funzioni in fase di sperimentazione
-set string16=e bug che potrebbero potenzialmente rompere la tua Wii/Wii U o il tuo PC.
+set string15=Ciò significa che questa versione potrebbe contenere funzioni sperimentali
+set string16=e bug che potrebbero rompere la tua Wii/Wii U o il tuo computer.
 set string17=Se non sai cosa stai facendo, vai nelle impostazioni e torna alla
-set string18=versione stabile del programma.
+set string18=ramo stabile del patcher.
 
-set string19= Inserisci il numero relativo alla funzione che desideri e premi [Invio]
+set string19=Digita un numero che puoi vedere sopra accanto al comando e premi INVIO
 
 set string20=Strumenti di risoluzione dei problemi
-set string21=Questi strumenti potrebbero aiutarti a rilevare alcuni problemi con il programma e prova a ripararli automaticamente.
+set string21=Questi strumenti dovrebbero aiutarti a diagnosticare alcuni problemi con il patcher e provare a ripararli automaticamente.
 set string22=Impossibile rilevare la Scheda SD.
-set string23=Non è stato possibile copiare i files nella scheda SD.
+set string23=Impossibile copiare i file nella Scheda SD.
 set string24=Errore durante la rinominazione dei file
 set string25=Torna al menu principale
 set string26=Scegli
 
-set string27=Impostazioni del programma
-set string28=Indietro
-set string29=Imposta il colore del testo e di sfondo
-set string30=Attiva o disattiva gli aggiornamenti
-set string31=Al momento
-set string32=Imposta il canale degli aggiornamenti a
+set string27=Impostazioni di RiiConnect24 Patcher
+set string28=Torna indietro
+set string29=Imposta il colore dello sfondo/del testo
+set string30=Disattiva/attiva l'aggiornamento
+set string31=Attualmente
+set string32=Cambia il ramo di aggiornamento a
 set string33=Beta
 set string34=Stabile
-set string35=Ripara il patcher
-set string36=Riscarica
+set string35=Ripara il file patcher
+set string36=Scarica di nuovo
 set string37=Impostazioni del VFF Downloader per Dolphin
-set string38=Vuoi davvero eliminare il Downloader dal tuo PC
+set string38=Elimina completamente VFF Downloader per Dolphin dal tuo computer
 set string39=Elimina VFF Downloader dall'avvio automatico
 set string40=Se VFF Downloader è in esecuzione, spegnilo.
 set string41=Attendi... Recupero dei dati.
@@ -52,12 +52,12 @@ set string44=Versione stabile
 set string45=Spiacenti, si è verificato un errore durante il recupero dei dati.
 set string46=Vuoi cambiare ramo?
 set string47=Il processo di aggiornamento sta per inziare.
-set string48=Si, passa agli aggiornamenti stabili.
+set string48=Si, cambia al ramo Stabile.
 set string49=[IMPOSSIBILE PASSARE ALLA VERSIONE STABILE]
 set string50=No, ritorna al menu principale.
 set string51=Vuoi passare alla versione BETA del patcher?
 set string52=Versione Beta
-set string53 = Spiacenti, al momento non è disponibile una versione beta pubblica.
+set string53 =Spiacenti, al momento non è disponibile una versione beta pubblica.
 set string54=Si, passa al ramo Beta.
 set string55=[IMPOSSIBILE PASSARE ALLA VERSIONE BETA]
 
