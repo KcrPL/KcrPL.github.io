@@ -275,7 +275,7 @@ set string258=Finalizando...
 
 set string259=¡Muy bien ^! ¡Estamos listos con eso ^!
 set string260=¡Copiado con éxito ^! Cada archivo está en tu tarjeta SD.
-set string261=Wha- Algo falló^! Por favor copia las carpetas "WAD" y "apps" y a tu tarjeta SD. Están junto al RiiConnect24Patcher.bat
+set string261=Qué- Algo falló^! Por favor copia las carpetas "WAD" y "apps" y a tu tarjeta SD. Están junto al RiiConnect24Patcher.bat
 set string262=Por favor, conecta la tarjeta SD de tu Wii U a tu equipo y copia las carpetas "WAD" y "apps".
 set string263=¡Ya casi estamos listos ^!
 set string264=Ahora vamos a parchear un archivo que es responsable del bug de barras negras en modo 4:3 de Wii.
