@@ -181,24 +181,24 @@ set string162=Dies wird deine Kopie von Mario Kart Wii für Wiimmfi patchen, wel
 set string163=Andere Wii Spiele für das Funktionieren mit Wiimmfi patchen.
 set string164=Dies wird alle anderen Spiele außer Mario Kart Wii für das Funktiinieren mit Wiimmfi patchen.
 set string165=Homebrew-Shop aufrufen
-set string166=Download and install homebrew on your SD Card using Open Shop Channel.
-set string192=Install WAD files directly to the SD Card.
-set string193=This will allow you to directly install a channel to your SD Card instead of you having to move it from NAND.
+set string166=Lade Homebrew über Open Shop Channel herunter und installiere es auf deiner SD-Karte.
+set string192=Installiere WAD-Dateien direkt auf der SD-Karte.
+set string193=Auf diese Weise kannst du einen Kanal direkt auf deiner SD-Karte installieren, anstatt ihn vom NAND verschieben zu müssen.
 
 
 set string167=Hey
-set string168=welcome to RiiConnect24 installation process for Dolphin Emulator.
-set string169=First, I need to download the VFF-Downloader. This will make Forecast and News Channel work.
-set string170=Press any key to download and start the VFF Downloader for Dolphin.
+set string168=Willkommen beim RiiConnect24-Installationsprozess für den Dolphin Emulator.
+set string169=Zuerst muss ich den VFF-Downloader herunterladen. Dadurch werden Wetter- und Nachrichtenkanal funktionieren.
+set string170=Drücke eine beliebige Taste, um den VFF Downloader für Dolphin herunterzuladen und zu starten.
 
-set string171=Okay! I see that you've exited VFF Downloader Installer.
+set string171=Okay! Ich sehe, dass du den VFF Downloader Installer verlassen hast.
 set string172=If you installed it correctly and choose:
 set string173=Manual - there will be an option in the main menu of RiiConnect24 Patcher to start it. Start it every time you want to
 set string174=access Forecast and News Channel. There will be an option in the main menu to manage VFF Downloader.
 set string175=Startup - the program will run in background and will download the files automatically every hour.
 set string176=There will be an option in the main menu of RiiConnect24 Patcher to manage it.
 set string177=Was nun?
-set string178=Continue with the installation process.
+set string178=Fahre mit dem Installationsvorgang fort.
 set string179=Try installing VFF Downloader again.
 set string180=Verlassen
 set string181=We will now need to run the patcher to get Check Mii Out Channel and Everybody Votes Channel.
@@ -431,14 +431,14 @@ set string414=Vorherige Seite
 set string415=Teil III - Die Verbindung mit RiiConnect24 trennen
 set string416=Gehe zu Wii-Optionen.
 set string417=Gehe zu Wii-Einstellungen.
-set string418=Go to Page 2, then click on Internet.
-set string419=Go to Connection Settings.
-set string420=Select your current connection.
-set string421=Go to Change Settings.
-set string422=Go to Auto-Obtain DNS (Not IP Address), then select Yes.
-set string423=Select Save and do the connection test.
-set string424=When asking for update, press No to skip it.
-set string425=Das war's^^! RiiConnect24 should be now gone from your Wii^!
+set string418=Gehe zu Seite 2 und klicke auf Internet.
+set string419=Gehe zu Verbindungseinstellungen.
+set string420=Wähle deine aktuelle Verbindung.
+set string421=Gehe zu Einstellungen ändern.
+set string422=Gehe zu DNS automatisch abrufen (Nicht IP-Adresse) und wähle Ja.
+set string423=Wähle Speichern und führe den Verbindungstest durch.
+set string424=Wenn es nach einem Update fragt, drücke Nein, um es zu überspringen.
+set string425=Das war's^^! RiiConnect24 sollte jetzt von deiner Wii verschwunden sein^!
 set string426=Bitte komm bald zu uns zurück :)
 set string427=Drücke eine beliebige Taste um den Patcher zu verlassen.
 
@@ -493,8 +493,8 @@ set string472=Jede Datei befindet sich an ihrem Platz auf deiner SD-Karte^!
 set string473=Du findest diese Ordner bei RiiConnect24Patcher.bat.
 set string474=Fahre mit dem Tutorial fort, das du unter https://wii.guide/riiconnect24 findest
 
-set string475=Thank you very much for using this patcher^! :)
-set string476=Have fun using RiiConnect24^!
+set string475=Vielen Dank für das Verwenden dieses Patchers^! :)
+set string476=Viel Spaß mit RiiConnect24^!
 set string477=Schließen des Patchers in:
 
 set string478=Es besteht keine Internetverbindung.
