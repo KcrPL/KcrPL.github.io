@@ -61,7 +61,7 @@ set string53 =Spiacenti, al momento non è disponibile una versione beta pubblic
 set string54=Si, passa al ramo Beta.
 set string55=[IMPOSSIBILE PASSARE ALLA VERSIONE BETA]
 
-set string56=ASPETTA
+set string56=ATTENDI
 set string57=Stai cercando di disattivare gli aggiornamenti?
 set string58=Ricorda che gli aggiornamenti ti tengono al sicuro e aggiornato riguardo il programma.
 set string59=Usa questa opzione solo per fare debug e risoluzione di problemi.
