@@ -33,11 +33,11 @@ set string 26=Επίλεξε
 
 set string27=Ρυθμίσεις προγράμματος RiiConnect24
 set string28=Πήγαινε πίσω
-set string29=Set background/text color
-set string30=Turn off/on updating
-set string31=Currently
-set string32=Change updating branch to
-set string33=Beta
+set string29=Ρύθμισε χρώμα ταπετσαρίας/κειμένου
+set string30=Ενεργοποιήσε/απενεργοποιήσε αναβάθμιση λογισμικού
+set string31=Τώρα
+set string33=Άλλαξε έκδοση αναβάθμισης σε
+set string33=Πειραματική
 set string34=Stable
 set string35=Repair patcher file
 set string36=Redownload
