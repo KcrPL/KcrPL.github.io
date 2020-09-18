@@ -27,11 +27,11 @@ set string20=Sorun Giderme Araçları
 set string21=Bu araçlar, yamalayıcıyla ilgili bazı sorunları teşhis etmenize yardımcı olup onları otomatik olarak onarmaya çalışacaktır.
 set string22=Wii SD Kartı algılanamadı.
 set string23=Dosyalar SD Karta kopyalanamadı.
-dosyalarin Ismi değisiminde Hata oluştu
-ana Sayfaya gerı dön
-seç
+set string24=Dosya ad değiştirme hatası
+set string25=Ana menüye dön
+set string26=Seç
 
-riiconnect24 Patcher Ayarları
+set string27=RiiConnect24 Yamalayıcı Ayarları
 geri dön
 arka plan veya metin rengini ayarla
 güncellemeyi kapat / aç
