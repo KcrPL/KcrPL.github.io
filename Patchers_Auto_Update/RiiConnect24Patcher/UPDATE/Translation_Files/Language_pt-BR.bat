@@ -211,10 +211,10 @@ set string188=E agora?
 set string189=Voltar ao menu principal
 set string190=Fechar o patcher
 
-set string200=Instalar o RiiConnect24 no teu WiiU.
+set string200=Instalar o RiiConnect24 no seu WiiU.
 set string201=Escolha o tipo de instalação:
 set string202=Expresso (Recomendado)
-set string203=Isso vai patchear todos os canais para uso posterior no seu Wii U, isso inclui:
+set string203=Isso vai patchear todos os canais para uso posterior no seu Wii U. isso inclui:
 set string204=Canal de Notícias
 set string376=Canal de Previsão do Tempo
 set string377=Wii Mail
