@@ -12,16 +12,16 @@ set string8=メールはsupport@riiconnect24.netです。
 set string9=Wii SDカードが検出されました：
 set string10=貴方のWii SDカードを検出できません。
 set string11=リフレッシュ
-set string12=If incorrect, you can change later.
+set string12=間違った場合は、後で変更できます
 
 set string13=ご注意
-set string14=You are using an experimental version of this program.
-set string15=That means that this version might contain experimental features
-set string16=and bugs that might break your Wii/Wii U console or your computer.
-set string17=If you don't know what you're doing, please go to settings and go back to
-set string18=stable branch of the patcher.
+set string14=このプログラムは試験的なバージョンです
+set string15=つまり、このバージョンには試験的な機能が含まれています
+set string16=よって、Wii/Wii U コンソールやあなたのコンピューターを破壊する可能性があります
+set string17=もし自分が何をしているのかわからないのなら、設定に戻ってください
+set string18=パッチャーの安定したブランチ
 
-set string19=Type a number that you can see above next to the command and hit ENTER
+set string19=上記のコマンドの横に表示されている数字を入力し、Enterキーを押してください
 
 set string20=トラブルシューティング・ツール
 set string21=These tools should help you diagnose some problems with the patcher and try to repair them automatically.
