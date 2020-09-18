@@ -16,7 +16,7 @@ set string12=Wenn dies nicht der Fall ist, kannst du es später ändern.
 
 set string13=Warnung
 set string14=Du verwendest eine experimentelle Version dieses Programms.
-set string16=Das bedeutet, dass diese Version möglicherweise experimentelle Funktionen enthält
+set string15=Das bedeutet, dass diese Version möglicherweise experimentelle Funktionen enthält
 set string16=und Fehler, die deine Wii / Wii U-Konsole oder deinen Computer beschädigen könnten.
 set string17=Wenn du nicht weißt, was du tust, gehe zu den Einstellungen und kehre zurück zu
 setze string18=stabiler Zweig des Patchers.
