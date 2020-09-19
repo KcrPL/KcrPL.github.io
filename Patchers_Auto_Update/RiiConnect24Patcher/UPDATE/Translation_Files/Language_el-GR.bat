@@ -62,27 +62,27 @@ set string54=Ναι, άλλαξε σε πειραματικό κλάδο.
 set string55=[ΔΕΝ ΗΤΑΝ ΕΠΙΤΥΧΗΣ Η ΑΛΛΑΓΗ ΣΕ ΠΕΙΡΑΜΑΤΙΚΗ ΕΚΔΟΣΗ]
 
 set string56=ΠΕΡΙΜΕΝΕ
-set string57=Are you trying to disable updating?
+set string57=Προσπαθείτε να απενεργοποιήσετε τις ενημερώσεις;
 set string58=Please do remember that updates will keep you safe and updated about the patcher.
 set string59=Only use this option for debugging and troubleshooting.
 set string60=Are you sure that you want to disable autoupdating?
 
-set string61=Yes
-set string62=No, go back.
+set string61=Ναί
+set string62=Οχι, πηγαίνετε πίσω.
 
-set string63=Change color:
-set string64=Dark theme
+set string63=Αλλαγή χρώματος:
+set string64=Σκούρο θέμα
 set string65=Light theme *please don't hurt my eyes edition*
 set string66=Light theme *please hurt my eyes edition*
-set string67=Yellow
-set string68=Green
-set string69=Red
-set string70=Blue
+set string67=Κίτρινο
+set string68=Πράσινο
+set string69=Κόκκινο
+set string70=Μπλε
 
-set string71=Downloading curl... Please wait.
+set string71=Γίνεται λήψη του curl... Παρακαλώ περιμένετε.
 set string72=This can take some time...
 
-set string73=ERROR.
+set string73=ΣΦΑΛΜΑ.
 set string74=There was an error while downloading curl.
 set string75=We will now open a website that will download curl.exe.
 set string76=Please move curl.exe to the folder where RiiConnect24 Patcher is and restart the patcher.
