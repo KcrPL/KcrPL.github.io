@@ -32,7 +32,7 @@ set string25=Ana menüye dön
 set string26=Seç
 
 set string27=RiiConnect24 Yamalayıcı Ayarları
-geri dön
+set string28=Geri dön
 arka plan veya metin rengini ayarla
 güncellemeyi kapat / aç
 şuanda
