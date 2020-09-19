@@ -206,9 +206,9 @@ set string183=Европа
 set string184=США
 set string185=We're done^! Now please open Dolphin, press on Tools and install the WAD file that has been downloaded to the WAD folder 
 set string186=next to the RiiConnect24 Patcher.
-set string187=That's it^!
-set string188=What to do next?
-set string189=Return to main menu
+set string187=Всё^!
+set string188=Что дальше?
+set string189=Вернуться в главное меню
 set string190=Закройте патчер
 
 set string200=Установить RiiConnect24 на вашем Wii U.
