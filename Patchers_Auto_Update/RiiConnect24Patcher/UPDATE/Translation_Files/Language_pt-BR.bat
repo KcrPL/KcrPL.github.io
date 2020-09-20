@@ -273,20 +273,20 @@ set string253=Progresso
 set string254=Baixando arquivos
 set string258=Terminando...
 
-set string259=Ok^! Acabamos^!
+set string259=Ok^! Terminamos^!
 set string260=Copiei com sucesso^! Todos os arquivos estão em seu Cartão SD.
-set string261=Opa! Alguma coisa falhou^! Por favor copie as pastas "WAD" e "apps" para o seu cartão SD. Estão pertos do RiiConnect24Patcher.bat
-Por favor conecte o seu cartão SD do Wii U no computador e copie as pastas "WAD" e "apps" para ele.
+set string261=Opa! Alguma coisa falhou^! Por favor copie as pastas "WAD" e "apps" para o seu cartão SD. Estão perto do RiiConnect24Patcher.bat
+set string262=Por favor conecte o seu cartão SD do Wii U ao computador e copie as pastas "WAD" e "apps" para ele.
 set string263=Estamos quase prontos^!
 set string264=Agora vamos patchear um arquivo que está responsável pelo bug de barras pretas 4:3 que aparece no modo Wii.
-set string265=Agora, por favor conecte o Cartão SD ao seu Wii U, abra o modo Wii e abra o Homebrew Launcher.
+set string265=Agora, por favor conecte o Cartão SD ao seu Wii U, entre no vWii e abra o Homebrew Launcher.
 set string266=Na lista, por favor ache ww-43db-patcher (WiiWare 4:3 DB Patcher) e execute-o.
 set string267=Pressione qualquer botão para continuar.
-set string268=Acabei de patchear^!
+set string268=Terminei de patchear^!
 set string269=Você agora pode continuar com o guia.
-set string270=E agora?
+set string270=Que quer fazer agora?
 set string271=Voltar ao menu principal
-set string272=Fechar o patcheador
+set string272=Fechar o patcher
 
 set string276=Instalar arquivos WAD diretamente ao seu Cartão SD - wad2bin.
 set string277=Criado por DarkMatterCore.
