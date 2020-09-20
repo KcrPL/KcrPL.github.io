@@ -363,11 +363,12 @@ set string346=Visa felinfo.
 set string347=Förberedelser för användning med Wiimmfi Patcher...
 set string41=Vänligen vänta...
 set string349=Wiimmfi Patcher är klar^!
-set string350=Place the game image (can be ISO or WBFS) in a folder where RiiConnect24 Patcher is and choose "Ready".
-set string351=ISO Files
-set string352=WBFS Files
-set string353=Found
-set string354=Not Found
+set string350=Placera spelbilden (kan vara ISO eller WBFS) i en mapp där RiiConnect24 Patcher är och väljer "Redo".
+set string351=ISO-filer
+set string352=WBFS-filer
+
+set string353=Hittade
+set string354=Hittades inte
 set string355=Ready. Start Wiimmfi Patcher.
 set string356=Go back to Main Menu.
 set string357=The Wiimmfi Patcher is done^!
