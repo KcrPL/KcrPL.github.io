@@ -492,7 +492,7 @@ set string472=Every file is in it's place on your SD Card^!
 set string473=You can find these folders next to RiiConnect24Patcher.bat.
 set string474=Please proceed with the tutorial that you can find on https://wii.guide/riiconnect24
 
-set string475=このpatcherを使ってくれて本当にありがとう (*^▽^*)
+set string475=このpatcherを使ってくれて本当にありがとう :)
 set string476=RiiConnect24を使って楽しんでください！
 set string477=Closing the patcher in:
 
