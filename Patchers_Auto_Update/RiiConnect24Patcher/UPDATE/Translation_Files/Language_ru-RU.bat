@@ -441,17 +441,17 @@ set string425=That's it^! RiiConnect24 should be now gone from your Wii^!
 set string426=Please come back to us soon :)
 set string427=Press any key to exit the patcher.
 
-set string428=The Nintendo Update Server (NUS) is currently down. Patcher needs that server in order to work.
-set string429=This probably means that there is a maintenance currently going on the server.
-set string430=Please come back later^!
-set string431=Preparing...
+set string428=The Nintendo Update Server (NUS) на данный момент оффлайн. Патчеру для работы нужен этот сервер.
+set string429=Это возможно означает что он на данный момент обслуживается.
+set string430=Пожалуйста вернитесь позже^!
+set string431=Готовим...
 
-set string432=Install RiiConnect24.
-set string433=This will patch every channel for later use on your Wii. This includes:
-set string434=IOS Patches [required for other channels to work]
+set string432=Установить RiiConnect24.
+set string433=Это запатчит каждый канал для дальнейшего использования на вашем Wii. Это в себя включает:
+set string434=IOS патчи [необходимы для работы других каналов]
 set string435=Forecast/News Channel
-set string436=Please connect your Wii SD Card to the computer.
-set string437=The following process will download about 170MB of data.
+set string436=Пожалуйста подключите вашу Wii SD-карту к компьютеру.
+set string437=Данный процесс скачает примерно 170МБ данных.
 
 set string438=Вы знали что Wii была самой продаваемой игровой консолью 2006го?
 set string439=Вы знали что KcrPL делает эти замечательные патчеры?
