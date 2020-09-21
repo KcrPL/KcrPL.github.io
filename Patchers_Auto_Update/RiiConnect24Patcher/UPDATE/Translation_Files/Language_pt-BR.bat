@@ -288,7 +288,7 @@ set string270=Que quer fazer agora?
 set string271=Voltar ao menu principal
 set string272=Fechar o patcher
 
-set string276=Instalar arquivos WAD diretamente ao seu Cartão SD - wad2bin.
+set string276=Instalar arquivos WAD diretamente para o Cartão SD - wad2bin.
 set string277=Criado por DarkMatterCore.
 set string278=Bem-vindo
 set string279=Isso é uma tela de configuração para o wad2bin. Você precisa fazer isso uma vez só.
