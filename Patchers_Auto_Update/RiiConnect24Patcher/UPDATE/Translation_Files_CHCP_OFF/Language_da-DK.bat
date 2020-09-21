@@ -6,72 +6,72 @@ start
 kreditters
 indstillinger
 administrer VFF Downloader til Dolphin her
-kA,r VFF Downloader en gang.
+kor VFF Downloader en gang.
 har du problemer eller vil du kontakte os?
-mail os pAA support@riiconnect24.net
+mail os pa support@riiconnect24.net
 registreret Wii SD-kort:
 kunne ikke registrere dit Wii SD-kort.
 opdater
-hvis det er forkert, kan du A|ndre det senere.
+hvis det er forkert, kan du aendre det senere.
 
 advarsel
 du bruger en eksperimentel version af dette program.
 det betyder, at denne version muligvis indeholder eksperimentelle funktioner
-og fejl, der muligvis A,delA|gger din Wii / Wii U-konsol eller din computer.
-hvis du ikke ved, hvad du laver, skal du gAA til indstillingerne og gAA tilbage til
-stabil gren af aEUR<aEUR<lapperen.
+og fejl, der muligvis odelaegger din Wii / Wii U-konsol eller din computer.
+hvis du ikke ved, hvad du laver, skal du ga til indstillingerne og ga tilbage til
+stabil gren af   lapperen.
 
-skriv et nummer, som du kan se ovenfor ved siden af aEUR<aEUR<kommandoen, og tryk pAA ENTER
+skriv et nummer, som du kan se ovenfor ved siden af   kommandoen, og tryk pa ENTER
 
-fejlfindingsvA|rktA,jer
-disse vA|rktA,jer skal hjA|lpe dig med at diagnosticere nogle problemer med patcheren og forsA,ge at reparere dem automatisk.
+fejlfindingsvaerktojer
+disse vaerktojer skal hjaelpe dig med at diagnosticere nogle problemer med patcheren og forsoge at reparere dem automatisk.
 kunne ikke registrere dit Wii SD-kort.
 "Kunne ikke kopiere filer til SD-kortet".
-fejl ved omdA,bning af filer
-gAA tilbage til hovedmenuen
-vA|lge
+fejl ved omdobning af filer
+ga tilbage til hovedmenuen
+vaelge
 
 riiConnect24 Patcher-indstillinger
-gAA tilbage
+ga tilbage
 indstil baggrunds- / tekstfarve
-slAA opdatering fra / til
-i A,jeblikket
+sla opdatering fra / til
+i ojeblikket
 skift opdateringsfilial til
 beta
 stabil
 reparer patcher-fil
-genindlA|s
+genindlaes
 vFF Downloader til Dolphin Settings
 slet VFF Downloader til Dolphin helt fra din computer
 slet VFF Downloader fra opstart
-hvis VFF Downloader kA,rer, skal du lukke den ned.
+hvis VFF Downloader korer, skal du lukke den ned.
 vent venligst... hentning af data.
-A,nsker du at gAA tilbage til en stabil version af lappen?
-nuvA|rende version
-nuvA|rende version
+onsker du at ga tilbage til en stabil version af lappen?
+nuvaerende version
+nuvaerende version
 beklager, der opstod en fejl under hentning af data.
 vil du skifte filial?
 opdateringsprocessen starter.
 ja, skift til stabil gren.
 [UDBYDT AT SKIFTE TIL STABIL VERSION]
-nej, gAA tilbage til hovedmenuen.
-vil du skifte til BETA-versionen af aEUR<aEUR<lappen?
+nej, ga tilbage til hovedmenuen.
+vil du skifte til BETA-versionen af   lappen?
 beta-version
-beklager, der er i A,jeblikket ingen offentlig betaversion tilgA|ngelig.
+beklager, der er i ojeblikket ingen offentlig betaversion tilgaengelig.
 ja, skift til Betafil.
 [UDBYDT AT SKIFTE TIL BETA-VERSION]
 
 VENTE
-forsA,ger du at deaktivere opdatering?
+forsoger du at deaktivere opdatering?
 Husk, at opdateringer holder dig sikker og opdateret om lapperen.
 brug kun denne mulighed til fejlfinding og fejlfinding.
-er du sikker pAA, at du vil deaktivere autoupdating?
+er du sikker pa, at du vil deaktivere autoupdating?
 
 ja
-nej, gAA tilbage.
+nej, ga tilbage.
 
 skift farve:
-MA,rkt tema
+Morkt tema
 set string65=Light theme *please don't hurt my eyes edition*
 set string66=Light theme *please hurt my eyes edition*
 set string67=Yellow
@@ -108,7 +108,7 @@ set string93=Press any button to go back.
 
 :: Must be available online
 set string100=Welcome to the Homebrew Shop.
-inden du downloader hjemmebrygging, vil du aktivere automatisk installation pAA dit SD-kort?
+inden du downloader hjemmebrygging, vil du aktivere automatisk installation pa dit SD-kort?
 ja, registrer SD-kortet.
 set string103=No, I'll install them manually.
 set string104=Hmm... looks like an SD Card wasn't found in your system. Please choose the `Change drive letter` option

@@ -2,155 +2,155 @@ if "%1"=="-chcp" chcp 65001
 :: Should be available locally
 
 Wii Konsolu Riiconnectle.
-BaLzla
+Basla
 Itibar
 Ayarlar
-VFF Downloader Dolphin iASSin RiiConnect24 tarafA+-ndan yAPnetilebilen ayrA+- bir programdA+-r
-Ilk APnce VFF Downloaderi baLzlat.
-SorunlarA+-nA+-z mA+- var veya bizimle iletiLzime geASSmek mi istiyorsunuz?
-support@riiconnect24.net adresinden bize e-posta gAPnderin
-Wii SD KartA+- AlgA+-landA+-:
-Malesef senin Wii SD KartA+-n algA+-lanmadA+-.
+VFF Downloader Dolphin icin RiiConnect24 tarafindan yonetilebilen ayri bir programdir
+Ilk once VFF Downloaderi baslat.
+Sorunlariniz mi var veya bizimle iletisime gecmek mi istiyorsunuz?
+support@riiconnect24.net adresinden bize e-posta gonderin
+Wii SD Karti Algilandi:
+Malesef senin Wii SD Kartin algilanmadi.
 Yenile
-YanlA+-Lzsa, daha sonra deAziLztirebilirsin.
+Yanlissa, daha sonra degistirebilirsin.
 
-UyarA+-
-bu programA+-n deneysel bir sALrALmALnAL kullanA+-yorsunuz.
-Bu programA+-n deneysel bir sALrALmALnAL kullanA+-yorsunuz
-ve bug belki sizin Wii / Wii U konsolunuzu veya bilgisayarA+-nA+-zA+- bozabilir.
-eher senin ne yaptiAzin Farkinda deAzilsen lALtfen Ayarlara veya geri dAPn
-patcher Lzuan Sabit Versionda.
+Uyari
+bu programin deneysel bir surumunu kullaniyorsunuz.
+Bu programin deneysel bir surumunu kullaniyorsunuz
+ve bug belki sizin Wii / Wii U konsolunuzu veya bilgisayarinizi bozabilir.
+eher senin ne yaptigin Farkinda degilsen lutfen Ayarlara veya geri don
+patcher suan Sabit Versionda.
 
-komutun yanA+-na yukarA+-da gAPrebileceAziniz bir sayA+- yazA+-n ve ENTER tuLzuna basA+-n
+komutun yanina yukarida gorebileceginiz bir sayi yazin ve ENTER tusuna basin
 
 sorun Giderme Programmlar
-bu araASSlar, yamalayA+-cA+-yla ilgili bazA+- sorunlarA+- teLzhis etmenize ve bunlarA+- otomatik olarak onarmaya ASSalA+-LzmanA+-za yardA+-mcA+- olacaktA+-r.
+bu araclar, yamalayiciyla ilgili bazi sorunlari teshis etmenize ve bunlari otomatik olarak onarmaya calismaniza yardimci olacaktir.
 set string22=Could not detect SD Card.
-dosyalar SD Karta kopyalanamadA+-.
-dosyalarin Ismi deAzisiminde Hata oluLztu
-ana Sayfaya gerA+- dAPn
-seASS
+dosyalar SD Karta kopyalanamadi.
+dosyalarin Ismi degisiminde Hata olustu
+ana Sayfaya geri don
+sec
 
-riiconnect24 Patcher AyarlarA+-
-geri dAPn
+riiconnect24 Patcher Ayarlari
+geri don
 arka plan veya metin rengini ayarla
-gALncellemeyi kapat / aASS
-Lzuanda
-Lzubeyi gALncellemek iASSin deAziLztir
+guncellemeyi kapat / ac
+suanda
+subeyi guncellemek icin degistir
 beta
 sabit
-patcher dosyasA+-nA+- Tamir et
+patcher dosyasini Tamir et
 yeniden Patcheri indir
-vFF Downloader Dolphin iASSin Ayarlar
-vFF Downloader Dolphin iASSin Bilgisayardan tam sil
-vFF Downloader'A+- baLzlangA+-ASStan sil
-vFF Downloader ASSalA+-LzA+-yorsa, kapatA+-n.
-lALtfen Bekleyin... veri iLzleniyor.
-dALzelticinin kararlA+- sALrALmALne geri dAPnmek istiyor musunuz?
-Lzimdiki versiyon
-kararlA+- version
-afedersin Veri iLzleminde Hata oluLztu.
-dallarA+- deAziLztirmek istiyor musunuz?
-gALncelleme iLzlemi baLzlayacaktA+-r.
-evet, AhA+-r Lzubesine geASS.
-[STABAdegL SAsRAsME GEA++AdegRAdegLEMAdegYOR]
-hayA+-r, ana menALye dAPn.
-yamanA+-n BETA sALrALmALne geASSmek istiyor musunuz?
-kararlA+- versiyonu
-ALzgALnALz, Lzu anda herkese aASSA+-k beta sALrALmAL mevcut deAzil.
-evet, Beta Lzubesine geASS.
-[BETA SAsRAsME GEA++AdegRAdegLEMAdegYOR]
+vFF Downloader Dolphin icin Ayarlar
+vFF Downloader Dolphin icin Bilgisayardan tam sil
+vFF Downloader'i baslangictan sil
+vFF Downloader calisiyorsa, kapatin.
+lutfen Bekleyin... veri isleniyor.
+duzelticinin kararli surumune geri donmek istiyor musunuz?
+simdiki versiyon
+kararli version
+afedersin Veri isleminde Hata olustu.
+dallari degistirmek istiyor musunuz?
+guncelleme islemi baslayacaktir.
+evet, Ahir subesine gec.
+[STABIL SURUME GECIRILEMIYOR]
+hayir, ana menuye don.
+yamanin BETA surumune gecmek istiyor musunuz?
+kararli versiyonu
+uzgunuz, su anda herkese acik beta surumu mevcut degil.
+evet, Beta subesine gec.
+[BETA SURUME GECIRILEMIYOR]
 
 bEKLE
-gALncellemeyi devre dA+-LzA+- bA+-rakmaya mA+- ASSalA+-LzA+-yorsunuz?
-lALtfen gALncellemelerin sizi gALvende tutacaAzA+-nA+- ve yamalA+- hakkA+-nda gALncel bilgileri saAzlayacaAzA+-nA+- unutmayA+-n.
-bu seASSeneAzi yalnA+-zca hata ayA+-klama ve sorun giderme iASSin kullanA+-n.
-otomatik gALncellemeyi devre dA+-LzA+- bA+-rakmak istediAzinizden emin misiniz?
+guncellemeyi devre disi birakmaya mi calisiyorsunuz?
+lutfen guncellemelerin sizi guvende tutacagini ve yamali hakkinda guncel bilgileri saglayacagini unutmayin.
+bu secenegi yalnizca hata ayiklama ve sorun giderme icin kullanin.
+otomatik guncellemeyi devre disi birakmak istediginizden emin misiniz?
 
 evet
-hayir geri dAPn.
+hayir geri don.
 
-rengi deAzisitir:
-karanlA+-k Tema
-aASSA+-k tema * lALtfen gAPzlerimi incitme baskA+-sA+- *
-aASSA+-k tema * lALtfen gAPzlerimi incitme baskA+-sA+- *
-sarA+-
-yeLzil
-kA+-rmA+-zA+-
+rengi degisitir:
+karanlik Tema
+acik tema * lutfen gozlerimi incitme baskisi *
+acik tema * lutfen gozlerimi incitme baskisi *
+sari
+yesil
+kirmizi
 mavi
 
-curl indiriliyor... LALtfen bekleyin.
+curl indiriliyor... Lutfen bekleyin.
 bu cok Zaman alabilir...
 
 hATA.
-curl yALklerken bir Hata oluLztu.
-Lzimdi curl.exe dosyasA+-nA+- indirecek bir web sitesi aASSacaAzA+-z.
-lALtfen curl.exe'yi RiiConnect24 Patcher'A+-n bulunduAzu klasAPre taLzA+-yA+-n ve yamayA+- yeniden baLzlatA+-n.
-tarayA+-cA+-da indirme sayfasA+-nA+- aASSmak ve menALye dAPnmek iASSin herhangi bir tuLza basA+-n.
+curl yuklerken bir Hata olustu.
+simdi curl.exe dosyasini indirecek bir web sitesi acacagiz.
+lutfen curl.exe'yi RiiConnect24 Patcher'in bulundugu klasore tasiyin ve yamayi yeniden baslatin.
+tarayicida indirme sayfasini acmak ve menuye donmek icin herhangi bir tusa basin.
 
-gALncellemeler kontrol ediliyor...
-bir gALncelleme var.
-bu program iASSin bir GALncelleme var. RiiConnect24 Patcher'A+- en son sALrALme gALncellemenizi APneririz.
-Lzimdiki versiyon
+guncellemeler kontrol ediliyor...
+bir guncelleme var.
+bu program icin bir Guncelleme var. RiiConnect24 Patcher'i en son surume guncellemenizi oneririz.
+simdiki versiyon
 yeni version
-gALncelleme
+guncelleme
 reddet
-bu gALncellemedeki yenilikler?
-gALncelleniyor.
-lALtfen Bekleyin...
-riiConnect24 Patcher kA+-sa sALre sonra yeniden baLzlayacak...
-gALncelleme yardA+-mcA+-sA+-nA+- indirirken bir hata oluLztu.
-ana menALye dAPnmek iASSin herhangi bir tuLza basA+-n.
-bu gALncellemedeki yenilikler
-hata. Yenilikler dosyasA+- mevcut deAzil.
-geri dAPnmek iASSin herhangi bir dALAzmeye basA+-n.
+bu guncellemedeki yenilikler?
+guncelleniyor.
+lutfen Bekleyin...
+riiConnect24 Patcher kisa sure sonra yeniden baslayacak...
+guncelleme yardimcisini indirirken bir hata olustu.
+ana menuye donmek icin herhangi bir tusa basin.
+bu guncellemedeki yenilikler
+hata. Yenilikler dosyasi mevcut degil.
+geri donmek icin herhangi bir dugmeye basin.
 :: Local end
 
 :: Must be available online
-homebrew Shopa HoLz Geldiniz.
-herhangi bir homebrew indirmeden APnce, SD KartA+-nA+-za otomatik kurulumu etkinleLztirmek istiyor musunuz?
-evet, SD KartA+- algA+-landA+-.
-hayA+-r, onlarA+- manuel olarak kuracaAzA+-m.
-hmm... sisteminizde bir SD Kart bulunamadA+- gibi gAPrALnALyor. LALtfen "SALrALcAL harfini deAziLztir" seASSeneAzini seASSin
-sD Kart sALrALcAL harfinizi manuel olarak ayarlamak iASSin.
-aksi takdirde, homebrew'i manuel olarak SD Karta kopyalamanA+-z gerekecektir.
-tebrikler ^^! SD KartA+-nA+-zA+- baLzarA+-yla tespit ettim ^^! SALrALcAL harfi:
-her Lzeyi otomatik olarak indirip SD KartA+-nA+-za yALkleyebilirim ^^!
-sA+-radaki ne?
+homebrew Shopa Hos Geldiniz.
+herhangi bir homebrew indirmeden once, SD Kartiniza otomatik kurulumu etkinlestirmek istiyor musunuz?
+evet, SD Karti algilandi.
+hayir, onlari manuel olarak kuracagim.
+hmm... sisteminizde bir SD Kart bulunamadi gibi gorunuyor. Lutfen "Surucu harfini degistir" secenegini secin
+sD Kart surucu harfinizi manuel olarak ayarlamak icin.
+aksi takdirde, homebrew'i manuel olarak SD Karta kopyalamaniz gerekecektir.
+tebrikler ^^! SD Kartinizi basariyla tespit ettim ^^! Surucu harfi:
+her seyi otomatik olarak indirip SD Kartiniza yukleyebilirim ^^!
+siradaki ne?
 devam et
-cikiLz
-sALrALcAL harfini deAziLztir
+cikis
+surucu harfini degistir
 mevcut SD Kart Mektubu
-yeni sALrALcAL harfini yazA+-n (APrnek e.g H)
-open Shop Channel downloader ile kullanA+-ma hazA+-rlanA+-yor...
-lALtfen Bekleyin...
-open Shop Channel indiricisini indirirken bir hata oluLztu.
-cURL A++A+-kA+-Lz Kodu
-geri dAPnmek iASSin herhangi bir dALAzmeye basA+-n.
-open Shop Channel Downloader hazA+-r ^^! SA+-radaki ne?
-mevcut homebrew listesini gAPster.
+yeni surucu harfini yazin (ornek e.g H)
+open Shop Channel downloader ile kullanima hazirlaniyor...
+lutfen Bekleyin...
+open Shop Channel indiricisini indirirken bir hata olustu.
+cURL Cikis Kodu
+geri donmek icin herhangi bir dugmeye basin.
+open Shop Channel Downloader hazir ^^! Siradaki ne?
+mevcut homebrew listesini goster.
 download homebrew.
-ana MenALye gerA+- dAPn
-bir saniye lALtfen...
-iPUCU: AdeglgilendiAziniz homebrew adA+-nA+- hatA+-rlayA+-n, programa geri dAPnALn, "homebrew indir" i seASSin ve yazA+-n.
-size bir tanA+-m ve seASStiAziniz homebrew hakkA+-nda bazA+- yararlA+- bilgiler gAPsterecektir.
+ana Menuye geri don
+bir saniye lutfen...
+iPUCU: Ilgilendiginiz homebrew adini hatirlayin, programa geri donun, "homebrew indir" i secin ve yazin.
+size bir tanim ve sectiginiz homebrew hakkinda bazi yararli bilgiler gosterecektir.
 mevcut homebrew listesi
-homebrew'unuzun adA+-nA+- yazA+-n.
+homebrew'unuzun adini yazin.
 is not available on the server.
-sunucudaki homebrew listesi iASSin lALtfen geri dAPnALn ve "Mevcut homebrew listesini gAPster" i seASSin.
-veri iLzleniyor...
+sunucudaki homebrew listesi icin lutfen geri donun ve "Mevcut homebrew listesini goster" i secin.
+veri isleniyor...
 sen istedin...
-uzun AASSA+-klama:
-bu uygulamayA+- indirmek ister misiniz?
-etkinleLztirilirse, otomatik olarak SD Karta yALklenecektir.
-hayir Geri DAPn.
+uzun Aciklama:
+bu uygulamayi indirmek ister misiniz?
+etkinlestirilirse, otomatik olarak SD Karta yuklenecektir.
+hayir Geri Don.
 indiriliyor
 .ZIP indiriliyor
 bitti^^!
-.ZIP dosyasA+-, RiiConnect24 Patcher'A+-n bulunduAzu dizindedir.
-geri dAPnmek iASSin herhangi bir dALAzmeye basA+-n.
+.ZIP dosyasi, RiiConnect24 Patcher'in bulundugu dizindedir.
+geri donmek icin herhangi bir dugmeye basin.
 7zip CLI indiriliyor
-homebrew uygulamasA+- SD KartA+-nA+-za ASSA+-kartA+-lA+-yor...
+homebrew uygulamasi SD Kartiniza cikartiliyor...
 set string144=There was an error while downloading your homebrew.
 set string145=There was an error while downloading the homebrew from Open Shop Channel servers.
 set string146=There was an error while downloading 7zip.

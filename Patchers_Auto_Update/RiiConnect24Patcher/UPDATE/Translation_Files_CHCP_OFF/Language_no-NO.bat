@@ -8,17 +8,17 @@ set string4=Innstilinger
 set string5=Administrere VFF Nedlasting til Dolphin her
 set string6=Henrette de VFF Nedlasting en gang.
 set string7=Har du problemer eller vil du kontakte oss?
-set string8=Send oss en e-post pAA support@riiconnect24.net
+set string8=Send oss en e-post pa support@riiconnect24.net
 set string9=Fant Wii SD Minnekort:
 set string10=Kunne ikke oppdage din wii sd minnekort.
-set string11=Last inn pAA nytt
+set string11=Last inn pa nytt
 set string12=Hvis feil, du kan forandre senere.
 
 set string13=advarsel
 set string14=Du bruker en exsperimentell versjon av dette programmet.
 set string15=Dette betyr at denne versjonen kan inneholde exsperimentell egenskaper
-set string16=Og feil som kan gjA,re din wii/wii u eller din datamaskin ustabil.
-set string17=Hvis du ikke vet hva du gjA,r, vennligst gAA til instillinger
+set string16=Og feil som kan gjore din wii/wii u eller din datamaskin ustabil.
+set string17=Hvis du ikke vet hva du gjor, vennligst ga til instillinger
 set string18=stable branch of the patcher.
 
 set string19=Type a number that you can see above next to the command and hit ENTER
@@ -51,7 +51,7 @@ set string43=Current version
 set string44=Stable version
 set string45=Sorry, there was an error while fetching data.
 set string46=Do you want to switch branches?
-"Vi skal nAA starte opptatering prossesen.
+"Vi skal na starte opptatering prossesen.
 set string48=Yes, switch to Stable branch.
 set string49=[UNABLE TO SWITCH TO STABLE VERSION]
 set string50=No, go back to main menu.
@@ -68,12 +68,12 @@ set string59=Only use this option for debugging and troubleshooting.
 set string60=Er du sikker at du vil deaktivere auto opptatering?
 
 set string61=Ja
-set string62=Nei, gAA tilbake.
+set string62=Nei, ga tilbake.
 
 set string63=bytt farge:
-set string64=mA,rk tema
-set string65=Lys tema *ikke skadd A,yene mine versjonen*
-set string66=Lys tema *skad A,yene mine versjonen*
+set string64=mork tema
+set string65=Lys tema *ikke skadd oyene mine versjonen*
+set string66=Lys tema *skad oyene mine versjonen*
 set string67=Yellow
 set string68=Green
 set string69=Red
@@ -84,8 +84,8 @@ set string72=This can take some time...
 
 set string73=ERROR.
 set string74=There was an error while downloading curl.
-set string75=Vi vill nAA AApne en nettside som skal nedlaste curl.exe.
-set string76=Vennligst flytt curl.exe til mappen der hvor Riiconnect24 Patcheren er og start pAA nytt patcheren.
+set string75=Vi vill na apne en nettside som skal nedlaste curl.exe.
+set string76=Vennligst flytt curl.exe til mappen der hvor Riiconnect24 Patcheren er og start pa nytt patcheren.
 set string77=Press any key to open download page in browser and to return to menu.
 
 set string78=Ser etter oppdateringer...

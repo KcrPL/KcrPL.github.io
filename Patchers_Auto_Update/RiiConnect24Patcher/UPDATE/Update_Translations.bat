@@ -8,7 +8,7 @@ echo off
 			echo.
 		for /f %%f in ('dir /b Translation_Files') do (
 		echo %%f
-		if not "%%f"=="Language_ru-RU.bat" unidecode -e ANSI Translation_Files\%%f>>Translation_Files_CHCP_OFF\%%f
+		if not "%%f"=="Language_ru-RU.bat" unidecode -e UTF-8 Translation_Files\%%f>>Translation_Files_CHCP_OFF\%%f
 		)
 	echo.
 	echo Done!
