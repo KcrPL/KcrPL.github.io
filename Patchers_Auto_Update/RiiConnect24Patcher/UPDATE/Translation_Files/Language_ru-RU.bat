@@ -273,7 +273,7 @@ set string253=Прогресс
 set string254=Скачиваем файлы
 set string258=Заканчиваем...
 
-set string259=Alright^! We're done with that^!
+set string259=Так^! We're done with that^!
 set string260=Copying successful^! Every file is on your SD Card.
 set string261=Wha- Something failed^! Please copy "WAD" and "apps" folders to your SD Card. They're next to RiiConnect24Patcher.bat
 set string262=Please connect your Wii U's SD Card to the computer and copy "WAD" and "apps" folder to it.
