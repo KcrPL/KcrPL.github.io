@@ -1,6 +1,5 @@
 if "%1"=="-chcp" chcp 65001
 :: Should be available locally
-
 set string1=RiiConnect your Wii.
 set string2=Rozpocznij
 set string3=Twórcy
@@ -507,4 +506,4 @@ set string485=ROZWIĄZANIE: Sprawdź połączenie z Internetem.
 set string486=INFORMACJE O BŁĘDZIE: Błąd zapisu curl. Spróbuj skopiować patcher na pulpit i spróbuj ponownie.
 set string487=ROZWIĄZANIE: Zainstaluj najnowszy .NET Framework oraz spróbuj ponownie.
 
-
+set string488=SD Card
