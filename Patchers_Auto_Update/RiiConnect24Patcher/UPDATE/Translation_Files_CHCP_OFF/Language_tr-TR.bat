@@ -114,7 +114,7 @@ hayir, onlari manuel olarak kuracagim.
 hmm... sisteminizde bir SD Kart bulunamadi gibi gorunuyor. Lutfen "Surucu harfini degistir" secenegini secin
 sD Kart surucu harfinizi manuel olarak ayarlamak icin.
 aksi takdirde, homebrew'i manuel olarak SD Karta kopyalamaniz gerekecektir.
-set string107=Congrats^! I've successfully detected your SD Card^! Surucu harfi:
+tebrikler ^^! I've successfully detected your SD Card^! Surucu harfi:
 set string108=I will be able to automatically download and install everything on your SD Card^!
 siradaki ne?
 devam et
