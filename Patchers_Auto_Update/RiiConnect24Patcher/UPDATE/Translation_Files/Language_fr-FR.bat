@@ -1,6 +1,5 @@
 if "%1"=="-chcp" chcp 65001
 :: Should be available locally
-
 set string1=RiiConnectez votre Wii.
 set string2=Démarrer
 set string3=Crédits
@@ -508,4 +507,4 @@ set string485=SOLUTION: Veuillez vérification ton l'internet raccord.
 set string486=ERREUR RENSEIGEMENTS: S'enrouler écrire erreur. Essayez de déplacer le Patch vers le bureau et réessayez.
 set string487=SOLUTION: veuillez installer la dernière version de .NET Framework, puis réessayer.
 
-
+set string488=SD Card
