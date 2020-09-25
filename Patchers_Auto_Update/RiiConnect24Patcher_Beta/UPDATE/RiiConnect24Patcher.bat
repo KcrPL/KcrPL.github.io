@@ -14,6 +14,7 @@ set version=1.3.0.5
 
 if exist temp.bat del /q temp.bat
 ::if exist update_assistant.bat del /q update_assistant.bat
+set /a preboot_environment=0
 :script_start
 echo 	.. Setting up the variables
 :: Window size (Lines, columns)
@@ -27,7 +28,7 @@ set /a beta=1
 :: 0 = stable  1 = beta
 
 set user_name=%userprofile:~9%
-set /a preboot_environment=0
+
 set /a translation_download_error=0
 set /a dolphin=0
 set /a first_start_lang_load=1
@@ -2602,7 +2603,7 @@ if %Update_Activate%==1 echo 3. %string30%. [%string31%:  ON]
 if %Update_Activate%==0 echo 3. %string30%. [%string31%: OFF]
 if %preboot_environment%==0 if %beta%==0 echo 4. %string32% %string33% [%string31%: %string34%]
 if %preboot_environment%==0 if %beta%==1 echo 4. %string32% %string34%. [%string31%: %string33%]
-echo 5. %string35% (%string36%)
+if %preboot_environment%==0 echo 5. %string35% (%string36%)
 if "%vff_settings%"=="1" echo -----------------------------------------------------------------------------------------------------------------------------
 echo.
 if "%vff_settings%"=="1" echo %string37%. 
@@ -2616,7 +2617,7 @@ if %s%==1 goto begin_main
 if %s%==2 goto change_color
 if %s%==3 goto change_updating
 if %preboot_environment%==0 if %s%==4 goto change_updating_branch
-if %s%==5 goto update_files
+if %preboot_environment%==0 if %s%==5 goto update_files
 if %s%==6 if %vff_settings%==1 goto settings_del_config_VFF
 if %s%==7 if %vff_settings%==1 goto settings_del_vff_downloader
 if %s%==8 if %vff_settings%==1 goto settings_taskkill_vff
