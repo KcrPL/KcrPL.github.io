@@ -449,7 +449,7 @@ set string432=Instalar o RiiConnect24.
 set string433=Isso vai patchear todos os canais para uso posterior no Wii. Isso inclui:
 set string434=Patches do IOS [Necessário para os outros canais funcionarem]
 Forecast/News Channel
-set string436=Por favor conecte o Cartão SD do Wii para seu computador.
+set string436=Por favor conecte o Cartão SD do Wii no seu computador.
 set string437=O processo a seguir vai baixar 170MB de dados.
 
 set string438=Sabia que o Wii foi o videogame mais vendido de 2006?
