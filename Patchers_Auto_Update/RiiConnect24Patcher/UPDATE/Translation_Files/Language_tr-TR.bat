@@ -114,7 +114,7 @@ hayır, onları manuel olarak kuracağım.
 hmm... sisteminizde bir SD Kart bulunamadı gibi görünüyor. Lütfen "Sürücü harfini değiştir" seçeneğini seçin
 sD Kart sürücü harfinizi manuel olarak ayarlamak için.
 aksi takdirde, homebrew'i manuel olarak SD Karta kopyalamanız gerekecektir.
-set string107=Congrats^! I've successfully detected your SD Card^! Sürücü harfi:
+tebrikler ^^! I've successfully detected your SD Card^! Sürücü harfi:
 set string108=I will be able to automatically download and install everything on your SD Card^!
 sıradaki ne?
 devam et

@@ -115,7 +115,7 @@ set string104=Hmm... zdá se, že karta nebyla v počítači nalezena. Zvol "Zm�
 set string105=Takto změníš písmeno jednotky ručně.
 set string106=V opačném případě budeš muset homebrew na SD kartu zkopírovat sám.
 set string107=Congrats^! I've successfully detected your SD Card^! Písmeno jednotky:
-set string108=I will be able to automatically download and install everything on your SD Card^!
+set string108=Všechno se automaticky stáhne a zkopíruje tam, kam má! ^^!
 set string109=Co dál?
 set string110=Pokračovat
 set string111=Odejít
@@ -180,15 +180,15 @@ set string162=Toto upraví tvůj Mario Kart Wii pro Wiimmfi. Takto bude znova fu
 set string163=Upravit jiné Wii hry, aby fungovaly na Wiimmfi.
 set string164=Toto upraví jakoukoli jinou hru než Mario Kart Wii, aby fungovala s Wiimmfi.
 set string165=Navštívit Homebrew Shop
-set string166=Download and install homebrew on your SD Card using Open Shop Channel.
+set string166=Stáhni a nainstaluj homebrew na tvoji SD kartu.
 set string192=Install WAD files directly to the SD Card.
-set string193=This will allow you to directly install a channel to your SD Card instead of you having to move it from NAND.
+set string193=Tohle ti umožní nainstalovat kanály přímo na SD kartu místo instalovaní do NANDu a pak přesouvaní na SD.
 
 
-set string167=Hey
-set string168=welcome to RiiConnect24 installation process for Dolphin Emulator.
-set string169=First, I need to download the VFF-Downloader. This will make Forecast and News Channel work.
-set string170=Press any key to download and start the VFF Downloader for Dolphin.
+set string167=Hej
+set string168=Vítej v RiiConnect24 instalačním procesu pro Dolphin Emulátor.
+set string169=První potřebuji stáhnout VFF-Downloader. Tohle umožní funkčnost kanálu pro zprávy a počasí.
+set string170=Zmáčkni jakékoliv tlačítko pro stáhnutí a spuštění VFF Downloaderu.
 
 set string171=Alright! I see that you've exited VFF Downloader Installer.
 set string172=If you installed it correctly and choose:

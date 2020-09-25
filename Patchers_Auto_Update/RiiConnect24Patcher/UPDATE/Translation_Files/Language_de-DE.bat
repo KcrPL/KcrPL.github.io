@@ -19,7 +19,7 @@ set string14=Du verwendest eine experimentelle Version dieses Programms.
 set string15=Das bedeutet, dass diese Version möglicherweise experimentelle Funktionen enthält
 set string16=und Fehler, die deine Wii / Wii U-Konsole oder deinen Computer beschädigen könnten.
 set string17=Wenn du nicht weißt, was du tust, gehe zu den Einstellungen und kehre zurück zu
-setze string18=stabiler Zweig des Patchers.
+set string18=stabiler Zweig des Patchers.
 
 set string19=Gebe eine Zahl ein, die du oben neben dem Befehl sehen kannst, und drücke die EINGABETASTE
 
