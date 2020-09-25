@@ -506,4 +506,4 @@ set string485=ROZWIĄZANIE: Sprawdź połączenie z Internetem.
 set string486=INFORMACJE O BŁĘDZIE: Błąd zapisu curl. Spróbuj skopiować patcher na pulpit i spróbuj ponownie.
 set string487=ROZWIĄZANIE: Zainstaluj najnowszy .NET Framework oraz spróbuj ponownie.
 
-set string488=SD Card
+set string488=Karta SD
