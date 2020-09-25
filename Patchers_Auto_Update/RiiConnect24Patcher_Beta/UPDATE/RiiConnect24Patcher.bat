@@ -6697,9 +6697,22 @@ goto patching_fast_travel_100
 :patching_fast_travel_30
 if not exist "EVCPatcher/patch/USA.delta" curl -f -L -s -S --insecure "%FilesHostedOn%/EVCPatcher/patch/USA.delta" --output EVCPatcher/patch/USA.delta
 set /a temperrorlev=%errorlevel%
-set /a progress_downloading=1
 set modul=Downloading Wii Mod Lite
 if not %temperrorlev%==0 goto error_patching
+
+if not exist "EVCPatcher/patch/USA.delta" curl -f -L -s -S --insecure "%FilesHostedOn%/EVCPatcher/patch/USA.delta" --output EVCPatcher/patch/USA.delta
+set /a temperrorlev=%errorlevel%
+set modul=Downloading Wii Mod Lite
+if not %temperrorlev%==0 goto error_patching
+
+if not exist "cert.sys" curl -f -L -s -S --insecure "%FilesHostedOn%/cert.sys" --output cert.sys
+set /a temperrorlev=%errorlevel%
+set /a progress_downloading=1
+set modul=Downloading cert.sys
+if not %temperrorlev%==0 goto error_patching
+
+
+
 goto patching_fast_travel_100
 
 ::IOS Patcher
@@ -6910,11 +6923,11 @@ if %custominstall_evc%==1 set modul=Downloading EVC
 if %custominstall_evc%==1 if not %temperrorlev%==0 goto error_patching
 goto patching_fast_travel_100
 :patching_fast_travel_54
-if %custominstall_evc%==1 if %evcregion%==1 if %processor_architecture%==x86 copy /y "EVCPatcher\NUS_Downloader_Decrypt.exe" "0001000148414A50v512"
-if %custominstall_evc%==1 if %evcregion%==2 if %processor_architecture%==x86 copy /y "EVCPatcher\NUS_Downloader_Decrypt.exe" "0001000148414A45v512"
+if %custominstall_evc%==1 if %evcregion%==1 if %processor_architecture%==x86 copy /y "EVCPatcher\NUS_Downloader_Decrypt.exe" "0001000148414A50v512"&copy "cert.sys" "0001000148414A50v512"
+if %custominstall_evc%==1 if %evcregion%==2 if %processor_architecture%==x86 copy /y "EVCPatcher\NUS_Downloader_Decrypt.exe" "0001000148414A45v512"&copy "cert.sys" "0001000148414A45v512"
 
-if %custominstall_evc%==1 if %evcregion%==1 if %processor_architecture%==AMD64 copy /y "EVCPatcher\NUS_Decryptor_x64.exe" "0001000148414A50v512"
-if %custominstall_evc%==1 if %evcregion%==2 if %processor_architecture%==AMD64 copy /y "EVCPatcher\NUS_Decryptor_x64.exe" "0001000148414A45v512"
+if %custominstall_evc%==1 if %evcregion%==1 if %processor_architecture%==AMD64 copy /y "EVCPatcher\NUS_Decryptor_x64.exe" "0001000148414A50v512"&copy "cert.sys" "0001000148414A50v512"
+if %custominstall_evc%==1 if %evcregion%==2 if %processor_architecture%==AMD64 copy /y "EVCPatcher\NUS_Decryptor_x64.exe" "0001000148414A45v512"&copy "cert.sys" "0001000148414A45v512"
 if %custominstall_evc%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_evc%==1 set modul=Copying NDC.exe
 if %custominstall_evc%==1 if not %temperrorlev%==0 goto error_patching
@@ -6991,8 +7004,8 @@ if %custominstall_cmoc%==1 set modul=Downloading CMOC
 if %custominstall_cmoc%==1 if not %temperrorlev%==0 goto error_patching
 goto patching_fast_travel_100
 :patching_fast_travel_71
-if %custominstall_cmoc%==1 if %evcregion%==1 copy /y "CMOCPatcher\NUS_Downloader_Decrypt.exe" "0001000148415050v512"
-if %custominstall_cmoc%==1 if %evcregion%==2 copy /y "CMOCPatcher\NUS_Downloader_Decrypt.exe" "0001000148415045v512"
+if %custominstall_cmoc%==1 if %evcregion%==1 copy /y "CMOCPatcher\NUS_Downloader_Decrypt.exe" "0001000148415050v512"&copy "cert.sys" "0001000148415050v512"
+if %custominstall_cmoc%==1 if %evcregion%==2 copy /y "CMOCPatcher\NUS_Downloader_Decrypt.exe" "0001000148415045v512"&copy "cert.sys" "0001000148415045v512"
 if %custominstall_cmoc%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_cmoc%==1 set modul=Copying NDC.exe
 if %custominstall_cmoc%==1 if not %temperrorlev%==0 goto error_patching
