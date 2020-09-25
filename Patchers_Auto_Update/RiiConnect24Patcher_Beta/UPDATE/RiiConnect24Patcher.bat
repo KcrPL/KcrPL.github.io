@@ -6,7 +6,7 @@ echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: RiiConnect24 Patcher for Windows
-set version=1.3.0.4
+set version=1.3.0.5
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2018-2020 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -54,7 +54,7 @@ set hh=0
 if %beta%==0 title RiiConnect24 Patcher v%version% Created by @KcrPL
 if %beta%==1 title RiiConnect24 Patcher v%version% [BETA] Created by @KcrPL
 set last_build=2020/09/25
-set at=14:45
+set at=18:11
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
@@ -6953,6 +6953,10 @@ if %custominstall_evc%==1 if not %temperrorlev%==0 cd..& goto error_patching
 if %custominstall_evc%==1 cd..
 goto patching_fast_travel_100
 :patching_fast_travel_60
+if %custominstall_evc%==1 if %evcregion%==1 ren "0001000148414A50v512\*.wad" "HAJP.wad"
+if %custominstall_evc%==1 if %evcregion%==2 ren "0001000148414A45v512\*.wad" "HAJE.wad"
+
+
 if %custominstall_evc%==1 if %evcregion%==1 move /y "0001000148414A50v512\HAJP.wad" "EVCPatcher\pack"
 if %custominstall_evc%==1 if %evcregion%==2 move /y "0001000148414A45v512\HAJE.wad" "EVCPatcher\pack"
 if %custominstall_evc%==1 set /a temperrorlev=%errorlevel%
@@ -7004,8 +7008,11 @@ if %custominstall_cmoc%==1 set modul=Downloading CMOC
 if %custominstall_cmoc%==1 if not %temperrorlev%==0 goto error_patching
 goto patching_fast_travel_100
 :patching_fast_travel_71
-if %custominstall_cmoc%==1 if %evcregion%==1 copy /y "CMOCPatcher\NUS_Downloader_Decrypt.exe" "0001000148415050v512"&copy "cert.sys" "0001000148415050v512"
-if %custominstall_cmoc%==1 if %evcregion%==2 copy /y "CMOCPatcher\NUS_Downloader_Decrypt.exe" "0001000148415045v512"&copy "cert.sys" "0001000148415045v512"
+if %custominstall_cmoc%==1 if %processor_architecture%==x86 if %evcregion%==1 copy /y "CMOCPatcher\NUS_Downloader_Decrypt.exe" "0001000148415050v512"
+if %custominstall_cmoc%==1 if %processor_architecture%==x86 if %evcregion%==2 copy /y "CMOCPatcher\NUS_Downloader_Decrypt.exe" "0001000148415045v512"
+
+if %custominstall_cmoc%==1 if %processor_architecture%==AMD64 if %evcregion%==1 copy /y "CMOCPatcher\NUS_Decryptor_x64.exe" "0001000148415050v512"&copy "cert.sys" "0001000148415050v512"
+if %custominstall_cmoc%==1 if %processor_architecture%==AMD64 if %evcregion%==2 copy /y "CMOCPatcher\NUS_Decryptor_x64.exe" "0001000148415045v512"&copy "cert.sys" "0001000148415045v512"
 if %custominstall_cmoc%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_cmoc%==1 set modul=Copying NDC.exe
 if %custominstall_cmoc%==1 if not %temperrorlev%==0 goto error_patching
@@ -7028,6 +7035,10 @@ if %custominstall_cmoc%==1 if not %temperrorlev%==0 cd..& goto error_patching
 if %custominstall_cmoc%==1 cd..
 goto patching_fast_travel_100
 :patching_fast_travel_74
+if %custominstall_cmoc%==1 if %evcregion%==1 ren "0001000148415050v512\*.wad" "HAPP.wad"
+if %custominstall_cmoc%==1 if %evcregion%==2 ren "0001000148415045v512\*.wad" "HAPE.wad"
+
+
 if %custominstall_cmoc%==1 if %evcregion%==1 move /y "0001000148415050v512\HAPP.wad" "CMOCPatcher\pack"
 if %custominstall_cmoc%==1 if %evcregion%==2 move /y "0001000148415045v512\HAPE.wad" "CMOCPatcher\pack"
 if %custominstall_cmoc%==1 set /a temperrorlev=%errorlevel%
@@ -7068,9 +7079,9 @@ goto patching_fast_travel_100
 :patching_fast_travel_81
 if %custominstall_nc%==1 if not exist 0001000148415450v1792 md 0001000148415450v1792
 if %custominstall_nc%==1 if not exist 0001000148415445v1792 md 0001000148415445v1792
-if %custominstall_nc%==1 if not exist 0001000148415450v1792\cetk copy /y "NCPatcher\dwn\0001000148415450v1792\cetk" "0001000148415450v1792\cetk"
+if %custominstall_nc%==1 if not exist 0001000148415450v1792\cetk copy /y "NCPatcher\dwn\0001000148415450v1792\cetk" "0001000148415450v1792\cetk">NUL
 
-if %custominstall_nc%==1 if not exist 0001000148415445v1792\cetk copy /y "NCPatcher\dwn\0001000148415445v1792\cetk" "0001000148415445v1792\cetk"
+if %custominstall_nc%==1 if not exist 0001000148415445v1792\cetk copy /y "NCPatcher\dwn\0001000148415445v1792\cetk" "0001000148415445v1792\cetk">NUL
 
 :patching_fast_travel_85
 ::USA
@@ -7082,8 +7093,11 @@ if %custominstall_nc%==1 set modul=Downloading NC
 if %custominstall_nc%==1 if not %temperrorlev%==0 goto error_patching
 goto patching_fast_travel_100
 :patching_fast_travel_86
-if %custominstall_nc%==1 if %evcregion%==1 copy /y "NCPatcher\NUS_Downloader_Decrypt.exe" "0001000148415450v1792"
-if %custominstall_nc%==1 if %evcregion%==2 copy /y "NCPatcher\NUS_Downloader_Decrypt.exe" "0001000148415445v1792"
+if %custominstall_nc%==1 if %processor_architecture%==x86 if %evcregion%==1 copy /y "NCPatcher\NUS_Downloader_Decrypt.exe" "0001000148415450v1792"
+if %custominstall_nc%==1 if %processor_architecture%==AMD64 if %evcregion%==1 copy /y "NCPatcher\NUS_Decryptor_x64.exe" "0001000148415450v1792"& copy "cert.sys" "0001000148415450v1792"
+
+if %custominstall_nc%==1 if %processor_architecture%==x86 if %evcregion%==2 copy /y "NCPatcher\NUS_Downloader_Decrypt.exe" "0001000148415445v1792"
+if %custominstall_nc%==1 if %processor_architecture%==AMD64 if %evcregion%==2 copy /y "NCPatcher\NUS_Decryptor_x64.exe" "0001000148415445v1792"& copy "cert.sys" "0001000148415445v1792"
 if %custominstall_nc%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_nc%==1 set modul=Copying NDC.exe
 if %custominstall_nc%==1 if not %temperrorlev%==0 goto error_patching
@@ -7097,15 +7111,18 @@ if %custominstall_nc%==1 if not %temperrorlev%==0 goto error_patching
 goto patching_fast_travel_100
 :patching_fast_travel_88
 if %custominstall_nc%==1 if %evcregion%==1 cd 0001000148415450v1792
-if %custominstall_nc%==1 if %processor_architecture%==x86 if %evcregion%==1 call NUS_Downloader_Decrypt.exe >NUL
+if %custominstall_nc%==1 if %processor_architecture%==x86 call NUS_Downloader_Decrypt.exe >NUL
 if %custominstall_nc%==1 if %evcregion%==2 cd 0001000148415445v1792
-if %custominstall_nc%==1 if %processor_architecture%==AMD64 if %evcregion%==1 call NUS_Decryptor_x64.exe cetk>NUL
+if %custominstall_nc%==1 if %processor_architecture%==AMD64 call NUS_Decryptor_x64.exe cetk>NUL
 if %custominstall_nc%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_nc%==1 set modul=Decrypter error
 if %custominstall_nc%==1 if not %temperrorlev%==0 cd..& goto error_patching
 if %custominstall_nc%==1 cd..
 goto patching_fast_travel_100
 :patching_fast_travel_89
+if %custominstall_nc%==1 if %evcregion%==1 ren "0001000148415450v1792\*.wad" "HATP.wad"
+if %custominstall_nc%==1 if %evcregion%==2 ren "0001000148415445v1792\*.wad" "HATE.wad"
+
 if %custominstall_nc%==1 if %evcregion%==1 move /y "0001000148415450v1792\HATP.wad" "NCPatcher\pack"
 if %custominstall_nc%==1 if %evcregion%==2 move /y "0001000148415445v1792\HATE.wad" "NCPatcher\pack"
 if %custominstall_nc%==1 set /a temperrorlev=%errorlevel%
@@ -7164,6 +7181,7 @@ if exist NCPatcher rmdir /s /q NCPatcher
 if exist CMOCPatcher rmdir /s /q CMOCPatcher
 if exist NewsChannelPatcher rmdir /s /q NewsChannelPatcher
 del /q source.app
+del /q cert.sys
 del /q 00000001.app
 del /q 0001000248414650v7.wad
 del /q 0001000248414645v7.wad
