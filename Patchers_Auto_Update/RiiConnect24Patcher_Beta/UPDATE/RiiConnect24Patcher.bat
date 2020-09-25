@@ -2600,8 +2600,8 @@ echo 1. %string28%
 echo 2. %string29%
 if %Update_Activate%==1 echo 3. %string30%. [%string31%:  ON]
 if %Update_Activate%==0 echo 3. %string30%. [%string31%: OFF]
-if %beta%==0 echo 4. %string32% %string33% [%string31%: %string34%]
-if %beta%==1 echo 4. %string32% %string34%. [%string31%: %string33%]
+if %preboot_environment%==0 if %beta%==0 echo 4. %string32% %string33% [%string31%: %string34%]
+if %preboot_environment%==0 if %beta%==1 echo 4. %string32% %string34%. [%string31%: %string33%]
 echo 5. %string35% (%string36%)
 if "%vff_settings%"=="1" echo -----------------------------------------------------------------------------------------------------------------------------
 echo.
@@ -2615,7 +2615,7 @@ set /p s=Choose:
 if %s%==1 goto begin_main
 if %s%==2 goto change_color
 if %s%==3 goto change_updating
-if %s%==4 goto change_updating_branch
+if %preboot_environment%==0 if %s%==4 goto change_updating_branch
 if %s%==5 goto update_files
 if %s%==6 if %vff_settings%==1 goto settings_del_config_VFF
 if %s%==7 if %vff_settings%==1 goto settings_del_vff_downloader
@@ -2974,8 +2974,8 @@ if %offlinestorage%==0 if exist "%TempStorage%\whatsnew.txt" del "%TempStorage%\
 if not exist "%TempStorage%" md "%TempStorage%"
 :: Commands to download files from server.
 
-if %Update_Activate%==1 if %offlinestorage%==0 call curl -f -L -s -S --insecure "%FilesHostedOn%/UPDATE/whatsnew.txt" --output "%TempStorage%\whatsnew.txt"
-if %Update_Activate%==1 if %offlinestorage%==0 call curl -f -L -s -S --insecure "%FilesHostedOn%/UPDATE/version.txt" --output "%TempStorage%\version.txt"
+if %Update_Activate%==1 if %preboot_environment%==0 if %offlinestorage%==0 call curl -f -L -s -S --insecure "%FilesHostedOn%/UPDATE/whatsnew.txt" --output "%TempStorage%\whatsnew.txt"
+if %Update_Activate%==1 if %preboot_environment%==0 if %offlinestorage%==0 call curl -f -L -s -S --insecure "%FilesHostedOn%/UPDATE/version.txt" --output "%TempStorage%\version.txt"
 	set /a temperrorlev=%errorlevel%
 
 if %Update_Activate%==1 if %offlinestorage%==0 if %chcp_enable%==1 call curl -f -L -s -S --insecure "%FilesHostedOn%/UPDATE/Translation_Files/Language_%language%.bat" --output "%TempStorage%\Language_%language%.bat"
