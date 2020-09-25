@@ -6,7 +6,7 @@ echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: RiiConnect24 Patcher for Windows
-set version=1.3.0.3
+set version=1.3.0.4
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2018-2020 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -53,8 +53,8 @@ set hh=0
 :: Window Title
 if %beta%==0 title RiiConnect24 Patcher v%version% Created by @KcrPL
 if %beta%==1 title RiiConnect24 Patcher v%version% [BETA] Created by @KcrPL
-set last_build=2020/09/23
-set at=21:35
+set last_build=2020/09/25
+set at=14:45
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
@@ -2210,7 +2210,7 @@ if %beta%==0 echo                                     :syhdyyyyso+/-`
 
 if %beta%==1 echo ----------------------------------------------------------------------------------------------------:
 if %beta%==1 echo            .sho.          
-if %beta%==1 echo         .oy: :ys.          %string13%^^!
+if %beta%==1 echo         .oy: :ys.          %string13%^!
 if %beta%==1 echo       -sy-     -ss-      
 if %beta%==1 echo    `:ss-   ...   -ss-`   
 if %beta%==1 echo  `:ss-`   .ysy     -ss:`   %string14%
@@ -2629,7 +2629,7 @@ cls
 echo %header%
 echo -----------------------------------------------------------------------------------------------------------------------------
 echo.
-echo %string56%^^! %string57% 
+echo %string56%^! %string57% 
 echo %string58%
 echo.
 echo %string59%
@@ -2775,7 +2775,7 @@ echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
 echo ---------------------------------------------------------------------------------------------------------------------------
 echo    /---\   %string73%              
 echo   /     \  %string74%
-echo  /   ^^!   \ 
+echo  /   ^!   \ 
 echo  --------- %string75%
 echo            %string76%
 echo.
@@ -2900,7 +2900,7 @@ echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
 echo ------------------------------------------------------------------------------------------------------------------------------
 echo    /---\   %string79%              
 echo   /     \  %string80%
-echo  /   ^^!   \ 
+echo  /   ^!   \ 
 echo  ---------  %string81%: %version%
 echo             %string82%: %updateversion%
 echo                       1. %string83%                      2. %string84%               3. %string85%
@@ -2941,7 +2941,7 @@ echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
 echo ------------------------------------------------------------------------------------------------------------------------------
 echo    /---\   %string86%
 echo   /     \  %string87%
-echo  /   ^^!   \ 
+echo  /   ^!   \ 
 echo  --------- %string88% 
 echo.  
 echo.
@@ -2984,7 +2984,7 @@ echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
 echo ------------------------------------------------------------------------------------------------------------------------------
 echo    /---\   %string73%
 echo   /     \  %string89%
-echo  /   ^^!   \ 
+echo  /   ^!   \ 
 echo  --------- %sting90%
 echo.  
 echo.
@@ -3022,7 +3022,7 @@ echo ---------------------------------------------------------------------------
 echo.
 echo %string92%
 echo.
-echo Press any button to go back.
+echo %string93%
 pause>NUL
 goto update_notice
 
@@ -3067,7 +3067,7 @@ goto open_shop_summarysdcard
 cls
 echo %header%
 echo -----------------------------------------------------------------------------------------------------------------------------
-echo [*] SD Card
+echo [*] %string488%
 echo.
 echo %string113%: %sdcard%
 echo.
@@ -3150,7 +3150,7 @@ if %homebrew_online_var%==1 echo  %string130%
 if %homebrew_online_var%==1 echo :-----------------------------------------------------------------------------------------------------------------------:
 if %homebrew_online_var%==1 echo.
 set /a homebrew_online_var=0
-echo R. Go back.
+echo R. %string213%
 echo.
 set /p homebrew_name=Type here: 
 if %homebrew_name%==r goto open_shop_mainmenu
@@ -3273,7 +3273,7 @@ echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
 echo ---------------------------------------------------------------------------------------------------------------------------
 echo    /---\   %string73%
 echo   /     \  %string144%
-echo  /   ^^!   \ 
+echo  /   ^!   \ 
 echo  --------- 
 echo.
 if %reason%==1 echo %string145%
@@ -3303,13 +3303,13 @@ if exist "%TempStorage%\annoucement.txt" echo --- %string148% ---
 if exist "%TempStorage%\annoucement.txt" type "%TempStorage%\annoucement.txt"
 if exist "%TempStorage%\annoucement.txt" echo.
 if exist "%TempStorage%\annoucement.txt" echo -------------------
-if %translation_download_error%==1 echo.
-if %translation_download_error%==1 echo :-----------------------------------------------------------------------:
-if %translation_download_error%==1 echo : There was an error while downloading the up-to-date translation.      :
-if %translation_download_error%==1 echo : Your language was reverted to English.                                :
-if %translation_download_error%==1 echo :-----------------------------------------------------------------------:
-if %translation_download_error%==1 echo.
-if %translation_download_error%==1 set /a translation_download_error=0
+if %translation_download_error%==1 if not %language%==English echo.
+if %translation_download_error%==1 if not %language%==English echo :-----------------------------------------------------------------------:
+if %translation_download_error%==1 if not %language%==English echo : There was an error while downloading the up-to-date translation.      :
+if %translation_download_error%==1 if not %language%==English echo : Your language was reverted to English.                                :
+if %translation_download_error%==1 if not %language%==English echo :-----------------------------------------------------------------------:
+if %translation_download_error%==1 if not %language%==English echo.
+if %translation_download_error%==1 if not %language%==English set /a translation_download_error=0
 echo.
 echo %string149%
 echo %string150%
@@ -4419,7 +4419,7 @@ goto wiiu_patching_fast_travel_100
 
 
 :wiiu_patching_fast_travel_99
-if %percent%==99 if not %sdcard%==NUL echo.&echo Don't worry^^! It might take some time... Now copying files to your SD Card...
+if %percent%==99 if not %sdcard%==NUL echo.&echo Don't worry^! It might take some time... Now copying files to your SD Card...
 if %percent%==99 if not %sdcard%==NUL xcopy /y "WAD" "%sdcard%:\WAD" /e|| set /a errorcopying=1
 if %percent%==99 if not %sdcard%==NUL xcopy /y "apps" "%sdcard%:\apps" /e|| set /a errorcopying=1
 if %percent%==99 if not %sdcard%==NUL xcopy /y "wiiu" "%sdcard%:\wiiu" /e|| set /a errorcopying=1
@@ -4531,6 +4531,7 @@ echo   - %string164%
 echo.
 echo 7. %string165%
 echo   - %string166%
+echo.
 set /p s=%string26%: 
 if %s%==1 goto 2_prepare
 if %s%==2 goto 2_prepare_uninstall
@@ -4967,7 +4968,7 @@ set /a patching_file=!patching_file!+1
 )
 del /q wad2bin_output.txt
 echo.
-echo Installation complete^^! 
+echo Installation complete^! 
 echo  Now, please start your WAD Manager (Wii Mod Lite, if you installed RiiConnect24) and please install the WAD file called
 echo  (numbers)_bogus.wad on your Wii.
 echo.
@@ -5128,7 +5129,7 @@ echo.
 echo ---------------------------------------------------------------------------------------------------------------------------
 echo    /---\   %string73%
 echo   /     \  %string342%
-echo  /   ^^!   \ 
+echo  /   ^!   \ 
 echo  --------- %string343%: %temperrorlev%
 if %temperrorlev%==-1 echo            ERROR: Invalid arguments
 if %temperrorlev%==-2 echo            ERROR: Memory allocation for internal path buffers failed
@@ -5765,7 +5766,7 @@ echo.
 echo ---------------------------------------------------------------------------------------------------------------------------
 echo    /---\   %string73%
 echo   /     \  %string428%
-echo  /   ^^!   \ 
+echo  /   ^!   \ 
 echo  --------- %string429%
 echo            %string430%
 echo.
@@ -7118,7 +7119,7 @@ echo.
 echo ---------------------------------------------------------------------------------------------------------------------------
 echo    /---\   %string73%
 echo   /     \  %string478%
-echo  /   ^^!   \ 
+echo  /   ^!   \ 
 echo  --------- %string479% 
 echo            %string480%
 echo.
@@ -7148,7 +7149,7 @@ echo             hmmmmh omMMMMMMMMMmhNMMMmNNNNMMMMMMMMMMM+
 echo ---------------------------------------------------------------------------------------------------------------------------
 echo    /---\   %string73%
 echo   /     \  %string481%
-echo  /   ^^!   \ %string482%: %temperrorlev%
+echo  /   ^!   \ %string482%: %temperrorlev%
 echo  --------- %string483%: %modul% / %percent%
 echo.
 echo %string484%
