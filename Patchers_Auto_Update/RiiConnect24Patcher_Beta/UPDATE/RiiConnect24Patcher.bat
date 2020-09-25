@@ -121,6 +121,7 @@ if %OSLanguage%==3082 set language=es-ES& call :set_language_spanish
 if %OSLanguage%==1053 set language=sv-SE& call :set_language_swedish
 if %OSLanguage%==1031 set language=de-DE& call :set_language_german
 if %OSLanguage%==1038 set language=hu-HU& call :set_language_hungarian
+if %OSLanguage%==1036 set language=fr-FR& call :set_language_french
 if %chcp_enable%==1 if %OSLanguage%==1049 set language=ru-RU& call :set_language_russian
 
 
@@ -139,6 +140,214 @@ echo Checking now...
 call :detect_sd_card
 
 goto begin_main
+
+:set_language_french_alternative
+
+set string1=RiiConnectez votre Wii.
+set string2=Demarrer
+set string3=Credits
+set string4=Parametres
+set string5=Gerez l'installateur de VFF pour Dolphin ici
+set string6=Executer l'installateur de VFF une fois.
+set string7=Rencontrez-vous des problemes ou voulez-vous nous contacter?
+set string8=Envoyez-nous un courriel a support@riiconnect24.net
+set string9=Carte SD Wii detectee:
+set string10=Impossible de detecter la carte SD inseree.
+set string11=Rafraichir
+set string12=Si ce n'est pas correct, vous pourrez les modifier plus tard.
+set string13=Attention
+set string14=Vous utilisez une version experimentale de ce logiciel.
+set string15=Cela signifie que cette version peut contenir des fonctionnalites experimentales
+set string16=et des bugs pouvant endommager votre Wii/Wii U ou votre ordinateur.
+set string17=Si vous n'etes pas sur de ce que vous faites, veuillez retourner dans les parametres, et selectionnez
+set string18=la branche stable du programme.
+set string19=Entrez un des numeros affiches ci-dessus a cote de la commande, et appuyez sur la touche ENTREE
+set string20=Outils de depannage
+set string21=Ces outils vous aideront a diagnostiquer certains problemes avec le programme, et essayera de les corriger pour vous.
+set string22=Impossible de detecter la carte SD.
+set string23=Impossible de copier les fichiers vers la carte SD.
+set string24=Erreur en renommant les fichiers
+set string25=Retourner au menu principal
+set string26=Selectionnez
+set string27=Parametres du Patcher RiiConnect24
+set string28=Revenir en arriere
+set string29=Definir la couleur du texte et de l'arriere-plan
+set string30=Desactiver/Activer les mises a jour
+set string31=Actuellement
+set string32=Changer la branche du programme a
+set string33=Beta
+set string34=Stable
+set string35=Reparer le fichier du patch
+set string36=Telecharger a nouveau
+set string37=Installateur VFF pour les parametres de Dolphin
+set string38=Desinstaller completement l'installateur VFF pour Dolphin de votre ordinateur
+set string39=Retirer l'installateur VFF au demarrage
+set string40=Si l'installateur VFF est lance, fermez-le.
+set string41=Veuillez patienter... recuperation des donnees.
+set string42=Voulez-vous retourner a la version stable du patcher?
+set string43=Version actuelle
+set string44=Version stable
+set string45=Une erreur s'est produite durant la recuperation des donnees.
+set string46=Voulez-vous changer de branche?
+set string47=La mise a jour va commencer.
+set string48=Oui, passer a la version stable.
+set string49=[IMPOSSIBLE DE PASSER A LA VERSION STABLE]
+set string50=Non, retourner au menu principal.
+set string51=Voulez-vous passer a la version BETA du patcher?
+set string52=Version Beta
+set string53=Il n'y a pas de version beta publique disponible actuellement.
+set string54=Oui, passer a la version beta.
+set string55=[IMPOSSIBLE DE PASSER A LA VERSION BETA]
+set string56=PATIENTEZ
+set string57=Essayez-vous de desactiver les mises a jour?
+set string58=S'il vous plait retenez que ces mises a jour vous garderont en securite et a jour au niveau du patcher.
+set string59=Utilisez cette option uniquement pour debugger et depanner.
+set string60=Etes-vous sur de vouloir desactiver les mises a jour automatiques?
+set string61=Oui
+set string62=Non, revenir en arriere.
+set string63=Changer la couleur :
+set string64=Theme sombre
+set string65=Theme clair *version gentille pour mes yeux*
+set string65=Theme clair *version brulez-moi les yeux*
+set string67=Jaune
+set string68=Vert
+set string69=Rouge
+set string70=Bleu
+set string71=Telechargement de curl... Veuillez patienter.
+set string72=Cela peut prendre du temps...
+set string73=ERREUR.
+set string74=Une erreur s'est produite durant le telechargement de curl.
+set string75=Nous allons ouvrir un site qui telechargera curl.exe.
+set string76=Veuillez deplacer curl.exe dans le dossier RiiConnect24 Patcher et redemarrer le patcher.
+set string77=Appuyez sur un bouton pour ouvrir la page de telechargement puis retourner au menu.
+set string78=Recherche de mises a jour...
+set string79=Une mise a jour est disponible.
+set string80=Une mise a jour pour ce programme est disponible. Nous vous recommandons de mettre le Patcher a jour, vers la derniere version.
+set string81=Version actuelle
+set string82=Nouvelle version
+set string83=Mise a jour
+set string84=Ignorer
+set string85=Quoi de neuf dans cette mise a jour?
+set string86=Mise a jour en cours.
+set string87=Veuillez patienter...
+set string88=RiiConnect24 Patcher va redemarrer sous peu...
+set string89=Il y a eu une erreur pendant le telechargement de l'assistant de mise a jour.
+set string90=Appuyez sur un bouton pour retourner au menu principal.
+set string91=Nouveautes dans la mise a jour
+set string92=Erreur. Le fichier concernant les nouveautes n'est pas disponible.
+set string93=Appuyez sur un bouton pour revenir en arriere.
+
+
+goto script_start_languages_2
+
+:set_language_french
+if %chcp_enable%==0 goto set_language_french_alternative
+
+set string1=RiiConnectez votre Wii.
+set string2=Démarrer
+set string3=Crédits
+set string4=Paramètres
+set string5=Gérez l'installateur de VFF pour Dolphin ici
+set string6=Exécuter l'installateur de VFF une fois.
+set string7=Rencontrez-vous des problèmes ou voulez-vous nous contacter?
+set string8=Envoyez-nous un courriel à support@riiconnect24.net
+set string9=Carte SD Wii détectée :
+set string10=Impossible de détecter la carte SD insérée.
+set string11=Rafraîchir
+set string12=Si ce n'est pas correct, vous pourrez les modifier plus tard.
+
+set string13=Attention
+set string14=Vous utilisez une version expérimentale de ce logiciel.
+set string15=Cela signifie que cette version peut contenir des fonctionnalités expérimentales
+set string16=et des bugs pouvant endommager votre Wii/Wii U ou votre ordinateur.
+set string17=Si vous n'êtes pas sûr de ce que vous faites, veuillez retourner dans les paramètres, et selectionnez
+set string18=la branche stable du programme.
+
+set string19=Entrez un des numéros affichés ci-dessus à côté de la commande, et appuyez sur la touche ENTRÉE
+
+set string20=Outils de dépannage
+set string21=Ces outils vous aideront à diagnostiquer certains problèmes avec le programme, et essayera de les corriger pour vous.
+set string22=Impossible de détecter la carte SD.
+set string23=Impossible de copier les fichiers vers la carte SD.
+set string24=Erreur en renommant les fichiers
+set string25=Retourner au menu principal
+set string26=Sélectionnez
+
+set string27=Paramètres du Patcher RiiConnect24
+set string28=Revenir en arrière
+set string29=Définir la couleur du texte et de l’arrière-plan
+set string30=Désactiver/Activer les mises à jour
+set string31=Actuellement
+set string32=Changer la branche du programme à
+set string33=Bêta
+set string34=Stable
+set string35=Réparer le fichier du patch
+set string36=Télécharger à nouveau
+set string37=Installateur VFF pour les paramètres de Dolphin
+set string38=Désinstaller complètement l'installateur VFF pour Dolphin de votre ordinateur
+set string39=Retirer l'installateur VFF au démarrage
+set string40=Si l'installateur VFF est lancé, fermez-le.
+set string41=Veuillez patienter... récupération des données.
+set string42=Voulez-vous retourner à la version stable du patcher?
+set string43=Version actuelle
+set string44=Version stable
+set string45=Une erreur s'est produite durant la récupération des données.
+set string46=Voulez-vous changer de branche?
+set string47=La mise a jour va commencer.
+set string48=Oui, passer à la version stable.
+set string49=[IMPOSSIBLE DE PASSER À LA VERSION STABLE]
+set string50=Non, retourner au menu principal.
+set string51=Voulez-vous passer à la version BÊTA du patcher?
+set string52=Version Bêta
+set string53=Il n'y a pas de version bêta publique disponible actuellement.
+set string54=Oui, passer à la version bêta.
+set string55=[IMPOSSIBLE DE PASSER À LA VERSION BETA]
+
+set string56=PATIENTEZ
+set string57=Essayez-vous de désactiver les mises à jour?
+set string58=S'il vous plaît retenez que ces mises à jour vous garderont en sécurité et à jour au niveau du patcher.
+set string59=Utilisez cette option uniquement pour débugger et dépanner.
+set string60=Êtes-vous sûr de vouloir désactiver les mises à jour automatiques?
+
+set string61=Oui
+set string62=Non, revenir en arrière.
+
+set string63=Changer la couleur :
+set string64=Thème sombre
+set string65=Thème clair *version gentille pour mes yeux*
+set string65=Thème clair *version brulez-moi les yeux*
+set string67=Jaune
+set string68=Vert
+set string69=Rouge
+set string70=Bleu
+
+set string71=Téléchargement de curl... Veuillez patienter.
+set string72=Cela peut prendre du temps...
+
+set string73=ERREUR.
+set string74=Une erreur s'est produite durant le téléchargement de curl.
+set string75=Nous allons ouvrir un site qui téléchargera curl.exe.
+set string76=Veuillez déplacer curl.exe dans le dossier RiiConnect24 Patcher et redémarrer le patcher.
+set string77=Appuyez sur un bouton pour ouvrir la page de téléchargement puis retourner au menu.
+
+set string78=Recherche de mises à jour...
+set string79=Une mise à jour est disponible.
+set string80=Une mise à jour pour ce programme est disponible. Nous vous recommandons de mettre le Patcher à jour, vers la dernière version.
+set string81=Version actuelle
+set string82=Nouvelle version
+set string83=Mise à jour
+set string84=Ignorer
+set string85=Quoi de neuf dans cette mise à jour?
+set string86=Mise à jour en cours.
+set string87=Veuillez patienter...
+set string88=RiiConnect24 Patcher va redémarrer sous peu...
+set string89=Il y a eu une erreur pendant le téléchargement de l'assistant de mise à jour.
+set string90=Appuyez sur un bouton pour retourner au menu principal.
+set string91=Nouveautés dans la mise à jour
+set string92=Erreur. Le fichier concernant les nouveautés n'est pas disponible.
+set string93=Appuyez sur un bouton pour revenir en arrière.
+
+if %chcp_enable%==0 goto script_start_languages_2
 
 :set_language_russian
 if %chcp_enable%==0 goto script_start_languages_2
@@ -251,6 +460,9 @@ goto script_start_languages_2
 
 :set_language_german_alternative
 
+set mode=135,37
+mode %mode%
+
 set string1=RiiConnecte deine Wii.
 set string2=Anfang
 set string3=Danksagungen
@@ -258,7 +470,7 @@ set string4=Einstellungen
 set string5=verwalte VFF Downloader for Dolphin hier
 set string6=Fuhre den VFF Downloader einmal aus.
 set string7=Hast du Probleme oder mochtest du uns kontaktieren?
-set string8=Maile uns an support@riiconnect24.net oder trete unserem Discord Server bei: https://discord.gg/mZPFec3
+set string8=Maile uns an support@riiconnect24.net
 set string9=Erkannte Wii-SD-Karte:
 set string10=Deine Wii SD-Karte konnte nicht erkannt werden.
 set string11=Aktualisieren
@@ -350,6 +562,9 @@ goto script_start_languages_2
 :set_language_german
 if %chcp_enable%==0 goto set_language_german_alternative
 
+set mode=135,37
+mode %mode%
+
 
 set string1=RiiConnecte deine Wii.
 set string2=Anfang
@@ -358,7 +573,7 @@ set string4=Einstellungen
 set string5=verwalte VFF Downloader for Dolphin hier
 set string6=Führe den VFF Downloader einmal aus.
 set string7=Hast du Probleme oder möchtest du uns kontaktieren?
-set string8=Maile uns an support@riiconnect24.net oder trete unserem Discord Server bei: https://discord.gg/mZPFec3
+set string8=Maile uns an support@riiconnect24.net
 set string9=Erkannte Wii-SD-Karte:
 set string10=Deine Wii SD-Karte konnte nicht erkannt werden.
 set string11=Aktualisieren
@@ -2353,29 +2568,31 @@ echo.
 echo Please select your language.
 echo.
 echo 1. English
-echo 2. German
-echo 3. Hungarian
-echo 4. Italian
-echo 5. Polish
-echo 6. Portuguese (Brazilian)
-echo 7. Russian
-echo 8. Spanish
-echo 9. Swedish
+echo 2. French
+echo 3. German
+echo 4. Hungarian
+echo 5. Italian
+echo 6. Polish
+echo 7. Portuguese (Brazilian)
+echo 8. Russian
+echo 9. Spanish
+echo 10. Swedish
 echo.
 set /p s=Choose: 
 if %s%==1 set language=English&goto set_language_english
-if %s%==2 set language=de-DE&goto set_language_german
-if %s%==3 set language=hu-HU&goto set_language_hungarian
-if %s%==4 set language=it-IT&goto set_language_italian
-if %s%==5 set language=pl-PL&goto set_language_polish
-if %s%==6 set language=pt-BR&goto set_language_brazilian
-if %s%==7 (
+if %s%==2 set language=fr-FR&goto set_language_french
+if %s%==3 set language=de-DE&goto set_language_german
+if %s%==4 set language=hu-HU&goto set_language_hungarian
+if %s%==5 set language=it-IT&goto set_language_italian
+if %s%==6 set language=pl-PL&goto set_language_polish
+if %s%==7 set language=pt-BR&goto set_language_brazilian
+if %s%==8 (
 			if %chcp_enable%==0 goto language_unavailable
 			set language=ru-RU
 			goto set_language_russian
 			)
-if %s%==8 set language=es-ES&goto set_language_spanish
-if %s%==9 set language=sv-SE&goto set_language_swedish
+if %s%==9 set language=es-ES&goto set_language_spanish
+if %s%==10 set language=sv-SE&goto set_language_swedish
 goto change_language
 
 :language_unavailable

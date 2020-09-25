@@ -1,26 +1,23 @@
+1.3.0
+It's about time for another big update! This time we're localising the patcher so everyone can use it!
+- Added translations. You can now select your own language.
+- Fixed a LOT of bugs. Not even gonna post a list of them here.
+- Added support for running the patcher in Windows PE.
+
+While this doesn't sound like there was a lot of work, the patcher went through a lot of testing on the beta branch - while keeping stable branch working for people that still wanted to get RiiConnect24.
+On the start, we support 10 languages. English, French, German, Hungarian, Italian, Polish, Portuguese (Brazilian), Russian, Spanish and Swedish. More languages are coming! I hope everyone will find this update useful. This also introduced a lot of bugs which took a lot of time to debug. However, I feel that it's stable enough to be released to stable branch.
+If you want to help with translations, you can join the translation project here - https://crowdin.com/project/riiconnect24-patcher
+
+This time, translations are implemented a lot better than my implementation of it 2 years ago in the IOS Patcher. The translations will now always stay up to date thanks to the patcher always fetching the translation file from servers instead of updating the program. 
+
+This is a big update - please make sure to report any bugs to me and I'll try to fix them ASAP! If there will be critical bugs, I'll even consider returning to previous stable version (`however, I'll do everything to avoid this`).
+
+Thank you for using RiiConnect24 Patcher. It took me and the translation team a lot of time and effort to get this working.
+We hope you'll like this update. 
+
 1.2.5.4
 - Patching on a Windows computer with Turkish language would result in an error when applying patches to News Channel. This is fixed now.
 
 1.2.5.3
 - Enabling or disabling News/Forecast Channel in Custom installation would do nothing. This is fixed now.
 - Curl download incase it's missing will less likely fail now and the instructions are more clear.
-
-1.2.5.2
-- Fixed crashing that occured when selecting a region when patching for Dolphin.
-
-1.2.5.1
-- Patching using USA Region fixed.
-
-1.2.5
-- We now include News and Forecast Channel patches. They will help anyone with 107304 error.
-
-This is the last feature update in a while. Will resume them in few months. However, for now - only bug fixes will be released.
-
-
-1.2.4.1
-- Fix for Wii U patching not working.
-
-1.2.4
-- Preparing for the next wad2bin update.
-- We now support Everybody Votes Channel for Dolphin. You can get the WAD using this patcher.
-- You can now use the homebrew app to automatically patch 4:3 bars on Wii U.
