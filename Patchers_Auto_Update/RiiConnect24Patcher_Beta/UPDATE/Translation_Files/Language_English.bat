@@ -507,3 +507,4 @@ set string486=ERROR DETAILS: Curl write error. Try moving the patcher to desktop
 set string487=SOLUTION: Please install latest .NET Framework, then try again.
 
 set string488=SD Card
+set string489=Start File Explorer.

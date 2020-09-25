@@ -2258,6 +2258,7 @@ set string486=ERROR DETAILS: Curl write error. Try moving the patcher to desktop
 set string487=SOLUTION: Please install latest .NET Framework, then try again.
 
 set string488=SD Card
+set string489=Start File Explorer.
 
 if %first_start_lang_load%==1 set /a first_start_lang_load=0&goto script_start_languages
 
@@ -3238,10 +3239,12 @@ echo 1. %string121%
 echo 2. %string122%
 echo.
 echo R. %string123%
+if %preboot_environment%==1 echo 3. %string489%
 echo.
 set /p s=%string26%: 
 if %s%==1 goto open_shop_list
 if %s%==2 goto open_shop_homebrew
+if %preboot_environment%==1 if %s%==3 "X:\TOTALCMD.exe"
 if %s%==r goto begin_main
 if %s%==R goto begin_main
 goto open_shop_mainmenu
@@ -4620,9 +4623,11 @@ echo %string270%
 echo.
 echo 1. %string271%
 echo 2. %string272%
+if %preboot_environment%==1 echo 3. %string489%
 set /p s=%string26%: 
 if %s%==1 goto script_start
 if %s%==2 goto end
+if %preboot_environment%==1 if %s%==3 "X:\TOTALCMD.exe"
 goto 2_7_wiiu
 
 :1
@@ -4964,6 +4969,7 @@ echo 3. %string319%
 echo.
 echo 4. %string320%
 echo 5. %string321%
+echo 6. %string489%
 echo.
 set /p s=%string26%: 
 if %s%==1 goto direct_install_bulk
@@ -4974,6 +4980,7 @@ if %s%==1 goto direct_install_bulk
 if %s%==3 goto direct_install_sdcard_configuration
 if %s%==4 goto direct_install_delete_bogus
 if %s%==5 goto begin_main
+if %preboot_environment%==1 if %s%==6 "X:\TOTALCMD.exe"
 goto direct_install_sdcard_main_menu
 
 :direct_install_dlc
@@ -7221,9 +7228,11 @@ echo %string188%
 echo.
 echo 1. %string189%
 echo 2. %string190%
+echo 3. %string489%
 set /p s=%string26%: 
 if %s%==1 goto script_start
 if %s%==2 goto end
+if %preboot_environment%==1 if %s%==3 "X:\TOTALCMD.exe"
 goto 2_4
 :end
 set /a exiting=10
