@@ -7449,6 +7449,7 @@ echo.
 echo 1. %string189%
 echo 2. %string190%
 if %preboot_environment%==1 echo 3. %string489%
+echo.
 set /p s=%string26%: 
 if %s%==1 goto script_start
 if %s%==2 goto end
