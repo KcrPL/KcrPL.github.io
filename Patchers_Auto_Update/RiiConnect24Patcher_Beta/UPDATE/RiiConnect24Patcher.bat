@@ -120,10 +120,8 @@ if %OSLanguage%==3082 set language=es-ES& call :set_language_spanish
 if %OSLanguage%==1053 set language=sv-SE& call :set_language_swedish
 if %OSLanguage%==1031 set language=de-DE& call :set_language_german
 if %OSLanguage%==1038 set language=hu-HU& call :set_language_hungarian
-::if %OSLanguage%==0413 set language=Dutch& call :set_language_dutch
-::if %OSLanguage%==1036 set language=French& call :set_language_french
-::if %chcp_enable%==1 if %OSLanguage%==1055 set language=Turkish& call :set_language_unicode_ask
-::if %chcp_enable%==1 if %OSLanguage%==1049 set language=Russian& call :set_language_russian
+if %chcp_enable%==1 if %OSLanguage%==1049 set language=ru-RU& call :set_language_russian
+
 
 :script_start_languages_2
 
@@ -140,6 +138,115 @@ echo Checking now...
 call :detect_sd_card
 
 goto begin_main
+
+:set_language_russian
+if %chcp_enable%==0 goto script_start_languages_2
+
+set string1=RiiConnect'ните ваш Wii.
+set string2=Начать
+set string3=Создатели
+set string4=Настройки
+set string5=Управлять VFF Downloader для Dolphin можно тут
+set string6=Запустить VFF Downloader один раз.
+set string7=У вас есть проблемы или хотите с нами связаться?
+set string8=Пришлите нам письмо на адрес support@riiconnect24.net
+set string9=SD-карта Wii обнаружена:
+set string10=Не удалось обнаружить SD-карту Wii.
+set string11=Обновить
+set string12=Если неверно, можно поменять позже.
+
+set string13=Внимание
+set string14=Вы используете экспериментальную версию этой программы.
+set string15=Это означает что эта версия может содержать экспериметальные функции
+set string16= и баги которые могут привести вашу Wii/Wii U консоль или компьютер к нерабочему состоянию.
+set string17=Если вы не знаете что вы делаете, пожалуйста зайдите в настройки и вернитесь к
+set string18 стабильной ветке патчера.
+
+set string19=Введите цифру которую вы можете увидеть сверху возле команды и нажмите ENTER
+
+set string20=Инструменты исправления проблем
+set string21=Эти инструменты должны вам помочь диагностировать проблемы с патчером и исправить их автоматически.
+set string22=Не удалось обнаружить SD-карту Wii.
+set string23=Не удалось скопировать файлы на SD-карту.
+set string24=Ошибка переименования файлов
+set string25=Вернуться в главное меню
+set string26=Выберите
+
+set string27=Настройки RiiConnect24 Patcher
+set string28=Вернуться
+set string29=Настроить фон/цвет текста
+set string30=Включить/выключить обновления
+set string31=На данный момент
+set string32=Изменить ветку обновлений на
+set string33=Бета
+set string34=Стабильный
+set string35=Исправить файл патчера
+set string36=Скачать заново
+set string37=VFF Downloader для настроек Dolphin
+set string38=Полностью удалить VFF Downloader для Dolphin с вашего компьютера
+set string39=Удалить VFF Downloader
+set string40=Если VFF Downloader запущен, закройте его.
+set string41=Одну минуточку... получаем данные.
+set string42=Хотите ли вы вернуться на стабильную версию патчера?
+set string43=Текущая версия
+set string44=Стабильная версия
+set string45=Извините, произошла ошибка во время получения данных.
+set string46=Вы хотите сменить ветки?
+set string47=Процесс обновления сейчас начнётся.
+set string48=Да, смениться на Стабильную ветку.
+set string49=[НЕ УДАЛОСЬ СМЕНИТЬСЯ НА СТАБИЛЬНУЮ ВЕРСИЮ]
+set string50=Нет, вернуться в главное меню.
+set string51=Вы хотите смениться на БЕТА версию патчера?
+set string52=Бета версия
+set string53=Извините, на данный момент нет доступных бета версий.
+set string54=Да, смениться на Бета ветку.
+set string55=[НЕ УДАЛОСЬ СМЕНИТЬСЯ НА БЕТА ВЕРСИЮ]
+
+set string56=СТОП
+set string57=Вы пытаетесь отключить обновления?
+set string58=Пожалуйста помните что обновления буду вас держать в безопасности и осведомлённым про патчер.
+set string59=Используйте эту опцию только для отладки и исправления ошибок.
+set string60=Вы уверены что хотите отключить автообновления?
+
+set string61=Да
+set string62=Нет, вернуться.
+
+set string63=Изменить цвет:
+set string64=Тёмная тема
+set string65=Светлая тема *Пожалуйста не калечь мои глаза*
+set string66=Светлая тема *Пожалуйста покалечь мои глаза*
+set string67=Жёлтый
+set string68=Зелёный
+set string69=Красный
+set string70=Синий
+
+set string71=Скачиваем curl... Одну минуточку.
+set string72=Это может занять некоторое время...
+
+set string73=ОШИБКА.
+set string74=Произошла ошибка во время скачивания curl.
+set string75=Мы сейчас откроем веб-сайт который скачает curl.exe.
+set string76=Пожалуйста переместите curl.exe в папку где находится RiiConnect24 Patcher и перезагрузите патчер.
+set string77=Нажмите любую клавишу чтобы открыть страницу загрузки в браузере и вернуться в меню.
+
+set string78=Идёт проверка обновлений...
+set string79=Обновление доступно.
+set string80=Обновление для этой программы доступно. Мы рекомендуем обновить RiiConnect24 Patcher до последней версии.
+set string81=Текущая версия
+set string82=Новая версия
+set string83=Обновить
+set string84=Отклонить
+set string85=Что нового в этом обновлении?
+set string86=Идёт обновление.
+set string87=Одну минуточку...
+set string88=RiiConnect24 Patcher сейчас перезагрузится...
+set string89=Произошла ошибка во время скачивания ассистента обновлений.
+set string90=Нажмите на любую клавишу чтобы вернуться в главное меню.
+set string91=Что нового в обновлении
+set string92=Ошибка. Файл "Что нового" недоступен.
+set string93=Нажмите на любую кнопку чтобы вернуться.
+
+goto script_start_languages_2
 
 :set_language_german_alternative
 
@@ -2150,6 +2257,7 @@ set string485=SOLUTION: Please check your internet connection.
 set string486=ERROR DETAILS: Curl write error. Try moving the patcher to desktop and try again.
 set string487=SOLUTION: Please install latest .NET Framework, then try again.
 
+set string488=SD Card
 
 if %first_start_lang_load%==1 set /a first_start_lang_load=0&goto script_start_languages
 
@@ -2243,26 +2351,44 @@ echo.
 echo Please select your language.
 echo.
 echo 1. English
-echo 2. Polish
-echo 3. Spanish
+echo 2. German
+echo 3. Hungarian
 echo 4. Italian
-echo 5. Portuguese (Brazilian)
-echo 6. German
-echo 7. Swedish
-echo 8. Hungarian
+echo 5. Polish
+echo 6. Portuguese (Brazilian)
+echo 7. Russian
+echo 8. Spanish
+echo 9. Swedish
 echo.
 set /p s=Choose: 
 if %s%==1 set language=English&goto set_language_english
-if %s%==2 set language=pl-PL&goto set_language_polish
-if %s%==3 set language=es-ES&goto set_language_spanish
+if %s%==2 set language=de-DE&goto set_language_german
+if %s%==3 set language=hu-HU&goto set_language_hungarian
 if %s%==4 set language=it-IT&goto set_language_italian
-if %s%==5 set language=pt-BR&goto set_language_brazilian
-if %s%==6 set language=de-DE&goto set_language_german
-if %s%==7 set language=sv-SE&goto set_language_swedish
-if %s%==8 set language=hu-HU&goto set_language_hungarian
+if %s%==5 set language=pl-PL&goto set_language_polish
+if %s%==6 set language=pt-BR&goto set_language_brazilian
+if %s%==7 (
+			if %chcp_enable%==0 goto language_unavailable
+			set language=ru-RU
+			goto set_language_russian
+			)
+if %s%==8 set language=es-ES&goto set_language_spanish
+if %s%==9 set language=sv-SE&goto set_language_swedish
 goto change_language
 
-
+:language_unavailable
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Outdated operating system. ^| Feature unavailable.
+echo.
+echo The language that you want to load only works on Windows 10.
+echo Please select English or any other language.
+echo.
+echo Press any key to go back.
+pause>NUL
+goto change_language
 
 :begin_main_refresh_sdcard
 set sdcard=NUL
@@ -6266,7 +6392,8 @@ set modul=Downloading USA Delta
 if not %temperrorlev%==0 goto error_patching
 goto patching_fast_travel_100
 :patching_fast_travel_7
-if not exist "EVCPatcher/NUS_Downloader_Decrypt.exe" curl -f -L -s -S --insecure "%FilesHostedOn%/EVCPatcher/NUS_Downloader_Decrypt.exe" --output EVCPatcher/NUS_Downloader_Decrypt.exe
+if %processor_architecture%==x86 if not exist "EVCPatcher/NUS_Downloader_Decrypt.exe" curl -f -L -s -S --insecure "%FilesHostedOn%/EVCPatcher/NUS_Downloader_Decrypt.exe" --output EVCPatcher/NUS_Downloader_Decrypt.exe
+if %processor_architecture%==AMD64 if not exist "EVCPatcher/NUS_Decryptor_x64.exe" curl -f -L -s -S --insecure "%FilesHostedOn%/EVCPatcher/NUS_Decryptor_x64.exe" --output EVCPatcher/NUS_Decryptor_x64.exe
 set /a temperrorlev=%errorlevel%
 set modul=Downloading decrypter
 if not %temperrorlev%==0 goto error_patching
@@ -6334,7 +6461,8 @@ if not exist "CMOCPatcher/patch/00000004_USA.delta" curl -f -L -s -S --insecure 
 set /a temperrorlev=%errorlevel%
 set modul=Downloading USA Delta
 if not %temperrorlev%==0 goto error_patching
-if not exist "CMOCPatcher/NUS_Downloader_Decrypt.exe" curl -f -L -s -S --insecure "%FilesHostedOn%/CMOCPatcher/NUS_Downloader_Decrypt.exe" --output CMOCPatcher/NUS_Downloader_Decrypt.exe
+if %processor_architecture%==x86 if not exist "CMOCPatcher/NUS_Downloader_Decrypt.exe" curl -f -L -s -S --insecure "%FilesHostedOn%/CMOCPatcher/NUS_Downloader_Decrypt.exe" --output CMOCPatcher/NUS_Downloader_Decrypt.exe
+if %processor_architecture%==AMD64 if not exist "CMOCPatcher/NUS_Decryptor_x64.exe" curl -f -L -s -S --insecure "%FilesHostedOn%/CMOCPatcher/NUS_Decryptor_x64.exe" --output CMOCPatcher/NUS_Decryptor_x64.exe
 set /a temperrorlev=%errorlevel%
 set modul=Downloading decrypter
 if not %temperrorlev%==0 goto error_patching
@@ -6452,7 +6580,8 @@ set /a temperrorlev=%errorlevel%
 set modul=Downloading USA Delta [NC]
 if not %temperrorlev%==0 goto error_patching
 
-if not exist "NCPatcher/NUS_Downloader_Decrypt.exe" curl -f -L -s -S --insecure "%FilesHostedOn%/NCPatcher/NUS_Downloader_Decrypt.exe" --output NCPatcher/NUS_Downloader_Decrypt.exe
+if %processor_architecture%==x86 if not exist "NCPatcher/NUS_Downloader_Decrypt.exe" curl -f -L -s -S --insecure "%FilesHostedOn%/NCPatcher/NUS_Downloader_Decrypt.exe" --output NCPatcher/NUS_Downloader_Decrypt.exe
+if %processor_architecture%==AMD64 if not exist "NCPatcher/NUS_Decryptor_x64.exe" curl -f -L -s -S --insecure "%FilesHostedOn%/NCPatcher/NUS_Decryptor_x64.exe" --output NCPatcher/NUS_Decryptor_x64.exe
 set /a temperrorlev=%errorlevel%
 set modul=Downloading Decrypter
 if not %temperrorlev%==0 goto error_patching
@@ -6781,8 +6910,11 @@ if %custominstall_evc%==1 set modul=Downloading EVC
 if %custominstall_evc%==1 if not %temperrorlev%==0 goto error_patching
 goto patching_fast_travel_100
 :patching_fast_travel_54
-if %custominstall_evc%==1 if %evcregion%==1 copy /y "EVCPatcher\NUS_Downloader_Decrypt.exe" "0001000148414A50v512"
-if %custominstall_evc%==1 if %evcregion%==2 copy /y "EVCPatcher\NUS_Downloader_Decrypt.exe" "0001000148414A45v512"
+if %custominstall_evc%==1 if %evcregion%==1 if %processor_architecture%==x86 copy /y "EVCPatcher\NUS_Downloader_Decrypt.exe" "0001000148414A50v512"
+if %custominstall_evc%==1 if %evcregion%==2 if %processor_architecture%==x86 copy /y "EVCPatcher\NUS_Downloader_Decrypt.exe" "0001000148414A45v512"
+
+if %custominstall_evc%==1 if %evcregion%==1 if %processor_architecture%==AMD64 copy /y "EVCPatcher\NUS_Decryptor_x64.exe" "0001000148414A50v512"
+if %custominstall_evc%==1 if %evcregion%==2 if %processor_architecture%==AMD64 copy /y "EVCPatcher\NUS_Decryptor_x64.exe" "0001000148414A45v512"
 if %custominstall_evc%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_evc%==1 set modul=Copying NDC.exe
 if %custominstall_evc%==1 if not %temperrorlev%==0 goto error_patching
@@ -6796,9 +6928,12 @@ if %custominstall_evc%==1 if not %temperrorlev%==0 goto error_patching
 goto patching_fast_travel_100
 :patching_fast_travel_57
 if %custominstall_evc%==1 if %evcregion%==1 cd 0001000148414A50v512
-if %custominstall_evc%==1 if %evcregion%==1 call NUS_Downloader_Decrypt.exe >NUL
+if %custominstall_evc%==1 if %processor_architecture%==x86 if %evcregion%==1 call NUS_Downloader_Decrypt.exe >NUL
+if %custominstall_evc%==1 if %processor_architecture%==AMD64 if %evcregion%==1 call NUS_Decryptor_x64.exe cetk>NUL
 if %custominstall_evc%==1 if %evcregion%==2 cd 0001000148414A45v512
-if %custominstall_evc%==1 if %evcregion%==2 call NUS_Downloader_Decrypt.exe >NUL
+if %custominstall_evc%==1 if %processor_architecture%==x86 if %evcregion%==2 call NUS_Downloader_Decrypt.exe >NUL
+if %custominstall_evc%==1 if %processor_architecture%==AMD64 if %evcregion%==2 call NUS_Decryptor_x64.exe cetk>NUL
+
 if %custominstall_evc%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_evc%==1 set modul=Decrypter error
 if %custominstall_evc%==1 if not %temperrorlev%==0 cd..& goto error_patching
@@ -6870,9 +7005,10 @@ if %custominstall_cmoc%==1 set modul=Renaming files [Delete everything except Ri
 if %custominstall_cmoc%==1 if not %temperrorlev%==0 goto error_patching
 
 if %custominstall_cmoc%==1 if %evcregion%==1 cd 0001000148415050v512
-if %custominstall_cmoc%==1 if %evcregion%==1 call NUS_Downloader_Decrypt.exe >NUL
+if %custominstall_cmoc%==1 if %processor_architecture%==x86 if %evcregion%==1 call NUS_Downloader_Decrypt.exe >NUL
+if %custominstall_cmoc%==1 if %processor_architecture%==AMD64 if %evcregion%==1 call NUS_Decryptor_x64.exe cetk>NUL
 if %custominstall_cmoc%==1 if %evcregion%==2 cd 0001000148415045v512
-if %custominstall_cmoc%==1 if %evcregion%==2 call NUS_Downloader_Decrypt.exe >NUL
+if %custominstall_cmoc%==1 if %processor_architecture%==AMD64 if %evcregion%==2 call NUS_Decryptor_x64.exe cetk>NUL
 if %custominstall_cmoc%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_cmoc%==1 set modul=Decrypter error
 if %custominstall_cmoc%==1 if not %temperrorlev%==0 cd..& goto error_patching
@@ -6948,9 +7084,9 @@ if %custominstall_nc%==1 if not %temperrorlev%==0 goto error_patching
 goto patching_fast_travel_100
 :patching_fast_travel_88
 if %custominstall_nc%==1 if %evcregion%==1 cd 0001000148415450v1792
-if %custominstall_nc%==1 if %evcregion%==1 call NUS_Downloader_Decrypt.exe >NUL
+if %custominstall_nc%==1 if %processor_architecture%==x86 if %evcregion%==1 call NUS_Downloader_Decrypt.exe >NUL
 if %custominstall_nc%==1 if %evcregion%==2 cd 0001000148415445v1792
-if %custominstall_nc%==1 if %evcregion%==2 call NUS_Downloader_Decrypt.exe >NUL
+if %custominstall_nc%==1 if %processor_architecture%==AMD64 if %evcregion%==1 call NUS_Decryptor_x64.exe cetk>NUL
 if %custominstall_nc%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_nc%==1 set modul=Decrypter error
 if %custominstall_nc%==1 if not %temperrorlev%==0 cd..& goto error_patching
