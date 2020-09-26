@@ -1,4 +1,4 @@
-if "%1"=="-chcp" chcp 65001
+if "%1"=="-chcp" chcp 65001>NUL
 :: Should be available locally
 set string1=RiiConnect'ните ваш Wii.
 set string2=Начать
@@ -509,3 +509,4 @@ set string486=ДЕТАЛИ О ОШИБКЕ: Ошибка записи curl. По
 set string487=РЕШЕНИЕ: Пожалуйста установите последний .NET Framework и попробуйте ещё раз.
 
 set string488=SD-карта
+set string489=Start File Explorer.
