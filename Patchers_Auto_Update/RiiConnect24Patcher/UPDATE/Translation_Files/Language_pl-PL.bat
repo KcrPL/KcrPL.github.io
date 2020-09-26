@@ -89,7 +89,7 @@ set string77=Naciśnij dowolny przycisk aby otworzyć stronę pobierania w przeg
 
 set string78=Sprawdzanie aktualizacji...
 set string79=Dostępna jest aktualizacja.
-set string80=Dostępna jest aktualizacja dla tego programu. Zalecamy aktualizację RiiConnect24 Patcher'a do najnowsze jwersji.
+set string80=Dostępna jest aktualizacja dla tego programu. Zalecamy aktualizację RiiConnect24 Patcher'a do najnowszej wersji.
 set string81=Obecna wersja
 set string82=Nowa wersja
 set string83=Aktualizuj
