@@ -440,7 +440,7 @@ set string425=C'est ça^! RiiConnect24 devrait maintenant avoir disparu de votre
 setstring426=Revenez nous voir bientôt :)
 set string427=Appuyez sur n'importe quelle touche pour quitter le patcher.
 
-set string428=The Nintendo Update Server (NUS) is currently down. Patcher needs that server in order to work.
+set string428=Le serveur de mise à jour Nintendo (NUS) est actuellement hors service. Patcher a besoin de ce serveur pour fonctionner.
 set string429=This probably means that there is a maintenance currently going on the server.
 set string430=Please come back later^!
 set string431=Préparer...
