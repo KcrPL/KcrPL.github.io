@@ -1,4 +1,4 @@
-if "%1"=="-chcp" chcp 65001
+if "%1"=="-chcp" chcp 65001>NUL
 :: Should be available locally
 set string1=RiiConnectez votre Wii.
 set string2=Démarrer
@@ -413,23 +413,23 @@ set string398=Copiez le dossier wad et apps à côté du patcher sur votre carte
 set string399= Partie I - Réinstallation du stock IOS 31 et IOS 80
 set string400=Veuillez ouvrir la chaîne Homebrew et démarrer Wii Mod Lite
 set string401=À l'aide de la manette de contrôle + de votre télécommande Wii, accédez à WAD Manager, puis accédez au dossier WAD.
-set string402=When IOS31.wad is highlighted, press +, then do the same for IOS80.wad and hit the A button.
-set string403=When you're done, press the HOME Button to go back to Homebrew Channel.
-set string404=What to do now?
-set string405=Voisin page
-set string406=Part II - Restoring the nwc24msg.cfg to it's factory default.
-set string407=Please launch WiiXplorer from the Homebrew Channel.
-set string408=In WiiXplorer, press Start - Settings - Boot Settings - NAND Write Access (turn on)
-set string409=Remember to turn it on because it's important^!
-set string410=Change your device to NAND (on the bar on top)
-set string411=Go to shared2 - wc24
-set string412=Hover your cursor over nwc24msg.cfg, press + on your Wii Remote and delete it.
-set string413=Go to Wii Menu (the nwc24msg.cfg file should regenerate with the same Friend Code)
-set string414=Previous page
-set string415=Part III - Disconnecting from RiiConnect24
-set string416=Go to Wii Options.
-set string417=Go to Wii Settings.
-set string418=Go to Page 2, then click on Internet.
+set string402=Lorsque IOS31.wad est mis en surbrillance, appuyez sur +, puis faites de même pour IOS80.wad et appuyez sur le bouton A.
+set string403=Lorsque vous avez terminé, appuyez sur le bouton HOME pour revenir à la chaîne Homebrew.
+set string404=Que faire maintenant?
+set string405=Prochaine page
+set string406=Partie II - Restauration du nwc24msg.cfg à ses paramètres d'usine par défaut.
+set string407=Veuillez lancer WiiXplorer depuis la chaîne Homebrew.
+set string408=Dans WiiXplorer, appuyez sur Démarrer - Paramètres - Paramètres de démarrage - Accès en écriture NAND (activer)
+set string409=N'oubliez pas de l'allumer car c'est important^!
+set string410=Changez votre appareil en NAND (sur la barre en haut)
+set string411=Aller à shared2 - wc24
+set string412=Passez votre curseur sur nwc24msg.cfg, appuyez sur + sur votre télécommande Wii et supprimez-le.
+set string413=Allez dans le menu Wii (le fichier nwc24msg.cfg doit se régénérer avec le même code ami)
+set string414=Page précédente
+set string415=Partie III - Déconnexion de RiiConnect24
+set string416=Accédez aux options Wii.
+set string417=Accédez aux paramètres Wii.
+set string418=Allez à la page 2, puis cliquez sur Internet.
 set string419=Go to Connection Settings.
 set string420=Select your current connection.
 set string421=Go to Change Settings.
@@ -508,3 +508,4 @@ set string486=ERREUR RENSEIGEMENTS: S'enrouler écrire erreur. Essayez de dépla
 set string487=SOLUTION: veuillez installer la dernière version de .NET Framework, puis réessayer.
 
 set string488=Carte SD
+set string489=Start File Explorer.
