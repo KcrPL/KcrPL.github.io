@@ -6,7 +6,7 @@ echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: RiiConnect24 Patcher for Windows
-set version=1.3.0.1
+set version=1.3.0.2
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2018-2020 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -55,7 +55,7 @@ set hh=0
 if %beta%==0 title RiiConnect24 Patcher v%version% Created by @KcrPL
 if %beta%==1 title RiiConnect24 Patcher v%version% [BETA] Created by @KcrPL
 set last_build=2020/09/26
-set at=11:44
+set at=12:57
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
@@ -3673,13 +3673,13 @@ if exist "%TempStorage%\annoucement.txt" echo --- %string148% ---
 if exist "%TempStorage%\annoucement.txt" type "%TempStorage%\annoucement.txt"
 if exist "%TempStorage%\annoucement.txt" echo.
 if exist "%TempStorage%\annoucement.txt" echo -------------------
-if %translation_download_error%==1 if not %language%==English echo.
-if %translation_download_error%==1 if not %language%==English echo :-----------------------------------------------------------------------:
-if %translation_download_error%==1 if not %language%==English echo : There was an error while downloading the up-to-date translation.      :
-if %translation_download_error%==1 if not %language%==English echo : Your language was reverted to English.                                :
-if %translation_download_error%==1 if not %language%==English echo :-----------------------------------------------------------------------:
-if %translation_download_error%==1 if not %language%==English echo.
-if %translation_download_error%==1 if not %language%==English set /a translation_download_error=0
+if "%translation_download_error%"=="1" if not "%language%"=="English" echo.
+if "%translation_download_error%"=="1" if not "%language%"=="English" echo :-----------------------------------------------------------------------:
+if "%translation_download_error%"=="1" if not "%language%"=="English" echo : There was an error while downloading the up-to-date translation.      :
+if "%translation_download_error%"=="1" if not "%language%"=="English" echo : Your language was reverted to English.                                :
+if "%translation_download_error%"=="1" if not "%language%"=="English" echo :-----------------------------------------------------------------------:
+if "%translation_download_error%"=="1" if not "%language%"=="English" echo.
+if "%translation_download_error%"=="1" if not "%language%"=="English" set /a translation_download_error=0
 echo.
 echo %string149%
 echo %string150%
