@@ -1,4 +1,4 @@
-if "%1"=="-chcp" chcp 65001
+if "%1"=="-chcp" chcp 65001>NUL
 :: Should be available locally
 set string1=Βάλε το RiiConnect24 στο Wii σου.
 set string2=Ξεκίνα
@@ -507,3 +507,4 @@ set string486=ERROR DETAILS: Curl write error. Try moving the patcher to desktop
 set string487=SOLUTION: Please install latest .NET Framework, then try again.
 
 set string488=SD Card
+set string489=Start File Explorer.
