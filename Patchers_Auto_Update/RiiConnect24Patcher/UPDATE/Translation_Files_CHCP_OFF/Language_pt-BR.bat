@@ -1,6 +1,5 @@
 if "%1"=="-chcp" chcp 65001
 :: Should be available locally
-
 set string1=RiiConecte seu Wii.
 set string2=Iniciar
 set string3=Creditos
@@ -450,7 +449,7 @@ set string432=Instalar o RiiConnect24.
 set string433=Isso vai patchear todos os canais para uso posterior no Wii. Isso inclui:
 set string434=Patches do IOS [Necessario para os outros canais funcionarem]
 Forecast/News Channel
-set string436=Por favor conecte o Cartao SD do Wii para seu computador.
+set string436=Por favor conecte o Cartao SD do Wii no seu computador.
 set string437=O processo a seguir vai baixar 170MB de dados.
 
 set string438=Sabia que o Wii foi o videogame mais vendido de 2006?
@@ -507,4 +506,4 @@ set string485=SOLUCAO: Verifique sua conexao a internet.
 set string486=DETALHES DO ERRO: Erro na escrita Curl. Tente mover o patcher para a area de trabalho e tente novamente.
 set string487=Solucao: Por favor instale o .NET Framework mais recente e tente novamente.
 
-
+set string488=SD Card

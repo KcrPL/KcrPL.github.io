@@ -1,6 +1,5 @@
 if "%1"=="-chcp" chcp 65001
 :: Should be available locally
-
 set string1=Gui Fang noWiiwoRiiConnectsuru. 
 set string2=hazimeru
 set string3=kurezitsuto
@@ -507,4 +506,4 @@ set string485=Jie Jue Ce : intanetsutoJie Sok woQue Ren shitekudasai
 set string486=eranoXiang Xi : curlnoShu kiIp miera PatcherwodesukutotsupuniYi Dong shite, Zai Shi Xing shitemitekudasai
 set string487=Jie Jue Ce : Zui Xin no .NET Framework woinsutorushite, Zai Shi Xing shitemitekudasai
 
-
+set string488=SD Card

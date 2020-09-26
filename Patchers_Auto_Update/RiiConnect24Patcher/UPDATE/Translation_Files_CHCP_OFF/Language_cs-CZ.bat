@@ -1,6 +1,5 @@
 if "%1"=="-chcp" chcp 65001
 :: Should be available locally
-
 set string1=Pripoj svoje Wii k RiiConnect24.
 set string2=Start
 set string3=Autori
@@ -181,7 +180,7 @@ set string163=Upravit jine Wii hry, aby fungovaly na Wiimmfi.
 set string164=Toto upravi jakoukoli jinou hru nez Mario Kart Wii, aby fungovala s Wiimmfi.
 set string165=Navstivit Homebrew Shop
 set string166=Stahni a nainstaluj homebrew na tvoji SD kartu.
-set string192=Install WAD files directly to the SD Card.
+set string192=Tohle umozni instalovat WAD kanaly primo na SD kartu.
 set string193=Tohle ti umozni nainstalovat kanaly primo na SD kartu misto instalovani do NANDu a pak presouvani na SD.
 
 
@@ -190,26 +189,26 @@ set string168=Vitej v RiiConnect24 instalacnim procesu pro Dolphin Emulator.
 set string169=Prvni potrebuji stahnout VFF-Downloader. Tohle umozni funkcnost kanalu pro zpravy a pocasi.
 set string170=Zmackni jakekoliv tlacitko pro stahnuti a spusteni VFF Downloaderu.
 
-set string171=Alright! I see that you've exited VFF Downloader Installer.
-set string172=If you installed it correctly and choose:
-set string173=Manual - there will be an option in the main menu of RiiConnect24 Patcher to start it. Start it every time you want to
-set string174=access Forecast and News Channel. There will be an option in the main menu to manage VFF Downloader.
-set string175=Startup - the program will run in background and will download the files automatically every hour.
-set string176=There will be an option in the main menu of RiiConnect24 Patcher to manage it.
-set string177=What now?
-set string178=Continue with the installation process.
-set string179=Try installing VFF Downloader again.
-set string180=Exit
-set string181=We will now need to run the patcher to get Check Mii Out Channel and Everybody Votes Channel.
-set string182=What region should I download?
-set string183=Europe
-set string184=USA
-set string185=We're done^! Now please open Dolphin, press on Tools and install the WAD file that has been downloaded to the WAD folder 
-set string186=next to the RiiConnect24 Patcher.
-set string187=That's it^!
-set string188=What to do next?
-set string189=Return to main menu
-set string190=Close the patcher
+set string171=Dobre! Vidim ze jsi vypnul instalater VFF Downloaderu.
+set string172=Pokud jsi ho nainstaloval spravne a zvolil:
+set string173=Manualne - V hlavnim menu RiiConnect24 Patcheru bude moznost ho spusit. Spust ho pokazde kdyz
+chces otevrit kanal pro pocasi a zpravy. V hlavnim menu bude moznost nastaveni pro VFF Downloader.
+set string175=Startup - program se pusti v pozadi a automaticky bude stahovat soubory kazdou hodinu.
+set string176= V hlavnim menu RiiConnect24 Patcheru bude moznost pro nastaveni.
+set string177=Co ted?
+set string178=Pokracovat v instalacnim procesu.
+set string179=Zkusit znovu nainstalovat VFF Downloader.
+set string180=Odejit
+set string181=Ted budeme potrebovat spusit patcher pro ziskani Check Mii Out Channelu a Everybody Votes Channelu.
+set string182=Jaky region bych mel stahnout?
+set string183=Evropa
+set string184=Amerika
+set string185=Mame hotovo^! Ted prosim otevri Dolphin, zmackni Nastroje/Tools a nainstaluj WAD soubor ktery se stahnul do slozky WAD 
+set string186=Vedle RiiConnect24 Patcheru.
+set string187=To je vsechno^!
+set string188=Co ted?
+set string189=Vratit se do hlavniho menu
+set string190=Vypnout patcher
 
 set string200=Install RiiConnect24 on your Wii U.
 set string201=Choose instalation type:
@@ -462,7 +461,7 @@ set string443=Vedel jsi, ze pismena RVL v cislu modelu Wiicka pripominaji kodove
 set string444=Hudba pouzita v mnoha Wii kanalech (jako napr. Wii Shop, Mii, Mii Contest a Forecast) byla slozena Kazumim Totakou.
 set string445=Internet Channel jednou staval 500 Wii bodu.
 set string446=Sensor bar lze nahradit svickami.
-set string447=Svetelna signalizace kolem slotu na herni disky, ktera oznamovala prichozi nebo systemovou zpravu, byla specialne nacasovana, aby se trefila do zvuku, ktery vydava penice japonska (Horornis diphone). More info about it on RiiConnect24 YouTube Channel^!
+set string447=Svetelna signalizace kolem slotu na herni disky, ktera oznamovala prichozi nebo systemovou zpravu, byla specialne nacasovana, aby se trefila do zvuku, ktery vydava penice japonska (Horornis diphone). Vice se o tom dozvis na YouTubovem kanale RiiConnectu24 ^^!
 Wii Sports je neprodavanejsi hrou na Wii. Prodalo se ji 82,85 milionu. Celkove je to 3 nejprodavanejsi hra na svete.
 set string449=Vedel jsi, ze vetsina kodu pri vyvoji RiiConnectu24 byla napsana v Pythonu?
 set string450=Diky, Spotlighte, ze nam zabezpecujes emailovou sluzbu.
@@ -507,4 +506,4 @@ set string485=SOLUTION: Please check your internet connection.
 set string486=ERROR DETAILS: Curl write error. Try moving the patcher to desktop and try again.
 set string487=SOLUTION: Please install latest .NET Framework, then try again.
 
-
+set string488=SD Card

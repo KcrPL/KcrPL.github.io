@@ -1,6 +1,5 @@
 if "%1"=="-chcp" chcp 65001
 :: Should be available locally
-
 set string1=RiiConnect your Wii.
 set string2=Inditas
 set string3=Stablista
@@ -507,4 +506,4 @@ set string485=MEGOLDAS: Ellenorizd az internetkapcsolatot.
 set string486=RESZLETEK: Curl irasi hiba. Probald athelyezni a programot az Asztalra, majd probald ujra.
 set string487=MEGOLDAS: Telepitsd a .NET-keretrendszer legujabb verziojat, majd probald ujra.
 
-
+set string488=SD Card
