@@ -1,4 +1,4 @@
-if "%1"=="-chcp" chcp 65001
+if "%1"=="-chcp" chcp 65001>NUL
 :: Should be available locally
 set string1=貴方のWiiをRiiConnectする。
 set string2=はじめる
@@ -507,3 +507,4 @@ set string486=エラーの詳細: curlの書き込みエラー Patcherをデス�
 set string487=解決策: 最新の .NET Framework をインストールして、再試行してみてください
 
 set string488=SD Card
+set string489=Start File Explorer.
