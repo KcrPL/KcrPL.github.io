@@ -1,4 +1,4 @@
-if "%1"=="-chcp" chcp 65001
+if "%1"=="-chcp" chcp 65001>NUL
 :: Should be available locally
 https://crowdin. com/translate/riiconnect24-patcher/188/en-ko#8938
 https://crowdin. com/translate/riiconnect24-patcher/188/en-ko#8940
@@ -507,3 +507,4 @@ set string486=ERROR DETAILS: Curl write error. Try moving the patcher to desktop
 set string487=SOLUTION: Please install latest .NET Framework, then try again.
 
 set string488=SD Card
+set string489=Start File Explorer.
