@@ -1,6 +1,5 @@
 if "%1"=="-chcp" chcp 65001
 :: Should be available locally
-
 riiconnect din Wii.
 start
 kreditters
@@ -507,4 +506,4 @@ set string485=SOLUTION: Please check your internet connection.
 set string486=ERROR DETAILS: Curl write error. Try moving the patcher to desktop and try again.
 set string487=SOLUTION: Please install latest .NET Framework, then try again.
 
-
+set string488=SD Card

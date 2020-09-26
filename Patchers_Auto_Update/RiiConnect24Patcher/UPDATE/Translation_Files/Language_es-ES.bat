@@ -1,6 +1,5 @@
 if "%1"=="-chcp" chcp 65001
 :: Should be available locally
-
 set string1=RiiConecta tu Wii.
 set string2=Iniciar
 set string3=Créditos
@@ -507,4 +506,4 @@ set string485=SOLUCIÓN: Por favor revisa tu conexión a internet.
 set string486=DETALLES DEL ERROR: Error con la escritura de Curl. Prueba moviendo el parcheador al escritorio y vuelve a intentarlo.
 set string487=SOLUCIÓN: Por favor, instala la ultima versión de .NET Framework y vuelve a intentarlo.
 
-
+set string488=SD Card
