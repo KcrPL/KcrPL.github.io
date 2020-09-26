@@ -1,6 +1,5 @@
 if "%1"=="-chcp" chcp 65001
 :: Should be available locally
-
 set string1=RiiConnect your Wii.
 set string2=Indítás
 set string3=Stáblista
@@ -507,4 +506,4 @@ set string485=MEGOLDÁS: Ellenőrizd az internetkapcsolatot.
 set string486=RÉSZLETEK: Curl írási hiba. Próbáld áthelyezni a programot az Asztalra, majd próbáld újra.
 set string487=MEGOLDÁS: Telepítsd a .NET-keretrendszer legújabb verzióját, majd próbáld újra.
 
-
+set string488=SD Card
