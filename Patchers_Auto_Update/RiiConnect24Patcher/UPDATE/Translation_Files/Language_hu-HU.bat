@@ -1,4 +1,4 @@
-if "%1"=="-chcp" chcp 65001
+if "%1"=="-chcp" chcp 65001>NUL
 :: Should be available locally
 set string1=RiiConnect your Wii.
 set string2=Indítás
@@ -507,3 +507,4 @@ set string486=RÉSZLETEK: Curl írási hiba. Próbáld áthelyezni a programot a
 set string487=MEGOLDÁS: Telepítsd a .NET-keretrendszer legújabb verzióját, majd próbáld újra.
 
 set string488=SD Card
+set string489=Start File Explorer.
