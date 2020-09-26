@@ -1,4 +1,4 @@
-if "%1"=="-chcp" chcp 65001
+if "%1"=="-chcp" chcp 65001>NUL
 :: Should be available locally
 set string1=RiiConnetti la tua Wii.
 set string2=Inizia
@@ -507,3 +507,4 @@ set string486=DETTAGLI ERRORE: Errore scrittura curl. Prova a spostare il patche
 set string487=SOLUZIONE: Installa il .NET Framework più recente, e riprova.
 
 set string488=SD Card
+set string489=Start File Explorer.
