@@ -441,7 +441,7 @@ set string426=Nós aguardamos a sua volta :)
 set string427=Pressione qualquer tecla para sair do patcher.
 
 set string428=O servidor de atualização da Nintendo (NUS) está fora do ar no momento. O patcher precisa desse servidor para funcionar.
-set string429=Isso provavelmente significa que está ocorrendo uma manuntenção no servidor atualmente.
+set string429=Isso provavelmente significa que está ocorrendo uma manutenção no servidor atualmente.
 set string430=Por favor volte depois^!
 set string431=Preparando...
 
@@ -452,7 +452,7 @@ Forecast/News Channel
 set string436=Por favor conecte o Cartão SD do Wii no seu computador.
 set string437=O processo a seguir vai baixar 170MB de dados.
 
-set string438=Sabia que o Wii foi o videogame mais vendido de 2006?
+set string438=Sabia que o Wii foi o console videogame mais vendido de 2006?
 set string439=Sabia que o KcrPL faz esses patchers incríveis?
 set string440=Originalmente, o RiiConnect24 começou como "CustomConnect24"!
 set string441=Você sabia que o logotipo do RiiConnect24 foi feito pelo NeoRame, a mesma pessoa que fez o logo do Wiimmfi?
