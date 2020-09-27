@@ -484,12 +484,12 @@ set string466=O globo no canais de Notícias e Meteorologia é baseado em imagen
 set string467=Você pode pressionar o botão Reset no Wii enquanto está desligado para desligar a luz azul que brilha quando você recebe uma mensagem.
 
 set string468=Patcheando IOSs
-set string469=Patcheando Canal de Notícias/Previsão do Tempo
+set string469=Patcheando Canal de Notícias/Meteorologia
 set string470=Não se preocupe^! Pode ser que demore um pouco... Agora copiando arquivos ao Cartão SD...
-set string471=Por favor conecte o Cartão SD do Wii e copie as pastas apps e WAD a pasta principal do Cartão SD. Você pode achar estas pastas perto do arquivo RiiConnect24Patcher.bat
+set string471=Por favor conecte seu Cartão SD do Wii e copie as pastas apps e WAD para a raiz (pasta principal) do seu Cartão SD. Você pode achar estas pastas perto do arquivo RiiConnect24Patcher.bat
 set string472=Cada arquivo está em seu lugar no Cartão SD^!
 set string473=Você pode achar estas pastas perto do arquivo RiiConnect24Patcher.bat.
-set string474=Por favor continue com o tutorial que você pode achar em https://wii.guide/riiconnect24
+set string474=Por favor prossiga com o tutorial que você pode achar em https://wii.guide/riiconnect24
 
 set string475=Muito obrigado por usar este patcher^! :)
 set string476=Se diverta usando o RiiConnect24^!
