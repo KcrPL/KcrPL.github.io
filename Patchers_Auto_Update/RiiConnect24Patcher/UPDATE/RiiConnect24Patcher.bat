@@ -5217,7 +5217,7 @@ echo 3. %string319%
 echo.
 echo 4. %string320%
 echo 5. %string321%
-echo 6. %string489%
+if %preboot_environment%==1 echo 6. %string489%
 echo.
 set /p s=%string26%: 
 if %s%==1 goto direct_install_bulk
