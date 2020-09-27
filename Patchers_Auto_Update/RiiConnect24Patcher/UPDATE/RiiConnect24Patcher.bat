@@ -6,7 +6,7 @@ echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: RiiConnect24 Patcher for Windows
-set version=1.3.0.3
+set version=1.3.0.4
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2018-2020 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -54,8 +54,8 @@ set hh=0
 :: Window Title
 if %beta%==0 title RiiConnect24 Patcher v%version% Created by @KcrPL
 if %beta%==1 title RiiConnect24 Patcher v%version% [BETA] Created by @KcrPL
-set last_build=2020/09/26
-set at=12:57
+set last_build=2020/09/27
+set at=22:23
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
@@ -5203,7 +5203,7 @@ echo.
 echo [*] %string276%
 echo   ^> %string277%
 echo.
-echo %string278% %username%^^! %string315%
+echo %string278% %username%^! %string315%
 if %direct_install_del_done%==1 echo.
 if %direct_install_del_done%==1 echo :------------------------------------------:
 if %direct_install_del_done%==1 echo  %string316%
@@ -5441,6 +5441,8 @@ setlocal enableDelayedExpansion
 if exist installation_error_log.txt del /q installation_error_log.txt
 set /a error_count=0
 
+if not exist "%sdcard%:\WAD" md "%sdcard%:\WAD">NUL
+
 
 for %%f in ("wad2bin\*.wad") do (
 
@@ -5472,11 +5474,11 @@ echo  %string337%
 echo  %string338%
 echo.
 setlocal disableDelayedExpansion
-if not "%counter%"=="0" echo %string491% %error_count% %string492%
-if not "%counter%"=="0" echo %string493%
-if not "%counter%"=="0" pause>NUL
-if not "%counter%"=="0" start "" "installation_error_log.txt"
-if not "%counter%"=="0" goto direct_install_sdcard_main_menu
+if not "%error_count%"=="0" echo %string491% %error_count% %string492%
+if not "%error_count%"=="0" echo %string493%
+if not "%error_count%"=="0" pause>NUL
+if not "%error_count%"=="0" start "" "installation_error_log.txt"
+if not "%error_count%"=="0" goto direct_install_sdcard_main_menu
 
 echo %string294%
 pause>NUL

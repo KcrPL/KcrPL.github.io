@@ -1,3 +1,6 @@
+1.3.0.4
+- Fixed some bugs in wad2bin.
+
 1.3.0.3
 - wad2bin will now ignore errors and log them in a text file if bulk installing.
 - Fixed Wii U Patching.
