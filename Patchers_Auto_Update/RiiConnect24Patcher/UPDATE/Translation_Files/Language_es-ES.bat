@@ -508,3 +508,7 @@ set string487=SOLUCIÓN: Por favor, instala la ultima versión de .NET Framework
 
 set string488=SD Card
 set string489=Start File Explorer.
+set string490=Installation failed for WAD:
+set string491=Installation failed for:
+set string492=WAD(s)
+set string493=Pressing any key will open the error log and return to main menu.
