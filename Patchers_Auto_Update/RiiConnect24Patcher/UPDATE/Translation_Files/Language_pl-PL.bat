@@ -507,8 +507,8 @@ set string486=INFORMACJE O BŁĘDZIE: Błąd zapisu curl. Spróbuj skopiować pa
 set string487=ROZWIĄZANIE: Zainstaluj najnowszy .NET Framework oraz spróbuj ponownie.
 
 set string488=Karta SD
-set string489=Start File Explorer.
-set string490=Installation failed for WAD:
-set string491=Installation failed for:
-set string492=WAD(s)
-set string493=Pressing any key will open the error log and return to main menu.
+set string489=Uruchom przeglądarkę plików.
+set string490=Instalacja zakończona niepowodzeniem dla pliku WAD:
+set string491=Instalacja zakończona niepowodzeniem dla:
+set string492=plików WAD
+set string493=Naciśnij dowolny przycisk aby uruchomić log z błędami oraz aby powrócić do głównego menu.
