@@ -1,3 +1,7 @@
+1.3.0.3
+- wad2bin will now ignore errors and log them in a text file if bulk installing.
+- Fixed Wii U Patching.
+
 1.3.0.2
 - Fixed crashing that would occur on some configurations.
 
@@ -20,10 +24,3 @@ This is a big update - please make sure to report any bugs to me and I'll try to
 
 Thank you for using RiiConnect24 Patcher. It took me and the translation team a lot of time and effort to get this working.
 We hope you'll like this update. 
-
-1.2.5.4
-- Patching on a Windows computer with Turkish language would result in an error when applying patches to News Channel. This is fixed now.
-
-1.2.5.3
-- Enabling or disabling News/Forecast Channel in Custom installation would do nothing. This is fixed now.
-- Curl download incase it's missing will less likely fail now and the instructions are more clear.
