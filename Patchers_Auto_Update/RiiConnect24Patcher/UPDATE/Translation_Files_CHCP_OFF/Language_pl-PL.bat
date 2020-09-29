@@ -1,4 +1,4 @@
-if "%1"=="-chcp" chcp 65001
+if "%1"=="-chcp" chcp 65001>NUL
 :: Should be available locally
 set string1=RiiConnect your Wii.
 set string2=Rozpocznij
@@ -89,7 +89,7 @@ set string77=Nacisnij dowolny przycisk aby otworzyc strone pobierania w przeglad
 
 set string78=Sprawdzanie aktualizacji...
 set string79=Dostepna jest aktualizacja.
-set string80=Dostepna jest aktualizacja dla tego programu. Zalecamy aktualizacje RiiConnect24 Patcher'a do najnowsze jwersji.
+set string80=Dostepna jest aktualizacja dla tego programu. Zalecamy aktualizacje RiiConnect24 Patcher'a do najnowszej wersji.
 set string81=Obecna wersja
 set string82=Nowa wersja
 set string83=Aktualizuj
@@ -507,3 +507,17 @@ set string486=INFORMACJE O BLEDZIE: Blad zapisu curl. Sprobuj skopiowac patcher 
 set string487=ROZWIAZANIE: Zainstaluj najnowszy .NET Framework oraz sprobuj ponownie.
 
 set string488=Karta SD
+set string489=Uruchom przegladarke plikow.
+set string490=Instalacja zakonczona niepowodzeniem dla pliku WAD:
+set string491=Instalacja zakonczona niepowodzeniem dla:
+set string492=plikow WAD
+set string493=Nacisnij dowolny przycisk aby uruchomic log z bledami oraz aby powrocic do glownego menu.
+
+set string494=It looks like you're missing Visual C++ Redistributable on your computer.
+set string495=It is required to run one of our tools.
+set string496=We can automatically install it for you.
+set string497=What do you say?
+set string498=Yes, please.
+set string499=This will install Visual C++ Redistributable
+set string500=No, I'll install it manually.
+set string501=Installing

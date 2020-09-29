@@ -1,4 +1,4 @@
-if "%1"=="-chcp" chcp 65001
+if "%1"=="-chcp" chcp 65001>NUL
 :: Should be available locally
 set string1=RiiConnecte deine Wii.
 set string2=Anfang
@@ -507,4 +507,18 @@ set string485=LOSUNG: Bitte uberprufe deine Internetverbindung.
 set string486=FEHLERDETAILS: Fehler beim Schreiben von curl. Versuche, den Patcher auf den Desktop zu verschieben, und versuche es erneut.
 set string487=LOSUNG: Bitte installiere das neueste .NET Framework und versuche es erneut.
 
-set string488=SD Card
+set string488=SD-Karte
+set string489=Starte Dateimanager.
+set string490=Installation fehlgeschlagen fur WAD:
+set string491=Installation fehlgeschlagen fur:
+set string492=WAD(s)
+set string493=Das drucken einer beliebigen Taste offnet das Fehlerprotokoll und bringt dich zuruck ins Hauptmenu.
+
+set string494=It looks like you're missing Visual C++ Redistributable on your computer.
+set string495=It is required to run one of our tools.
+set string496=We can automatically install it for you.
+set string497=What do you say?
+set string498=Yes, please.
+set string499=This will install Visual C++ Redistributable
+set string500=No, I'll install it manually.
+set string501=Installing

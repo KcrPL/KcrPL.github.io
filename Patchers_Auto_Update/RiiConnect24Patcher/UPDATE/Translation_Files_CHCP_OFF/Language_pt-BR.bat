@@ -1,4 +1,4 @@
-if "%1"=="-chcp" chcp 65001
+if "%1"=="-chcp" chcp 65001>NUL
 :: Should be available locally
 set string1=RiiConecte seu Wii.
 set string2=Iniciar
@@ -441,7 +441,7 @@ set string426=Nos aguardamos a sua volta :)
 set string427=Pressione qualquer tecla para sair do patcher.
 
 set string428=O servidor de atualizacao da Nintendo (NUS) esta fora do ar no momento. O patcher precisa desse servidor para funcionar.
-set string429=Isso provavelmente significa que esta ocorrendo uma manuntencao no servidor atualmente.
+set string429=Isso provavelmente significa que esta ocorrendo uma manutencao no servidor atualmente.
 set string430=Por favor volte depois^!
 set string431=Preparando...
 
@@ -452,44 +452,44 @@ Forecast/News Channel
 set string436=Por favor conecte o Cartao SD do Wii no seu computador.
 set string437=O processo a seguir vai baixar 170MB de dados.
 
-set string438=Sabia que o Wii foi o videogame mais vendido de 2006?
+set string438=Sabia que o Wii foi o console videogame mais vendido de 2006?
 set string439=Sabia que o KcrPL faz esses patchers incriveis?
 set string440=Originalmente, o RiiConnect24 comecou como "CustomConnect24"!
 set string441=Voce sabia que o logotipo do RiiConnect24 foi feito pelo NeoRame, a mesma pessoa que fez o logo do Wiimmfi?
 set string442=Durante seu desenvolvimento, o Wii foi chamado de Revolution.
 set string443=Sabia que as letras do numero de modelo do Wii RVL significa o codinome do Wii, Revolution?
-set string444=A musica usada em varios dos canais do Wii (inclui a Loja do Wii, Mii, Check Mii Out e Previsao do Tempo) foi feito por Kazumi Totaka.
-set string445=O Internet Channel so custava 500 Wii Points.
-set string446=E possivel usar velas como uma sensor bar.
-set string447=A luz azul do Wii e sincronizada com o canto de passaro da toutinegra japonesa. Mais informacoes no canal do YouTube do RiiConnect24!
+set string444=A musica usada em varios dos canais do Wii (inclui a Loja do Wii, Mii, Check Mii Out e Previsao do Tempo) foi feita por Kazumi Totaka.
+set string445=O Canal de Internet antes custava 500 Wii Points.
+set string446=E possivel usar velas como uma barra de sensor do Wii.
+set string447=A luz azul piscante que indica que uma mensagem de sistema foi recebida e sincronizada com o canto de passaro da toutinegra japonesa. Mais informacoes no canal do YouTube do RiiConnect24!
 set string448=WiiSports foi o jogo mais vendido do Wii. Ele vendeu 82.85 milhoes. E ele e o terceiro jogo mais vendido do mundo.
 set string449=Voce sabia que a maioria dos scripts usados para fazer o RiiConnect24 funcionar foram feitos em Python?
 set string450=Obrigado ao Spotlight por fazer o sistema de mensagens seguro.
 set string451=Sabia que temos um servidor de Discord legal onde voce pode ficar atualizado sobre o status do projeto?
-set string452=O Everybody Votes Channel foi originalmente uma idea sobre mandar quizzes e responder questoes diariamente no Wii.
-set string453=Os desenvolvedores do Canal de Noticias tinha uma ideia em algum ponto de fazer o pai de um Mii o apresentador no canal, mas provavelmente nao conseguiu aparecer porque algumas manchetes nao eram apropriadas para criancas.
-set string454=O canal Everybody Votes foi originalmente chamado de the Questionnaire Channel, e depois de Citizens Vote.
+set string452=O Canal Everybody Votes foi originalmente uma idea sobre mandar quizzes e perguntas diariamente aos Wiis.
+set string453=Os desenvolvedores do Canal de Noticias tinham uma ideia em algum ponto de fazer o Mii de um pai ser o apresentador no canal, mas provavelmente nao se concretizou porque algumas historias ali podem nao ser apropriadas para criancas.
+set string454=O Canal Everybody Votes foi originalmente chamado de Questionnaire Channel (canal do questionario), e depois de Citizens Vote Channel (canal voto dos cidadaos).
 set string455=O canal de previsao do tempo tinha um "indice de lavagem de roupa" (para mostrar quao apropriado estava para secar suas roupas la fora) e tambem uma contagem de polen na versao japonesa.
-set string456=No desenvolvimento do Forecast Channel, o departamento da Nintendo da America foi atingido por um trovao, e eles perderam contato com os desenvolvedores do canal do Japao.
-set string456=No desenvolvimento do Canal de Previsao de Tempo, o departamento da Nintendo da America foi atingido por um trovao, e eles perderam contato com os desenvolvedores do canal do Japao.
-set string458=O canal de noticias tem uma musica alternativa de slideshow que toca na noite.
-set string459=Durante a E3 de 2006, Satoru Iwata falou que o WiiConnect24 usa tanta eletricidade quanta uma luz desligada enquanto o console esta desligado.
-set string460=O efeito usado quando esta rapidamente fazendo zoom nas fotos no Canal de Fotos foi implementado no Canal de Noticias para fazer zoom de texto.
-set string461=Os gatos de ajuda no Canal de Noticias e Canal de Fotos sao irmaos de irmas (Os no Canal de Noticias sendo machos, e no Canal de Fotos femeas).
-set string462=A versao japonesa do Forecast Channel nao mostra a previsao atual.
-set string463=O Forecast Channel, News Channel e o Photo Channel foram feitas por quase a mesma equipe.
-set string464=A primeira questao mundial do Everybody Votes Channel era sobre se voce gostava mais de caes ou gatos, e recebeu mais de 500 mil votos.
-set string465=A musica de noite que toca no Forecast Channel foi feita antes da musica de dia, ela foi solicitada para que as pessoas nao ficassem sonolentas durante o dia.
-set string466=O globo no canal de Noticias e Previsao de Tempo e baseado sobre imagens da NASA, e o mesmo globo foi usado no Mario Kart Wii.
-set string467=Voce pode pressionar o botao RESET no Wii enquanto esta desligado para desligar a luz azul.
+set string456=No desenvolvimento do Canal de Meteorologia, o departamento da Nintendo da America foi atingido por um raio, e eles perderam contato com os desenvolvedores do canal do Japao.
+set string456=No desenvolvimento do Canal de Meteorologia, o departamento da Nintendo da Europa foi atingido por uma tempestade enorme, e eles perderam contato com os desenvolvedores do canal do Japao.
+set string458=O Canal de Noticias tem uma musica alternativa de slideshow que toca a noite.
+set string459=Durante a E3 de 2006, Satoru Iwata falou que o WiiConnect24 usa tanta eletricidade quanta uma lampada miniatura enquanto o console esta parado.
+set string460=O efeito usado quando esta rapidamente fazendo e tirando zoom nas fotos no Canal de Fotos foi implementado no Canal de Noticias para fazer zoom de texto.
+set string461=Os gatos de ajuda no Canal de Noticias e Canal de Fotos sao irmaos e irmas (O do Canal de Noticias sendo homem, e a do Canal de Fotos mulher, e mais jovem).
+set string462=A versao japonesa do Canal de Meteorologia nao mostra a previsao atual.
+set string463=O Canal de Meteorologia, Canal de Noticias e o Canal de Fotos foram feitos por quase a mesma equipe.
+set string464=A primeira questao mundial do Canal Everybody Votes era sobre se voce gostava mais de caes ou gatos, e recebeu mais de 500 mil votos.
+set string465=A musica de noite que toca ao ver a previsao local no Canal de Meteorologia foi feita antes da musica de dia, que foi solicitada para que as pessoas nao ficassem sonolentas quanto tocasse durante o dia.
+set string466=O globo no canais de Noticias e Meteorologia e baseado em imagens da NASA, e o mesmo globo foi usado no Mario Kart Wii.
+set string467=Voce pode pressionar o botao Reset no Wii enquanto esta desligado para desligar a luz azul que brilha quando voce recebe uma mensagem.
 
 set string468=Patcheando IOSs
-set string469=Patcheando Canal de Noticias/Previsao do Tempo
+set string469=Patcheando Canal de Noticias/Meteorologia
 set string470=Nao se preocupe^! Pode ser que demore um pouco... Agora copiando arquivos ao Cartao SD...
-set string471=Por favor conecte o Cartao SD do Wii e copie as pastas apps e WAD a pasta principal do Cartao SD. Voce pode achar estas pastas perto do arquivo RiiConnect24Patcher.bat
+set string471=Por favor conecte seu Cartao SD do Wii e copie as pastas apps e WAD para a raiz (pasta principal) do seu Cartao SD. Voce pode achar estas pastas perto do arquivo RiiConnect24Patcher.bat
 set string472=Cada arquivo esta em seu lugar no Cartao SD^!
 set string473=Voce pode achar estas pastas perto do arquivo RiiConnect24Patcher.bat.
-set string474=Por favor continue com o tutorial que voce pode achar em https://wii.guide/riiconnect24
+set string474=Por favor prossiga com o tutorial que voce pode achar em https://wii.guide/riiconnect24
 
 set string475=Muito obrigado por usar este patcher^! :)
 set string476=Se diverta usando o RiiConnect24^!
@@ -507,3 +507,17 @@ set string486=DETALHES DO ERRO: Erro na escrita Curl. Tente mover o patcher para
 set string487=Solucao: Por favor instale o .NET Framework mais recente e tente novamente.
 
 set string488=SD Card
+set string489=Start File Explorer.
+set string490=Installation failed for WAD:
+set string491=Installation failed for:
+set string492=WAD(s)
+set string493=Pressing any key will open the error log and return to main menu.
+
+set string494=It looks like you're missing Visual C++ Redistributable on your computer.
+set string495=It is required to run one of our tools.
+set string496=We can automatically install it for you.
+set string497=What do you say?
+set string498=Yes, please.
+set string499=This will install Visual C++ Redistributable
+set string500=No, I'll install it manually.
+set string501=Installing

@@ -1,4 +1,4 @@
-if "%1"=="-chcp" chcp 65001
+if "%1"=="-chcp" chcp 65001>NUL
 :: Should be available locally
 set string1=Bale to RiiConnect24 sto Wii sou.
 set string2=Ksekina
@@ -62,51 +62,51 @@ set string55=[DEN ETAN EPITUKhES E ALLAGE SE PEIRAMATIKE EKDOSE]
 
 set string56=PERIMENE
 set string57=Prospatheite na apenergopoiesete tis enemeroseis;
-set string58=Please do remember that updates will keep you safe and updated about the patcher.
-set string59=Only use this option for debugging and troubleshooting.
-set string60=Are you sure that you want to disable autoupdating?
+set string58=Parakaloume thumesou pos oi enemeroseis se kratoun asphale kai enemeromeno gia to programma.
+set string59=Khresimopoiese aute ten epiloge mono gia apophalmatose kai epiluse problematon.
+set string60=Eisai sigouros pos thes na apenergopoieseis ten automate enemerose;
 
 set string61=Nai
 set string62=Okhi, pegainete piso.
 
 set string63=Allage khromatos:
 set string64=Skouro thema
-set string65=Light theme *please don't hurt my eyes edition*
-set string66=Light theme *please hurt my eyes edition*
+set string65=Photeino thema *ekdose me mou khalaseis ta matia*
+set string66=Skouro thema *ekdose khalase mou ta matia*
 set string67=Kitrino
 set string68=Prasino
 set string69=Kokkino
 set string70=Mple
 
 set string71=Ginetai lepse tou curl... Parakalo perimenete.
-set string72=This can take some time...
+set string72=Auto mporei na parei lige ora...
 
 set string73=SPhALMA.
-set string74=There was an error while downloading curl.
-set string75=We will now open a website that will download curl.exe.
-set string76=Please move curl.exe to the folder where RiiConnect24 Patcher is and restart the patcher.
-set string77=Press any key to open download page in browser and to return to menu.
+set string75=Sphalma kata te lepse tou curl.
+set string75=Tora tha anoixoume mia istoselida pou tha katebasei to curl.exe.
+set string76=Parakaloume metakinese to curl.exe sto phakelo opou brisketai to RiiConnect24 Patcher kai epanekkinese to programma.
+set string77=Pata opoiodepote plektro gia na anoixeis te selida lepses kai na epistrepseis sto menou.
 
-set string78=Checking for updates...
-set string79=An Update is available.
-set string80=An Update for this program is available. We suggest updating the RiiConnect24 Patcher to the latest version.
-set string81=Current version
-set string82=New version
-set string83=Update
-set string84=Dismiss
-set string85=What's new in this update?
-set string86=Updating.
-set string87=Please wait...
-set string88=RiiConnect24 Patcher will restart shortly...
-set string89=There was an error while downloading the update assistant.
-set string90=Press any key to return to main menu.
-set string91=What's new in update
-set string92=Error. What's new file is not available.
-set string93=Press any button to go back.
+set string78=Elegkhos gia enemeroseis...
+set string79=Bretheke diathesime enemerose.
+set string80=Mia enemerose gia auto to programma einai diathesime. Proteinoume na enemeroseis to RiiConnect24 Patcher sten teleutaia ekdose.
+set string81=Egkatestemene ekdose
+set string82=Nea ekdose
+set string83=Enemerose
+set string84=Aporripse
+set string85=Ti neo uparkhei;
+set string86=Enemerose.
+set string87=Parakaloume perimene...
+set string88=To programma tha epanekkinethei suntoma...
+set string89=Uperxe ena sphalma kata te lepse tou boethou enemeroses.
+set string90=Para opoiodepote plektro gia epistrophe sto basiko menou.
+set string95=Ti neo uparkhei
+set string92=Sphalma. To arkheio "ti neo uparkhei" den einai diathesimo.
+set string93=Pata opoiodepote plektro gia na epistrepseis piso.
 :: Local end
 
 :: Must be available online
-set string100=Welcome to the Homebrew Shop.
+set string100=Kaloselthes sto katastema Homebrew.
 set string101=Before downloading any homebrew, do you want to enable automatic installation on your SD Card?
 set string102=Yes, detect the SD Card.
 set string103=No, I'll install them manually.
@@ -507,3 +507,17 @@ set string486=ERROR DETAILS: Curl write error. Try moving the patcher to desktop
 set string487=SOLUTION: Please install latest .NET Framework, then try again.
 
 set string488=SD Card
+set string489=Start File Explorer.
+set string490=Installation failed for WAD:
+set string491=Installation failed for:
+set string492=WAD(s)
+set string493=Pressing any key will open the error log and return to main menu.
+
+set string494=It looks like you're missing Visual C++ Redistributable on your computer.
+set string495=It is required to run one of our tools.
+set string496=We can automatically install it for you.
+set string497=What do you say?
+set string498=Yes, please.
+set string499=This will install Visual C++ Redistributable
+set string500=No, I'll install it manually.
+set string501=Installing
