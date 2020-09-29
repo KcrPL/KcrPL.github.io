@@ -6,7 +6,7 @@ echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: RiiConnect24 Patcher for Windows
-set version=1.3.0.4
+set version=1.3.0.5
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2018-2020 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -54,8 +54,8 @@ set hh=0
 :: Window Title
 if %beta%==0 title RiiConnect24 Patcher v%version% Created by @KcrPL
 if %beta%==1 title RiiConnect24 Patcher v%version% [BETA] Created by @KcrPL
-set last_build=2020/09/27
-set at=22:23
+set last_build=2020/09/29
+set at=22:08
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
@@ -2294,7 +2294,7 @@ set string287=Press any key to go back to main menu.
 set string288=Cannot continue until you set the path.
 set string289=We can now continue.
 set string290=Connected, scan again
-set strgng291=Please wait... I'm currently installing xyzzy-mod on your SD Card.
+set string291=Please wait... I'm currently installing xyzzy-mod on your SD Card.
 set string292=There was an error while downloading xazzy-mod to your  SD Card.
 set string293=Please try again.
 set string294=Press any key to go back.
@@ -2504,6 +2504,16 @@ set string490=Installation failed for WAD:
 set string491=Installation failed for:
 set string492=WAD(s)
 set string493=Pressing any key will open the error log and return to main menu.
+
+
+set string494=It looks like you're missing Visual C++ Redistributable on your computer.
+set string495=It is required to run one of our tools.
+set string496=We can automatically install it for you.
+set string497=What do you say?
+set string498=Yes, please.
+set string499=This will install Visual C++ Redistributable
+set string500=No, I'll install it manually.
+set string501=Installing
 
 exit /b
 
@@ -7294,6 +7304,7 @@ if %custominstall_cmoc%==1 if %evcregion%==1 cd 0001000148415050v512
 if %custominstall_cmoc%==1 if %processor_architecture%==x86 if %evcregion%==1 call NUS_Downloader_Decrypt.exe >NUL
 if %custominstall_cmoc%==1 if %processor_architecture%==AMD64 if %evcregion%==1 call NUS_Decryptor_x64.exe cetk>NUL
 if %custominstall_cmoc%==1 if %evcregion%==2 cd 0001000148415045v512
+if %custominstall_cmoc%==1 if %processor_architecture%==x86 if %evcregion%==2 call NUS_Downloader_Decrypt.exe >NUL
 if %custominstall_cmoc%==1 if %processor_architecture%==AMD64 if %evcregion%==2 call NUS_Decryptor_x64.exe cetk>NUL
 if %custominstall_cmoc%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_cmoc%==1 set modul=Decrypter error
@@ -7568,6 +7579,7 @@ goto begin_main
 :error_patching
 if "%temperrorlev%"=="6" goto no_internet_connection
 if "%temperrorlev%"=="7" goto no_internet_connection
+if "%modul%"=="Decrypter error" if "%processor_architecture%"=="AMD64" if "%temperrorlev%"=="-1" goto install_vc_plus_plus_redist
 if "%modul%"=="Renaming files [Delete everything except RiiConnect24Patcher.bat]" goto troubleshooting_auto_tool
 if "%percent%"=="1" goto troubleshooting_auto_tool
 cls
@@ -7609,6 +7621,51 @@ echo                                   -odhhhhyddmmmmmNNmhs/:`
 echo                                     :syhdyyyyso+/-`                   
 pause>NUL
 goto begin_main
+
+:install_vc_plus_plus_redist
+cls
+echo.
+echo %header%
+echo ---------------------------------------------------------------------------------------------------------------------------
+echo.
+echo %string494%
+echo %string495%
+echo.
+echo %string496%
+echo.
+echo %string497%
+echo.
+echo 1. %string498% (%string499%)
+echo 2. %string500%
+echo.
+set /p s=%string26%:
+if %s%==1 goto install_vc_plus_plus_redist_2
+if %s%==2 goto begin_main
+
+goto install_vc_plus_plus_redist
+
+:install_vc_plus_plus_redist_2
+cls
+echo.
+echo %header%
+echo ---------------------------------------------------------------------------------------------------------------------------
+echo.
+echo %string87%
+echo %string501%...
+curl -f -L -s -S --insecure "%FilesHostedOn%/VC_redist.x64.exe" --output VC_redist.x64.exe
+
+"VC_redist.x64.exe" /install /passive /norestart>NUL
+
+del /q "VC_redist.x64.exe"
+
+
+goto 2_2
+
+
+
+
+
+
 
 
 :: The end - what did you expect? Join our Discord server! https://discord.gg/b4Y7jfD 
