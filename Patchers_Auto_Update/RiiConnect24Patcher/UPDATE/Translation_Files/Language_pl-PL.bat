@@ -512,3 +512,12 @@ set string490=Instalacja zakończona niepowodzeniem dla pliku WAD:
 set string491=Instalacja zakończona niepowodzeniem dla:
 set string492=plików WAD
 set string493=Naciśnij dowolny przycisk aby uruchomić log z błędami oraz aby powrócić do głównego menu.
+
+set string494=It looks like you're missing Visual C++ Redistributable on your computer.
+set string495=It is required to run one of our tools.
+set string496=We can automatically install it for you.
+set string497=What do you say?
+set string498=Yes, please.
+set string499=This will install Visual C++ Redistributable
+set string500=No, I'll install it manually.
+set string501=Installing
