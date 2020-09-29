@@ -508,8 +508,8 @@ set string486=FEHLERDETAILS: Fehler beim Schreiben von curl. Versuche, den Patch
 set string487=LÖSUNG: Bitte installiere das neueste .NET Framework und versuche es erneut.
 
 set string488=SD-Karte
-set string489=Start File Explorer.
-set string490=Installation failed for WAD:
-set string491=Installation failed for:
+set string489=Starte Dateimanager.
+set string490=Installation fehlgeschlagen für WAD:
+set string491=Installation fehlgeschlagen für:
 set string492=WAD(s)
-set string493=Pressing any key will open the error log and return to main menu.
+set string493=Das drücken einer beliebigen Taste öffnet das Fehlerprotokoll und bringt dich zurück ins Hauptmenü.
