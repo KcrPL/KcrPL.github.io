@@ -442,20 +442,20 @@ set string427=Appuyez sur n'importe quelle touche pour quitter le patcher.
 
 set string428=Le serveur de mise à jour Nintendo (NUS) est actuellement hors service. Patcher a besoin de ce serveur pour fonctionner.
 set string429=Cela signifie probablement qu'une maintenance est en cours sur le serveur.
-set string430=Please come back later^!
+set string430=Merci de revenir plus tard^!
 set string431=Préparer...
 
-set string432=Install RiiConnect24.
-set string433=This will patch every channel for later use on your Wii. Cela inclus:
-set string434=IOS Patches [required for other channels to work]
+set string432=Installez Riiconnect24.
+set string433=Cela mettra à jour chaque chaîne pour une utilisation ultérieure sur votre Wii. Cela inclus:
+set string434=Correctifs IOS [requis pour que les autres canaux fonctionnent]
 set string435=Chaîne météo/Chaîne infos
-set string436=Please connect your Wii SD Card to the computer.
-set string437=The following process will download about 170MB of data.
+set string436=Veuillez connecter votre carte SD Wii à l'ordinateur.
+set string437=Le processus suivant téléchargera environ 170 Mo de données.
 
-set string438=Did you know the wii was the best selling game-console of 2006?
-set string439=Did you know KcrPL makes these amazing patchers?
-set string440=RiiConnect24 originally started out as "CustomConnect24"!
-set string441=Did you the RiiConnect24 logo was made by NeoRame, the same person who made the Wiimmfi logo?
+set string438=Saviez-vous que la Wii était la console de jeu la plus vendue de 2006?
+set string439=Saviez-vous que KcrPL fabrique ces correcteurs incroyables?
+set string440=RiiConnect24 a commencé à l'origine sous le nom de "CustomConnect24"!
+set string441=Le logo RiiConnect24 a-t-il été créé par NeoRame, la même personne qui a créé le logo Wiimmfi?
 set string442=The Wii was nicknamed "Revolution" during its development stage.
 set string443=Did you know the letters in the Wii model number RVL stand for the Wii's codename, Revolution?
 set string444=The music used in many of the Wii's channels (including the Wii Shop, Mii, Check Mii Out, and Forecast Channel) was composed by Kazumi Totaka.
