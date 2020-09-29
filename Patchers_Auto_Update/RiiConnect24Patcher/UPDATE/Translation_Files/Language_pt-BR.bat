@@ -498,12 +498,12 @@ set string477=Fechando o patcher em:
 set string478=Não há uma conexão com a internet.
 set string479=Não foi possível conectar ao servidor remoto.
 set string480=Verifique sua conexão com a internet ou verifique se seu firewall não está blockeando o curl.
-set string481=Ocorreu um erro patcheando.
+set string481=Ocorreu um erro ao patchear.
 set string482=Código do erro
 set string483=Módulo falhando
 set string484=DICA: Considere desligar o seu antivírus temporariamente.
-set string485=SOLUÇÃO: Verifique sua conexão a internet.
-set string486=DETALHES DO ERRO: Erro na escrita Curl. Tente mover o patcher para a área de trabalho e tente novamente.
+set string485=SOLUÇÃO: Favor verifique sua conexão a internet.
+set string486=DETALHES DO ERRO: Erro ao escrever no Curl. Tente mover o patcher para a área de trabalho e tente novamente.
 set string487=Solução: Por favor instale o .NET Framework mais recente e tente novamente.
 
 set string488=SD Card
