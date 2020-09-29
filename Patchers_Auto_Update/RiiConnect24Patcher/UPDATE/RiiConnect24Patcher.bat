@@ -6,7 +6,7 @@ echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: RiiConnect24 Patcher for Windows
-set version=1.3.0.5
+set version=1.3.0.6
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2018-2020 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -55,7 +55,7 @@ set hh=0
 if %beta%==0 title RiiConnect24 Patcher v%version% Created by @KcrPL
 if %beta%==1 title RiiConnect24 Patcher v%version% [BETA] Created by @KcrPL
 set last_build=2020/09/29
-set at=22:08
+set at=22:48
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
@@ -7388,8 +7388,8 @@ if %custominstall_nc%==1 if not %temperrorlev%==0 goto error_patching
 goto patching_fast_travel_100
 :patching_fast_travel_88
 if %custominstall_nc%==1 if %evcregion%==1 cd 0001000148415450v1792
-if %custominstall_nc%==1 if %processor_architecture%==x86 call NUS_Downloader_Decrypt.exe >NUL
 if %custominstall_nc%==1 if %evcregion%==2 cd 0001000148415445v1792
+if %custominstall_nc%==1 if %processor_architecture%==x86 call NUS_Downloader_Decrypt.exe >NUL
 if %custominstall_nc%==1 if %processor_architecture%==AMD64 call NUS_Decryptor_x64.exe cetk>NUL
 if %custominstall_nc%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_nc%==1 set modul=Decrypter error
