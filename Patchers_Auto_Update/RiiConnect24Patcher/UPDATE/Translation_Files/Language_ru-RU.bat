@@ -1,4 +1,4 @@
-if "%1"=="-chcp" chcp 65001
+if "%1"=="-chcp" chcp 65001>NUL
 :: Should be available locally
 set string1=RiiConnect'ните ваш Wii.
 set string2=Начать
@@ -174,10 +174,10 @@ set string157=Патчер проведёт вас через процесс у�
 set string158=Прочие инструменты
 set string159=Запатчить Wii WAD игры для работы с Wiimmfi.
 set string160=Это запатчит WAD игры (WiiWare) для работы с Wiimmfi которые вам позволят вам играть онлайн с другими людьми.
-set string161=Запатчить Mario Kart Wi для работы с Wiimmfi.
-set string162=Это запатчит вашу копию Mario Kart Wi для работы с Wiimmfi который вернёт возможность играть онлайн с другими людьми.
+set string161=Запатчить Mario Kart Wii для работы с Wiimmfi.
+set string162=Это запатчит вашу копию Mario Kart Wii для работы с Wiimmfi который вернёт возможность играть онлайн с другими людьми.
 set string163=Запатчить другие Wii игры для работы с Wiimmfi.
-set string164=Это запатчит любую игру кроме Mario Kart Wiiдля работы с Wiimmfi.
+set string164=Это запатчит любую игру кроме Mario Kart Wii для работы с Wiimmfi.
 set string165=Навестить Homebrew Shop
 set string166=Скачать и установить homebrew на вашу SD-карту используя Open Shop Channel.
 set string192=Установить WAD файлы на SD-карту напрямую.
@@ -509,3 +509,17 @@ set string486=ДЕТАЛИ О ОШИБКЕ: Ошибка записи curl. По
 set string487=РЕШЕНИЕ: Пожалуйста установите последний .NET Framework и попробуйте ещё раз.
 
 set string488=SD-карта
+set string489=Запустить проводник.
+set string490=Установка не удалась для WAD:
+set string491=Установка не удалась для:
+set string492=WAD(ы)
+set string493=Нажатие на любую кнопку откроет журнал ошибок и вернёт в главное меню.
+
+set string494=It looks like you're missing Visual C++ Redistributable on your computer.
+set string495=It is required to run one of our tools.
+set string496=We can automatically install it for you.
+set string497=What do you say?
+set string498=Yes, please.
+set string499=This will install Visual C++ Redistributable
+set string500=No, I'll install it manually.
+set string501=Installing

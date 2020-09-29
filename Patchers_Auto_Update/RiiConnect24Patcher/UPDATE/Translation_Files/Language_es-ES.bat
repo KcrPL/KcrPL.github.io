@@ -1,4 +1,4 @@
-if "%1"=="-chcp" chcp 65001
+if "%1"=="-chcp" chcp 65001>NUL
 :: Should be available locally
 set string1=RiiConecta tu Wii.
 set string2=Iniciar
@@ -507,3 +507,17 @@ set string486=DETALLES DEL ERROR: Error con la escritura de Curl. Prueba moviend
 set string487=SOLUCIÓN: Por favor, instala la ultima versión de .NET Framework y vuelve a intentarlo.
 
 set string488=SD Card
+set string489=Start File Explorer.
+set string490=Installation failed for WAD:
+set string491=Installation failed for:
+set string492=WAD(s)
+set string493=Pressing any key will open the error log and return to main menu.
+
+set string494=It looks like you're missing Visual C++ Redistributable on your computer.
+set string495=It is required to run one of our tools.
+set string496=We can automatically install it for you.
+set string497=What do you say?
+set string498=Yes, please.
+set string499=This will install Visual C++ Redistributable
+set string500=No, I'll install it manually.
+set string501=Installing

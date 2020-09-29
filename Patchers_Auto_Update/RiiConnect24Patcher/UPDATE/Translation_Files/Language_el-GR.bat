@@ -1,4 +1,4 @@
-if "%1"=="-chcp" chcp 65001
+if "%1"=="-chcp" chcp 65001>NUL
 :: Should be available locally
 set string1=Βάλε το RiiConnect24 στο Wii σου.
 set string2=Ξεκίνα
@@ -62,51 +62,51 @@ set string55=[ΔΕΝ ΗΤΑΝ ΕΠΙΤΥΧΗΣ Η ΑΛΛΑΓΗ ΣΕ ΠΕΙΡΑΜ
 
 set string56=ΠΕΡΙΜΕΝΕ
 set string57=Προσπαθείτε να απενεργοποιήσετε τις ενημερώσεις;
-set string58=Please do remember that updates will keep you safe and updated about the patcher.
-set string59=Only use this option for debugging and troubleshooting.
-set string60=Are you sure that you want to disable autoupdating?
+set string58=Παρακαλουμε θυμήσου πως οι ενημερώσεις σε κρατούν ασφαλή και ενημερωμένο για το πρόγραμμα.
+set string59=Χρησιμοποίησε αυτή την επιλογή μόνο για αποφαλμάτωση και επίλυση προβλημάτων.
+set string60=Είσαι σίγουρος πως θες να απενεργοποιήσεις την αυτόματη ενημέρωση;
 
 set string61=Ναί
 set string62=Οχι, πηγαίνετε πίσω.
 
 set string63=Αλλαγή χρώματος:
 set string64=Σκούρο θέμα
-set string65=Light theme *please don't hurt my eyes edition*
-set string66=Light theme *please hurt my eyes edition*
+set string65=Φωτεινό θέμα *έκδοση μη μου χαλάσεις τα μάτια*
+set string66=Σκούρο θέμα *έκδοση χάλασέ μου τα μάτια*
 set string67=Κίτρινο
 set string68=Πράσινο
 set string69=Κόκκινο
 set string70=Μπλε
 
 set string71=Γίνεται λήψη του curl... Παρακαλώ περιμένετε.
-set string72=This can take some time...
+set string72=Αυτό μπορεί να πάρει λίγη ώρα...
 
 set string73=ΣΦΑΛΜΑ.
-set string74=There was an error while downloading curl.
-set string75=We will now open a website that will download curl.exe.
-set string76=Please move curl.exe to the folder where RiiConnect24 Patcher is and restart the patcher.
-set string77=Press any key to open download page in browser and to return to menu.
+set string75=Σφάλμα κατά τη λήψη του curl.
+set string75=Τώρα θα ανοίξουμε μία ιστοσελίδα που θα κατεβάσει το curl.exe.
+set string76=Παρακαλούμε μετακίνησε το curl.exe στο φάκελο όπου βρίσκεται το RiiConnect24 Patcher και επανεκκίνησε το πρόγραμμα.
+set string77=Πάτα οποιοδήποτε πλήκτρο για να ανοίξεις τη σελίδα λήψης και να επιστρέψεις στο μενού.
 
-set string78=Checking for updates...
-set string79=An Update is available.
-set string80=An Update for this program is available. We suggest updating the RiiConnect24 Patcher to the latest version.
-set string81=Current version
-set string82=New version
-set string83=Update
-set string84=Dismiss
-set string85=What's new in this update?
-set string86=Updating.
-set string87=Please wait...
-set string88=RiiConnect24 Patcher will restart shortly...
-set string89=There was an error while downloading the update assistant.
-set string90=Press any key to return to main menu.
-set string91=What's new in update
-set string92=Error. What's new file is not available.
-set string93=Press any button to go back.
+set string78=Έλεγχος για ενημερώσεις...
+set string79=Βρέθηκε διαθέσιμη ενημέρωση.
+set string80=Μία ενημέρωση για αυτό το πρόγραμμα είναι διαθέσιμη. Προτείνουμε να ενημερώσεις το RiiConnect24 Patcher στην τελευταία έκδοση.
+set string81=Εγκατεστημένη έκδοση
+set string82=Νέα έκδοση
+set string83=Ενημέρωση
+set string84=Απόρριψη
+set string85=Τι νέο υπάρχει;
+set string86=Ενημέρωση.
+set string87=Παρακαλούμε περίμενε...
+set string88=Το πρόγραμμα θα επανεκκινηθεί σύντομα...
+set string89=Υπήρξε ένα σφάλμα κατά τη λήψη του βοηθού ενημέρωσης.
+set string90=Πάρα οποιοδήποτε πλήκτρο για επιστροφή στο βασικό μενού.
+set string95=Τι νέο υπάρχει
+set string92=Σφάλμα. Το αρχείο "τι νέο υπάρχει" δεν είναι διαθέσιμο.
+set string93=Πάτα οποιοδήποτε πλήκτρο για να επιστρέψεις πίσω.
 :: Local end
 
 :: Must be available online
-set string100=Welcome to the Homebrew Shop.
+set string100=Καλωσήλθες στο κατάστημα Homebrew.
 set string101=Before downloading any homebrew, do you want to enable automatic installation on your SD Card?
 set string102=Yes, detect the SD Card.
 set string103=No, I'll install them manually.
@@ -507,3 +507,17 @@ set string486=ERROR DETAILS: Curl write error. Try moving the patcher to desktop
 set string487=SOLUTION: Please install latest .NET Framework, then try again.
 
 set string488=SD Card
+set string489=Start File Explorer.
+set string490=Installation failed for WAD:
+set string491=Installation failed for:
+set string492=WAD(s)
+set string493=Pressing any key will open the error log and return to main menu.
+
+set string494=It looks like you're missing Visual C++ Redistributable on your computer.
+set string495=It is required to run one of our tools.
+set string496=We can automatically install it for you.
+set string497=What do you say?
+set string498=Yes, please.
+set string499=This will install Visual C++ Redistributable
+set string500=No, I'll install it manually.
+set string501=Installing

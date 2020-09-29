@@ -1,4 +1,4 @@
-if "%1"=="-chcp" chcp 65001
+if "%1"=="-chcp" chcp 65001>NUL
 :: Should be available locally
 set string1=貴方のWiiをRiiConnectする。
 set string2=はじめる
@@ -128,7 +128,7 @@ set string118=CURL Exit Code
 set string119=Press any key to go back.
 set string120=Open Shop Channel Downloader is ready^! What next?
 set string121=Show list of homebrew available.
-set string122=Download homebrew.
+set string122=Homebrewをダウンロードする
 set string123=メインメニューへ
 set string124=ちょっと待って下さい・・・
 set string125=TIP: Remember the name of the homebrew that you're interrested in, return to the program, select "Download homebrew" and type it in.
@@ -142,13 +142,13 @@ set string132=You requested...
 set string133=Long description:
 set string134=Would you like to download this app?
 set string135=If enabled, it will be automatically installed to the SD Card.
-set string136=No, return.
+set string136=いいえ、戻れ
 set string137=ダウンロード中
-set string138=Downloading .ZIP
-set string139=Done^!
+set string138=.ZIPをダウンロード中
+set string139=完了^ ^！
 set string140=The .ZIP file is in the directory where RiiConnect24 Patcher is.
 set string141=Press any key to go back.
-set string142=Downloading 7zip CLI
+set string142=7zip CLIをダウンロード中
 set string143=Extracting the homebrew app to your SD Card...
 set string144=There was an error while downloading your homebrew.
 set string145=There was an error while downloading the homebrew from Open Shop Channel servers.
@@ -184,12 +184,12 @@ set string192=Install WAD files directly to the SD Card.
 set string193=This will allow you to directly install a channel to your SD Card instead of you having to move it from NAND.
 
 
-set string167=Hey
-set string168=welcome to RiiConnect24 installation process for Dolphin Emulator.
+set string167=ねえ
+set string168=RiiConnect24インストールにはDolphin Emulatorへようこそ。
 set string169=First, I need to download the VFF-Downloader. This will make Forecast and News Channel work.
 set string170=Press any key to download and start the VFF Downloader for Dolphin.
 
-set string171=Alright! I see that you've exited VFF Downloader Installer.
+set string171=ＯＫ！ I see that you've exited VFF Downloader Installer.
 set string172=If you installed it correctly and choose:
 set string173=Manual - there will be an option in the main menu of RiiConnect24 Patcher to start it. Start it every time you want to
 set string174=access Forecast and News Channel. There will be an option in the main menu to manage VFF Downloader.
@@ -198,7 +198,7 @@ set string176=There will be an option in the main menu of RiiConnect24 Patcher t
 set string177=What now?
 set string178=Continue with the installation process.
 set string179=Try installing VFF Downloader again.
-set string180=Exit
+set string180=終了
 set string181=We will now need to run the patcher to get Check Mii Out Channel and Everybody Votes Channel.
 set string182=What region should I download?
 set string183=Europe
@@ -265,9 +265,9 @@ set string246=いいえ
 set string247=Patching... this can take some time depending on the processing speed (CPU) of your computer.
 set string248=Warning: There was an error while patching, but the patcher ran the troubleshooting tool that should automatically fix
 set string249=the problem. The patching process has been restarted.
-set string250=Fun Fact
-set string251=Next fun fact in
-set string252=sec
+set string250=豆知識
+set string251=次の豆知識に
+set string252=秒
 set string253=Progress
 set string254=Downloading files
 set string258=Finishing...
@@ -289,7 +289,7 @@ set string272=Close the patcher
 
 set string276=Install WAD files directly to the SD Card - wad2bin.
 set string277=Created by DarkMatterCore.
-set string278=Welcome
+set string278=ようこそ
 set string279=This is a configuration screen for wad2bin. You will be required to do this step only once.
 set string280=Since every Wii is different, you will be required to dump keys from your Wii. It sounds scary but no worries because we've
 set string281=prepared everything for you.
@@ -344,7 +344,7 @@ set string329=いいえ、戻れ。
 ファイルをインストール中
 set string331=out of
 set string332=ファイルの名前
-set string333=Installation complete^! 
+set string333=インストール完了^ ^！ 
 set string334=Now, please start your WAD Manager (Wii Mod Lite, if you installed RiiConnect24) and please install the WAD file called
 set string335=(numbers)_bogus.wad on your Wii.
 set string336=NOTE: You will get a -1022 error - don't worry! The WAD is empty but all we need is the TMD and ticket.
@@ -360,7 +360,7 @@ set string345=Go back to wad2bin menu.
 set string346=Show error info.
 
 set string347=Preparing for use with Wiimmfi Patcher...
-set string348=Please wait...
+set string348=待って下さい・・・
 set string349=Wiimmfi Patcher is ready^!
 set string350=Place the game image (can be ISO or WBFS) in a folder where RiiConnect24 Patcher is and choose "Ready".
 set string351=ISOファイル
@@ -445,10 +445,10 @@ set string429=This probably means that there is a maintenance currently going on
 set string430=Please come back later^!
 set string431=Preparing...
 
-set string432=Install RiiConnect24.
+set string432=RiiConnect24をインストールする.
 set string433=This will patch every channel for later use on your Wii. This includes:
 set string434=IOS Patches [required for other channels to work]
-set string435=Forecast/News Channel
+set string435=お天気／ニュースチャンネル
 set string436=Please connect your Wii SD Card to the computer.
 set string437=The following process will download about 170MB of data.
 
@@ -506,4 +506,18 @@ set string485=解決策: インターネット接続を確認してください
 set string486=エラーの詳細: curlの書き込みエラー Patcherをデスクトップに移動して、再試行してみてください
 set string487=解決策: 最新の .NET Framework をインストールして、再試行してみてください
 
-set string488=SD Card
+set string488=ＳＤカード
+set string489=Start File Explorer.
+set string490=Installation failed for WAD:
+set string491=Installation failed for:
+set string492=WAD(s)
+set string493=Pressing any key will open the error log and return to main menu.
+
+set string494=It looks like you're missing Visual C++ Redistributable on your computer.
+set string495=It is required to run one of our tools.
+set string496=We can automatically install it for you.
+set string497=What do you say?
+set string498=Yes, please.
+set string499=This will install Visual C++ Redistributable
+set string500=No, I'll install it manually.
+set string501=Installing

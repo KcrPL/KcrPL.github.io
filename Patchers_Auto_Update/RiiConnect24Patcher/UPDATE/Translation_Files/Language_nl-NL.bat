@@ -1,4 +1,4 @@
-if "%1"=="-chcp" chcp 65001
+if "%1"=="-chcp" chcp 65001>NUL
 :: Should be available locally
 set string1=RiiConnect je Wii.
 set string2=Start
@@ -107,22 +107,22 @@ set string93=Druk een toets in om terug te gaan.
 
 :: Must be available online
 set string100=Welkom bij de Homebrew Shop.
-set string101=Voordat je iets van homebrew download, wil je automatische installaties op je SD Kaart aanzetten?
-set string102=Ja, detecteer de SD Kaart.
+set string101=Voordat je iets van homebrew download, wil je automatische installaties op je SD-kaart aanzetten?
+set string102=Ja, detecteer de SD-kaart.
 set string103=Nee, Ik installeer ze zelf handmatig.
-set string104=Hmm... het ziet eruit dat geen SD Kaart gevonden is in je systeem. Kies de `Verander drive letter` optie alsjeblieft
+set string104=Hmm... het ziet eruit dat er geen SD-Kaart gevonden is in je systeem. Kies de `Verander drive letter` optie alsjeblieft
 set string105=om je SD Kaart drive letter handmatig te zetten.
 set string106=Anders moet je je handmatig de homebrew kopiëren naar de SD Kaart.
-set string107=Gefeliciteerd^! Ik heb je SD Kaart met succes gedetecteerd^! Drive letter:
-set string108=Ik kan alles automatisch downloaden en installeren op je SD Kaart^!
+set string107=Gefeliciteerd^! Ik heb je SD-kaart met succes gedetecteerd^! Drive letter:
+set string108=Ik kan alles automatisch downloaden en installeren op je SD-kaart^!
 set string109=Wat volgt nu?
 set string110=Verdergaan
 set string111=Afsluiten
 set string112=Change drive letter
-set string113=Current SD Card Letter
+set string113=Huidige SD-kaart letter
 set string114=Type in the new drive letter (e.g H)
 set string115=Preparing for use with Open Shop Channel downloader...
-set string116=Please wait...
+set string116=Een moment geduld a.u.b...
 set string117=There was an error while downloading the Open Shop Channel downloader.
 set string118=CURL Exit Code
 set string119=Press any key to go back.
@@ -247,10 +247,10 @@ set string228=Please connect your Wii U SD Card to the computer.
 set string229=Connected^!
 set string230=I can't connect an SD Card to the computer.
 set string231=Aww, no worries. You will be able to copy files later after patching.
-set string232=Hmm... het ziet eruit dat geen SD Kaart gevonden is in je systeem. Kies de `Verander drive letter` optie alsjeblieft
+set string232=Hmm... het lijkt dat er geen SD-kaart gevonden is in je systeem. Kies de `Verander drive letter` optie alsjeblieft
 set string233=to set your SD Card drive letter manually.
 set string234=Otherwise, starting patching will set copying to manual so you will have to copy them later.
-set string235=Congrats^! Ik heb je SD Kaart met succes gedetecteerd^! Drive letter:
+set string235=Congrats^! Ik heb je SD-kaart met succes gedetecteerd^! Drive letter:
 set string236=I will be able to automatically download and install everything on your SD Card^!
 set string237=Everything is ready^!
 set string238=What's next?
@@ -507,3 +507,17 @@ set string486=ERROR DETAILS: Curl write error. Try moving the patcher to desktop
 set string487=SOLUTION: Please install latest .NET Framework, then try again.
 
 set string488=SD Card
+set string489=Start File Explorer.
+set string490=Installation failed for WAD:
+set string491=Installation failed for:
+set string492=WAD(s)
+set string493=Pressing any key will open the error log and return to main menu.
+
+set string494=It looks like you're missing Visual C++ Redistributable on your computer.
+set string495=It is required to run one of our tools.
+set string496=We can automatically install it for you.
+set string497=What do you say?
+set string498=Yes, please.
+set string499=This will install Visual C++ Redistributable
+set string500=No, I'll install it manually.
+set string501=Installing
