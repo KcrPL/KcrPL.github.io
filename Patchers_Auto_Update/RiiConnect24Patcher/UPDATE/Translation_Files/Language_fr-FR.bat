@@ -487,7 +487,7 @@ set string468=Correction de bug IOS's
 set string469=En train de patcher les chaineS info et météo
 set string470=Ne t'inquiète pas!
  Cela peut prendre un certain temps... Copie maintenant des fichiers sur votre carte SD...
-set string471=Please connect your Wii SD Card and copy apps and WAD folder to the root (main folder) of your SD Card. Vous pouvez trouver ces dossiers à côté de RiiConnect24Patcher.bat
+set string471=Veuillez connecter votre carte SD Wii et copier les applications et le dossier WAD à la racine (dossier principal) de votre carte SD. Vous pouvez trouver ces dossiers à côté de RiiConnect24Patcher.bat
 set string472=Tous les fichiers sont à leur place dans votre carte SD^!
 set string473=Vous pouvez trouver ces dossiers à côté de RiiConnect24Patcher.bat.
 set string474=Vous pouvez maintenant poursuivre avec le tutoriel que vous pouvez trouver sur le site web : https://wii.guide/riiconnect24
@@ -497,8 +497,8 @@ set string476=Amusez vous bien à utiliser Riiconnect24^!
 set string477=Fermeture du patcher dans:
 
 set string478=Il n’y a pas de connexion internet.
-set string479=Could not connect to remote server.
-set string480=Check your internet connection or check if your firewall isn't blocking curl.
+set string479=Impossible de se connecter au serveur distant.
+set string480=Vérifiez votre connexion Internet ou vérifiez si votre pare-feu ne bloque pas curl.
 set string481=Une erreur s’est produite pendant le patch.
 set string482=Erreur Code
 set string483=Échecs module
