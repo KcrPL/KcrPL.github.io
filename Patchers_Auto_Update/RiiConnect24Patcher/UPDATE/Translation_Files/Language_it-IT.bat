@@ -2,16 +2,16 @@ if "%1"=="-chcp" chcp 65001>NUL
 :: Should be available locally
 set string1=RiiConnetti la tua Wii.
 set string2=Inizia
-set string3=Crediti
+set string3=Autori
 set string4=Impostazioni
 set string5=gestisci VFF Downloader per Dolphin qui
 set string6=Avvia il VFF Downloader per questa volta.
-set string7=Hai problemi o vuoi contattarci?
+set string7=Hai qualche problema o vuoi contattarci?
 set string8=Invia una mail a support@riiconnect24.net
 set string9=Rilevata Scheda SD Wii:
 set string10=Impossibile rilevare la tua Scheda SD Wii.
 set string11=Aggiorna
-set string12=Se è incorretto, potrai cambiarlo più tardi.
+set string12=Se non è corretto, potrai cambiarlo più tardi.
 
 set string13=Attenzione
 set string14=Stai usando una versione sperimentale di questo programma.
@@ -26,7 +26,7 @@ set string20=Strumenti di risoluzione dei problemi
 set string21=Questi strumenti dovrebbero aiutarti a diagnosticare alcuni problemi con il patcher e provare a ripararli automaticamente.
 set string22=Impossibile rilevare la Scheda SD.
 set string23=Impossibile copiare i file nella Scheda SD.
-set string24=Errore durante la rinominazione dei file
+set string24=Errore durante la ridenominazione dei file
 set string25=Torna al menu principale
 set string26=Scegli
 
@@ -506,7 +506,7 @@ set string485=SOLUZIONE: Controlla la tua connessione ad Internet.
 set string486=DETTAGLI ERRORE: Errore scrittura curl. Prova a spostare il patcher sul desktop e riprova.
 set string487=SOLUZIONE: Installa il .NET Framework più recente, e riprova.
 
-set string488=SD Card
+set string488=Scheda SD
 set string489=Start File Explorer.
 set string490=Installation failed for WAD:
 set string491=Installation failed for:
