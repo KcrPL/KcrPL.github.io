@@ -508,17 +508,17 @@ set string486=ERREUR RENSEIGEMENTS: S'enrouler écrire erreur. Essayez de dépla
 set string487=SOLUTION: veuillez installer la dernière version de .NET Framework, puis réessayer.
 
 set string488=Carte SD
-set string489=Start File Explorer.
+set string489=Démarrez File Explorer.
 set string490=L’installation du fichier WAD a échoué:
 set string491=L’installation à échoué pour:
 set string492=WAD(s)
-set string493=Pressing any key will open the error log and return to main menu.
+set string493=Appuyez sur n'importe quelle touche pour ouvrir les logs et revenir au menu principal.
 
-set string494=It looks like you're missing Visual C++ Redistributable on your computer.
-set string495=It is required to run one of our tools.
-set string496=We can automatically install it for you.
-set string497=What do you say?
-set string498=Yes, please.
-set string499=This will install Visual C++ Redistributable
-set string500=No, I'll install it manually.
-set string501=Installing
+set string494=Il semble que vous manquez Visual C ++ Redistributable sur votre ordinateur.
+set string495=Il est nécessaire pour exécuter l'un de nos outils.
+set string496=Nous pouvons l'installer automatiquement pour vous.
+set string497=Que dis-tu ?
+set string498=Oui, S'il vous plaît.
+set string499=Cela installera Visual C ++ Redistributable
+set string500=Non, je vais l'installer manuellement.
+set string501=Installer
