@@ -484,22 +484,22 @@ set string466=Le globe de la chaine meteo et la chaine infos est base sur des im
 set string467=Vous pouvez appuyer sur le bouton de reinitialisation lorsque la Wii est en veille pour eteindre la lumiere bleue qui brille lorsque vous recevez un message.
 
 set string468=Correction de bug IOS's
-set string469=Patching News/Forecast Channel
+set string469=En train de patcher les chaineS info et meteo
 set string470=Ne t'inquiete pas!
  Cela peut prendre un certain temps... Copie maintenant des fichiers sur votre carte SD...
-set string471=Please connect your Wii SD Card and copy apps and WAD folder to the root (main folder) of your SD Card. Vous pouvez trouver ces dossiers a cote de RiiConnect24Patcher.bat
-set string472=Every file is in it's place on your SD Card^!
-set string473=You can find these folders next to RiiConnect24Patcher.bat.
-set string474=Please proceed with the tutorial that you can find on https://wii.guide/riiconnect24
+set string471=Veuillez connecter votre carte SD Wii et copier les applications et le dossier WAD a la racine (dossier principal) de votre carte SD. Vous pouvez trouver ces dossiers a cote de RiiConnect24Patcher.bat
+set string472=Tous les fichiers sont a leur place dans votre carte SD^!
+set string473=Vous pouvez trouver ces dossiers a cote de RiiConnect24Patcher.bat.
+set string474=Vous pouvez maintenant poursuivre avec le tutoriel que vous pouvez trouver sur le site web : https://wii.guide/riiconnect24
 
-set string475=Thank you very much for using this patcher^! :)
-set string476=Have fun using RiiConnect24^!
-set string477=Closing the patcher in:
+set string475=Nous vous remercions d'utiliser ce patcher^! :)
+set string476=Amusez vous bien a utiliser Riiconnect24^!
+set string477=Fermeture du patcher dans:
 
-set string478=There is no internet connection.
-set string479=Could not connect to remote server.
-set string480=Check your internet connection or check if your firewall isn't blocking curl.
-set string481=There was an error while patching.
+set string478=Il n'y a pas de connexion internet.
+set string479=Impossible de se connecter au serveur distant.
+set string480=Verifiez votre connexion Internet ou verifiez si votre pare-feu ne bloque pas curl.
+set string481=Une erreur s'est produite pendant le patch.
 set string482=Erreur Code
 set string483=Echecs module
 set string484=CONSEIL: Envisager tournant de ton antivirus temporairement.
@@ -508,17 +508,17 @@ set string486=ERREUR RENSEIGEMENTS: S'enrouler ecrire erreur. Essayez de deplace
 set string487=SOLUTION: veuillez installer la derniere version de .NET Framework, puis reessayer.
 
 set string488=Carte SD
-set string489=Start File Explorer.
-set string490=Installation failed for WAD:
-set string491=Installation failed for:
+set string489=Demarrez File Explorer.
+set string490=L'installation du fichier WAD a echoue:
+set string491=L'installation a echoue pour:
 set string492=WAD(s)
-set string493=Pressing any key will open the error log and return to main menu.
+set string493=Appuyez sur n'importe quelle touche pour ouvrir les logs et revenir au menu principal.
 
-set string494=It looks like you're missing Visual C++ Redistributable on your computer.
-set string495=It is required to run one of our tools.
-set string496=We can automatically install it for you.
-set string497=What do you say?
-set string498=Yes, please.
-set string499=This will install Visual C++ Redistributable
-set string500=No, I'll install it manually.
-set string501=Installing
+set string494=Il semble que vous manquez Visual C ++ Redistributable sur votre ordinateur.
+set string495=Il est necessaire pour executer l'un de nos outils.
+set string496=Nous pouvons l'installer automatiquement pour vous.
+set string497=Que dis-tu ?
+set string498=Oui, S'il vous plait.
+set string499=Cela installera Visual C ++ Redistributable
+set string500=Non, je vais l'installer manuellement.
+set string501=Installer
