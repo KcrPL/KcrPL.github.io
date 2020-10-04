@@ -1,6 +1,6 @@
 if "%1"=="-chcp" chcp 65001>NUL
 :: Should be available locally
-set string1=RiiConnect your Wii.
+set string1=重新连接（RiiConnect） 你的Wii.
 set string2=Start
 set string3=Credits
 set string4=Settings
@@ -446,7 +446,7 @@ set string430=Please come back later^!
 set string431=Preparing...
 
 set string432=安装RiiConnect24。
-set string433=This will patch every channel for later use on your Wii. This includes:
+set string433=这个选项将会为你的Wii下载并处理所有可用的频道。 包括：
 set string434=IOS Patches [required for other channels to work]
 set string435=Forecast/News Channel
 set string436=Please connect your Wii SD Card to the computer.
@@ -463,7 +463,7 @@ set string445=The Internet Channel once costed 500 Wii Points.
 set string446=It's possible to use candles as a Wii Sensor Bar.
 set string447=The blinking blue light that indicates a system message has been received is actually synced to the bird call of the Japanese bush warbler. More info about it on RiiConnect24 YouTube Channel^!
 set string448=Wii Sports is the most sold game on the Wii. It sold 82.85 million. Overall it is the 3rd most sold game in the world.
-set string449=Did you know that most of the scripts used to make RiiConnect24 work are written in Python?
+set string449=你知道吗？很多用来跑RiiConnect24服务的代码都是用Python写的。
 set string450=Thank you Spotlight for making our mail system secure.
 set string451=Did you know that we have an awesome Discord server where you can always stay updated about the project status?
 set string452=The Everybody Votes Channel was originally an idea about sending quizzes and questions daily to Wiis.
