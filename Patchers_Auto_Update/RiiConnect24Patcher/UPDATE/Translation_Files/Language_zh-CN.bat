@@ -5,7 +5,7 @@ set string2=Start
 set string3=Credits
 set string4=Settings
 set string5=manage VFF Downloader for Dolphin here
-set string6=Run the VFF Downloader once.
+set string6=运行一次VFF下载器
 set string7=Do you have problems or want to contact us?
 set string8=Mail us at support@riiconnect24.net
 set string9=Detected Wii SD Card:
@@ -445,7 +445,7 @@ set string429=This probably means that there is a maintenance currently going on
 set string430=Please come back later^!
 set string431=Preparing...
 
-set string432=Install RiiConnect24.
+set string432=安装RiiConnect24。
 set string433=This will patch every channel for later use on your Wii. This includes:
 set string434=IOS Patches [required for other channels to work]
 set string435=Forecast/News Channel
