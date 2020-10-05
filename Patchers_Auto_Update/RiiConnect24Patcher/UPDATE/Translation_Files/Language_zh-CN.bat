@@ -1,24 +1,24 @@
 if "%1"=="-chcp" chcp 65001>NUL
 :: Should be available locally
-set string1=重新连接（RiiConnect） 你的Wii.
-set string2=Start
-set string3=Credits
-set string4=Settings
-set string5=manage VFF Downloader for Dolphin here
+set string1=重新连接（RiiConnect）你的Wii。
+set string2=开始
+set string3=贡献者
+set string4=设置
+set string5=在这里管理适用于Dolphin的VFF下载器
 set string6=运行一次VFF下载器
-set string7=Do you have problems or want to contact us?
-set string8=Mail us at support@riiconnect24.net
-set string9=Detected Wii SD Card:
-set string10=Could not detect your Wii SD Card.
-set string11=Refresh
-set string12=If incorrect, you can change later.
+set string7=你发现了一个问题，并且想要报告它？
+set string8=发送邮件到support@riiconnect24.net
+set string9=检测到Wii SD卡：
+set string10=无法检测到Wii SD卡。
+set string11=刷新
+set string12=如果不是，你可以在稍后更改。
 
-set string13=Warning
-set string14=You are using an experimental version of this program.
-set string15=That means that this version might contain experimental features
-set string16=and bugs that might break your Wii/Wii U console or your computer.
-set string17=If you don't know what you're doing, please go to settings and go back to
-set string18=stable branch of the patcher.
+set string13=警告
+set string14=你正在使用本程序的实验性功能。
+set string15=这意味着该版本可能包含实验性功能和错误，
+set string16=可能会破坏您的Wii / Wii U主机或你的计算机。
+set string17=如果您不知道自己在做什么，
+set string18=请转到设置并回退到修补程序的稳定版本。
 
 set string19=Type a number that you can see above next to the command and hit ENTER
 
