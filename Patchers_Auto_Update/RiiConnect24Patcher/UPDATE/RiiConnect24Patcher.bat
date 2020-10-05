@@ -6,7 +6,7 @@ echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: RiiConnect24 Patcher for Windows
-set version=1.3.1
+set version=1.3.2
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2018-2020 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -57,7 +57,7 @@ set hh=0
 if %beta%==0 title RiiConnect24 Patcher v%version% Created by @KcrPL
 if %beta%==1 title RiiConnect24 Patcher v%version% [BETA] Created by @KcrPL
 set last_build=2020/10/05
-set at=18:31
+set at=22:49
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
@@ -7155,15 +7155,26 @@ if %custominstall_ios%==1 set modul=mkdir.exe
 if %custominstall_ios%==1 if not %temperrorlev%==0 goto error_patching
 goto patching_fast_travel_100
 :patching_fast_travel_34
-if %custominstall_ios%==1 call IOSPatcher\Sharpii.exe WAD -p IOSPatcher\IOS31\ "IOSPatcher\WAD\IOS31 Wii Only (IOS) (RiiConnect24).wad" -fs -es -np -vp>NUL
+if %custominstall_ios%==1 call IOSPatcher\Sharpii.exe WAD -p IOSPatcher\IOS31\ "WAD\IOS31 Wii Only (IOS) (RiiConnect24).wad" -fs -es -np -vp>NUL
 if %custominstall_ios%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_ios%==1 set modul=Sharpii.exe
 if %custominstall_ios%==1 if not %temperrorlev%==0 goto error_patching
-if %custominstall_ios%==1 call IOSPatcher\Sharpii.exe WAD -p IOSPatcher\IOS80\ "IOSPatcher\WAD\IOS80 Wii Only (IOS) (RiiConnect24).wad" -fs -es -np -vp>NUL
+if %custominstall_ios%==1 call IOSPatcher\Sharpii.exe WAD -p IOSPatcher\IOS80\ "WAD\IOS80 Wii Only (IOS) (RiiConnect24).wad" -fs -es -np -vp>NUL
 if %custominstall_ios%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_ios%==1 set modul=Sharpii.exe
 if %custominstall_ios%==1 if not %temperrorlev%==0 goto error_patching
 :patching_fast_travel_35
+if %custominstall_ios%==1 call IOSPatcher\Sharpii.exe IOS "WAD\IOS31 Wii Only (IOS) (RiiConnect24).wad" -fs -es -np -vp
+if %custominstall_ios%==1 set /a temperrorlev=%errorlevel%
+if %custominstall_ios%==1 set modul=Sharpii.exe Adding vulns to IOS31
+if %custominstall_ios%==1 if not %temperrorlev%==0 goto error_patching
+
+if %custominstall_ios%==1 call IOSPatcher\Sharpii.exe IOS "WAD\IOS80 Wii Only (IOS) (RiiConnect24).wad" -fs -es -np -vp
+if %custominstall_ios%==1 set /a temperrorlev=%errorlevel%
+if %custominstall_ios%==1 set modul=Sharpii.exe Adding vulns to IOS80
+if %custominstall_ios%==1 if not %temperrorlev%==0 goto error_patching
+
+
 if %custominstall_ios%==1 del IOSPatcher\00000006.app /q >NUL
 if %custominstall_ios%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_ios%==1 set modul=del.exe

@@ -487,11 +487,7 @@ set string468=Correction de bug IOS's
 set string469=En train de patcher les chaineS info et meteo
 set string470=Ne t'inquiete pas!
  Cela peut prendre un certain temps... Copie maintenant des fichiers sur votre carte SD...
-<<<<<<< HEAD
-set string471=Please connect your Wii SD Card and copy apps and WAD folder to the root (main folder) of your SD Card. Vous pouvez trouver ces dossiers a cote de RiiConnect24Patcher.bat
-=======
 set string471=Veuillez connecter votre carte SD Wii et copier les applications et le dossier WAD a la racine (dossier principal) de votre carte SD. Vous pouvez trouver ces dossiers a cote de RiiConnect24Patcher.bat
->>>>>>> a5639af33c135f02732b8cd5acb701aeb2297aee
 set string472=Tous les fichiers sont a leur place dans votre carte SD^!
 set string473=Vous pouvez trouver ces dossiers a cote de RiiConnect24Patcher.bat.
 set string474=Vous pouvez maintenant poursuivre avec le tutoriel que vous pouvez trouver sur le site web : https://wii.guide/riiconnect24
@@ -501,13 +497,8 @@ set string476=Amusez vous bien a utiliser Riiconnect24^!
 set string477=Fermeture du patcher dans:
 
 set string478=Il n'y a pas de connexion internet.
-<<<<<<< HEAD
-set string479=Could not connect to remote server.
-set string480=Check your internet connection or check if your firewall isn't blocking curl.
-=======
 set string479=Impossible de se connecter au serveur distant.
 set string480=Verifiez votre connexion Internet ou verifiez si votre pare-feu ne bloque pas curl.
->>>>>>> a5639af33c135f02732b8cd5acb701aeb2297aee
 set string481=Une erreur s'est produite pendant le patch.
 set string482=Erreur Code
 set string483=Echecs module
@@ -517,11 +508,7 @@ set string486=ERREUR RENSEIGEMENTS: S'enrouler ecrire erreur. Essayez de deplace
 set string487=SOLUTION: veuillez installer la derniere version de .NET Framework, puis reessayer.
 
 set string488=Carte SD
-<<<<<<< HEAD
-set string489=Start File Explorer.
-=======
 set string489=Demarrez File Explorer.
->>>>>>> a5639af33c135f02732b8cd5acb701aeb2297aee
 set string490=L'installation du fichier WAD a echoue:
 set string491=L'installation a echoue pour:
 set string492=WAD(s)
