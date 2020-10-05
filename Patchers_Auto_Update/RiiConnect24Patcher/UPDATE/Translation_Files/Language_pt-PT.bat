@@ -97,12 +97,12 @@ set string84=Dispensar
 set string85=O que há de novo nesta atualização?
 set string86=A atualizar.
 set string87=Por favor aguarda...
-set string88=RiiConnect24 Patcher will restart shortly...
-set string89=There was an error while downloading the update assistant.
-set string90=Press any key to return to main menu.
-set string91=What's new in update
-set string92=Error. What's new file is not available.
-set string93=Press any button to go back.
+set string88=O patcher do RiiConnect24 vai reiniciar brevemente...
+set string89=Houve um erro ao transferir o assistente de atualização.
+set string90= Clica em qualquer tecla para regressares ao menu principal.
+set string91= O que há de novo na atualização
+set string92=Erro. O ficheiro "O que há de novo" não está disponível.
+set string93= Clica em qualquer tecla para regressares.
 :: Local end
 
 :: Must be available online
