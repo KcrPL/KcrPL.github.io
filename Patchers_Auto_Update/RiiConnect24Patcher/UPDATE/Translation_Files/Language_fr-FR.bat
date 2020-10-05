@@ -522,3 +522,9 @@ set string498=Oui, S'il vous plaît.
 set string499=Cela installera Visual C ++ Redistributable
 set string500=Non, je vais l'installer manuellement.
 set string501=Installer
+
+set string502=Preparing to report the error...
+set string503=Error reported successfully! We've been notified about the error.
+set string504=Randomize your error reporting identifier.
+set string505=Current:
+
