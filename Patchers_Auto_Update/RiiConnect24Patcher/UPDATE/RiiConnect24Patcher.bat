@@ -1,12 +1,12 @@
 @echo off
 setlocal enableextensions
-setlocal disableDelayedExpansion
+setlocal DisableDelayedExpansion
 cd /d "%~dp0"
 echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: RiiConnect24 Patcher for Windows
-set version=1.3.0.6
+set version=1.3.1
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2018-2020 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -45,6 +45,8 @@ set sdcard=NUL
 set tempgotonext=begin_main
 set direct_install_del_done=0
 set direct_install_bulk_files_error=0
+For /F "Delims=" %%A In ('ver') do set "windows_version=%%A"
+set post_url=https://patcher.rc24.xyz/v1/reporting.php
 
 set mm=0
 set ss=0
@@ -54,8 +56,8 @@ set hh=0
 :: Window Title
 if %beta%==0 title RiiConnect24 Patcher v%version% Created by @KcrPL
 if %beta%==1 title RiiConnect24 Patcher v%version% [BETA] Created by @KcrPL
-set last_build=2020/09/29
-set at=22:48
+set last_build=2020/10/05
+set at=18:31
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
@@ -95,6 +97,17 @@ if not exist "%TempStorage%" md "%TempStorage%"
 :: Trying to prevent running from OS that is not Windows.
 if not "%os%"=="Windows_NT" goto not_windows_nt
 
+
+:: Generate random identifier
+if not exist "%MainFolder%\random_ident.txt" (
+	call :generate_identifier
+	Setlocal DisableDelayedExpansion
+	)
+
+
+:: Read random identifier
+if exist "%MainFolder%\random_ident.txt" for /f "usebackq" %%a in ("%MainFolder%\random_ident.txt") do set random_identifier=%%a
+
 :: Load background color from file if it exists
 if exist "%MainFolder%\background_color.txt" for /f "usebackq" %%a in ("%MainFolder%\background_color.txt") do color %%a
 
@@ -109,6 +122,29 @@ if %preboot_environment%==0 ver | findstr "10.0">NUL && set /a chcp_enable=1
 if %chcp_enable%==1 chcp 65001>NUL
 
 goto script_start_languages
+
+:generate_identifier
+	set lengthnumberuser=6
+    Setlocal EnableDelayedExpansion
+    Set _RNDLength=%lengthnumberuser%
+    Set _Alphanumeric=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789
+    Set _Str=%_Alphanumeric%987654321
+:_LenLoop
+    IF NOT "%_Str:~18%"=="" SET _Str=%_Str:~9%& SET /A _Len+=9& GOTO :_LenLoop
+    SET _tmp=%_Str:~9,1%
+    SET /A _Len=_Len+_tmp
+    Set _count=0
+    SET _RndAlphaNum=
+:_loop
+    Set /a _count+=1
+    SET _RND=%Random%
+    Set /A _RND=_RND%%%_Len%
+    SET _RndAlphaNum=!_RndAlphaNum!!_Alphanumeric:~%_RND%,1!
+    If !_count! lss %_RNDLength% goto _loop
+	echo !_RndAlphaNum!>"%MainFolder%\random_ident.txt"
+	Setlocal DisableDelayedExpansion
+	exit /b
+
 :script_start_languages
 setlocal disableDelayedExpansion
 ::Load languages
@@ -2515,6 +2551,12 @@ set string499=This will install Visual C++ Redistributable
 set string500=No, I'll install it manually.
 set string501=Installing
 
+set string502=Preparing to report the error...
+set string503=Error reported successfully!
+set string504=Randomize your error reporting identifier.
+set string505=Current:
+
+
 exit /b
 
 :not_windows_nt
@@ -2858,13 +2900,14 @@ if %Update_Activate%==0 echo 3. %string30%. [%string31%: OFF]
 if %preboot_environment%==0 if %beta%==0 echo 4. %string32% %string33% [%string31%: %string34%]
 if %preboot_environment%==0 if %beta%==1 echo 4. %string32% %string34%. [%string31%: %string33%]
 if %preboot_environment%==0 echo 5. %string35% (%string36%)
+echo 6. %string504% %string505% %random_identifier%
 if "%vff_settings%"=="1" echo -----------------------------------------------------------------------------------------------------------------------------
 echo.
 if "%vff_settings%"=="1" echo %string37%. 
 if "%vff_settings%"=="1" echo.
-if "%vff_settings%"=="1" echo 6. %string38%.
-if "%vff_settings%"=="1" echo 7. %string39%.
-if "%vff_settings%"=="1" echo 8. %string40%
+if "%vff_settings%"=="1" echo 7. %string38%.
+if "%vff_settings%"=="1" echo 8. %string39%.
+if "%vff_settings%"=="1" echo 9. %string40%
 if %vff_settings%==1 echo.
 set /p s=Choose:
 if %s%==1 goto begin_main
@@ -2872,9 +2915,14 @@ if %s%==2 goto change_color
 if %s%==3 goto change_updating
 if %preboot_environment%==0 if %s%==4 goto change_updating_branch
 if %preboot_environment%==0 if %s%==5 goto update_files
-if %s%==6 if %vff_settings%==1 goto settings_del_config_VFF
-if %s%==7 if %vff_settings%==1 goto settings_del_vff_downloader
-if %s%==8 if %vff_settings%==1 goto settings_taskkill_vff
+if %s%==6 (
+	call :generate_identifier 
+	for /f "usebackq" %%a in ("%MainFolder%\random_ident.txt") do set random_identifier=%%a
+	)
+if %s%==7 if %vff_settings%==1 goto settings_del_config_VFF
+if %s%==8 if %vff_settings%==1 goto settings_del_vff_downloader
+if %s%==9 if %vff_settings%==1 goto settings_taskkill_vff
+
 
 goto settings_menu
 :settings_del_config_VFF
@@ -3179,6 +3227,7 @@ start %FilesHostedOn%/curl.exe
 goto begin_main
 
 :begin_main1
+setlocal DisableDelayedExpansion
 :: For whatever reason, it returns 2
 curl
 if not %errorlevel%==2 goto begin_main_download_curl
@@ -3478,6 +3527,30 @@ echo %string117%
 echo %string118%: %temperrorlev%
 echo.
 echo %string119%
+echo.
+echo %string502%
+
+>"%MainFolder%\error_report.txt" echo RiiConnect24 Patcher v%version%
+>>"%MainFolder%\error_report.txt" echo.
+>>"%MainFolder%\error_report.txt" echo Open Shop Channel
+>>"%MainFolder%\error_report.txt" echo.
+>>"%MainFolder%\error_report.txt" echo Date: %date%
+>>"%MainFolder%\error_report.txt" echo Time: %time:~0,5%
+>>"%MainFolder%\error_report.txt" echo.
+>>"%MainFolder%\error_report.txt" echo Windows version: %windows_version%
+>>"%MainFolder%\error_report.txt" echo Language: %language%
+>>"%MainFolder%\error_report.txt" echo Device: %device%
+>>"%MainFolder%\error_report.txt" echo.
+>>"%MainFolder%\error_report.txt" echo Action: Downloading the executable
+>>"%MainFolder%\error_report.txt" echo Module: cURL
+>>"%MainFolder%\error_report.txt" echo Exit code: %temperrorlev%
+
+curl -F "report=@%MainFolder%\error_report.txt" %post_url%?user=%random_identifier%>NUL
+
+echo %string503%
+
+
+
 pause>NUL
 goto begin_main
 :open_shop_mainmenu
@@ -3677,7 +3750,30 @@ echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`
 echo                   `.              yddyo++:    `-/oymNNNNNdy+:`        
 echo                                   -odhhhhyddmmmmmNNmhs/:`             
 echo                                     :syhdyyyyso+/-`                   
+
+echo %string502%
+>"%MainFolder%\error_report.txt" echo RiiConnect24 Patcher v%version%
+>>"%MainFolder%\error_report.txt" echo.
+>>"%MainFolder%\error_report.txt" echo Open Shop Channel
+>>"%MainFolder%\error_report.txt" echo.
+>>"%MainFolder%\error_report.txt" echo Date: %date%
+>>"%MainFolder%\error_report.txt" echo Time: %time:~0,5%
+>>"%MainFolder%\error_report.txt" echo.
+>>"%MainFolder%\error_report.txt" echo Windows version: %windows_version%
+>>"%MainFolder%\error_report.txt" echo Language: %language%
+>>"%MainFolder%\error_report.txt" echo Device: %device%
+>>"%MainFolder%\error_report.txt" echo.
+>>"%MainFolder%\error_report.txt" echo Action: Downloading homebrew
+>>"%MainFolder%\error_report.txt" echo Reason: %reason%
+>>"%MainFolder%\error_report.txt" echo Exit code: %temperrorlev%
+
+curl -F "report=@%MainFolder%\error_report.txt" %post_url%?user=%random_identifier%>NUL
+
+echo %string503%
+
+
 pause>NUL
+goto open_shop_mainmenu
 :select_device
 setlocal disableDelayedExpansion
 cls
@@ -5491,6 +5587,10 @@ if not "%error_count%"=="0" start "" "installation_error_log.txt"
 if not "%error_count%"=="0" goto direct_install_sdcard_main_menu
 
 echo %string294%
+
+
+
+
 pause>NUL
 goto direct_install_sdcard_main_menu
 :direct_install_delete_bogus
@@ -6174,6 +6274,24 @@ echo            %string430%
 echo.
 echo       %string90%
 echo ---------------------------------------------------------------------------------------------------------------------------
+
+echo %string502%
+>"%MainFolder%\error_report.txt" echo RiiConnect24 Patcher v%version%
+>>"%MainFolder%\error_report.txt" echo.
+>>"%MainFolder%\error_report.txt" echo Main Menu
+>>"%MainFolder%\error_report.txt" echo.
+>>"%MainFolder%\error_report.txt" echo Date: %date%
+>>"%MainFolder%\error_report.txt" echo Time: %time:~0,5%
+>>"%MainFolder%\error_report.txt" echo.
+>>"%MainFolder%\error_report.txt" echo Windows version: %windows_version%
+>>"%MainFolder%\error_report.txt" echo Language: %language%
+>>"%MainFolder%\error_report.txt" echo.
+>>"%MainFolder%\error_report.txt" echo Action: Starting the patcher
+>>"%MainFolder%\error_report.txt" echo Module: NUS Check Script. NUS Down.
+
+curl -F "report=@%MainFolder%\error_report.txt" %post_url%?user=%random_identifier%>NUL
+
+
 pause>NUL
 goto begin_main
 :2_prepare_uninstall
@@ -6186,6 +6304,8 @@ echo %string431%
 :: Check if NUS is up
 if %preboot_environment%==0 curl -i -s http://nus.cdn.shop.wii.com/ccs/download/0001000248414741/tmd | findstr "HTTP/1.1" | findstr "500 Internal Server Error"
 if %preboot_environment%==0 if %errorlevel%==0 goto error_NUS_DOWN
+
+
 :: If returns 0, 500 HTTP code it is
 goto 2_uninstall
 
@@ -7035,11 +7155,11 @@ if %custominstall_ios%==1 set modul=mkdir.exe
 if %custominstall_ios%==1 if not %temperrorlev%==0 goto error_patching
 goto patching_fast_travel_100
 :patching_fast_travel_34
-if %custominstall_ios%==1 call IOSPatcher\Sharpii.exe WAD -p IOSPatcher\IOS31\ "IOSPatcher\WAD\IOS31 Wii Only (IOS) (RiiConnect24).wad" -fs >NUL
+if %custominstall_ios%==1 call IOSPatcher\Sharpii.exe WAD -p IOSPatcher\IOS31\ "IOSPatcher\WAD\IOS31 Wii Only (IOS) (RiiConnect24).wad" -fs -es -np -vp>NUL
 if %custominstall_ios%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_ios%==1 set modul=Sharpii.exe
 if %custominstall_ios%==1 if not %temperrorlev%==0 goto error_patching
-if %custominstall_ios%==1 call IOSPatcher\Sharpii.exe WAD -p IOSPatcher\IOS80\ "IOSPatcher\WAD\IOS80 Wii Only (IOS) (RiiConnect24).wad" -fs >NUL
+if %custominstall_ios%==1 call IOSPatcher\Sharpii.exe WAD -p IOSPatcher\IOS80\ "IOSPatcher\WAD\IOS80 Wii Only (IOS) (RiiConnect24).wad" -fs -es -np -vp>NUL
 if %custominstall_ios%==1 set /a temperrorlev=%errorlevel%
 if %custominstall_ios%==1 set modul=Sharpii.exe
 if %custominstall_ios%==1 if not %temperrorlev%==0 goto error_patching
@@ -7618,7 +7738,28 @@ echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy
 echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`   
 echo                   `.              yddyo++:    `-/oymNNNNNdy+:`        
 echo                                   -odhhhhyddmmmmmNNmhs/:`             
-echo                                     :syhdyyyyso+/-`                   
+echo %string502%
+>"%MainFolder%\error_report.txt" echo RiiConnect24 Patcher v%version%
+>>"%MainFolder%\error_report.txt" echo.
+>>"%MainFolder%\error_report.txt" echo Install RiiConnect24 Patcher
+>>"%MainFolder%\error_report.txt" echo.
+>>"%MainFolder%\error_report.txt" echo Date: %date%
+>>"%MainFolder%\error_report.txt" echo Time: %time:~0,5%
+>>"%MainFolder%\error_report.txt" echo.
+>>"%MainFolder%\error_report.txt" echo Windows version: %windows_version%
+>>"%MainFolder%\error_report.txt" echo Language: %language%
+>>"%MainFolder%\error_report.txt" echo Processor architecture: %processor_architecture%
+>>"%MainFolder%\error_report.txt" echo Device: %device%
+>>"%MainFolder%\error_report.txt" echo.
+>>"%MainFolder%\error_report.txt" echo Action: Patching
+>>"%MainFolder%\error_report.txt" echo Module: %modul%
+>>"%MainFolder%\error_report.txt" echo Progress: %percent%%
+>>"%MainFolder%\error_report.txt" echo Exit code: %temperrorlev%
+
+curl -F "report=@%MainFolder%\error_report.txt" %post_url%?user=%random_identifier%>NUL
+
+echo %string503%
+
 pause>NUL
 goto begin_main
 
