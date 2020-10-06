@@ -1,3 +1,6 @@
+1.3.3
+- Once you're done with patching, you can now send back feedback to the developer.
+
 1.3.2
 - Fixed an issue where IOS's weren't patched.
 

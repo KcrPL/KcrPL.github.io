@@ -6,7 +6,7 @@ echo 	Starting up...
 echo	The program is starting...
 :: ===========================================================================
 :: RiiConnect24 Patcher for Windows
-set version=1.3.2
+set version=1.3.3
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2018-2020 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -56,8 +56,8 @@ set hh=0
 :: Window Title
 if %beta%==0 title RiiConnect24 Patcher v%version% Created by @KcrPL
 if %beta%==1 title RiiConnect24 Patcher v%version% [BETA] Created by @KcrPL
-set last_build=2020/10/05
-set at=22:49
+set last_build=2020/10/06
+set at=19:53
 :: ### Auto Update ###	
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
@@ -2558,6 +2558,33 @@ set string504=Randomize your error reporting identifier.
 set string505=Current:
 
 
+set string506=Take a second to send back feedback to developers.
+set string507=Welcome! We will now ask you a few questions.
+set string508=Which one best fits the app that you just used?
+set string509=The app is bad.
+set string510=I encountered a lot of issues when patching.
+set string511=Not intuitive.
+set string512=It's alright.
+set string513=The app is really easy to use!
+set string514=How did you find out about RiiConnect24?
+set string515=I've heard about it from my friend.
+set string516=I've heard about it on Discord.
+set string517=YouTube.
+set string518=wii.guide.
+set string519=I found out about it on Google.
+set string520=Other.
+set string521=Have you ever used other features in the patcher such as wad2bin or installing homebrew directly to your SD Card?
+set string522=No and I don't plan to.
+set string523=No, but I'm planning to.
+set string524=Would you like to write a message to developer of this app? (anonymously) [In English]
+set string525=No, skip.
+set string526=Your message must be in English.
+set string527=Write your message here [ENTER confirms your message].
+set string528=This is your message:
+set string529=Would you like to attach it?
+set string530=Preparing to send feedback...
+
+
 exit /b
 
 :not_windows_nt
@@ -2611,7 +2638,6 @@ if %beta%==0 echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNN
 if %beta%==0 echo                   `.              yddyo++:    `-/oymNNNNNdy+:`
 if %beta%==0 echo                                   -odhhhhyddmmmmmNNmhs/:`
 if %beta%==0 echo                                     :syhdyyyyso+/-`
-
 if %beta%==1 echo ----------------------------------------------------------------------------------------------------:
 if %beta%==1 echo            .sho.          
 if %beta%==1 echo         .oy: :ys.          %string13%^!
@@ -7630,13 +7656,177 @@ echo %string188%
 echo.
 echo 1. %string189%
 echo 2. %string190%
-if %preboot_environment%==1 echo 3. %string489%
+echo 3. %string506%
+if %preboot_environment%==1 echo 4. %string489%
 echo.
 set /p s=%string26%: 
 if %s%==1 goto script_start
 if %s%==2 goto end
+if %s%==3 goto feedback_respond
 if %preboot_environment%==1 if %s%==3 "X:\TOTALCMD.exe"
 goto 2_4
+
+:feedback_respond
+cls
+echo.
+echo %header%
+echo ---------------------------------------------------------------------------------------------------------------------------
+echo.
+echo %string507%
+echo.
+echo %string508%
+echo.
+echo 1. %string509%
+echo 2. %string510%
+echo 3. %string511%
+echo 4. %string512%
+echo 5. %string513%
+echo.
+set /p report1=%string26%: 
+
+if %report1%==1 goto feedback_respond2
+if %report1%==2 goto feedback_respond2
+if %report1%==3 goto feedback_respond2
+if %report1%==4 goto feedback_respond2
+if %report1%==5 goto feedback_respond2
+goto feedback_respond
+:feedback_respond2
+cls
+echo.
+echo %header%
+echo ---------------------------------------------------------------------------------------------------------------------------
+echo.
+echo %string507%
+echo.
+echo %string514%
+echo.
+echo 1. %string515%
+echo 2. %string516%
+echo 3. %string517%
+echo 4. %string518%
+echo 5. %string519%
+echo 6. %string520%
+echo.
+set /p report2=%string26%: 
+
+if %report2%==1 goto feedback_respond2
+if %report2%==2 goto feedback_respond2
+if %report2%==3 goto feedback_respond2
+if %report2%==4 goto feedback_respond2
+if %report2%==5 goto feedback_respond2
+if %report2%==6 goto feedback_respond2
+goto feedback_respond2
+:feedback_respond2
+cls
+echo.
+echo %header%
+echo ---------------------------------------------------------------------------------------------------------------------------
+echo.
+echo %string507%
+echo.
+echo %string521%
+echo.
+echo 1. %string522%
+echo 2. %string523%
+echo 3. %string61%.
+echo.
+set /p report3=%string26%: 
+if %report3%==1 goto feedback_respond3
+if %report3%==2 goto feedback_respond3
+if %report3%==3 goto feedback_respond3
+goto feedback_respond2
+:feedback_respond3
+cls
+echo.
+echo %header%
+echo ---------------------------------------------------------------------------------------------------------------------------
+echo.
+echo %string507%
+echo.
+echo %string524%
+echo.
+echo 1. %string498%
+echo 2. %string525%
+
+set /p message_confirm=%string26%: 
+if %message_confirm%==1 goto feedback_respond_write_message
+if %message_confirm%==2 goto feedback_send
+goto feedback_respond3
+
+:feedback_respond_write_message
+cls
+echo.
+echo %header%
+echo ---------------------------------------------------------------------------------------------------------------------------
+echo.
+echo %string526%
+echo %string527%
+echo.
+set /p message_content=
+goto feedback_respond_write_message_confirm
+:feedback_respond_write_message_confirm
+cls
+echo.
+echo %header%
+echo ---------------------------------------------------------------------------------------------------------------------------
+echo.
+echo %string528%
+echo %message_content%
+echo.
+echo %string529%
+echo.
+echo 1. %string61%
+echo 2. %string62%
+set /p s=%string26%: 
+if "%s%"=="1" goto feedback_send 
+if "%s%"=="2" goto feedback_respond3
+goto feedback_respond_write_message_confirm
+
+:feedback_send
+cls
+cls
+echo.
+echo %header%
+echo ---------------------------------------------------------------------------------------------------------------------------
+echo.
+echo %string530%
+
+>"%MainFolder%\error_report.txt" echo RiiConnect24 Patcher v%version%
+>>"%MainFolder%\error_report.txt" echo.
+>>"%MainFolder%\error_report.txt" echo Patching successful, sending feedback.
+>>"%MainFolder%\error_report.txt" echo.
+>>"%MainFolder%\error_report.txt" echo Date: %date%
+>>"%MainFolder%\error_report.txt" echo Time: %time:~0,5%
+>>"%MainFolder%\error_report.txt" echo.
+>>"%MainFolder%\error_report.txt" echo Windows version: %windows_version%
+>>"%MainFolder%\error_report.txt" echo Language: %language%
+>>"%MainFolder%\error_report.txt" echo Processor architecture: %processor_architecture%
+>>"%MainFolder%\error_report.txt" echo Device: %device%
+>>"%MainFolder%\error_report.txt" echo.
+if "%report1%"=="1" >>"%MainFolder%\error_report.txt" echo Which one best fits the app: The app is bad
+if "%report1%"=="2" >>"%MainFolder%\error_report.txt" echo Which one best fits the app: I encountered a lot of issues when patching
+if "%report1%"=="3" >>"%MainFolder%\error_report.txt" echo Which one best fits the app: Not intuitive
+if "%report1%"=="4" >>"%MainFolder%\error_report.txt" echo Which one best fits the app: It's alright
+if "%report1%"=="5" >>"%MainFolder%\error_report.txt" echo Which one best fits the app: The app is really easy to use
+if "%report2%"=="1" >>"%MainFolder%\error_report.txt" echo How did you find out about RC24: I've heard about it from my friend
+if "%report2%"=="2" >>"%MainFolder%\error_report.txt" echo How did you find out about RC24: I've heard about it on Discord
+if "%report2%"=="3" >>"%MainFolder%\error_report.txt" echo How did you find out about RC24: YouTube
+if "%report2%"=="4" >>"%MainFolder%\error_report.txt" echo How did you find out about RC24: wii.guide
+if "%report2%"=="5" >>"%MainFolder%\error_report.txt" echo How did you find out about RC24: I found out about it on Google
+if "%report2%"=="6" >>"%MainFolder%\error_report.txt" echo How did you find out about RC24: Other
+if "%report3%"=="1" >>"%MainFolder%\error_report.txt" echo Ever used another features: No, I don't plan to
+if "%report3%"=="2" >>"%MainFolder%\error_report.txt" echo Ever used another features: No, I plan to
+if "%report3%"=="3" >>"%MainFolder%\error_report.txt" echo Ever used another features: Yes
+>>"%MainFolder%\error_report.txt" echo.
+if %message_confirm%==1 >>"%MainFolder%\error_report.txt" echo Message: %message_content%
+
+
+curl -F "report=@%MainFolder%\error_report.txt" %post_url%?user=%random_identifier%_feedback>NUL
+goto end
+
+
+
+
 :end
 set /a exiting=10
 set /a timeouterror=1
