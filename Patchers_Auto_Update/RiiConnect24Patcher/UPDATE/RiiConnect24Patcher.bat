@@ -150,6 +150,7 @@ setlocal disableDelayedExpansion
 ::Load languages
 FOR /F "tokens=2 delims==" %%a IN ('wmic os get OSLanguage /Value') DO set OSLanguage=%%a
 
+set language=English
 call :set_language_english
 
 
