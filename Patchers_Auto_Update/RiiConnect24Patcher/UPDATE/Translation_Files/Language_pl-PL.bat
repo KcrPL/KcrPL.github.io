@@ -527,11 +527,11 @@ set string503=Pomyślnie zgłoszono błąd! Zostaliśmy poinformowani o błędzi
 set string505=Wylosuj twój identyfikator zgłaszania błędów.
 set string505=Obecnie:
 
-set string506=Take a second to send back feedback to developers.
-set string507=Welcome! We will now ask you a few questions.
-set string508=Which one best fits the app that you just used?
-set string509=The app is bad.
-set string510=I encountered a lot of issues when patching.
+set string506=Poświęć chwilę, aby wysłać opinię do programistów.
+set string507=Witaj! Zadamy Ci kilka pytań.
+set string508=Który opis najlepiej pasuję?
+set string509=Ta aplikacja jest słaba.
+set string510=Napotkałem wiele problemów podczas patchowania.
 set string511=Not intuitive.
 set string512=It's alright.
 set string513=The app is really easy to use!
