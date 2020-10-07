@@ -1,9 +1,9 @@
 if "%1"=="-chcp" chcp 65001>NUL
 :: Should be available locally
-set string1=RiiConnect your Wii.
-set string2=Start
-set string3=Credits
-set string4=Settings
+set string1=RiiConnecta la teva Wii.
+set string1=Comença
+set string3=Crèdits
+set string3=Ajustos
 set string5=manage VFF Downloader for Dolphin here
 set string6=Run the VFF Downloader once.
 set string7=Do you have problems or want to contact us?
@@ -521,3 +521,34 @@ set string498=Yes, please.
 set string499=This will install Visual C++ Redistributable
 set string500=No, I'll install it manually.
 set string501=Installing
+
+set string502=Preparing to report the error...
+set string503=Error reported successfully! We've been notified about the error.
+set string504=Randomize your error reporting identifier.
+set string505=Current:
+
+set string506=Take a second to send back feedback to developers.
+set string507=Welcome! We will now ask you a few questions.
+set string508=Which one best fits the app that you just used?
+set string509=The app is bad.
+set string510=I encountered a lot of issues when patching.
+set string511=Not intuitive.
+set string512=It's alright.
+set string513=The app is really easy to use!
+set string514=How did you find out about RiiConnect24?
+set string515=I've heard about it from my friend.
+set string516=I've heard about it on Discord.
+set string517=YouTube.
+set string518=wii.guide.
+set string519=I found out about it on Google.
+set string520=Other.
+set string521=Have you ever used other features in the patcher such as wad2bin or installing homebrew directly to your SD Card?
+set string522=No and I don't plan to.
+set string523=No, but I'm planning to.
+set string524=Would you like to write a message to developer of this app? (anonymously) [In English]
+set string525=No, skip.
+set string526=Your message must be in English.
+set string527=Write your message here [ENTER confirms your message].
+set string528=This is your message:
+set string529=Would you like to attach it?
+set string530=Preparing to send feedback...
