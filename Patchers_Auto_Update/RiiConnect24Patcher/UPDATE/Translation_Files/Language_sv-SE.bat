@@ -507,23 +507,23 @@ set string485=LÖSNING: Kontrollera gärna din internetuppkoppling.
 set string486=FELDETALJER: Curl skrivfel. Försök flytta patchern till skrivbordet och försök igen.
 set string487=SOLUTION: Vänligen installera senaste .NET Framework, försök sedan igen.
 
-set string488=SD Card
-set string489=Start File Explorer.
-set string490=Installation failed for WAD:
-set string491=Installation failed for:
+set string488=SD-kort
+set string489=Starta Utforskaren.
+set string490=Installationen misslyckades för WAD:
+set string491=Installationen misslyckades för:
 set string492=WAD(s)
-set string493=Pressing any key will open the error log and return to main menu.
+set string493=Genom att trycka på valfri tangent öppnas felloggen och återgå till huvudmenyn.
 
-set string494=It looks like you're missing Visual C++ Redistributable on your computer.
-set string495=It is required to run one of our tools.
-set string496=We can automatically install it for you.
-set string497=What do you say?
-set string498=Yes, please.
-set string499=This will install Visual C++ Redistributable
-set string500=No, I'll install it manually.
-set string501=Installing
+set string494=Det ser ut som om du saknar Visual C++ Omfördelningsbar på datorn.
+set string495=Det krävs för att köra ett av våra verktyg.
+set string496=Vi kan automatiskt installera den åt dig.
+set string497=Vad säger du?
+set string498=Ja, tack.
+set string499=Detta kommer att installera Visual C++ Omfördelbar
+set string500=Nej, jag installerar den manuellt.
+set string501=Installera
 
-set string502=Preparing to report the error...
+set string502=Förberedelser för att rapportera felet...
 set string503=Error reported successfully! We've been notified about the error.
 set string504=Randomize your error reporting identifier.
 set string505=Current:
