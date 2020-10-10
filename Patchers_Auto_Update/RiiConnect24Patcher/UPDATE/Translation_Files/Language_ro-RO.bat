@@ -1,15 +1,15 @@
 if "%1"=="-chcp" chcp 65001>NUL
 :: Should be available locally
-set string1=Riiconecteaza-ți consola Wii.
+set string1=Riiconectează-ți consola Wii.
 set string2=Începe
 set string3=Credite
 set string4=Setări
-set string5=Administrează VFF Downloader pentru Dolphin aici
-set string6=Rulează VFF Downloader o dată.
+set string5=Administrează aplicația VFF Downloader pentru Dolphin aici
+set string6=Rulează VFF Downloader o singură dată.
 set string7=Ai probleme sau vrei să ne contactezi?
-set string8=Trimite-ne un mail la adresa support@riiconnect24.net
+set string8=Trimite-ne un email la adresa support@riiconnect24.net
 set string9=Card SD Wii Detectat:
-set string10=Nu am putut detecta Cardul SD Wii al tău.
+set string10=Nu ți-am putut detecta Cardul SD Wii.
 set string11=Reîmprospătează
 set string12=Dacă este incorect, îl poți schimba mai târziu.
 
