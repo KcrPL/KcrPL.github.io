@@ -227,7 +227,7 @@ set string209=Budeš dotázán co chceš patchnout.
 set string210=Nainstalovat RiiConnect24
 set string211=Změnit region. Aktuální region:
 set string212=Zahájit patchování^!
-set string213=Go back.
+set string213=Zpět.
 
 set string214=Hello
 set string215=welcome to the express instalation of RiiConnect24.
