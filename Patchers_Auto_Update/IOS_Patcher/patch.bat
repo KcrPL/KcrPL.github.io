@@ -3,7 +3,7 @@ cd "%~d0%~p0"
 @echo off
 :: ===========================================================================
 :: IOS Patcher for Windows
-set version=1.9.0-BugFix2
+set version=1.9.1
 :: AUTHORS: KcrPL, Larsenv
 :: ***************************************************************************
 :: Copyright (c) 2018 RiiConnect24, KcrPL and it's (Lead) Developers
@@ -22,8 +22,8 @@ set s=NUL
 
 :: Window Title
 title IOS Patcher for RiiConnect24 v.%version%  Created by @Larsenv, @KcrPL
-set last_build=2018/06/01
-set at=14:13
+set last_build=2020/10/29
+set at=18:42
 if exist "C:\Users\%username%\Desktop\IOSPatcherDebug.txt" goto debug_load
 :: ### Auto Update ###
 :: 1=Enable 0=Disable
@@ -33,7 +33,7 @@ if exist "C:\Users\%username%\Desktop\IOSPatcherDebug.txt" goto debug_load
 :: MainFolder/TempStorage - folder that is used to keep version.txt and whatsnew.txt. These two files are deleted every startup but if offlinestorage will be set 1, they won't be deleted.
 set /a IOSPatcher_Update_Activate=1
 set /a offlinestorage=0
-set FilesHostedOn=https://raw.githubusercontent.com/KcrPL/KcrPL.github.io/master/Patchers_Auto_Update/IOS_Patcher
+set FilesHostedOn=https://kcrpl.github.io/Patchers_Auto_Update/IOS_Patcher
 set MainFolder=%appdata%\IOSPatcher
 set TempStorage=%appdata%\IOSPatcher\internet\temp
 
@@ -1435,21 +1435,12 @@ exit
 :begin_main
 cls
 echo %header%
-if %patherror%==0 echo              `..````
-if %patherror%==0 echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`
-if %patherror%==0 echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs
-if %patherror%==0 echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd
-
-if %patherror%==1 echo :----------------------------------------------------------------:
-if %patherror%==1 echo  %string1%
-if %patherror%==1 echo :----------------------------------------------------------------:
-
-if %patherror%==2 echo :------------------------------------------------------------------------------------------------------:
-if %patherror%==2 echo  %string2%
-if %patherror%==2 echo  %string3%
-if %patherror%==2 echo :------------------------------------------------------------------------------------------------------:
-
-if not %patherror%==2 echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+    RiiConnect your Wii.
+echo.
+echo              `..````
+echo              yNNNNNNNNMNNmmmmdddhhhyyyysssooo+++/:--.`
+echo              ddmNNd:dNMMMMNMMMMMMMMMMMMMMMMMMMMMMMMMMs
+echo              hNNNNNNNNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd
+echo             `mdmNNy dNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM+    RiiConnect your Wii.
 echo             .mmmmNs mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:
 echo             :mdmmN+`mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM.
 echo             /mmmmN:-mNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN   1. %string3%  2. %string4%
@@ -1471,14 +1462,14 @@ echo           :mdmmmo-mNNNNNNNNNNdyo++sssyNMMMMMMMMMhs+-
 echo          .+mmdhhmmmNNNNNNmdysooooosssomMMMNNNMMMm
 echo          o/ossyhdmmNNmdyo+++oooooosssoyNMMNNNMMMM+
 echo          o/::::::://++//+++ooooooo+oo++mNMMmNNMMMm
-echo         `o//::::::::+////+++++++///:/+shNMMNmNNmMM+
-echo         .o////////::+++++++oo++///+syyyymMmNmmmNMMm
-echo         -+//////////o+ooooooosydmdddhhsosNMMmNNNmho            `:/
-echo         .+++++++++++ssss+//oyyysso/:/shmshhs+:.          `-/oydNNNy
-echo           `..-:/+ooss+-`          +mmhdy`           -/shmNNNNNdy+:`
-echo                   `.              yddyo++:    `-/oymNNNNNdy+:`
-echo                                   -odhhhhyddmmmmmNNmhs/:`
-echo                                     :syhdyyyyso+/-`
+echo :---------------------------------------------------------------------------:
+echo : Outdated software!                                                        :
+echo : You are using an outdated software that has been replaced.                :
+echo : You will no longer receive feature updates or support with this software. :
+echo :                                                                           :
+echo : Instead, use the RiiConnect24 Patcher: http://patcher.rc24.xyz/           :
+echo :---------------------------------------------------------------------------:
+echo.
 set /p s=%string6%: 
 if %s%==1 goto begin_main1
 if %s%==2 goto send_feedback
