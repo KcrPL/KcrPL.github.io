@@ -554,3 +554,10 @@ set string527=Напишите ваше сообщение тут [ENTER под�
 set string528=Вот ваше сообщение:
 set string529=Хотите его прикрепить?
 set string530=Отправляем отзыв...
+
+set string531=Japan
+set string532=There is currently maintenance in progress on our servers.
+set string533=Developer requested that access to the program will be prohibited until the maintenance is done.
+set string534=Please try again later.
+set string535=There is currently background maintenance in progress on our servers.
+set string536=Some functionality may be limited or not functioning until the maintenance is done.
