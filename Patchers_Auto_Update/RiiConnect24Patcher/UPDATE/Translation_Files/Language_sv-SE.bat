@@ -556,11 +556,11 @@ set string530=Förberedelser för att skicka feedback...
 
 set string531=Japan
 set string537=Korea
-set string532=There is currently maintenance in progress on our servers.
-set string533=Developer requested that access to the program will be prohibited until the maintenance is done.
-set string534=Please try again later.
-set string535=There is currently background maintenance in progress on our servers.
-set string536=Some functionality may be limited or not functioning until the maintenance is done.
+set string532=Det pågår för närvarande underhåll på våra servrar.
+set string533=Developer begärde att åtkomst till programmet kommer att förbjudas tills underhållet är gjort.
+set string534=Försök igen.
+set string535=Det pågår för närvarande underhåll av bakgrund på våra servrar.
+set string536=Viss funktionalitet kan vara begränsad eller inte fungera förrän underhållet är klart.
 
-set string538=Unfortunately, for Korean region we only support Wii Mail.
-set string539=Other channels were originally not supported by WiiConnect24.
+set string538=Tyvärr stöder vi för koreansk region bara Wii Mail.
+set string539=Andra kanaler stöddes ursprungligen inte av WiiConnect24.
