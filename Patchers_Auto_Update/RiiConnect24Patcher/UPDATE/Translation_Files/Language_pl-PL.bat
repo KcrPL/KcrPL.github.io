@@ -552,3 +552,10 @@ set string527=Napisz swoją wiadomość [ENTER potwierdza wiadomość].
 set string528=Oto twoja wiadomość:
 set string529=Czy chciałbyś ją dołączyć?
 set string530=Przygotowywanie do przesłania opinii...
+
+set string531=Japonia
+set string532=Obecnie trwają prace konserwacyjne na naszych serwerach.
+set string533=Developer requested that access to the program will be prohibited until the maintenance is done.
+set string534=Please try again later.
+set string535=There is currently background maintenance in progress on our servers.
+set string536=Some functionality may be limited or not functioning until the maintenance is done.
