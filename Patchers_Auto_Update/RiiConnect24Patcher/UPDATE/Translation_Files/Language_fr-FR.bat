@@ -553,3 +553,10 @@ set string527=Écrivez votre message ici [ENTRÉE confirme votre message].
 set string528=Voici votre message:
 set string529=Voulez-vous le joindre?
 set string530=Préparation à l'envoi du retour...
+
+set string531=Japan
+set string532=There is currently maintenance in progress on our servers.
+set string533=Developer requested that access to the program will be prohibited until the maintenance is done.
+set string534=Please try again later.
+set string535=There is currently background maintenance in progress on our servers.
+set string536=Some functionality may be limited or not functioning until the maintenance is done.
