@@ -522,7 +522,7 @@ set string499=Isso irá instalar o Visual C++ Redistributable
 set string500=Não, eu o instalarei manualmente.
 set string501=Instalando
 
-set string502=Preparing to report the error...
+set string502=Preparando para reportar o erro...
 set string503=Error reported successfully! We've been notified about the error.
 set string504=Randomize your error reporting identifier.
 set string505=Current:
@@ -552,3 +552,10 @@ set string527=Write your message here [ENTER confirms your message].
 set string528=This is your message:
 set string529=Would you like to attach it?
 set string530=Preparing to send feedback...
+
+set string531=Japan
+set string532=There is currently maintenance in progress on our servers.
+set string533=Developer requested that access to the program will be prohibited until the maintenance is done.
+set string534=Please try again later.
+set string535=There is currently background maintenance in progress on our servers.
+set string536=Some functionality may be limited or not functioning until the maintenance is done.
