@@ -561,5 +561,5 @@ set string534=Proszę spróbować później.
 set string532=Obecnie na naszych serwerach trwają prace konserwacyjne w tle.
 set string536=Niektóre funkcje mogą być ograniczone lub nie działać dopóki prace nie zostaną zakończone.
 
-set string538=Unfortunately, for Korean region we only support Wii Mail.
-set string539=Other channels were originally not supported by WiiConnect24.
+set string538=Niestety, jeżeli chodzi o region Korea - wspieramy tylko Wii Mail.
+set string539=Inne kanały nigdy nie były wspierane przez WiiConnect24.
