@@ -554,8 +554,12 @@ set string529=Czy chciałbyś ją dołączyć?
 set string530=Przygotowywanie do przesłania opinii...
 
 set string531=Japonia
+set string537=Korea
 set string532=Obecnie trwają prace konserwacyjne na naszych serwerach.
-set string533=Developer requested that access to the program will be prohibited until the maintenance is done.
-set string534=Please try again later.
-set string535=There is currently background maintenance in progress on our servers.
-set string536=Some functionality may be limited or not functioning until the maintenance is done.
+set string533=Programista poprosił o zabronienie dostępu do programu dopóki prace konserwacyjne się zakończą.
+set string534=Proszę spróbować później.
+set string532=Obecnie na naszych serwerach trwają prace konserwacyjne w tle.
+set string536=Niektóre funkcje mogą być ograniczone lub nie działać dopóki prace nie zostaną zakończone.
+
+set string538=Unfortunately, for Korean region we only support Wii Mail.
+set string539=Other channels were originally not supported by WiiConnect24.
