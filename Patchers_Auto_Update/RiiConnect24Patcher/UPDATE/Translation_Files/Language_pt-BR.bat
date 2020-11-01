@@ -523,12 +523,12 @@ set string500=Não, eu o instalarei manualmente.
 set string501=Instalando
 
 set string502=Preparando para reportar o erro...
-set string503=Error reported successfully! We've been notified about the error.
-set string504=Randomize your error reporting identifier.
-set string505=Current:
+set string503=Erro reportado com sucesso! Fomos notificados sobre o erro.
+set string504=Aleatorize o seu identificador de reportagem de erros.
+set string505=Atualmente:
 
 set string506=Take a second to send back feedback to developers.
-set string507=Welcome! We will now ask you a few questions.
+set string507=Bem-vindo! Iremos agora fazer-lhe algumas perguntas.
 set string508=Which one best fits the app that you just used?
 set string509=The app is bad.
 set string510=I encountered a lot of issues when patching.
@@ -554,8 +554,12 @@ set string529=Would you like to attach it?
 set string530=Preparing to send feedback...
 
 set string531=Japan
+set string537=Korea
 set string532=There is currently maintenance in progress on our servers.
 set string533=Developer requested that access to the program will be prohibited until the maintenance is done.
 set string534=Please try again later.
 set string535=There is currently background maintenance in progress on our servers.
 set string536=Some functionality may be limited or not functioning until the maintenance is done.
+
+set string538=Unfortunately, for Korean region we only support Wii Mail.
+set string539=Other channels were originally not supported by WiiConnect24.
