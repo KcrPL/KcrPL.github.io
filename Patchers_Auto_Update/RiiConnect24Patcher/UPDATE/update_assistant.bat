@@ -18,7 +18,9 @@ set header=Update Assistant - (C) KcrPL v%version% (Compiled on %last_build% at 
 set /a no_start=0
 set /a beta=0
 set /a preboot=0
-set FilesHostedOn=https://kcrPL.github.io/Patchers_Auto_Update/RiiConnect24Patcher
+::set FilesHostedOn=https://patcher.rc24.xyz/update/RiiConnect24-Patcher/v1
+set FilesHostedOn=https://kcrpl.github.io/Patchers_Auto_Update/RiiConnect24Patcher
+set FilesHostedOn_Beta=https://patcher.rc24.xyz/update/RiiConnect24-Patcher_BETA/v1
 ::
 
 if "%1"=="-no_start" set /a no_start=1
@@ -126,7 +128,7 @@ echo ---------------------------------------------------------------------------
 echo.
 echo Please wait! We are now downloading your new RiiConnect24 Patcher update.
 if %beta%==0 curl -s -S --insecure "%FilesHostedOn%/UPDATE/RiiConnect24Patcher.bat" --output "RiiConnect24PatcherTEMP.bat"
-if %beta%==1 curl -s -S --insecure "%FilesHostedOn%_Beta/UPDATE/RiiConnect24Patcher.bat" --output "RiiConnect24PatcherTEMP.bat"
+if %beta%==1 curl -s -S --insecure "%FilesHostedOn_Beta%/UPDATE/RiiConnect24Patcher.bat" --output "RiiConnect24PatcherTEMP.bat"
 set temperrorlev=%errorlevel%
 if not %temperrorlev%==0 goto error_download
 
