@@ -1,3 +1,9 @@
+1.3.5
+- WiiWare Patcher is now integrated in the patcher. You can now directly patch your WAD Games in the patcher.
+- We've moved file hosting to the RiiConnect24 VPS.
+- We now support patching for Japan (J) and Korea (K) regions.
+- We can now bundle Internet Channel, Photo Channel, Today and Tomorrow Channel and Wii Speak Channel along with the RiiConnect24 Patched channels.
+
 1.3.4
 - Fixed a crash that would happen on computers with "wmic" corrupted.
 - Error reports will now attach the output from CLI Tools when patching.

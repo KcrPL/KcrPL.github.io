@@ -1,7 +1,7 @@
 @echo off
 :: ===========================================================================
 :: Update Assistant for RiiConnect24
-set version=1.0.2
+set version=1.0.3
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2020 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -11,15 +11,14 @@ setlocal EnableDelayedExpansion
 
 if exist temp.bat del /q temp.bat
 
-set last_build=2020/04/16
-set at=23:07
+set last_build=2020/11/06
+set at=09:43
 set header=Update Assistant - (C) KcrPL v%version% (Compiled on %last_build% at %at%)
 ::
 set /a no_start=0
 set /a beta=0
 set /a preboot=0
-::set FilesHostedOn=https://patcher.rc24.xyz/update/RiiConnect24-Patcher/v1
-set FilesHostedOn=https://kcrpl.github.io/Patchers_Auto_Update/RiiConnect24Patcher
+set FilesHostedOn=https://patcher.rc24.xyz/update/RiiConnect24-Patcher/v1
 set FilesHostedOn_Beta=https://patcher.rc24.xyz/update/RiiConnect24-Patcher_BETA/v1
 ::
 
