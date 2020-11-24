@@ -42,6 +42,10 @@ if "%1"=="-VFF_Downloader_Installer" goto start_download_vff_downloader_install
 if "%1"=="-RC24_DNS_Checker" goto start_download_dns_checker
 if "%2"=="-RC24_DNS_Checker" goto start_download_dns_checker
 
+if "%1"=="-Mail-Patcher" goto start_download_mail_patcher
+
+
+
 goto no_parameters
 
 :no_parameters
@@ -52,6 +56,7 @@ echo : Usage: update_assistant.bat [options...]    :
 echo :---------------------------------------------:
 echo.
 echo -RC24_Patcher                  Will download latest RiiConnect24 Patcher to current dir
+echo -Mail-Patcher                  Will download latest Mail Patcher to current dir
 echo -VFF_Downloader_Main_Exec      Will download executable for VFF Downloader for Dolphin
 echo -VFF_Downloader_Installer      Will download installer for VFF Downloader for Dolphin
 echo -RC24_DNS_Checker              Will download latest version of RiiConnect24 DNS Checker to current dir
@@ -117,6 +122,25 @@ if not %temperrorlev%==0 goto error_download
 if %no_start%==0 start VFF-Downloader-for-Dolphin.exe
 exit
 
+:start_download_mail_patcher
+set mode=128,37
+mode %mode%
+cls
+echo %header%
+echo -----------------------------------------------------------------------------------------------------------------------------
+echo.
+echo Please wait! We are now downloading your new Mail Patcher update.
+curl -s -S --insecure "https://patcher.rc24.xyz/update/Mail-Patcher/v1/UPDATE/patch.bat" --output "patchTEMP.bat"
+set temperrorlev=%errorlevel%
+if not %temperrorlev%==0 goto error_download
+
+del patch.bat
+ren "patchTEMP.bat" "patch.bat"
+
+if %no_start%==0 start patch.bat
+
+del /q "%~n0~x0"
+exit
 
 :start_download_rc24_patcher
 set mode=128,37
