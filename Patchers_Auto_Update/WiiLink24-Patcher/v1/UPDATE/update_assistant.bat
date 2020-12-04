@@ -59,7 +59,7 @@ echo %header%
 echo -----------------------------------------------------------------------------------------------------------------------------
 echo.
 echo Please wait! We are now downloading your new WiiLink24 Patcher update.
-curl -s -S --insecure "%FilesHostedOn%/UPDATE/WiiLink24Patcher.bat" --output "WiiLink24PatcherTEMP.bat"
+curl -f -L -s -S --insecure "%FilesHostedOn%/UPDATE/WiiLink24Patcher.bat" --output "WiiLink24PatcherTEMP.bat"
 set temperrorlev=%errorlevel%
 if not %temperrorlev%==0 goto error_download
 
