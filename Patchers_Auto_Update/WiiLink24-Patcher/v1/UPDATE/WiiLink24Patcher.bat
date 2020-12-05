@@ -7,7 +7,7 @@ echo	The program is starting...
 
 :: ===========================================================================
 :: WiiLink24 Patcher for Windows
-set version=1.0.1
+set version=1.0.1.1
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2020 KcrPL
@@ -40,7 +40,7 @@ set title=WiiLink24 Patcher v%version% Created by @KcrPL
 title %title%
 
 set last_build=2020/12/05
-set at=21:03
+set at=21:11
 :: ### Auto Update ###
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
@@ -830,12 +830,14 @@ goto 1_install_wiilink24_7
 
 if exist WiinoMa_Patcher rmdir /s /q WiinoMa_Patcher
 if exist 000100014843494Av1025.wad del /q 000100014843494Av1025.wad
+if exist WiinoMa_tik.delta del /q WiinoMa_tik.delta
+if exist WiinoMa_tmd.delta del /q WiinoMa_tmd.delta
 if exist 000100014843494a.tik del /q 000100014843494a.tik
 if exist 000100014843494a.tmd del /q 000100014843494a.tmd
 if exist 00000001.app del /q 00000001.app
 if exist 00000002.app del /q 00000002.app
-if "%prerelease_status%"=="0" if exist WiiNoMa_1.delta del /q WiiNoMa_1.delta
-if "%prerelease_status%"=="0" if exist WiiNoMa_2.delta del /q WiiNoMa_2.delta
+if exist WiiNoMa_1.delta del /q WiiNoMa_1.delta
+if exist WiiNoMa_2.delta del /q WiiNoMa_2.delta
 if exist unpack rmdir /s /q unpack
 exit /b 0
 
@@ -858,26 +860,26 @@ curl -s -f -L --insecure "%FilesHostedOn%/WiinoMa_Patcher/{libWiiSharp.dll,Sharp
 :: 1 - English
 :: 2 - Japanese
 if %region%==1 (
-if "%prerelease_status%"=="0" curl -f -L -s -S --insecure "%FilesHostedOn%/patches/WiiNoMa_1_English.delta" -O "WiinoMa_1.delta"
-if "%prerelease_status%"=="0" set /a temperrorlev=%errorlevel%&set modul=Downloading English delta&if not %temperrorlev%==0 goto error_patching
-if "%prerelease_status%"=="0" curl -f -L -s -S --insecure "%FilesHostedOn%/patches/WiiNoMa_2_English.delta" -O "WiinoMa_2.delta"
-if "%prerelease_status%"=="0" set /a temperrorlev=%errorlevel%&set modul=Downloading English delta&if not %temperrorlev%==0 goto error_patching
-if "%prerelease_status%"=="0" curl -f -L -s -S --insecure "%FilesHostedOn%/patches/WiinoMa_tmd_EN.delta" -O "WiinoMa_tmd.delta"
-if "%prerelease_status%"=="0" set /a temperrorlev=%errorlevel%&set modul=Downloading English delta&if not %temperrorlev%==0 goto error_patching
-if "%prerelease_status%"=="0" curl -f -L -s -S --insecure "%FilesHostedOn%/patches/WiinoMa_tik_EN.delta" -O "WiinoMa_tik.delta"
-if "%prerelease_status%"=="0" set /a temperrorlev=%errorlevel%&set modul=Downloading English delta&if not %temperrorlev%==0 goto error_patching
+curl -f -L -s -S --insecure "%FilesHostedOn%/patches/WiiNoMa_1_English.delta" -o "WiinoMa_1.delta"
+set /a temperrorlev=%errorlevel%&set modul=Downloading English delta&if not %temperrorlev%==0 goto error_patching
+curl -f -L -s -S --insecure "%FilesHostedOn%/patches/WiiNoMa_2_English.delta" -o "WiinoMa_2.delta"
+set /a temperrorlev=%errorlevel%&set modul=Downloading English delta&if not %temperrorlev%==0 goto error_patching
+curl -f -L -s -S --insecure "%FilesHostedOn%/patches/WiinoMa_tmd_EN.delta" -o "WiinoMa_tmd.delta"
+set /a temperrorlev=%errorlevel%&set modul=Downloading English delta&if not %temperrorlev%==0 goto error_patching
+curl -f -L -s -S --insecure "%FilesHostedOn%/patches/WiinoMa_tik_EN.delta" -o "WiinoMa_tik.delta"
+set /a temperrorlev=%errorlevel%&set modul=Downloading English delta&if not %temperrorlev%==0 goto error_patching
 set language_wiinoma=English
 	)
 
 if %region%==2 (
-if "%prerelease_status%"=="0" curl -f -L -s -S --insecure "%FilesHostedOn%/patches/WiiNoMa_1_Japanese.delta" -O "WiinoMa_1.delta"
-if "%prerelease_status%"=="0" set /a temperrorlev=%errorlevel%&set modul=Downloading Japanese delta&if not %temperrorlev%==0 goto error_patching
-if "%prerelease_status%"=="0" curl -f -L -s -S --insecure "%FilesHostedOn%/patches/WiiNoMa_2_Japanese.delta" -O "WiinoMa_2.delta"
-if "%prerelease_status%"=="0" set /a temperrorlev=%errorlevel%&set modul=Downloading Japanese delta&if not %temperrorlev%==0 goto error_patching
-if "%prerelease_status%"=="0" curl -f -L -s -S --insecure "%FilesHostedOn%/patches/WiinoMa_tmd_JPN.delta" -O "WiinoMa_tmd.delta"
-if "%prerelease_status%"=="0" set /a temperrorlev=%errorlevel%&set modul=Downloading Japenese delta&if not %temperrorlev%==0 goto error_patching
-if "%prerelease_status%"=="0" curl -f -L -s -S --insecure "%FilesHostedOn%/patches/WiinoMa_tik_JPN.delta" -O "WiinoMa_tik.delta"
-if "%prerelease_status%"=="0" set /a temperrorlev=%errorlevel%&set modul=Downloading Japanese delta&if not %temperrorlev%==0 goto error_patching
+curl -f -L -s -S --insecure "%FilesHostedOn%/patches/WiiNoMa_1_Japanese.delta" -o "WiinoMa_1.delta"
+set /a temperrorlev=%errorlevel%&set modul=Downloading Japanese delta&if not %temperrorlev%==0 goto error_patching
+curl -f -L -s -S --insecure "%FilesHostedOn%/patches/WiiNoMa_2_Japanese.delta" -o "WiinoMa_2.delta"
+set /a temperrorlev=%errorlevel%&set modul=Downloading Japanese delta&if not %temperrorlev%==0 goto error_patching
+curl -f -L -s -S --insecure "%FilesHostedOn%/patches/WiinoMa_tmd_JPN.delta" -o "WiinoMa_tmd.delta"
+set /a temperrorlev=%errorlevel%&set modul=Downloading Japenese delta&if not %temperrorlev%==0 goto error_patching
+curl -f -L -s -S --insecure "%FilesHostedOn%/patches/WiinoMa_tik_JPN.delta" -o "WiinoMa_tik.delta"
+set /a temperrorlev=%errorlevel%&set modul=Downloading Japanese delta&if not %temperrorlev%==0 goto error_patching
 set language_wiinoma=Japanese
 	)
 
