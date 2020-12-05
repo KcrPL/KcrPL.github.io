@@ -1,2 +1,5 @@
+1.0.1
+- Small fix for downloading files.
+
 1.0.0
 - Initial Release
