@@ -85,4 +85,4 @@ echo The update assistant will now return to loader or it will exit.
 echo.
 echo Press any button to continue.
 pause>NUL
-GOTO:EOF
+exit
