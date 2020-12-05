@@ -48,7 +48,7 @@ echo : WiiLink24 Update Assistant for Windows.     :
 echo : Usage: update_assistant.bat [options...]    :
 echo :---------------------------------------------:
 echo.
-echo -WiiLink24_Patcher                Will download latest RiiConnect24 Patcher to current dir
+echo -WiiLink24_Patcher                Will download latest WiiLink24 Patcher to current dir
 GOTO:EOF
 
 :start_download_wiilink24_patcher
@@ -69,7 +69,6 @@ ren "WiiLink24PatcherTEMP.bat" "WiiLink24Patcher.bat"
 if %no_start%==0 start WiiLink24Patcher.bat
 
 del /q "%~n0~x0"
-GOTO:EOL
 exit
 
 :error_download
