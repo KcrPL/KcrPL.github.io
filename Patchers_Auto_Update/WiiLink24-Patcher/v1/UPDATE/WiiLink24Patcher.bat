@@ -40,7 +40,7 @@ set title=WiiLink24 Patcher v%version% Created by @KcrPL
 title %title%
 
 set last_build=2020/12/05
-set at=19:42
+set at=19:53
 :: ### Auto Update ###
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
