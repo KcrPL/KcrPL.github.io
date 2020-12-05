@@ -7,7 +7,7 @@ echo	The program is starting...
 
 :: ===========================================================================
 :: WiiLink24 Patcher for Windows
-set version=1.0.1.1
+set version=1.0.2
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2020 KcrPL
@@ -40,7 +40,7 @@ set title=WiiLink24 Patcher v%version% Created by @KcrPL
 title %title%
 
 set last_build=2020/12/05
-set at=21:11
+set at=22:20
 :: ### Auto Update ###
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
@@ -846,12 +846,15 @@ call :files_cleanup
 
 ::Create folders
 if not exist WAD md WAD
+if not exist unpack md unpack
 if not exist WiinoMa_Patcher md WiinoMa_Patcher
 if not exist apps\WiiModLite md apps\WiiModLite
 
 ::Download tools
 curl -s -f -L --insecure "%FilesHostedOn%/WiinoMa_Patcher/{libWiiSharp.dll,Sharpii.exe,WadInstaller.dll,xdelta3.exe}" -O --remote-name-all
-		set /a temperrorlev=%errorlevel%&set modul=Downloading tools&if not %temperrorlev%==0 goto error_patching
+			set /a temperrorlev=%errorlevel%
+	set modul=Downloading tools
+	if not %temperrorlev%==0 goto error_patching
 	move libWiiSharp.dll WiinoMa_Patcher\libWiiSharp.dll>NUL
 	move Sharpii.exe WiinoMa_Patcher\Sharpii.exe>NUL
 	move WADInstaller.dll WiinoMa_Patcher\WADInstaller.dll>NUL
@@ -861,36 +864,59 @@ curl -s -f -L --insecure "%FilesHostedOn%/WiinoMa_Patcher/{libWiiSharp.dll,Sharp
 :: 2 - Japanese
 if %region%==1 (
 curl -f -L -s -S --insecure "%FilesHostedOn%/patches/WiiNoMa_1_English.delta" -o "WiinoMa_1.delta"
-set /a temperrorlev=%errorlevel%&set modul=Downloading English delta&if not %temperrorlev%==0 goto error_patching
+	set /a temperrorlev=%errorlevel%
+	set modul=Downloading English Delta
+	if not %temperrorlev%==0 goto error_patching
 curl -f -L -s -S --insecure "%FilesHostedOn%/patches/WiiNoMa_2_English.delta" -o "WiinoMa_2.delta"
-set /a temperrorlev=%errorlevel%&set modul=Downloading English delta&if not %temperrorlev%==0 goto error_patching
+	set /a temperrorlev=%errorlevel%
+	set modul=Downloading English Delta
+	if not %temperrorlev%==0 goto error_patching
 curl -f -L -s -S --insecure "%FilesHostedOn%/patches/WiinoMa_tmd_EN.delta" -o "WiinoMa_tmd.delta"
-set /a temperrorlev=%errorlevel%&set modul=Downloading English delta&if not %temperrorlev%==0 goto error_patching
+	set /a temperrorlev=%errorlevel%
+	set modul=Downloading English Delta
+	if not %temperrorlev%==0 goto error_patching
 curl -f -L -s -S --insecure "%FilesHostedOn%/patches/WiinoMa_tik_EN.delta" -o "WiinoMa_tik.delta"
-set /a temperrorlev=%errorlevel%&set modul=Downloading English delta&if not %temperrorlev%==0 goto error_patching
+	set /a temperrorlev=%errorlevel%
+	set modul=Downloading English Delta
+	if not %temperrorlev%==0 goto error_patching
+	
 set language_wiinoma=English
 	)
 
 if %region%==2 (
 curl -f -L -s -S --insecure "%FilesHostedOn%/patches/WiiNoMa_1_Japanese.delta" -o "WiinoMa_1.delta"
-set /a temperrorlev=%errorlevel%&set modul=Downloading Japanese delta&if not %temperrorlev%==0 goto error_patching
+	set /a temperrorlev=%errorlevel%
+	set modul=Downloading Japanese Delta
+	if not %temperrorlev%==0 goto error_patching
 curl -f -L -s -S --insecure "%FilesHostedOn%/patches/WiiNoMa_2_Japanese.delta" -o "WiinoMa_2.delta"
-set /a temperrorlev=%errorlevel%&set modul=Downloading Japanese delta&if not %temperrorlev%==0 goto error_patching
+	set /a temperrorlev=%errorlevel%
+	set modul=Downloading Japanese Delta
+	if not %temperrorlev%==0 goto error_patching
 curl -f -L -s -S --insecure "%FilesHostedOn%/patches/WiinoMa_tmd_JPN.delta" -o "WiinoMa_tmd.delta"
-set /a temperrorlev=%errorlevel%&set modul=Downloading Japenese delta&if not %temperrorlev%==0 goto error_patching
+	set /a temperrorlev=%errorlevel%
+	set modul=Downloading Japanese Delta
+	if not %temperrorlev%==0 goto error_patching
 curl -f -L -s -S --insecure "%FilesHostedOn%/patches/WiinoMa_tik_JPN.delta" -o "WiinoMa_tik.delta"
-set /a temperrorlev=%errorlevel%&set modul=Downloading Japanese delta&if not %temperrorlev%==0 goto error_patching
+	set /a temperrorlev=%errorlevel%
+	set modul=Downloading Japanese Delta
+	if not %temperrorlev%==0 goto error_patching
 set language_wiinoma=Japanese
 	)
 
 
 ::Wii Mod Lite
 curl -f -L -s -S --insecure "%FilesHostedOn%/apps/WiiModLite/boot.dol" -o "apps/WiiModLite/boot.dol"
-	set /a temperrorlev=%errorlevel%&set modul=Downloading WiiModLite&if not %temperrorlev%==0 goto error_patching
+	set /a temperrorlev=%errorlevel%
+	set modul=Downloading Wii Mod Lite
+	if not %temperrorlev%==0 goto error_patching
 curl -f -L -s -S --insecure "%FilesHostedOn%/apps/WiiModLite/meta.xml" -o "apps/WiiModLite/meta.xml"
-	set /a temperrorlev=%errorlevel%&set modul=Downloading WiiModLite&if not %temperrorlev%==0 goto error_patching
+	set /a temperrorlev=%errorlevel%
+	set modul=Downloading Wii Mod Lite
+	if not %temperrorlev%==0 goto error_patching
 curl -f -L -s -S --insecure "%FilesHostedOn%/apps/WiiModLite/icon.png" -o "apps/WiiModLite/icon.png"
-	set /a temperrorlev=%errorlevel%&set modul=Downloading WiiModLite&if not %temperrorlev%==0 goto error_patching
+	set /a temperrorlev=%errorlevel%
+	set modul=Downloading Wii Mod Lite
+	if not %temperrorlev%==0 goto error_patching
 
 set /a progress_downloading=1
 exit /b 0
@@ -898,33 +924,54 @@ exit /b 0
 :patching_fast_travel_2
 ::Download WAD
 
-call WiinoMa_Patcher\Sharpii.exe NUSD -id 000100014843494A -wad>NUL
-	set /a temperrorlev=%errorlevel%&set modul=Downloading Wii no Ma&if not %temperrorlev%==0 goto error_patching
+call WiinoMa_Patcher\Sharpii.exe NUSD -ID 000100014843494A -wad>NUL
+	set /a temperrorlev=%errorlevel%
+	set modul=Downloading Wii no Ma
+	if not %temperrorlev%==0 goto error_patching
 call WiinoMa_Patcher\Sharpii.exe WAD -u 000100014843494Av1025.wad unpack>NUL
-	set /a temperrorlev=%errorlevel%&set modul=Unpacking Wii no Ma&if not %temperrorlev%==0 goto error_patching
-
+	set /a temperrorlev=%errorlevel%
+	set modul=Downloading Wii no Ma
+	if not %temperrorlev%==0 goto error_patching
 move unpack\00000001.app 00000001.app>NUL
-	set /a temperrorlev=%errorlevel%&set modul=Moving Wii no Ma .app&if not %temperrorlev%==0 goto error_patching
+	set /a temperrorlev=%errorlevel%
+	set modul=Moving Wii no Ma .app
+	if not %temperrorlev%==0 goto error_patching
 move unpack\00000002.app 00000002.app>NUL
-	set /a temperrorlev=%errorlevel%&set modul=Moving Wii no Ma .app&if not %temperrorlev%==0 goto error_patching
+	set /a temperrorlev=%errorlevel%
+	set modul=Moving Wii no Ma .app
+	if not %temperrorlev%==0 goto error_patching
 move unpack\000100014843494a.tmd 000100014843494a.tmd>NUL
-	set /a temperrorlev=%errorlevel%&set modul=Moving Wii no Ma .tmd&if not %temperrorlev%==0 goto error_patching
+	set /a temperrorlev=%errorlevel%
+	set modul=Moving Wii no Ma .tmd
+	if not %temperrorlev%==0 goto error_patching
 move unpack\000100014843494a.tik 000100014843494a.tik>NUL
-	set /a temperrorlev=%errorlevel%&set modul=Moving Wii no Ma .tik&if not %temperrorlev%==0 goto error_patching
+	set /a temperrorlev=%errorlevel%
+	set modul=Moving Wii no Ma .tik
+	if not %temperrorlev%==0 goto error_patching
 
 
 call WiinoMa_Patcher\xdelta3.exe -d -s 00000001.app WiinoMa_1.delta unpack\00000001.app>NUL
-	set /a temperrorlev=%errorlevel%&set modul=Applying Wii no Ma patch&if not %temperrorlev%==0 goto error_patching
+	set /a temperrorlev=%errorlevel%
+	set modul=Applying Wii no Ma patch
+	if not %temperrorlev%==0 goto error_patching
 call WiinoMa_Patcher\xdelta3.exe -d -s 00000002.app WiinoMa_2.delta unpack\00000002.app>NUL
-	set /a temperrorlev=%errorlevel%&set modul=Applying Wii no Ma patch&if not %temperrorlev%==0 goto error_patching
+	set /a temperrorlev=%errorlevel%
+	set modul=Applying Wii no Ma patch
+	if not %temperrorlev%==0 goto error_patching
 call WiinoMa_Patcher\xdelta3.exe -d -s 000100014843494a.tmd WiinoMa_tmd.delta unpack\000100014843494a.tmd>NUL
-	set /a temperrorlev=%errorlevel%&set modul=Applying Wii no Ma patch&if not %temperrorlev%==0 goto error_patching
+	set /a temperrorlev=%errorlevel%
+	set modul=Applying Wii no Ma patch
+	if not %temperrorlev%==0 goto error_patching
 call WiinoMa_Patcher\xdelta3.exe -d -s 000100014843494a.tik WiinoMa_tik.delta unpack\000100014843494a.tik>NUL
-	set /a temperrorlev=%errorlevel%&set modul=Applying Wii no Ma patch&if not %temperrorlev%==0 goto error_patching
+	set /a temperrorlev=%errorlevel%
+	set modul=Applying Wii no Ma patch
+	if not %temperrorlev%==0 goto error_patching
 
 
 call WiinoMa_Patcher\Sharpii.exe WAD -p unpack\ "WAD\Wii no Ma (%language_wiinoma%) (WiiLink24).wad">NUL
-	set /a temperrorlev=%errorlevel%&set modul=Packing Wii no Ma patch&if not %temperrorlev%==0 goto error_patching
+	set /a temperrorlev=%errorlevel%
+	set modul=Packing Wii no Ma WAD
+	if not %temperrorlev%==0 goto error_patching
 
 set /a progress_wiinoma=1
 exit /b 0
