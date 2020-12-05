@@ -830,6 +830,8 @@ goto 1_install_wiilink24_7
 
 if exist WiinoMa_Patcher rmdir /s /q WiinoMa_Patcher
 if exist 000100014843494Av1025.wad del /q 000100014843494Av1025.wad
+if exist 000100014843494a.tik del /q 000100014843494a.tik
+if exist 000100014843494a.tmd del /q 000100014843494a.tmd
 if exist 00000001.app del /q 00000001.app
 if exist 00000002.app del /q 00000002.app
 if "%prerelease_status%"=="0" if exist WiiNoMa_1.delta del /q WiiNoMa_1.delta
