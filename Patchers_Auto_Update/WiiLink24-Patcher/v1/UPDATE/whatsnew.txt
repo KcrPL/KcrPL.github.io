@@ -1,3 +1,6 @@
+1.0.3
+- Bugfixes
+
 1.0.2
 - Fixed error detection. (Sometimes could go to error screen with exit code 0)
 - Fixed patching for Turkish Windows installs.

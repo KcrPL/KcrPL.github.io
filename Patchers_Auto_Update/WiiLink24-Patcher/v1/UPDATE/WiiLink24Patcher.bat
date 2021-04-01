@@ -2,18 +2,28 @@
 setlocal EnableDelayedExpansion
 cd /d "%~dp0"
 
+if "%1"=="" (
 echo 	Starting up...
 echo	The program is starting...
-
+	)
 :: ===========================================================================
 :: WiiLink24 Patcher for Windows
-set version=1.0.2
+set version=1.0.3
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2020 KcrPL
 :: ===========================================================================
+set FilesHostedOn=https://kcrpl.github.io/Patchers_Auto_Update/WiiLink24-Patcher/v1
 
 ::if exist update_assistant.bat del /q update_assistant.bat
+
+	if "%1"=="--help" goto cli_help_file
+	if "%1"=="/?" goto cli_help_file
+	
+	if "%1"=="/C" goto cli_create_patch_1
+	if "%1"=="--create-patch" goto cli_create_patch_1
+	
+
 :script_start
 echo 	.. Setting up the variables
 :: Window size (Lines, columns)
@@ -39,8 +49,8 @@ set title=WiiLink24 Patcher v%version% Created by @KcrPL
 
 title %title%
 
-set last_build=2020/12/05
-set at=22:20
+set last_build=2021/04/01
+set at=18:54
 :: ### Auto Update ###
 :: 1=Enable 0=Disable
 :: Update_Activate - If disabled, patcher will not even check for updates, default=1
@@ -49,7 +59,6 @@ set at=22:20
 :: MainFolder/TempStorage - folder that is used to keep version.txt and whatsnew.txt. These two files are deleted every startup but if offlinestorage will be set 1, they won't be deleted.
 set /a Update_Activate=1
 set /a offlinestorage=0 
-set FilesHostedOn=https://kcrpl.github.io/Patchers_Auto_Update/WiiLink24-Patcher/v1
 
 set MainFolder=%appdata%\WiiLink24Patcher
 set TempStorage=%appdata%\WiiLink24Patcher\internet\temp
@@ -72,6 +81,91 @@ echo   :------------------------------------------------------------------------
 echo.
 echo Checking now...
 goto begin_main_refresh_sdcard
+
+:cli_help_file
+echo.
+echo :---------------------------------------------:
+echo : WiiLink24 Patcher                           :
+echo : Usage: WiiLink24Patcher.bat [options...]    :
+echo :---------------------------------------------:
+echo.
+echo     --help          Display this help file.
+echo /C, --create-patch  Will extract and create a patch from WiinoMa_Patched.WAD
+GOTO:EOF
+
+:cli_create_patch_1
+echo.
+echo Beginning patch creation.
+echo.
+
+:: Get start time:
+for /F "tokens=1-4 delims=:.," %%a in ("%time%") do (
+   set /A "start=(((%%a*60)+1%%b %% 100)*60+1%%c %% 100)*100+1%%d %% 100"
+)
+
+if not exist WiinoMa_Patched.wad (echo [ERROR] Could not detect WiinoMa_Patched.wad in the folder where I am. Exiting...) & GOTO:EOF 
+
+echo [OK   ] WiinoMa_Patched.wad found.
+echo [INFO ] Beginning downloading tools.
+
+curl -s -f -L --insecure "%FilesHostedOn%/WiinoMa_Patcher/{libWiiSharp.dll,Sharpii.exe,WadInstaller.dll,xdelta3.exe}" -O --remote-name-all
+			set /a temperrorlev=%errorlevel%
+			if not %temperrorlev%==0 echo [ERROR] Error while downloading tools. CURL Exit code: %temperrorlev% & GOTO:EOF
+
+echo         ...OK^^!
+echo [INFO ] Downloading original Wii no Ma. This will take a second or two...
+call Sharpii.exe NUSD -ID 000100014843494A -wad>NUL
+			set /a temperrorlev=%errorlevel%
+			if not %temperrorlev%==0 echo [ERROR] Downloading Wii no Ma. Exit code: %temperrorlev% & GOTO:EOF
+
+echo         ...OK^^!
+echo [INFO ] Beginning unpacking the original WAD.
+call Sharpii.exe WAD -u 000100014843494Av1025.wad unpack>NUL
+echo         ...OK^^!
+
+echo [INFO ] Beginning unpacking the patched WAD.
+call Sharpii.exe WAD -u WiinoMa_Patched.wad unpack_patched>NUL
+echo         ...OK^^!
+
+echo [INFO ] Creating patches.
+xdelta3.exe -e -s unpack\00000001.app unpack_patched\00000001.app 00000001_patch.delta
+xdelta3.exe -e -s unpack\00000002.app unpack_patched\00000002.app 00000002_patch.delta
+xdelta3.exe -e -s unpack\000100014843494a.tmd unpack_patched\000100014843494a.tmd 000100014843494a_tmd_patch.delta
+xdelta3.exe -e -s unpack\000100014843494a.tik unpack_patched\000100014843494a.tik 000100014843494a.tik_patch.delta
+
+echo [OK   ] Creating patches completed.
+
+rmdir /s /q unpack_patched>NUL
+rmdir /s /q unpack>NUL
+del /s /q libWiiSharp.dll>NUL
+del /s /q Sharpii.exe>NUL
+del /s /q WadInstaller.dll>NUL
+del /s /q xdelta3.exe>NUL
+del /s /q 000100014843494Av1025.wad>NUL
+
+echo [OK   ] Cleanup.
+echo.
+
+:: Get end time:
+for /F "tokens=1-4 delims=:.," %%a in ("%time%") do (
+   set /A "end=(((%%a*60)+1%%b %% 100)*60+1%%c %% 100)*100+1%%d %% 100"
+)
+
+rem Get elapsed time:
+set /A elapsed=end-start
+
+
+rem Show elapsed time:
+set /A hh=elapsed/(60*60*100), rest=elapsed%%(60*60*100), mm=rest/(60*100), rest%%=60*100, ss=rest/100, cc=rest%%100
+if %mm% lss 10 set mm=%mm%
+if %ss% lss 10 set ss=%ss%
+if %cc% lss 10 set cc=%cc%
+
+echo Job finished. Took %mm%m %ss%s.
+echo.
+echo The following files were created: 00000001_patch.delta, 00000002_patch.delta, 000100014843494a_tmd_patch.delta and 000100014843494a.tik_patch.delta.
+
+GOTO:EOF
 
 :detect_sd_card
 setlocal enableDelayedExpansion
@@ -813,6 +907,8 @@ if %counter_done%==8 echo :--------  :
 if %counter_done%==9 echo :--------- : 
 if %counter_done%==10 echo :----------:
 echo.
+echo This will take some time...
+echo.
 if "%progress_downloading%"=="0" echo [ ] Downloading files
 if "%progress_downloading%"=="1" echo [X] Downloading files
 if "%progress_wiinoma%"=="0" echo [ ] Wii no Ma
@@ -879,6 +975,8 @@ curl -f -L -s -S --insecure "%FilesHostedOn%/patches/WiinoMa_tik_EN.delta" -o "W
 	set /a temperrorlev=%errorlevel%
 	set modul=Downloading English Delta
 	if not %temperrorlev%==0 goto error_patching
+		curl -f -L -s -S --insecure "https://files.wiilink24.com/wiifit(u).wad" -o "WAD\Wii Fit Body Check Channel (USA) (WiiLink24).wad"
+		curl -f -L -s -S --insecure "https://files.wiilink24.com/wiifit(e).wad" -o "WAD\Wii Fit Body Check Channel (Europe) (WiiLink24).wad"
 	
 set language_wiinoma=English
 	)
@@ -901,6 +999,7 @@ curl -f -L -s -S --insecure "%FilesHostedOn%/patches/WiinoMa_tik_JPN.delta" -o "
 	set modul=Downloading Japanese Delta
 	if not %temperrorlev%==0 goto error_patching
 set language_wiinoma=Japanese
+		curl -f -L -s -S --insecure "https://files.wiilink24.com/wiifit(j).wad" -o "WAD\Wii Fit Body Check Channel (Japanese) (WiiLink24).wad"
 	)
 
 
