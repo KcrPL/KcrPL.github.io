@@ -1,3 +1,6 @@
+1.0.8
+- Fix the patcher detecting incorrect path when using a Microsoft Account instead of a local account.
+
 1.0.7.1
 - Fix the crash that occurs on start.
 
