@@ -5707,7 +5707,7 @@ goto 2_2
 
 :grablanguages
 set Counter=1
-curl %FilesHostedOn%\%language%.bin --output %Temp%\GloomParser.lang.bin
+curl.exe %FilesHostedOn%\%language%.bin --output %Temp%\GloomParser.lang.bin
 for /f %%x in (%Temp%\GloomParser.lang.bin) do (
   set "string!Counter!=%%x"
   set /a Counter+=1
