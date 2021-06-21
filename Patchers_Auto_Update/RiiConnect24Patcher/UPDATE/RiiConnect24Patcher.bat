@@ -5709,7 +5709,7 @@ goto 2_2
 set Counter=1
 curl.exe %FilesHostedOn%\%language%.bin --output %Temp%\GloomParser.lang.bin
 for /f %%x in (%Temp%\GloomParser.lang.bin) do (
-  set "string!Counter!=%%x"
+  set "string_!Counter!=%%x"
   set /a Counter+=1
 )
 set /a NumLines=Counter - 1
