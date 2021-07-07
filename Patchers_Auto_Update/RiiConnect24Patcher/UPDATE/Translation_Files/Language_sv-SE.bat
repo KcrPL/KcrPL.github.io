@@ -553,3 +553,14 @@ set string527=Skriv ditt meddelande här [RETUR bekräftar ditt meddelande].
 set string528=Detta är ditt meddelande:
 set string529=Skulle du vilja bifoga den?
 set string530=Förberedelser för att skicka feedback...
+
+set string531=Japan
+set string537=Korea
+set string532=Det pågår för närvarande underhåll på våra servrar.
+set string533=Developer begärde att åtkomst till programmet kommer att förbjudas tills underhållet är gjort.
+set string534=Försök igen.
+set string535=Det pågår för närvarande underhåll av bakgrund på våra servrar.
+set string536=Viss funktionalitet kan vara begränsad eller inte fungera förrän underhållet är klart.
+
+set string538=Tyvärr stöder vi för koreansk region bara Wii Mail.
+set string539=Andra kanaler stöddes ursprungligen inte av WiiConnect24.

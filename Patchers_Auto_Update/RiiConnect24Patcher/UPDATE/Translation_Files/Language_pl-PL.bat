@@ -552,3 +552,14 @@ set string527=Napisz swoją wiadomość [ENTER potwierdza wiadomość].
 set string528=Oto twoja wiadomość:
 set string529=Czy chciałbyś ją dołączyć?
 set string530=Przygotowywanie do przesłania opinii...
+
+set string531=Japonia
+set string537=Korea
+set string532=Obecnie trwają prace konserwacyjne na naszych serwerach.
+set string533=Programista poprosił o zabronienie dostępu do programu dopóki prace konserwacyjne się zakończą.
+set string534=Proszę spróbować później.
+set string532=Obecnie na naszych serwerach trwają prace konserwacyjne w tle.
+set string536=Niektóre funkcje mogą być ograniczone lub nie działać dopóki prace nie zostaną zakończone.
+
+set string538=Niestety, jeżeli chodzi o region Korea - wspieramy tylko Wii Mail.
+set string539=Inne kanały nigdy nie były wspierane przez WiiConnect24.
