@@ -1,24 +1,24 @@
 @echo off
 :: ===========================================================================
 :: Update Assistant for WiiLink24
-set version=1.0.0
+set version=1.0.1
 :: AUTHORS: KcrPL
 :: ***************************************************************************
-:: Copyright (c) 2020 KcrPL
+:: Copyright (c) 2021 KcrPL
 :: ===========================================================================
 setlocal enableextensions
 setlocal EnableDelayedExpansion
 
 if exist temp.bat del /q temp.bat
 
-set last_build=2020/12/04
-set at=23:21
+set last_build=2021/05/15
+set at=01:30
 set header=Update Assistant - (C) KcrPL v%version% (Compiled on %last_build% at %at%)
 ::
 set /a no_start=0
 set /a beta=0
 set /a preboot=0
-set FilesHostedOn=https://kcrpl.github.io/Patchers_Auto_Update/WiiLink24-Patcher/v1
+set FilesHostedOn=https://patcher.wiilink24.com/Patchers_Auto_Update/WiiLink24-Patcher/v1
 
 ::
 
