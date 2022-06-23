@@ -5,14 +5,14 @@ setlocal DisableDelayedExpansion
 cd /d "%~dp0"
 if exist temp.bat del /q temp.bat
 :: ===========================================================================
-:: Open-PS2-Loader-Updater 
+:: Open PS2 Loader Updater 
 set version=1.0.0
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2022 KcrPL
 :: ===========================================================================
 set last_build=2022/06/23
-set at=15:22 CET
+set at=20:52 CET
 
 set mode=126,36
 mode %mode%
@@ -20,9 +20,9 @@ title Open PS2 Loader Updater v%version%  Created by @KcrPL
 
 set header=Open PS2 Loader Updater - (C) KcrPL v%version% (Updated on %last_build% at %at%)
 
-set /a update_Activate=0
+set /a update_Activate=1
 set /a offlinestorage=0
-set FilesHostedOn=https://patcher.rc24.xyz/update/Mail-Patcher/v1
+set FilesHostedOn=https://kcrpl.github.io/Patchers_Auto_Update/Open_PS2_Loader_Updater/v1/
 set opl_latest_link=https://github.com/ps2homebrew/Open-PS2-Loader/releases/download/latest/OPNPS2LD.7z
 set MainFolder=%appdata%\OpenPS2LoaderUpdater
 set TempStorage=%appdata%\OpenPS2LoaderUpdater\internet\temp
@@ -49,12 +49,39 @@ echo What would you like to do?
 echo.
 echo 1. Run the Open PS2 Loader Updater.
 echo 2. Settings.
-
+echo.
+echo 3. Help [read manual].
+echo 4. Open GitHub project page.
+echo.
 set /p s=Choose: 
 if "%s%"=="1" goto startup_script
 if "%s%"=="2" goto reconfigure
+if "%s%"=="3" goto help
+if "%s%"=="4" start https://github.com/KcrPL/Open-PS2-Loader-Updater
 goto begin_main
 
+:help
+cls
+echo %header%
+echo %line%
+echo.
+echo The point of this app is to quickly update OPL on your PS2.
+echo.
+echo Open PS2 Loader's latest version is always available here: 
+echo https://github.com/ps2homebrew/Open-PS2-Loader/releases/download/latest/OPNPS2LD.7z
+echo.
+echo Your computer and PS2 needs to be on the same network so they can communicate with each other.
+echo Ideally your PS2 is connected to your router and you're connected to your router using WiFi or Ethernet.
+echo.
+echo We're gonna use uLaunchELF's built in FTP Server as our FTP Server of choice. You will have to configure it's network.
+echo From uLaunchELF select "Configure" -^> Network Settings and configure network.
+echo.
+echo To start the FTP Server, launch uLaunchELF -^> FileBrowser -^> MISC -^> PS2Net.
+echo You will see your PS2's IP Address on top of the screen.
+echo.
+echo Press any key to continue.
+pause>nul
+goto begin_main
 :reconfigure
 set /p ps2_target_ip=<"%MainFolder%\ps2_target_ip.txt"
 set /p ps2_target_path=<"%MainFolder%\ps2_target_path.txt"
@@ -264,7 +291,7 @@ echo.
 echo %line%    
 
 :: Deleting the temp files if they exist.
-curl -f -L -s -S --insecure "https://patcher.rc24.xyz/update/RiiConnect24-Patcher/v1/UPDATE/update_assistant.bat" --output "update_assistant.bat"
+curl -f -L -s -S --insecure "https://kcrpl.github.io/Patchers_Auto_Update/Open_PS2_Loader_Updater/v1/UPDATE/update_assistant.bat" --output "update_assistant.bat"
 	set temperrorlev=%errorlevel%
 	if not %temperrorlev%==0 goto error_updating
 	start update_assistant.bat -OpenPS2LoaderUpdater
@@ -362,9 +389,9 @@ if %progress_download%==0 echo [ ] Downloading the latest OpenPS2Loader beta fro
 if %progress_download%==1 echo [.] Downloading the latest OpenPS2Loader beta from GitHub.
 if %progress_download%==2 echo [X] Downloading the latest OpenPS2Loader beta from GitHub.
 
-if %progress_upload%==0 echo [ ] Uploading the new build of OpenPS2Loader to your PS2..
-if %progress_upload%==1 echo [.] Uploading the new build of OpenPS2Loader to your PS2..
-if %progress_upload%==2 echo [X] Uploading the new build of OpenPS2Loader to your PS2..
+if %progress_upload%==0 echo [ ] Uploading the new build of OpenPS2Loader to your PS2.
+if %progress_upload%==1 echo [.] Uploading the new build of OpenPS2Loader to your PS2.
+if %progress_upload%==2 echo [X] Uploading the new build of OpenPS2Loader to your PS2.
 
 if %progress%==1 goto ftp_patch_check_conn
 if %progress%==2 goto ftp_patch_download_beta
@@ -385,6 +412,12 @@ set /a progress=2
 goto ftp_patch_main
 
 :ftp_patch_download_beta
+echo.
+
+if not exist "7z.exe" curl "https://kcrpl.github.io/Patchers_Auto_Update/Open_PS2_Loader_Updater/v1/7z.exe" --output "7z.exe"
+set /a temperrorlev=%errorlevel%
+		if not %temperrorlev%==0 set module=Downloading 7z.exe failed.
+		if not %temperrorlev%==0 goto error_patching
 echo.
 curl -L "%opl_latest_link%" --output "OPNPS2LD.7z"
 set /a temperrorlev=%errorlevel%
@@ -409,8 +442,9 @@ goto ftp_patch_main
 
 :ftp_patch_finish
 cls
-rmdir /s /q OPNPS2LD
-del OPNPS2LD.7z
+if exist OPNPS2LD rmdir /s /q OPNPS2LD
+if exist OPNPS2LD.7z del OPNPS2LD.7z
+if exist 7z.exe del 7z.exe
 echo %header%
 echo %line% 
 echo.
@@ -418,7 +452,7 @@ echo We are done!
 echo.
 echo [X] Checking if the connection to your PS2 is ok.
 echo [X] Downloading the latest OpenPS2Loader beta from GitHub.
-echo [X] Uploading the new build of OpenPS2Loader to your PS2..
+echo [X] Uploading the new build of OpenPS2Loader to your PS2.
 echo.
 echo OpenPS2Loader has been uploaded to your PS2's Memory Card. 
 echo If you're using a shortcut to OPL from the PS2 Main Menu, configure it in settings to run from:
@@ -426,6 +460,7 @@ echo.
 echo (OPL PS2 PATH): %ps2_target_path%
 echo.
 echo My work is done. Come back soon! There's a new build of OPL everyday.
+echo.
 echo Press any key to exit.
 pause>NUL 
 exit

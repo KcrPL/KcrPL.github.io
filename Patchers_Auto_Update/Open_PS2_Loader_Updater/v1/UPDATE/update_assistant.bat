@@ -66,7 +66,7 @@ ren "Open-PS2-Loader-UpdaterTEMP.bat" "Open-PS2-Loader-Updater.bat"
 
 if %no_start%==0 start Open-PS2-Loader-Updater.bat
 
-del /q "%~n0~x0"
+del /q update_assistant.bat
 exit
 
 :error_download
