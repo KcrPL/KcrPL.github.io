@@ -64,7 +64,7 @@ if not %temperrorlev%==0 goto error_download
 del OpenPS2LoaderUpdater.bat
 ren "OpenPS2LoaderUpdaterTEMP.bat" "OpenPS2LoaderUpdater.bat"
 
-if %no_start%==0 start RiiConnect24Patcher.bat
+if %no_start%==0 start OpenPS2LoaderUpdater.bat
 
 del /q "%~n0~x0"
 GOTO:EOL
