@@ -49,7 +49,7 @@ echo -OpenPS2LoaderUpdater          Will download latest OpenPS2LoaderUpdater to
 echo -no_start                      Won't start the patcher after the download is complete
 GOTO:EOF
 
-:start_download_rc24_patcher
+:openps2loaderupdater
 set mode=128,37
 mode %mode%
 cls
