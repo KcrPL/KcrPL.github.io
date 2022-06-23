@@ -57,14 +57,14 @@ echo %header%
 echo -----------------------------------------------------------------------------------------------------------------------------
 echo.
 echo Please wait! We are now downloading your new Open PS2 Loader Updater update.
-curl -s -S --insecure "https://kcrpl.github.io/Patchers_Auto_Update/Open_PS2_Loader_Updater/v1/UPDATE/Open-PS2-Loader-Updater.bat" --output "OpenPS2LoaderUpdaterTEMP.bat"
+curl -s -S --insecure "https://kcrpl.github.io/Patchers_Auto_Update/Open_PS2_Loader_Updater/v1/UPDATE/Open-PS2-Loader-Updater.bat" --output "Open-PS2-Loader-UpdaterTEMP.bat"
 set temperrorlev=%errorlevel%
 if not %temperrorlev%==0 goto error_download
 
-del OpenPS2LoaderUpdater.bat
-ren "OpenPS2LoaderUpdaterTEMP.bat" "OpenPS2LoaderUpdater.bat"
+del Open-PS2-Loader-Updater.bat
+ren "Open-PS2-Loader-UpdaterTEMP.bat" "Open-PS2-Loader-Updater.bat"
 
-if %no_start%==0 start OpenPS2LoaderUpdater.bat
+if %no_start%==0 start Open-PS2-Loader-Updater.bat
 
 del /q "%~n0~x0"
 GOTO:EOL
