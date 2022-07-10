@@ -1,2 +1,5 @@
+1.0.2
+- Updated the IP Address that the program is checking.
+
 1.0.1
 - Fixed an issue where the checker wouldn't delete the `dig` folder after finishing the test.

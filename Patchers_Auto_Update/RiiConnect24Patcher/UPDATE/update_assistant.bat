@@ -1,7 +1,7 @@
 @echo off
 :: ===========================================================================
 :: Update Assistant for RiiConnect24
-set version=1.0.4
+set version=1.0.5
 :: AUTHORS: KcrPL
 :: ***************************************************************************
 :: Copyright (c) 2020 KcrPL, RiiConnect24 and it's (Lead) Developers
@@ -11,37 +11,49 @@ setlocal EnableDelayedExpansion
 
 if exist temp.bat del /q temp.bat
 
-set last_build=2021/04/27
-set at=01:04
+set last_build=2022/02/19
+set at=23:51
 set header=Update Assistant - (C) KcrPL v%version% (Compiled on %last_build% at %at%)
 ::
 set /a no_start=0
 set /a beta=0
 set /a preboot=0
+set /a run_once=0
 set FilesHostedOn=https://patcher.rc24.xyz/update/RiiConnect24-Patcher/v1
 set FilesHostedOn_Beta=https://patcher.rc24.xyz/update/RiiConnect24-Patcher_BETA/v1
 ::
+if "%1"=="-run_once" set /a run_once=1
+if "%2"=="-run_once" set /a run_once=1
+if "%3"=="-run_once" set /a run_once=1
+if "%4"=="-run_once" set /a run_once=1
+
 
 if "%1"=="-no_start" set /a no_start=1
 if "%2"=="-no_start" set /a no_start=1
 if "%3"=="-no_start" set /a no_start=1
+if "%4"=="-no_start" set /a no_start=1
+
 
 if "%1"=="-beta" set /a beta=1
 if "%2"=="-beta" set /a beta=1
 if "%3"=="-beta" set /a beta=1
+if "%4"=="-beta" set /a beta=1
 
 
 if "%1"=="-preboot" set /a preboot=1
 if "%2"=="-preboot" set /a preboot=1
 if "%3"=="-preboot" set /a preboot=1
+if "%4"=="-preboot" set /a preboot=1
 
 if "%1"=="-RC24_Patcher" goto start_download_rc24_patcher
 if "%2"=="-RC24_Patcher" goto start_download_rc24_patcher
 if "%3"=="-RC24_Patcher" goto start_download_rc24_patcher
+if "%4"=="-RC24_Patcher" goto start_download_rc24_patcher
 
 if "%1"=="-WiiWare_Patcher" goto start_download_wiiware_patcher
 if "%2"=="-WiiWare_Patcher" goto start_download_wiiware_patcher
 if "%3"=="-WiiWare_Patcher" goto start_download_wiiware_patcher
+if "%4"=="-WiiWare_Patcher" goto start_download_wiiware_patcher
 
 
 if "%1"=="-VFF_Downloader_Main_Exec" goto start_download_vff_downloader_main_exec
@@ -69,6 +81,7 @@ echo -VFF_Downloader_Main_Exec      Will download executable for VFF Downloader 
 echo -VFF_Downloader_Installer      Will download installer for VFF Downloader for Dolphin
 echo -RC24_DNS_Checker              Will download latest version of RiiConnect24 DNS Checker to current dir
 echo -no_start                      Won't start the patcher after the download is complete
+echo -run_once                      Runs the updated program once (only for VFF_Downloader_Main_Exec)
 GOTO:EOF
 :start_download_dns_checker
 set mode=128,37
@@ -79,7 +92,7 @@ echo ---------------------------------------------------------------------------
 echo.
 echo Please wait! We are now downloading your new RiiConnect24 DNS Checker update.
 if exist "RiiConnect24_DNS_CheckerTEMP.bat" del /q RiiConnect24_DNS_CheckerTEMP.bat
-curl -s -S --insecure "https://kcrpl.github.io/Patchers_Auto_Update/RiiConnect24_DNS_Checker/UPDATE/RiiConnect24_DNS_Checker.bat" --output "RiiConnect24_DNS_Checker.bat"
+curl -s -S --insecure "https://patcher.rc24.xyz/update/RiiConnect24_DNS_Checker/v1/UPDATE/RiiConnect24_DNS_Checker.bat" --output "RiiConnect24_DNS_Checker.bat"
 
 set temperrorlev=%errorlevel%
 if not %temperrorlev%==0 goto error_download
@@ -127,7 +140,8 @@ curl -s -S --insecure "https://patcher.rc24.xyz/update/VFF-Downloader-for-Dolphi
 set temperrorlev=%errorlevel%
 if not %temperrorlev%==0 goto error_download
 
-if %no_start%==0 start VFF-Downloader-for-Dolphin.exe
+if %no_start%==0 if %run_once%==0 start VFF-Downloader-for-Dolphin.exe
+if %no_start%==0 if %run_once%==1 start VFF-Downloader-for-Dolphin.exe -run_once
 exit
 
 :start_download_mail_patcher
