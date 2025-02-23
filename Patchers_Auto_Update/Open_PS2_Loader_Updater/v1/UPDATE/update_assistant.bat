@@ -78,7 +78,7 @@ echo Oops! There was an error while downloading the file(s).
 echo.
 echo Exit code: %temperrorlev%
 echo.
-echo Please contact KcrPL#4625 on Discord.
+echo Please contact kcrpl on Discord.
 echo The update assistant will now return to loader or it will exit.
 echo.
 echo Press any button to continue.

@@ -1,2 +1,12 @@
+1.0.1
+- Added: Will now check and display the current stable build version and release date.
+- Added: User can now choose between downloading a stable or daily build of OPL.
+- Added: OPL Updater will now show the date when you last updated OPL on your PS2.
+- Fixed: Pressing ENTER while on the path configuration settings will retain the current setting instead of changing it to mc/0/OPL/
+- UI: Added a warning about the experimental nature of the daily builds.
+- UI: Fixed UI to display correctly on the new Windows Terminal.
+- UI: Changed some strings.
+- UI: Showing correct path to the OPL executable on the summary screen.
+
 1.0.0
 - Initial release
