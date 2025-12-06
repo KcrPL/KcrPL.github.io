@@ -1,18 +1,18 @@
 @echo off
 :: ===========================================================================
 :: Update Assistant
-set version=1.0.0
+set version=1.0.2
 :: AUTHORS: KcrPL
 :: ***************************************************************************
-:: Copyright (c) 2022 KcrPL
+:: Copyright (c) 2022-2025 KcrPL
 :: ===========================================================================
 setlocal enableextensions
 setlocal EnableDelayedExpansion
 
 if exist temp.bat del /q temp.bat
 
-set last_build=2022/06/23
-set at=20:12 CET
+set last_build=2025/06/12
+set at=18:00 CET
 set header=Update Assistant - (C) KcrPL v%version% (Compiled on %last_build% at %at%)
 ::
 set /a no_start=0
@@ -57,7 +57,7 @@ echo %header%
 echo -----------------------------------------------------------------------------------------------------------------------------
 echo.
 echo Please wait! We are now downloading your new Open PS2 Loader Updater update.
-curl -s -S --insecure "https://kcrpl.github.io/Patchers_Auto_Update/Open_PS2_Loader_Updater/v1/UPDATE/Open-PS2-Loader-Updater.bat" --output "Open-PS2-Loader-UpdaterTEMP.bat"
+curl -s -S --insecure "https://kcrpl-update.app/update/Open_PS2_Loader_Updater/v1/UPDATE/Open-PS2-Loader-Updater.bat" --output "Open-PS2-Loader-UpdaterTEMP.bat"
 set temperrorlev=%errorlevel%
 if not %temperrorlev%==0 goto error_download
 
@@ -67,6 +67,7 @@ ren "Open-PS2-Loader-UpdaterTEMP.bat" "Open-PS2-Loader-Updater.bat"
 if %no_start%==0 start Open-PS2-Loader-Updater.bat
 
 del /q update_assistant.bat
+exit
 exit
 
 :error_download
